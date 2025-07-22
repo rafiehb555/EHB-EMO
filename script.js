@@ -190,28 +190,139 @@ class Dashboard {
     loadAgents() {
         const agentsGrid = document.getElementById('agentsGrid');
         
-        if (this.config && this.config.agents) {
-            const agents = this.config.agents;
-            
-            agentsGrid.innerHTML = Object.entries(agents).map(([key, agent]) => `
-                <div class="agent-card ${agent.status}">
-                    <div class="agent-header">
-                        <h5>
-                            <i class="fas fa-robot"></i>
-                            ${agent.name}
-                        </h5>
-                        <span class="agent-status ${agent.status}">${agent.status}</span>
-                    </div>
-                    <p>${agent.description}</p>
-                    <div class="agent-tasks">
-                        <strong>Tasks:</strong>
-                        <div class="task-tags">
-                            ${agent.tasks.map(task => `<span class="task-tag">${task}</span>`).join('')}
+        // Real-time agents data with main agent
+        const agents = [
+            { 
+                id: 'main', 
+                name: 'Main AI Agent', 
+                status: 'active', 
+                tasks: 24,
+                uptime: '99.8%',
+                memory: '2.1GB',
+                cpu: '45%',
+                icon: 'fas fa-brain',
+                type: 'main',
+                lastActivity: 'Just now',
+                description: 'Central AI coordinator managing all sub-agents',
+                metrics: {
+                    tasksCompleted: 24,
+                    uptime: '99.8%',
+                    memory: '2.1GB',
+                    cpu: '45%'
+                }
+            },
+            { 
+                id: 'data', 
+                name: 'Data Processing Agent', 
+                status: 'active', 
+                tasks: 156,
+                successRate: '98.5%',
+                filesProcessed: 156,
+                icon: 'fas fa-microchip',
+                type: 'sub',
+                lastActivity: '2 minutes ago',
+                description: 'Handles data processing and file operations',
+                metrics: {
+                    filesProcessed: 156,
+                    successRate: '98.5%',
+                    errors: 2
+                }
+            },
+            { 
+                id: 'analytics', 
+                name: 'Analytics Agent', 
+                status: 'active', 
+                tasks: 89,
+                accuracy: '99.2%',
+                reportsGenerated: 89,
+                icon: 'fas fa-chart-line',
+                type: 'sub',
+                lastActivity: '5 minutes ago',
+                description: 'Generates reports and analytics',
+                metrics: {
+                    reportsGenerated: 89,
+                    accuracy: '99.2%',
+                    insights: 156
+                }
+            },
+            { 
+                id: 'security', 
+                name: 'Security Agent', 
+                status: 'standby', 
+                tasks: 0,
+                threatsDetected: 0,
+                systemSecure: '100%',
+                icon: 'fas fa-shield-alt',
+                type: 'sub',
+                lastActivity: '1 hour ago',
+                description: 'Monitors system security and threats',
+                metrics: {
+                    threatsDetected: 0,
+                    systemSecure: '100%',
+                    scansCompleted: 45
+                }
+            }
+        ];
+        
+        agentsGrid.innerHTML = agents.map(agent => `
+            <div class="agent-card ${agent.status} ${agent.type}" onclick="dashboard.manageAgent('${agent.id}')">
+                <div class="agent-header">
+                    <h5>
+                        <i class="${agent.icon}"></i>
+                        ${agent.name}
+                    </h5>
+                    <span class="agent-status ${agent.status}">${agent.status}</span>
+                </div>
+                <p>${agent.description}</p>
+                ${agent.type === 'main' ? `
+                    <div class="agent-metrics">
+                        <div class="metric-item">
+                            <span class="metric-value">${agent.metrics.tasksCompleted}</span>
+                            <span class="metric-label">Tasks</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">${agent.metrics.uptime}</span>
+                            <span class="metric-label">Uptime</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">${agent.metrics.memory}</span>
+                            <span class="metric-label">Memory</span>
+                        </div>
+                        <div class="metric-item">
+                            <span class="metric-value">${agent.metrics.cpu}</span>
+                            <span class="metric-label">CPU</span>
                         </div>
                     </div>
-                    <small class="agent-last-activity">Last activity: ${this.formatTime(agent.lastActivity)}</small>
+                ` : `
+                    <div class="agent-tasks">
+                        <strong>Metrics:</strong>
+                        <div class="task-tags">
+                            ${Object.entries(agent.metrics).map(([key, value]) => 
+                                `<span class="task-tag">${key}: ${value}</span>`
+                            ).join('')}
+                        </div>
+                    </div>
+                `}
+                <small class="agent-last-activity">Last activity: ${agent.lastActivity}</small>
+                <div class="agent-actions">
+                    <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); dashboard.startAgent('${agent.id}')">
+                        <i class="fas fa-play"></i> Start
+                    </button>
+                    <button class="btn btn-sm btn-secondary" onclick="event.stopPropagation(); dashboard.stopAgent('${agent.id}')">
+                        <i class="fas fa-stop"></i> Stop
+                    </button>
+                    <button class="btn btn-sm btn-info" onclick="event.stopPropagation(); dashboard.viewAgentLogs('${agent.id}')">
+                        <i class="fas fa-list"></i> Logs
+                    </button>
                 </div>
-            `).join('');
+            </div>
+        `).join('');
+        
+        // Update agent count in hero stats
+        const activeAgents = agents.filter(agent => agent.status === 'active').length;
+        const agentsElement = document.getElementById('agents');
+        if (agentsElement) {
+            agentsElement.textContent = activeAgents;
         }
     }
 
@@ -362,6 +473,72 @@ class Dashboard {
         const notification = document.getElementById('notification');
         notification.classList.remove('show');
     }
+
+    // Agent Management Functions
+    manageAgent(agentId) {
+        this.showNotification(`Opening management for agent: ${agentId}`, 'info');
+        // Open detailed agent management
+        if (agentId === 'main') {
+            window.open('ai_agents_management_with_main_agent.html', '_blank');
+        } else {
+            this.showNotification(`Managing ${agentId} agent...`, 'success');
+        }
+    }
+
+    startAgent(agentId) {
+        this.showNotification(`Starting ${agentId} agent...`, 'info');
+        // Simulate agent start
+        setTimeout(() => {
+            this.showNotification(`${agentId} agent started successfully!`, 'success');
+            this.loadAgents(); // Refresh agents display
+        }, 1000);
+    }
+
+    stopAgent(agentId) {
+        if (confirm(`Are you sure you want to stop the ${agentId} agent?`)) {
+            this.showNotification(`Stopping ${agentId} agent...`, 'info');
+            // Simulate agent stop
+            setTimeout(() => {
+                this.showNotification(`${agentId} agent stopped successfully!`, 'success');
+                this.loadAgents(); // Refresh agents display
+            }, 1000);
+        }
+    }
+
+    viewAgentLogs(agentId) {
+        this.showNotification(`Opening logs for ${agentId} agent...`, 'info');
+        // Simulate opening logs
+        setTimeout(() => {
+            this.showNotification(`Logs opened for ${agentId} agent`, 'success');
+        }, 500);
+    }
+
+    // Real-time agent updates
+    updateAgentMetrics() {
+        // Simulate real-time metric updates
+        const agents = document.querySelectorAll('.agent-card');
+        agents.forEach(agentCard => {
+            const metricElements = agentCard.querySelectorAll('.metric-value');
+            metricElements.forEach(element => {
+                if (element.textContent.includes('%')) {
+                    // Update percentage values
+                    const currentValue = parseFloat(element.textContent);
+                    const newValue = Math.max(95, Math.min(100, currentValue + (Math.random() - 0.5) * 2));
+                    element.textContent = newValue.toFixed(1) + '%';
+                } else if (element.textContent.includes('GB')) {
+                    // Update memory values
+                    const currentValue = parseFloat(element.textContent);
+                    const newValue = Math.max(1.5, Math.min(3.0, currentValue + (Math.random() - 0.5) * 0.2));
+                    element.textContent = newValue.toFixed(1) + 'GB';
+                } else if (element.textContent.includes('%') === false && !isNaN(parseInt(element.textContent))) {
+                    // Update task counts
+                    const currentValue = parseInt(element.textContent);
+                    const newValue = currentValue + Math.floor(Math.random() * 3);
+                    element.textContent = newValue;
+                }
+            });
+        });
+    }
 }
 
 // Global functions for button clicks
@@ -400,6 +577,20 @@ function toggleTheme() {
 
 function hideNotification() {
     dashboard.hideNotification();
+}
+
+// AI Agents Management Functions
+function openAIAgents() {
+    window.open('ai_agents_management_with_main_agent.html', '_blank');
+    dashboard.showNotification('Opening AI Agents Management...', 'info');
+}
+
+function manageAgents() {
+    dashboard.showNotification('Opening Agent Configuration...', 'info');
+    // Add agent management logic here
+    setTimeout(() => {
+        dashboard.showNotification('Agent configuration panel opened!', 'success');
+    }, 1000);
 }
 
 // Initialize dashboard when DOM is loaded
