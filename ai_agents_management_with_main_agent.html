@@ -393,7 +393,60 @@
                 const currentTasks = parseInt(tasksElement.textContent);
                 tasksElement.textContent = currentTasks + Math.floor(Math.random() * 3);
             }
+            
+            // Update other metrics
+            const uptimeElement = document.getElementById('mainAgentUptime');
+            if (uptimeElement) {
+                const currentUptime = parseFloat(uptimeElement.textContent);
+                const newUptime = Math.max(99.0, Math.min(100.0, currentUptime + (Math.random() - 0.5) * 0.2));
+                uptimeElement.textContent = newUptime.toFixed(1) + '%';
+            }
+            
+            const memoryElement = document.getElementById('mainAgentMemory');
+            if (memoryElement) {
+                const currentMemory = parseFloat(memoryElement.textContent);
+                const newMemory = Math.max(1.8, Math.min(2.5, currentMemory + (Math.random() - 0.5) * 0.1));
+                memoryElement.textContent = newMemory.toFixed(1) + 'GB';
+            }
+            
+            const cpuElement = document.getElementById('mainAgentCPU');
+            if (cpuElement) {
+                const currentCPU = parseFloat(cpuElement.textContent);
+                const newCPU = Math.max(30, Math.min(60, currentCPU + (Math.random() - 0.5) * 5));
+                cpuElement.textContent = newCPU.toFixed(0) + '%';
+            }
         }, 5000);
+        
+        // Add new log entries periodically
+        setInterval(() => {
+            const logsContainer = document.getElementById('mainAgentLogs');
+            if (logsContainer) {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString();
+                const logMessages = [
+                    'Coordinating sub-agents for task execution',
+                    'Processing incoming data requests',
+                    'Updating agent performance metrics',
+                    'Monitoring system resources',
+                    'Synchronizing with dashboard data'
+                ];
+                
+                const randomMessage = logMessages[Math.floor(Math.random() * logMessages.length)];
+                const newLogEntry = document.createElement('div');
+                newLogEntry.className = 'log-entry';
+                newLogEntry.innerHTML = `
+                    <span class="log-time">${timeString}</span>
+                    <span class="log-message">${randomMessage}</span>
+                `;
+                
+                logsContainer.insertBefore(newLogEntry, logsContainer.firstChild);
+                
+                // Keep only last 5 log entries
+                while (logsContainer.children.length > 5) {
+                    logsContainer.removeChild(logsContainer.lastChild);
+                }
+            }
+        }, 8000);
     </script>
 </body>
 </html> 

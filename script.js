@@ -106,6 +106,9 @@ class Dashboard {
 
         // Load project files
         this.loadProjectFilesUI();
+        
+        // Update agent metrics in real-time
+        this.updateAgentMetrics();
     }
 
     updateSystemStatus() {
@@ -603,4 +606,11 @@ setInterval(() => {
     if (window.dashboard) {
         window.dashboard.updateDashboard();
     }
-}, 30000); 
+}, 30000);
+
+// Real-time agent metrics update every 5 seconds
+setInterval(() => {
+    if (window.dashboard) {
+        window.dashboard.updateAgentMetrics();
+    }
+}, 5000); 
