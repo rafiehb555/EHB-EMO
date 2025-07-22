@@ -340,21 +340,88 @@
                 </div>
             </section>
 
-            <!-- Enhanced Agents Section -->
+            <!-- Agents Section -->
             <section id="agents" class="agents">
-                <div class="section-header">
-                    <h3>AI Agents Management</h3>
-                    <div class="section-actions">
-                        <button class="btn btn-primary" onclick="createAgent()">
-                            <i class="fas fa-plus"></i> New Agent
-                        </button>
-                        <button class="btn btn-secondary" onclick="manageAllAgents()">
-                            <i class="fas fa-cog"></i> Manage All
-                        </button>
+                <h3>AI Agents Management</h3>
+                
+                <!-- Agent Summary -->
+                <div class="agent-summary">
+                    <div class="summary-card">
+                        <h4><i class="fas fa-robot"></i> Total Agents</h4>
+                        <span class="summary-value" id="totalAgents">44</span>
+                    </div>
+                    <div class="summary-card">
+                        <h4><i class="fas fa-play-circle"></i> Active</h4>
+                        <span class="summary-value" id="activeAgents">44</span>
+                    </div>
+                    <div class="summary-card">
+                        <h4><i class="fas fa-check-circle"></i> Completion</h4>
+                        <span class="summary-value" id="completionRate">100%</span>
+                    </div>
+                    <div class="summary-card">
+                        <h4><i class="fas fa-pause-circle"></i> Inactive</h4>
+                        <span class="summary-value" id="inactiveAgents">0</span>
                     </div>
                 </div>
-                <div class="agents-grid" id="agentsGrid">
-                    <!-- Agents will be loaded here -->
+                
+                <!-- Main Agent Section -->
+                <div class="main-agent-section">
+                    <h4><i class="fas fa-crown"></i> Main AI Agent (Central Coordinator)</h4>
+                    <div class="main-agent-card" id="mainAgentCard">
+                        <!-- Main agent will be loaded here -->
+                    </div>
+                </div>
+                
+                <!-- Sub-Agents Sections -->
+                <div class="sub-agents-sections">
+                    <div class="agent-category">
+                        <h4><i class="fas fa-cube"></i> Core System Agents</h4>
+                        <div class="agents-grid" id="coreAgentsGrid">
+                            <!-- Core agents will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="agent-category">
+                        <h4><i class="fas fa-brain"></i> AI Agents</h4>
+                        <div class="agents-grid" id="aiAgentsGrid">
+                            <!-- AI agents will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="agent-category">
+                        <h4><i class="fas fa-database"></i> Data Processing Agents</h4>
+                        <div class="agents-grid" id="dataAgentsGrid">
+                            <!-- Data agents will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="agent-category">
+                        <h4><i class="fas fa-cogs"></i> Configuration Agents</h4>
+                        <div class="agents-grid" id="configAgentsGrid">
+                            <!-- Config agents will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="agent-category">
+                        <h4><i class="fas fa-folder-open"></i> File Management Agents</h4>
+                        <div class="agents-grid" id="fileAgentsGrid">
+                            <!-- File agents will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="agent-category">
+                        <h4><i class="fas fa-code"></i> Code Analysis Agents</h4>
+                        <div class="agents-grid" id="codeAgentsGrid">
+                            <!-- Code agents will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="agent-category">
+                        <h4><i class="fas fa-shield-alt"></i> Security Agents</h4>
+                        <div class="agents-grid" id="securityAgentsGrid">
+                            <!-- Security agents will be loaded here -->
+                        </div>
+                    </div>
                 </div>
             </section>
 

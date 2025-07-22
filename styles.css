@@ -1735,3 +1735,214 @@ html {
     outline: none;
     border-color: #667eea;
 } 
+
+/* Agent Summary */
+.agent-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.summary-card {
+    background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.summary-card h4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.summary-card h4 i {
+    color: #667eea;
+    font-size: 1.2rem;
+}
+
+.summary-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+/* Main Agent Section */
+.main-agent-section {
+    margin-bottom: 3rem;
+}
+
+.main-agent-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-agent-section h4 i {
+    color: #ffd700;
+    font-size: 1.8rem;
+}
+
+.main-agent-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.main-agent-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.main-agent-card:hover::before {
+    transform: translateX(0);
+}
+
+.main-agent-card h5,
+.main-agent-card p,
+.main-agent-card .metric-label {
+    color: white;
+}
+
+.main-agent-card .metric-value {
+    color: #fff;
+}
+
+.main-agent-card .task-tag {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.main-agent-card .agent-last-activity {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Sub-Agents Sections */
+.sub-agents-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.agent-category {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.agent-category h4 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.agent-category h4 i {
+    font-size: 1.5rem;
+}
+
+.agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Agent Card Types */
+.agent-card.core {
+    border-left: 4px solid #28a745;
+}
+
+.agent-card.ai {
+    border-left: 4px solid #17a2b8;
+}
+
+.agent-card.data {
+    border-left: 4px solid #ffc107;
+}
+
+.agent-card.config {
+    border-left: 4px solid #6f42c1;
+}
+
+.agent-card.file {
+    border-left: 4px solid #fd7e14;
+}
+
+.agent-card.code {
+    border-left: 4px solid #e83e8c;
+}
+
+.agent-card.security {
+    border-left: 4px solid #dc3545;
+}
+
+/* Responsive Design for Agents */
+@media (max-width: 768px) {
+    .agent-summary {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .summary-card {
+        padding: 1rem;
+    }
+    
+    .summary-value {
+        font-size: 2rem;
+    }
+    
+    .agents-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .agent-category {
+        padding: 1.5rem;
+    }
+    
+    .main-agent-card {
+        padding: 1.5rem;
+    }
+} 
