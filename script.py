@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 EHB-5 Project Script
 This is a sample Python script for the EHB-5 project.
@@ -44,4 +44,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()
