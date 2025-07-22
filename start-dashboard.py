@@ -12,7 +12,7 @@ import socket
 from pathlib import Path
 
 
-def find_available_port(start_port=8000, max_attempts=10):
+def find_available_port(start_port=8000, max_attempts=10) -> None:
     """Find an available port starting from start_port"""
     for port in range(start_port, start_port + max_attempts):
         try:
@@ -24,7 +24,7 @@ def find_available_port(start_port=8000, max_attempts=10):
     return None
 
 
-def start_dashboard():
+def start_dashboard() -> None:
     """Start the EHB-5 dashboard server"""
 
     # Get current directory
@@ -49,7 +49,7 @@ def start_dashboard():
     try:
         with socketserver.TCPServer(("", PORT), Handler) as httpd:
             print("🚀 Starting EHB-5 Dashboard Server...")
-            print(f"📊 Dashboard URL: http://localhost:{PORT}")
+            print("📊 Dashboard URL: http://localhost:{PORT}")
             print("🌐 Opening dashboard in browser...")
             print("⏹️  Press Ctrl+C to stop the server")
             print("-" * 50)
@@ -64,33 +64,35 @@ def start_dashboard():
         print("\n🛑 Server stopped by user")
         return True
     except OSError as e:
-        print(f"❌ Error starting server: {e}")
+        print("❌ Error starting server: {e}")
         return False
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print("❌ Unexpected error: {e}")
         return False
 
 
-def check_requirements():
+def check_requirements() -> None:
     """Check if all required files exist"""
     required_files = ['index.html', 'styles.css', 'script.js', 'config.json']
     missing_files = []
 
     for file in required_files:
         if not os.path.exists(file):
-            missing_files.append(file)
+            if isinstance(missing_files, list):
+                if isinstance(missing_files, list):
+                    missing_files.append(file)
 
     if missing_files:
         print("❌ Missing required files:")
         for file in missing_files:
-            print(f"   - {file}")
+            print("   - {file}")
         return False
 
     print("✅ All required files found!")
     return True
 
 
-def main():
+def main() -> None:
     """Main function"""
     print("=" * 50)
     print("🎯 EHB-5 Dashboard Launcher")

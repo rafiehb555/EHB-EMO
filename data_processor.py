@@ -142,33 +142,41 @@ class DataProcessor:
             try:
                 json_data = json.loads(data)
                 formatted_json = json.dumps(json_data, indent=2)
-                transformations.append({
-                    'type': 'json_format',
-                    'result': formatted_json
-                })
+                if isinstance(transformations, list):
+                    if isinstance(transformations, list):
+                        transformations.append({
+                            'type': 'json_format',
+                            'result': formatted_json
+                        })
             except BaseException:
                 pass
 
             # Convert to uppercase
             upper_data = data.upper()
-            transformations.append({
-                'type': 'uppercase',
-                'result': upper_data
-            })
+            if isinstance(transformations, list):
+                if isinstance(transformations, list):
+                    transformations.append({
+                        'type': 'uppercase',
+                        'result': upper_data
+                    })
 
             # Convert to lowercase
             lower_data = data.lower()
-            transformations.append({
-                'type': 'lowercase',
-                'result': lower_data
-            })
+            if isinstance(transformations, list):
+                if isinstance(transformations, list):
+                    transformations.append({
+                        'type': 'lowercase',
+                        'result': lower_data
+                    })
 
             # Remove extra whitespace
             cleaned_data = re.sub(r'\s+', ' ', data).strip()
-            transformations.append({
-                'type': 'clean_whitespace',
-                'result': cleaned_data
-            })
+            if isinstance(transformations, list):
+                if isinstance(transformations, list):
+                    transformations.append({
+                        'type': 'clean_whitespace',
+                        'result': cleaned_data
+                    })
 
             return {
                 'operation': 'transform',
@@ -299,7 +307,7 @@ class DataProcessor:
             words: List[str],
             count: int = 5) -> List[Dict]:
         """Get most common words with their frequencies"""
-        word_count = {}
+        word_count: dict = {}
         for word in words:
             word = word.lower().strip('.,!?;:')
             if word:

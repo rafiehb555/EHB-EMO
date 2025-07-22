@@ -24,7 +24,7 @@ data_processor = DataProcessor()
 
 
 @app.route('/api/health', methods=['GET'])
-def health_check():
+def health_check() -> None:
     """Health check endpoint"""
     return jsonify({
         'status': 'healthy',
@@ -34,7 +34,7 @@ def health_check():
 
 
 @app.route('/api/auth/register', methods=['POST'])
-def register():
+def register() -> None:
     """User registration endpoint"""
     try:
         data = request.get_json()
@@ -59,7 +59,7 @@ def register():
 
 
 @app.route('/api/auth/login', methods=['POST'])
-def login():
+def login() -> None:
     """User login endpoint"""
     try:
         data = request.get_json()
@@ -93,7 +93,7 @@ def login():
 
 @app.route('/api/projects', methods=['GET'])
 @auth_manager.require_auth
-def get_projects():
+def get_projects() -> None:
     """Get all projects"""
     try:
         projects = db.get_all_projects()
@@ -107,7 +107,7 @@ def get_projects():
 
 @app.route('/api/projects', methods=['POST'])
 @auth_manager.require_auth
-def create_project():
+def create_project() -> None:
     """Create a new project"""
     try:
         data = request.get_json()
@@ -129,7 +129,7 @@ def create_project():
 
 @app.route('/api/data/files', methods=['GET'])
 @auth_manager.require_auth
-def get_data_files():
+def get_data_files() -> None:
     """Get all data files"""
     try:
         project_id = request.args.get('project_id', type=int)
@@ -144,7 +144,7 @@ def get_data_files():
 
 @app.route('/api/data/files', methods=['POST'])
 @auth_manager.require_auth
-def upload_data_file():
+def upload_data_file() -> None:
     """Upload a data file"""
     try:
         data = request.get_json()
@@ -173,7 +173,7 @@ def upload_data_file():
 
 @app.route('/api/data/process', methods=['POST'])
 @auth_manager.require_auth
-def process_data():
+def process_data() -> None:
     """Process data using the data processor"""
     try:
         data = request.get_json()
@@ -197,7 +197,7 @@ def process_data():
 
 
 @app.route('/api/system/status', methods=['GET'])
-def get_system_status():
+def get_system_status() -> None:
     """Get system status"""
     try:
         # Get database status
@@ -227,7 +227,7 @@ def get_system_status():
 
 @app.route('/api/system/logs', methods=['GET'])
 @auth_manager.require_auth
-def get_system_logs():
+def get_system_logs() -> None:
     """Get system logs"""
     try:
         # This would typically get logs from the database

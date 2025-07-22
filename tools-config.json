@@ -1,0 +1,468 @@
+{
+  "toolsConfiguration": {
+    "version": "2.0.0",
+    "description": "Comprehensive Tools Configuration for EHB-5 Dashboard",
+    "lastUpdated": "2025-01-27T10:00:00Z",
+    
+    "aiTools": {
+      "replitAI": {
+        "name": "Replit AI",
+        "version": "2.1.0",
+        "status": "active",
+        "packages": ["@replit/ai", "@replit/copilot", "ghostwriter"],
+        "features": ["Code Generation", "Bug Detection", "Auto-completion", "Pair Programming"],
+        "apiKey": "replit_ai_key_here",
+        "endpoints": {
+          "codeCompletion": "/api/ai/complete",
+          "codeReview": "/api/ai/review",
+          "bugDetection": "/api/ai/bugs"
+        }
+      },
+      "cursorAI": {
+        "name": "Cursor AI",
+        "version": "1.8.5",
+        "status": "active",
+        "packages": ["@cursor/ai", "@cursor/extensions"],
+        "features": ["Smart Editing", "Code Review", "Refactoring", "Documentation"],
+        "apiKey": "cursor_ai_key_here"
+      },
+      "openAI": {
+        "name": "OpenAI API",
+        "version": "4.0.0",
+        "status": "active",
+        "packages": ["openai", "gpt-4", "dall-e", "whisper"],
+        "features": ["Text Generation", "Image Creation", "Code Analysis", "Speech Recognition"],
+        "apiKey": "openai_key_here",
+        "models": ["gpt-4", "gpt-3.5-turbo", "dall-e-3", "whisper-1"]
+      },
+      "tensorflow": {
+        "name": "TensorFlow",
+        "version": "2.13.0",
+        "status": "active",
+        "packages": ["tensorflow", "tensorflow-js", "keras"],
+        "features": ["Neural Networks", "Model Training", "Inference", "Transfer Learning"]
+      }
+    },
+
+    "developmentTools": {
+      "codeEditors": {
+        "vscode": {
+          "name": "Visual Studio Code",
+          "version": "1.85.0",
+          "extensions": [
+            "ms-vscode.vscode-typescript-next",
+            "esbenp.prettier-vscode",
+            "ms-vscode.vscode-eslint",
+            "bradlc.vscode-tailwindcss",
+            "ms-vscode.vscode-json",
+            "ms-vscode.vscode-css-peek",
+            "ms-vscode.vscode-html-css-support"
+          ]
+        },
+        "cursor": {
+          "name": "Cursor Editor",
+          "version": "1.8.5",
+          "extensions": [
+            "cursor.ai",
+            "cursor.copilot",
+            "cursor.themes",
+            "cursor.debugger"
+          ]
+        }
+      },
+      "packageManagers": {
+        "npm": {
+          "version": "9.5.0",
+          "registry": "https://registry.npmjs.org/",
+          "scripts": ["start", "dev", "build", "test", "lint"]
+        },
+        "yarn": {
+          "version": "1.22.19",
+          "registry": "https://registry.yarnpkg.com/"
+        },
+        "pnpm": {
+          "version": "8.6.0",
+          "registry": "https://registry.npmjs.org/"
+        }
+      }
+    },
+
+    "designTools": {
+      "uiFrameworks": {
+        "antd": {
+          "name": "Ant Design",
+          "version": "5.0.0",
+          "components": ["Button", "Card", "Table", "Form", "Modal", "Notification"],
+          "themes": ["default", "dark", "compact"]
+        },
+        "materialUI": {
+          "name": "Material-UI",
+          "version": "5.11.0",
+          "components": ["Button", "Card", "DataGrid", "TextField", "Dialog"],
+          "themes": ["light", "dark", "custom"]
+        },
+        "tailwindcss": {
+          "name": "Tailwind CSS",
+          "version": "3.2.0",
+          "plugins": ["@tailwindcss/forms", "@tailwindcss/typography"],
+          "config": "tailwind.config.js"
+        }
+      },
+      "animationLibraries": {
+        "framerMotion": {
+          "name": "Framer Motion",
+          "version": "10.0.0",
+          "features": ["Spring Animations", "Gestures", "Variants", "Layout Animations"]
+        },
+        "reactSpring": {
+          "name": "React Spring",
+          "version": "9.7.0",
+          "features": ["Physics-based", "Interpolation", "Hooks API"]
+        }
+      },
+      "chartLibraries": {
+        "chartjs": {
+          "name": "Chart.js",
+          "version": "4.2.0",
+          "types": ["Line", "Bar", "Pie", "Doughnut", "Radar", "Scatter"]
+        },
+        "recharts": {
+          "name": "Recharts",
+          "version": "2.5.0",
+          "components": ["LineChart", "BarChart", "PieChart", "AreaChart"]
+        },
+        "d3": {
+          "name": "D3.js",
+          "version": "7.8.0",
+          "features": ["Custom Visualizations", "Data Binding", "Transitions"]
+        }
+      }
+    },
+
+    "monitoringTools": {
+      "performance": {
+        "webpackBundleAnalyzer": {
+          "name": "Webpack Bundle Analyzer",
+          "version": "4.7.0",
+          "features": ["Bundle Analysis", "Size Optimization", "Dependency Tracking"]
+        },
+        "lighthouse": {
+          "name": "Lighthouse",
+          "version": "11.0.0",
+          "metrics": ["Performance", "Accessibility", "Best Practices", "SEO"]
+        }
+      },
+      "analytics": {
+        "googleAnalytics": {
+          "name": "Google Analytics",
+          "version": "4.0",
+          "trackingId": "GA_TRACKING_ID"
+        },
+        "mixpanel": {
+          "name": "Mixpanel",
+          "version": "2.0.0",
+          "projectToken": "MIXPANEL_TOKEN"
+        }
+      }
+    },
+
+    "testingTools": {
+      "unitTesting": {
+        "jest": {
+          "name": "Jest",
+          "version": "29.0.0",
+          "features": ["Unit Testing", "Mocking", "Coverage", "Snapshot Testing"]
+        },
+        "vitest": {
+          "name": "Vitest",
+          "version": "0.34.0",
+          "features": ["Fast Testing", "ESM Support", "TypeScript"]
+        }
+      },
+      "e2eTesting": {
+        "cypress": {
+          "name": "Cypress",
+          "version": "12.0.0",
+          "features": ["End-to-End Testing", "Visual Testing", "API Testing"]
+        },
+        "playwright": {
+          "name": "Playwright",
+          "version": "1.40.0",
+          "features": ["Cross-browser Testing", "Mobile Testing", "API Testing"]
+        }
+      }
+    },
+
+    "deploymentTools": {
+      "containers": {
+        "docker": {
+          "name": "Docker",
+          "version": "24.0.5",
+          "features": ["Containerization", "Orchestration", "Multi-stage Builds"]
+        },
+        "kubernetes": {
+          "name": "Kubernetes",
+          "version": "1.28.0",
+          "features": ["Container Orchestration", "Auto-scaling", "Load Balancing"]
+        }
+      },
+      "cloudPlatforms": {
+        "aws": {
+          "name": "Amazon Web Services",
+          "services": ["EC2", "S3", "Lambda", "CloudFront", "RDS"],
+          "sdk": "aws-sdk"
+        },
+        "vercel": {
+          "name": "Vercel",
+          "features": ["Serverless", "Edge Functions", "Static Hosting"],
+          "cli": "vercel"
+        },
+        "netlify": {
+          "name": "Netlify",
+          "features": ["Static Hosting", "Functions", "Forms"],
+          "cli": "netlify-cli"
+        }
+      }
+    },
+
+    "securityTools": {
+      "authentication": {
+        "auth0": {
+          "name": "Auth0",
+          "version": "2.0.0",
+          "features": ["SSO", "MFA", "Social Login", "RBAC"]
+        },
+        "firebase": {
+          "name": "Firebase Auth",
+          "version": "10.0.0",
+          "features": ["Email/Password", "Social Login", "Phone Auth"]
+        }
+      },
+      "encryption": {
+        "bcryptjs": {
+          "name": "bcrypt.js",
+          "version": "2.4.0",
+          "features": ["Password Hashing", "Salt Generation"]
+        },
+        "crypto": {
+          "name": "Node.js Crypto",
+          "features": ["Encryption", "Decryption", "Hashing", "Signing"]
+        }
+      }
+    },
+
+    "databaseTools": {
+      "sql": {
+        "postgresql": {
+          "name": "PostgreSQL",
+          "version": "15.0",
+          "client": "pg",
+          "orm": "prisma"
+        },
+        "mysql": {
+          "name": "MySQL",
+          "version": "8.0",
+          "client": "mysql2"
+        }
+      },
+      "nosql": {
+        "mongodb": {
+          "name": "MongoDB",
+          "version": "6.0",
+          "client": "mongoose",
+          "features": ["Document Storage", "Aggregation", "Indexing"]
+        },
+        "redis": {
+          "name": "Redis",
+          "version": "7.0",
+          "client": "ioredis",
+          "features": ["Caching", "Session Storage", "Pub/Sub"]
+        }
+      }
+    },
+
+    "realTimeTools": {
+      "websockets": {
+        "socketio": {
+          "name": "Socket.IO",
+          "version": "4.6.0",
+          "features": ["Real-time Communication", "Room Management", "Event Handling"]
+        },
+        "pusher": {
+          "name": "Pusher",
+          "version": "8.0.0",
+          "features": ["Channels", "Events", "Presence", "Webhooks"]
+        }
+      },
+      "streaming": {
+        "serverSentEvents": {
+          "name": "Server-Sent Events",
+          "features": ["Real-time Updates", "Automatic Reconnection"]
+        },
+        "webRTC": {
+          "name": "WebRTC",
+          "features": ["Peer-to-Peer", "Video/Audio Streaming"]
+        }
+      }
+    }
+  },
+
+  "extensions": {
+    "vscode": [
+      {
+        "id": "ms-vscode.vscode-typescript-next",
+        "name": "TypeScript and JavaScript Language Features",
+        "publisher": "Microsoft",
+        "version": "5.0.0"
+      },
+      {
+        "id": "esbenp.prettier-vscode",
+        "name": "Prettier - Code formatter",
+        "publisher": "Prettier",
+        "version": "9.0.0"
+      },
+      {
+        "id": "ms-vscode.vscode-eslint",
+        "name": "ESLint",
+        "publisher": "Microsoft",
+        "version": "2.2.0"
+      },
+      {
+        "id": "bradlc.vscode-tailwindcss",
+        "name": "Tailwind CSS IntelliSense",
+        "publisher": "Tailwind Labs",
+        "version": "0.8.0"
+      },
+      {
+        "id": "ms-vscode.vscode-json",
+        "name": "JSON Language Features",
+        "publisher": "Microsoft",
+        "version": "1.0.0"
+      },
+      {
+        "id": "ms-vscode.vscode-css-peek",
+        "name": "CSS Peek",
+        "publisher": "Pranay Prakash",
+        "version": "4.2.0"
+      },
+      {
+        "id": "ms-vscode.vscode-html-css-support",
+        "name": "HTML CSS Support",
+        "publisher": "Microsoft",
+        "version": "1.0.0"
+      },
+      {
+        "id": "ms-vscode.vscode-git",
+        "name": "Git",
+        "publisher": "Microsoft",
+        "version": "1.0.0"
+      },
+      {
+        "id": "ms-vscode.vscode-debugger-for-chrome",
+        "name": "Debugger for Chrome",
+        "publisher": "Microsoft",
+        "version": "4.13.0"
+      },
+      {
+        "id": "ms-vscode.vscode-react-native",
+        "name": "React Native Tools",
+        "publisher": "Microsoft",
+        "version": "1.8.0"
+      }
+    ],
+    "cursor": [
+      {
+        "id": "cursor.ai",
+        "name": "Cursor AI",
+        "publisher": "Cursor",
+        "version": "1.8.5"
+      },
+      {
+        "id": "cursor.copilot",
+        "name": "Cursor Copilot",
+        "publisher": "Cursor",
+        "version": "1.0.0"
+      },
+      {
+        "id": "cursor.themes",
+        "name": "Cursor Themes",
+        "publisher": "Cursor",
+        "version": "1.0.0"
+      },
+      {
+        "id": "cursor.debugger",
+        "name": "Cursor Debugger",
+        "publisher": "Cursor",
+        "version": "1.0.0"
+      }
+    ]
+  },
+
+  "sdkConfigurations": {
+    "openai": {
+      "apiKey": "OPENAI_API_KEY",
+      "organization": "org-xxxxxxxxx",
+      "models": {
+        "gpt-4": "gpt-4",
+        "gpt-3.5-turbo": "gpt-3.5-turbo",
+        "dall-e-3": "dall-e-3",
+        "whisper-1": "whisper-1"
+      },
+      "endpoints": {
+        "completions": "https://api.openai.com/v1/chat/completions",
+        "images": "https://api.openai.com/v1/images/generations",
+        "audio": "https://api.openai.com/v1/audio/transcriptions"
+      }
+    },
+    "replit": {
+      "apiKey": "REPLIT_API_KEY",
+      "endpoints": {
+        "ai": "https://api.replit.com/v1/ai",
+        "copilot": "https://api.replit.com/v1/copilot"
+      }
+    },
+    "aws": {
+      "accessKeyId": "AWS_ACCESS_KEY_ID",
+      "secretAccessKey": "AWS_SECRET_ACCESS_KEY",
+      "region": "us-east-1",
+      "services": {
+        "s3": "s3.amazonaws.com",
+        "lambda": "lambda.us-east-1.amazonaws.com",
+        "cloudfront": "cloudfront.amazonaws.com"
+      }
+    },
+    "firebase": {
+      "apiKey": "FIREBASE_API_KEY",
+      "authDomain": "project.firebaseapp.com",
+      "projectId": "project-id",
+      "storageBucket": "project.appspot.com",
+      "messagingSenderId": "123456789",
+      "appId": "1:123456789:web:abcdef"
+    }
+  },
+
+  "environmentVariables": {
+    "NODE_ENV": "development",
+    "PORT": "3000",
+    "DATABASE_URL": "postgresql://user:password@localhost:5432/ehb5",
+    "REDIS_URL": "redis://localhost:6379",
+    "JWT_SECRET": "your-jwt-secret-here",
+    "CORS_ORIGIN": "http://localhost:3000",
+    "API_BASE_URL": "http://localhost:3000/api",
+    "SOCKET_URL": "ws://localhost:3000"
+  },
+
+  "scripts": {
+    "setup": "npm install && npm run build",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js",
+    "client": "webpack serve --mode development",
+    "build": "webpack --mode production",
+    "test": "jest --coverage",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
+    "deploy": "npm run build && npm run test && npm run deploy:prod",
+    "deploy:prod": "vercel --prod",
+    "analyze": "webpack-bundle-analyzer dist/bundle.js"
+  }
+} 

@@ -5,7 +5,7 @@ Handles user authentication and JWT token management
 """
 
 import hashlib
-import jwt
+import jwt  # type: ignore  # type: ignore
 import datetime
 import functools
 from flask import request, jsonify, session
@@ -34,7 +34,7 @@ class AuthManager:
             return None
 
         except Exception as e:
-            print(f"❌ Authentication error: {e}")
+            print("❌ Authentication error: {e}")
             return None
 
     def generate_token(self, user_id: int, username: str) -> str:
@@ -48,7 +48,7 @@ class AuthManager:
             }
             return jwt.encode(payload, self.secret_key, algorithm='HS256')
         except Exception as e:
-            print(f"❌ Token generation error: {e}")
+            print("❌ Token generation error: {e}")
             return None
 
     def verify_token(self, token: str) -> dict:
@@ -63,13 +63,13 @@ class AuthManager:
             print("❌ Invalid token")
             return None
         except Exception as e:
-            print(f"❌ Token verification error: {e}")
+            print("❌ Token verification error: {e}")
             return None
 
     def require_auth(self, f) -> None:
         """Decorator to require authentication for API endpoints"""
         @functools.wraps(f)
-        def decorated_function(*args, **kwargs):
+        def decorated_function(*args, **kwargs) -> None:
             # Get token from header
             auth_header = request.headers.get('Authorization')
             if not auth_header:

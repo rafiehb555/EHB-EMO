@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 
-def verify_config_file():
+def verify_config_file() -> None:
     """Verify config.json file and its contents"""
     print("🔍 Verifying config.json...")
 
@@ -22,21 +22,21 @@ def verify_config_file():
         missing_keys = [key for key in required_keys if key not in config]
 
         if missing_keys:
-            print(f"❌ Missing keys in config.json: {missing_keys}")
+            print("❌ Missing keys in config.json: {missing_keys}")
             return False
 
         print("✅ Config file verified successfully!")
-        print(f"   Project: {config.get('project')}")
-        print(f"   Version: {config.get('version')}")
-        print(f"   Description: {config.get('description')}")
+        print("   Project: {config.get('project')}")
+        print("   Version: {config.get('version')}")
+        print("   Description: {config.get('description')}")
 
         return True
     except Exception as e:
-        print(f"❌ Error reading config.json: {e}")
+        print("❌ Error reading config.json: {e}")
         return False
 
 
-def verify_dashboard_files():
+def verify_dashboard_files() -> None:
     """Verify all dashboard files exist"""
     print("\n🔍 Verifying dashboard files...")
 
@@ -50,17 +50,19 @@ def verify_dashboard_files():
     missing_files = []
     for file in required_files:
         if not os.path.exists(file):
-            missing_files.append(file)
+            if isinstance(missing_files, list):
+                if isinstance(missing_files, list):
+                    missing_files.append(file)
 
     if missing_files:
-        print(f"❌ Missing dashboard files: {missing_files}")
+        print("❌ Missing dashboard files: {missing_files}")
         return False
 
     print("✅ All dashboard files found!")
     return True
 
 
-def verify_project_files():
+def verify_project_files() -> None:
     """Verify all project files are accessible"""
     print("\n🔍 Verifying project files...")
 
@@ -87,18 +89,22 @@ def verify_project_files():
 
     for file in project_files:
         if os.path.exists(file):
-            existing_files.append(file)
+            if isinstance(existing_files, list):
+                if isinstance(existing_files, list):
+                    existing_files.append(file)
         else:
-            missing_files.append(file)
+            if isinstance(missing_files, list):
+                if isinstance(missing_files, list):
+                    missing_files.append(file)
 
-    print(f"✅ Found {len(existing_files)} project files")
+    print("✅ Found {len(existing_files)} project files")
     if missing_files:
-        print(f"⚠️  Missing files: {missing_files}")
+        print("⚠️  Missing files: {missing_files}")
 
     return len(existing_files) > 0
 
 
-def verify_data_connections():
+def verify_data_connections() -> None:
     """Verify data connections in JavaScript"""
     print("\n🔍 Verifying data connections...")
 
@@ -117,21 +123,23 @@ def verify_data_connections():
         missing_functions = []
         for func in required_functions:
             if func not in js_content:
-                missing_functions.append(func)
+                if isinstance(missing_functions, list):
+                    if isinstance(missing_functions, list):
+                        missing_functions.append(func)
 
         if missing_functions:
-            print(f"❌ Missing JavaScript functions: {missing_functions}")
+            print("❌ Missing JavaScript functions: {missing_functions}")
             return False
 
         print("✅ JavaScript data connections verified!")
         return True
 
     except Exception as e:
-        print(f"❌ Error reading script.js: {e}")
+        print("❌ Error reading script.js: {e}")
         return False
 
 
-def verify_css_styles():
+def verify_css_styles() -> None:
     """Verify CSS styles are properly defined"""
     print("\n🔍 Verifying CSS styles...")
 
@@ -151,21 +159,23 @@ def verify_css_styles():
         missing_classes = []
         for class_name in required_classes:
             if class_name not in css_content:
-                missing_classes.append(class_name)
+                if isinstance(missing_classes, list):
+                    if isinstance(missing_classes, list):
+                        missing_classes.append(class_name)
 
         if missing_classes:
-            print(f"❌ Missing CSS classes: {missing_classes}")
+            print("❌ Missing CSS classes: {missing_classes}")
             return False
 
         print("✅ CSS styles verified!")
         return True
 
     except Exception as e:
-        print(f"❌ Error reading styles.css: {e}")
+        print("❌ Error reading styles.css: {e}")
         return False
 
 
-def verify_html_structure():
+def verify_html_structure() -> None:
     """Verify HTML structure is complete"""
     print("\n🔍 Verifying HTML structure...")
 
@@ -185,21 +195,23 @@ def verify_html_structure():
         missing_elements = []
         for element in required_elements:
             if element not in html_content:
-                missing_elements.append(element)
+                if isinstance(missing_elements, list):
+                    if isinstance(missing_elements, list):
+                        missing_elements.append(element)
 
         if missing_elements:
-            print(f"❌ Missing HTML elements: {missing_elements}")
+            print("❌ Missing HTML elements: {missing_elements}")
             return False
 
         print("✅ HTML structure verified!")
         return True
 
     except Exception as e:
-        print(f"❌ Error reading index.html: {e}")
+        print("❌ Error reading index.html: {e}")
         return False
 
 
-def generate_summary():
+def generate_summary() -> None:
     """Generate a summary of all verifications"""
     print("\n" + "=" * 50)
     print("📊 DASHBOARD DATA VERIFICATION SUMMARY")
@@ -222,7 +234,7 @@ def generate_summary():
             passed += 1
         print()
 
-    print(f"\n🎯 RESULTS: {passed}/{total} verifications passed")
+    print("\n🎯 RESULTS: {passed}/{total} verifications passed")
 
     if passed == total:
         print("✅ ALL VERIFICATIONS PASSED!")
@@ -234,7 +246,7 @@ def generate_summary():
         return False
 
 
-def main():
+def main() -> None:
     """Main verification function"""
     print("🎯 EHB-5 Dashboard Data Verification")
     print("=" * 50)

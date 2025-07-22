@@ -11,7 +11,7 @@ import time
 from datetime import datetime
 
 
-def test_database():
+def test_database() -> None:
     """Test database functionality"""
     print("🔍 Testing Database...")
     try:
@@ -28,31 +28,31 @@ def test_database():
             "password_hash",
             "user")
         print(
-            f"✅ User creation: {'Success' if test_user else 'User already exists'}")
+            "✅ User creation: {'Success' if test_user else 'User already exists'}")
 
         # Test project creation
         test_project = db.create_project("Test Project", "Test Description", 1)
-        print(f"✅ Project creation: {'Success' if test_project else 'Failed'}")
+        print("✅ Project creation: {'Success' if test_project else 'Failed'}")
 
         # Test getting projects
         projects = db.get_all_projects()
-        print(f"✅ Get projects: {len(projects)} projects found")
+        print("✅ Get projects: {len(projects)} projects found")
 
         # Test data file operations
         test_file = db.save_data_file("test.txt", "text", "Test content", 1, 1)
-        print(f"✅ File save: {'Success' if test_file else 'Failed'}")
+        print("✅ File save: {'Success' if test_file else 'Failed'}")
 
         files = db.get_data_files()
-        print(f"✅ Get files: {len(files)} files found")
+        print("✅ Get files: {len(files)} files found")
 
         return True
 
     except Exception as e:
-        print(f"❌ Database test failed: {e}")
+        print("❌ Database test failed: {e}")
         return False
 
 
-def test_data_processor():
+def test_data_processor() -> None:
     """Test data processing functionality"""
     print("🔍 Testing Data Processor...")
     try:
@@ -63,32 +63,32 @@ def test_data_processor():
         # Test data analysis
         test_data = "This is test data for EHB-5 project with some numbers: 123, 456, 789"
         result = dp.process_data(test_data, 'analyze')
-        print(f"✅ Data analysis: {result.get('status', 'unknown')}")
+        print("✅ Data analysis: {result.get('status', 'unknown')}")
 
         # Test data validation
         result = dp.process_data(test_data, 'validate')
-        print(f"✅ Data validation: {result.get('status', 'unknown')}")
+        print("✅ Data validation: {result.get('status', 'unknown')}")
 
         # Test data transformation
         result = dp.process_data(test_data, 'transform')
-        print(f"✅ Data transformation: {result.get('status', 'unknown')}")
+        print("✅ Data transformation: {result.get('status', 'unknown')}")
 
         # Test data summarization
         result = dp.process_data(test_data, 'summarize')
-        print(f"✅ Data summarization: {result.get('status', 'unknown')}")
+        print("✅ Data summarization: {result.get('status', 'unknown')}")
 
         # Test data extraction
         result = dp.process_data(test_data, 'extract')
-        print(f"✅ Data extraction: {result.get('status', 'unknown')}")
+        print("✅ Data extraction: {result.get('status', 'unknown')}")
 
         return True
 
     except Exception as e:
-        print(f"❌ Data processor test failed: {e}")
+        print("❌ Data processor test failed: {e}")
         return False
 
 
-def test_auth_manager():
+def test_auth_manager() -> None:
     """Test authentication functionality"""
     print("🔍 Testing Authentication Manager...")
     try:
@@ -101,22 +101,22 @@ def test_auth_manager():
         hash1 = auth.hash_password(password)
         hash2 = auth.hash_password(password)
         print(
-            f"✅ Password hashing: {'Consistent' if hash1 == hash2 else 'Inconsistent'}")
+            "✅ Password hashing: {'Consistent' if hash1 == hash2 else 'Inconsistent'}")
 
         # Test password validation
         valid_password = auth.validate_password("strongpass123")
         invalid_password = auth.validate_password("weak")
         print(
-            f"✅ Password validation: {'Working' if valid_password and not invalid_password else 'Failed'}")
+            "✅ Password validation: {'Working' if valid_password and not invalid_password else 'Failed'}")
 
         return True
 
     except Exception as e:
-        print(f"❌ Authentication test failed: {e}")
+        print("❌ Authentication test failed: {e}")
         return False
 
 
-def test_ai_agents():
+def test_ai_agents() -> None:
     """Test AI agents functionality"""
     print("🔍 Testing AI Agents...")
     try:
@@ -124,50 +124,50 @@ def test_ai_agents():
 
         # Test agent manager
         agents = agent_manager.get_all_agents()
-        print(f"✅ Agent manager: {len(agents)} agents loaded")
+        print("✅ Agent manager: {len(agents)} agents loaded")
 
         # Test data processor agent
         data_agent = agent_manager.get_agent("dataProcessor")
         if data_agent:
             result = data_agent.analyze_data("Test data for analysis")
-            print(f"✅ Data processor agent: {result.get('status', 'unknown')}")
+            print("✅ Data processor agent: {result.get('status', 'unknown')}")
 
         # Test config manager agent
         config_agent = agent_manager.get_agent("configManager")
         if config_agent:
             result = config_agent.validate_config(
                 {"project": "test", "version": "1.0"})
-            print(f"✅ Config manager agent: {result.get('is_valid', False)}")
+            print("✅ Config manager agent: {result.get('is_valid', False)}")
 
         # Test file organizer agent
         file_agent = agent_manager.get_agent("fileOrganizer")
         if file_agent:
             result = file_agent.scan_files(".")
             print(
-                f"✅ File organizer agent: {result.get('total_files', 0)} files scanned")
+                "✅ File organizer agent: {result.get('total_files', 0)} files scanned")
 
         # Test code analyzer agent
         code_agent = agent_manager.get_agent("codeAnalyzer")
         if code_agent:
             result = code_agent.analyze_code_quality("main.py")
             print(
-                f"✅ Code analyzer agent: {result.get('quality_score', 'unknown')}")
+                "✅ Code analyzer agent: {result.get('quality_score', 'unknown')}")
 
         # Test deployment manager agent
         deploy_agent = agent_manager.get_agent("deploymentManager")
         if deploy_agent:
             result = deploy_agent.check_deployment_readiness()
             print(
-                f"✅ Deployment manager agent: {result.get('ready_for_deployment', False)}")
+                "✅ Deployment manager agent: {result.get('ready_for_deployment', False)}")
 
         return True
 
     except Exception as e:
-        print(f"❌ AI agents test failed: {e}")
+        print("❌ AI agents test failed: {e}")
         return False
 
 
-def test_api_server():
+def test_api_server() -> None:
     """Test API server functionality"""
     print("🔍 Testing API Server...")
     try:
@@ -180,20 +180,20 @@ def test_api_server():
         with app.test_client() as client:
             # Test health endpoint
             response = client.get('/api/health')
-            print(f"✅ Health endpoint: {response.status_code}")
+            print("✅ Health endpoint: {response.status_code}")
 
             # Test system status endpoint
             response = client.get('/api/system/status')
-            print(f"✅ System status endpoint: {response.status_code}")
+            print("✅ System status endpoint: {response.status_code}")
 
         return True
 
     except Exception as e:
-        print(f"❌ API server test failed: {e}")
+        print("❌ API server test failed: {e}")
         return False
 
 
-def test_main_application():
+def test_main_application() -> None:
     """Test main application functionality"""
     print("🔍 Testing Main Application...")
     try:
@@ -210,11 +210,11 @@ def test_main_application():
         return True
 
     except Exception as e:
-        print(f"❌ Main application test failed: {e}")
+        print("❌ Main application test failed: {e}")
         return False
 
 
-def test_file_system():
+def test_file_system() -> None:
     """Test file system and configuration"""
     print("🔍 Testing File System...")
     try:
@@ -232,38 +232,40 @@ def test_file_system():
         missing_files = []
         for file in required_files:
             if os.path.exists(file):
-                print(f"✅ File exists: {file}")
+                print("✅ File exists: {file}")
             else:
-                print(f"❌ File missing: {file}")
-                missing_files.append(file)
+                print("❌ File missing: {file}")
+                if isinstance(missing_files, list):
+                    if isinstance(missing_files, list):
+                        missing_files.append(file)
 
         # Check config.json
         if os.path.exists("config.json"):
             with open("config.json", "r") as f:
                 config = json.load(f)
             print(
-                f"✅ Config loaded: {config.get('project', 'Unknown')} v{config.get('version', 'Unknown')}")
+                "✅ Config loaded: {config.get('project', 'Unknown')} v{config.get('version', 'Unknown')}")
 
         # Check requirements.txt
         if os.path.exists("requirements.txt"):
             with open("requirements.txt", "r") as f:
                 requirements = f.read()
             print(
-                f"✅ Requirements file: {len(requirements.splitlines())} dependencies")
+                "✅ Requirements file: {len(requirements.splitlines())} dependencies")
 
         return len(missing_files) == 0
 
     except Exception as e:
-        print(f"❌ File system test failed: {e}")
+        print("❌ File system test failed: {e}")
         return False
 
 
-def run_comprehensive_test():
+def run_comprehensive_test() -> None:
     """Run comprehensive system test"""
     print("=" * 60)
     print("🚀 EHB-5 COMPREHENSIVE SYSTEM TEST")
     print("=" * 60)
-    print(f"📅 Test started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("📅 Test started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
 
     test_results = {}
@@ -280,14 +282,14 @@ def run_comprehensive_test():
     ]
 
     for test_name, test_func in tests:
-        print(f"\n{'='*20} {test_name} {'='*20}")
+        print("\n{'='*20} {test_name} {'='*20}")
         try:
             result = test_func()
             test_results[test_name] = result
             status = "✅ PASSED" if result else "❌ FAILED"
-            print(f"{status}: {test_name}")
+            print("{status}: {test_name}")
         except Exception as e:
-            print(f"❌ ERROR: {test_name} - {e}")
+            print("❌ ERROR: {test_name} - {e}")
             test_results[test_name] = False
 
     # Generate test report
@@ -300,11 +302,11 @@ def run_comprehensive_test():
 
     for test_name, result in test_results.items():
         status = "✅ PASSED" if result else "❌ FAILED"
-        print(f"{status}: {test_name}")
+        print("{status}: {test_name}")
 
-    print(f"\n📈 Overall Result: {passed_tests}/{total_tests} tests passed")
+    print("\n📈 Overall Result: {passed_tests}/{total_tests} tests passed")
     success_rate = (passed_tests / total_tests) * 100 if total_tests > 0 else 0
-    print(f"📊 Success Rate: {success_rate:.1f}%")
+    print("📊 Success Rate: {success_rate:.1f}%")
 
     if success_rate >= 90:
         print("🎉 EXCELLENT: System is ready for production!")
@@ -316,7 +318,7 @@ def run_comprehensive_test():
         print("❌ POOR: System needs significant work")
 
     print(
-        f"\n⏰ Test completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        "\n⏰ Test completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
     return success_rate >= 70

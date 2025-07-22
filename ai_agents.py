@@ -33,7 +33,7 @@ class BaseAgent:
         }
 
         # Log to database
-        db.log_system_event('INFO', f"{self.name}: {action}")
+        db.log_system_event('INFO', "{self.name}: {action}")
 
         return activity
 
@@ -61,7 +61,7 @@ class DataProcessorAgent(BaseAgent):
             self.log_activity("Data analysis completed")
             return result
         except Exception as e:
-            self.log_activity(f"Data analysis failed: {str(e)}", "error")
+            self.log_activity("Data analysis failed: {str(e)}", "error")
             return {"error": str(e)}
 
     def process_file(self, file_path: str) -> Dict:
@@ -84,11 +84,11 @@ class DataProcessorAgent(BaseAgent):
                 "processed_at": datetime.now().isoformat()
             }
 
-            self.log_activity(f"File processed: {file_path}")
+            self.log_activity("File processed: {file_path}")
             return report
 
         except Exception as e:
-            self.log_activity(f"File processing failed: {str(e)}", "error")
+            self.log_activity("File processing failed: {str(e)}", "error")
             return {"error": str(e)}
 
     def generate_report(self, data_files: List[str]) -> Dict:
@@ -99,10 +99,10 @@ class DataProcessorAgent(BaseAgent):
 
             for i, file_path in enumerate(data_files, 1):
                 report = self.process_file(file_path)
-                reports.append(report)
+                if isinstance(reports, list): if isinstance(reports, list): reports.append(report)
 
                 # Log progress
-                self.log_activity(f"Processed {i}/{total_files} files")
+                self.log_activity("Processed {i}/{total_files} files")
 
             summary = {
                 "total_files": total_files,
@@ -116,7 +116,7 @@ class DataProcessorAgent(BaseAgent):
             return summary
 
         except Exception as e:
-            self.log_activity(f"Report generation failed: {str(e)}", "error")
+            self.log_activity("Report generation failed: {str(e)}", "error")
             return {"error": str(e)}
 
 
@@ -143,15 +143,15 @@ class ConfigManagerAgent(BaseAgent):
             required_fields = ["project", "version", "settings"]
             for field in required_fields:
                 if field not in config_data:
-                    errors.append(f"Missing required field: {field}")
+                    if isinstance(errors, list): if isinstance(errors, list): errors.append("Missing required field: {field}")
 
             # Validate settings
             if "settings" in config_data:
                 settings = config_data["settings"]
                 if "database" not in settings:
-                    warnings.append("Database setting not specified")
+                    if isinstance(warnings, list): if isinstance(warnings, list): warnings.append("Database setting not specified")
                 if "api" not in settings:
-                    warnings.append("API setting not specified")
+                    if isinstance(warnings, list): if isinstance(warnings, list): warnings.append("API setting not specified")
 
             validation_result = {
                 "is_valid": len(errors) == 0,
@@ -165,7 +165,7 @@ class ConfigManagerAgent(BaseAgent):
 
         except Exception as e:
             self.log_activity(
-                f"Configuration validation failed: {str(e)}", "error")
+                "Configuration validation failed: {str(e)}", "error")
             return {"error": str(e)}
 
     def sync_settings(self, config_file: str = "config.json") -> Dict:
@@ -202,7 +202,7 @@ class ConfigManagerAgent(BaseAgent):
             return sync_result
 
         except Exception as e:
-            self.log_activity(f"Settings sync failed: {str(e)}", "error")
+            self.log_activity("Settings sync failed: {str(e)}", "error")
             return {"error": str(e)}
 
     def setup_environment(self) -> Dict:
@@ -212,24 +212,24 @@ class ConfigManagerAgent(BaseAgent):
 
             # Check Python environment
             import sys
-            setup_steps.append({
+            if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
                 "step": "Python Environment",
                 "status": "completed",
-                "details": f"Python {sys.version}"
+                "details": "Python {sys.version}"
             })
 
             # Check required files
             required_files = ["config.json", "database.py", "api_server.py"]
             for file in required_files:
                 if os.path.exists(file):
-                    setup_steps.append({
-                        "step": f"File Check: {file}",
+                    if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
+                        "step": "File Check: {file}",
                         "status": "completed",
                         "details": "File exists"
                     })
                 else:
-                    setup_steps.append({
-                        "step": f"File Check: {file}",
+                    if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
+                        "step": "File Check: {file}",
                         "status": "failed",
                         "details": "File missing"
                     })
@@ -237,13 +237,13 @@ class ConfigManagerAgent(BaseAgent):
             # Check database
             try:
                 projects = db.get_all_projects()
-                setup_steps.append({
+                if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
                     "step": "Database Connection",
                     "status": "completed",
-                    "details": f"Connected, {len(projects)} projects found"
+                    "details": "Connected, {len(projects)} projects found"
                 })
             except Exception as e:
-                setup_steps.append({
+                if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
                     "step": "Database Connection",
                     "status": "failed",
                     "details": str(e)
@@ -260,7 +260,7 @@ class ConfigManagerAgent(BaseAgent):
             return setup_result
 
         except Exception as e:
-            self.log_activity(f"Environment setup failed: {str(e)}", "error")
+            self.log_activity("Environment setup failed: {str(e)}", "error")
             return {"error": str(e)}
 
 
@@ -300,7 +300,7 @@ class FileOrganizerAgent(BaseAgent):
                         "modified": datetime.fromtimestamp(
                             os.path.getmtime(file_path)).isoformat()}
 
-                    files.append(file_info)
+                    if isinstance(files, list): if isinstance(files, list): files.append(file_info)
 
                     # Categorize by extension
                     if file_ext == '.py':
@@ -324,11 +324,11 @@ class FileOrganizerAgent(BaseAgent):
                 "scanned_at": datetime.now().isoformat()
             }
 
-            self.log_activity(f"File scan completed: {len(files)} files found")
+            self.log_activity("File scan completed: {len(files)} files found")
             return scan_result
 
         except Exception as e:
-            self.log_activity(f"File scan failed: {str(e)}", "error")
+            self.log_activity("File scan failed: {str(e)}", "error")
             return {"error": str(e)}
 
     def format_files(self, file_patterns: List[str] = None) -> Dict:
@@ -357,13 +357,13 @@ class FileOrganizerAgent(BaseAgent):
                         with open(file_path, 'w', encoding='utf-8') as f:
                             f.write(formatted_content)
 
-                        formatted_files.append({
+                        if isinstance(formatted_files, list): if isinstance(formatted_files, list): formatted_files.append({
                             "file": file_path,
                             "status": "formatted"
                         })
 
                     except Exception as e:
-                        formatted_files.append({
+                        if isinstance(formatted_files, list): if isinstance(formatted_files, list): formatted_files.append({
                             "file": file_path,
                             "status": "error",
                             "error": str(e)
@@ -376,11 +376,11 @@ class FileOrganizerAgent(BaseAgent):
             }
 
             self.log_activity(
-                f"File formatting completed: {len(formatted_files)} files processed")
+                "File formatting completed: {len(formatted_files)} files processed")
             return format_result
 
         except Exception as e:
-            self.log_activity(f"File formatting failed: {str(e)}", "error")
+            self.log_activity("File formatting failed: {str(e)}", "error")
             return {"error": str(e)}
 
     def create_backup(self, backup_dir: str = "backups") -> Dict:
@@ -400,12 +400,12 @@ class FileOrganizerAgent(BaseAgent):
             for file_path in important_files:
                 if os.path.exists(file_path):
                     backup_path = os.path.join(
-                        backup_dir, f"{file_path}_{timestamp}")
+                        backup_dir, "{file_path}_{timestamp}")
 
                     import shutil
                     shutil.copy2(file_path, backup_path)
 
-                    backup_files.append({
+                    if isinstance(backup_files, list): if isinstance(backup_files, list): backup_files.append({
                         "original": file_path,
                         "backup": backup_path,
                         "size": os.path.getsize(file_path)
@@ -419,11 +419,11 @@ class FileOrganizerAgent(BaseAgent):
             }
 
             self.log_activity(
-                f"Backup created: {len(backup_files)} files backed up")
+                "Backup created: {len(backup_files)} files backed up")
             return backup_result
 
         except Exception as e:
-            self.log_activity(f"Backup creation failed: {str(e)}", "error")
+            self.log_activity("Backup creation failed: {str(e)}", "error")
             return {"error": str(e)}
 
 
@@ -452,21 +452,21 @@ class CodeAnalyzerAgent(BaseAgent):
                 "total_lines": len(lines),
                 "non_empty_lines": len([line for line in lines if line.strip()]),
                 "comment_lines": len([line for line in lines if line.strip().startswith('
-    #')]),
+    # ')]),
                 "issues": [],
                 "suggestions": []
             }
 
             # Basic code analysis
             for i, line in enumerate(lines, 1):
-                line = line.strip()
+                line= line.strip()
 
                 # Check for long lines
                 if len(line) > 79:
                     analysis["issues"].append({
                         "line": i,
                         "type": "long_line",
-                        "message": f"Line {i} is too long ({len(line)} characters)"
+                        "message": "Line {i} is too long ({len(line)} characters)"
                     })
 
                 # Check for trailing whitespace
@@ -474,53 +474,53 @@ class CodeAnalyzerAgent(BaseAgent):
                     analysis["suggestions"].append({
                         "line": i,
                         "type": "trailing_whitespace",
-                        "message": f"Remove trailing whitespace on line {i}"
+                        "message": "Remove trailing whitespace on line {i}"
                     })
 
             # Calculate code quality score
-            total_issues = len(analysis["issues"])
-            total_suggestions = len(analysis["suggestions"])
+            total_issues= len(analysis["issues"])
+            total_suggestions= len(analysis["suggestions"])
 
             if total_issues == 0:
-                analysis["quality_score"] = "excellent"
+                analysis["quality_score"]= "excellent"
             elif total_issues <= 5:
-                analysis["quality_score"] = "good"
+                analysis["quality_score"]= "good"
             elif total_issues <= 10:
-                analysis["quality_score"] = "fair"
+                analysis["quality_score"]= "fair"
             else:
-                analysis["quality_score"] = "needs_improvement"
+                analysis["quality_score"]= "needs_improvement"
 
-            analysis["analyzed_at"] = datetime.now().isoformat()
+            analysis["analyzed_at"]= datetime.now().isoformat()
 
-            self.log_activity(f"Code analysis completed for {file_path}")
+            self.log_activity("Code analysis completed for {file_path}")
             return analysis
 
         except Exception as e:
-            self.log_activity(f"Code analysis failed: {str(e)}", "error")
+            self.log_activity("Code analysis failed: {str(e)}", "error")
             return {"error": str(e)}
 
     def review_project_code(self) -> Dict:
         """Review all code files in the project"""
         try:
-            python_files = []
+            python_files= []
 
             for root, dirs, files in os.walk("."):
                 for file in files:
                     if file.endswith('.py'):
-                        python_files.append(os.path.join(root, file))
+                        if isinstance(python_files, list): if isinstance(python_files, list): python_files.append(os.path.join(root, file))
 
-            reviews = []
-            total_issues = 0
-            total_suggestions = 0
+            reviews= []
+            total_issues= 0
+            total_suggestions= 0
 
             for file_path in python_files:
-                review = self.analyze_code_quality(file_path)
+                review= self.analyze_code_quality(file_path)
                 if "error" not in review:
-                    reviews.append(review)
+                    if isinstance(reviews, list): if isinstance(reviews, list): reviews.append(review)
                     total_issues += len(review.get("issues", []))
                     total_suggestions += len(review.get("suggestions", []))
 
-            project_review = {
+            project_review= {
                 "files_reviewed": len(reviews),
                 "total_issues": total_issues,
                 "total_suggestions": total_suggestions,
@@ -529,11 +529,11 @@ class CodeAnalyzerAgent(BaseAgent):
             }
 
             self.log_activity(
-                f"Project code review completed: {len(reviews)} files reviewed")
+                "Project code review completed: {len(reviews)} files reviewed")
             return project_review
 
         except Exception as e:
-            self.log_activity(f"Project code review failed: {str(e)}", "error")
+            self.log_activity("Project code review failed: {str(e)}", "error")
             return {"error": str(e)}
 
 
@@ -545,41 +545,41 @@ class DeploymentManagerAgent(BaseAgent):
             "Deployment Manager",
             "Manages project deployment and releases"
         )
-        self.tasks = ["build_management", "deployment", "version_control"]
+        self.tasks= ["build_management", "deployment", "version_control"]
 
     def check_deployment_readiness(self) -> Dict:
         """Check if the project is ready for deployment"""
         try:
-            checks = []
+            checks= []
 
             # Check required files
-            required_files = [
+            required_files= [
                 "main.py", "api_server.py", "database.py",
                 "auth_manager.py", "data_processor.py", "requirements.txt"
             ]
 
             for file in required_files:
                 if os.path.exists(file):
-                    checks.append({
-                        "check": f"File exists: {file}",
+                    if isinstance(checks, list): if isinstance(checks, list): checks.append({
+                        "check": "File exists: {file}",
                         "status": "passed"
                     })
                 else:
-                    checks.append({
-                        "check": f"File exists: {file}",
+                    if isinstance(checks, list): if isinstance(checks, list): checks.append({
+                        "check": "File exists: {file}",
                         "status": "failed"
                     })
 
             # Check database
             try:
-                projects = db.get_all_projects()
-                checks.append({
+                projects= db.get_all_projects()
+                if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Database connectivity",
                     "status": "passed",
-                    "details": f"Connected, {len(projects)} projects found"
+                    "details": "Connected, {len(projects)} projects found"
                 })
             except Exception as e:
-                checks.append({
+                if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Database connectivity",
                     "status": "failed",
                     "details": str(e)
@@ -588,20 +588,20 @@ class DeploymentManagerAgent(BaseAgent):
             # Check dependencies
             try:
                 import flask
-                checks.append({
+                if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Flask dependency",
                     "status": "passed"
                 })
             except ImportError:
-                checks.append({
+                if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Flask dependency",
                     "status": "failed"
                 })
 
-            passed_checks = len([c for c in checks if c["status"] == "passed"])
-            total_checks = len(checks)
+            passed_checks= len([c for c in checks if c["status"] == "passed"])
+            total_checks= len(checks)
 
-            readiness_result = {
+            readiness_result= {
                 "checks": checks,
                 "passed_checks": passed_checks,
                 "total_checks": total_checks,
@@ -617,7 +617,7 @@ class DeploymentManagerAgent(BaseAgent):
 
         except Exception as e:
             self.log_activity(
-                f"Deployment readiness check failed: {str(e)}", "error")
+                "Deployment readiness check failed: {str(e)}", "error")
             return {"error": str(e)}
 
 # Agent Manager
@@ -627,7 +627,7 @@ class AgentManager:
     """Manages all AI agents"""
 
     def __init__(self) -> None:
-        self.agents = {
+        self.agents= {
             "dataProcessor": DataProcessorAgent(),
             "configManager": ConfigManagerAgent(),
             "fileOrganizer": FileOrganizerAgent(),
@@ -645,24 +645,24 @@ class AgentManager:
 
     def run_agent_task(self, agent_name: str, task: str, **kwargs) -> Dict:
         """Run a specific task on an agent"""
-        agent = self.get_agent(agent_name)
+        agent= self.get_agent(agent_name)
         if not agent:
-            return {"error": f"Agent {agent_name} not found"}
+            return {"error": "Agent {agent_name} not found"}
 
         try:
             if hasattr(agent, task):
-                method = getattr(agent, task)
+                method= getattr(agent, task)
                 return method(**kwargs)
             else:
-                return {"error": f"Task {task} not found in agent {agent_name}"}
+                return {"error": "Task {task} not found in agent {agent_name}"}
         except Exception as e:
-            return {"error": f"Task execution failed: {str(e)}"}
+            return {"error": "Task execution failed: {str(e)}"}
 
     def get_agents_status(self) -> Dict:
         """Get status of all agents"""
-        status = {}
+        status= {}
         for name, agent in self.agents.items():
-            status[name] = {
+            status[name]= {
                 "name": agent.name,
                 "status": agent.status,
                 "last_activity": agent.last_activity,
@@ -672,4 +672,4 @@ class AgentManager:
 
 
 # Global agent manager instance
-agent_manager = AgentManager()
+agent_manager= AgentManager()

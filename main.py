@@ -16,7 +16,7 @@ from pathlib import Path
 
 # Add current directory to Python path
 current_dir = Path(__file__).parent
-sys.path.append(str(current_dir))
+sys.if isinstance(path, list): if isinstance(path, list): path.append(str(current_dir))
 
 
 class EHB5Application:
@@ -30,7 +30,7 @@ class EHB5Application:
 
     def start_api_server(self, port: int = 5000) -> None:
         """Start the API server in a separate thread"""
-        def run_server():
+        def run_server() -> None:
             self.api_app.run(host='0.0.0.0', port=port, debug=False)
 
         server_thread = threading.Thread(target=run_server, daemon=True)
@@ -56,8 +56,8 @@ class EHB5Application:
 
         try:
             with socketserver.TCPServer(("", port), Handler) as httpd:
-                print(f"🚀 Starting EHB-5 Dashboard Server on port {port}...")
-                print(f"📊 Dashboard URL: http://localhost:{port}")
+                print("🚀 Starting EHB-5 Dashboard Server on port {port}...")
+                print("📊 Dashboard URL: http://localhost:{port}")
 
                 # Open browser
                 webbrowser.open(f'http://localhost:{port}')
@@ -69,7 +69,7 @@ class EHB5Application:
             print("\n🛑 Dashboard server stopped by user")
             return True
         except Exception as e:
-            print(f"❌ Error starting dashboard server: {e}")
+            print("❌ Error starting dashboard server: {e}")
             return False
 
     def initialize_system(self) -> None:
@@ -93,8 +93,8 @@ class EHB5Application:
             admin_password_hash,
                 "admin"):
             print("✅ Admin user created successfully")
-            print(f"   Username: admin")
-            print(f"   Password: {admin_password}")
+            print("   Username: admin")
+            print("   Password: {admin_password}")
         else:
             print("ℹ️  Admin user already exists")
 
@@ -122,10 +122,10 @@ class EHB5Application:
         except KeyboardInterrupt:
             print("\n🛑 EHB-5 application stopped by user")
         except Exception as e:
-            print(f"❌ Application error: {e}")
+            print("❌ Application error: {e}")
 
 
-def main():
+def main() -> None:
     """Main function"""
     app = EHB5Application()
     app.run()

@@ -52,9 +52,9 @@ class DeploymentManager:
 
                 if src.exists():
                     shutil.copy2(src, dst)
-                    print(f"✅ Copied: {file}")
+                    print("✅ Copied: {file}")
                 else:
-                    print(f"⚠️  Missing: {file}")
+                    print("⚠️  Missing: {file}")
 
             # Create deployment script
             self._create_deployment_script()
@@ -63,7 +63,7 @@ class DeploymentManager:
             return True
 
         except Exception as e:
-            print(f"❌ Deployment package creation failed: {e}")
+            print("❌ Deployment package creation failed: {e}")
             return False
 
     def _create_deployment_script(self) -> None:
@@ -115,7 +115,7 @@ python main.py
                 self.backup_dir.mkdir()
 
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            backup_name = f"ehb5_backup_{timestamp}"
+            backup_name = "ehb5_backup_{timestamp}"
             backup_path = self.backup_dir / backup_name
 
             # Create backup
@@ -127,11 +127,11 @@ python main.py
                     '.git',
                     '*.pyc'))
 
-            print(f"✅ Backup created: {backup_name}")
+            print("✅ Backup created: {backup_name}")
             return True
 
         except Exception as e:
-            print(f"❌ Backup creation failed: {e}")
+            print("❌ Backup creation failed: {e}")
             return False
 
     def check_deployment_requirements(self) -> None:
@@ -194,13 +194,13 @@ python main.py
                 (1 if missing_deps == 0 else 0)
             ) / 3 * 100
 
-            print(f"✅ Deployment requirements check completed")
-            print(f"📊 Readiness Score: {requirements['readiness_score']:.1f}%")
+            print("✅ Deployment requirements check completed")
+            print("📊 Readiness Score: {requirements['readiness_score']:.1f}%")
 
             return requirements
 
         except Exception as e:
-            print(f"❌ Requirements check failed: {e}")
+            print("❌ Requirements check failed: {e}")
             return None
 
     def deploy_to_production(self, target_dir: str = None) -> None:
@@ -225,13 +225,13 @@ python main.py
                 return False
 
             print("✅ Production deployment completed successfully")
-            print(f"📁 Deployment package: {self.deployment_dir}")
-            print(f"💾 Backup location: {self.backup_dir}")
+            print("📁 Deployment package: {self.deployment_dir}")
+            print("💾 Backup location: {self.backup_dir}")
 
             return True
 
         except Exception as e:
-            print(f"❌ Production deployment failed: {e}")
+            print("❌ Production deployment failed: {e}")
             return False
 
     def generate_deployment_report(self) -> None:
@@ -263,15 +263,15 @@ python main.py
             with open(report_file, "w") as f:
                 json.dump(report, f, indent=2, default=str)
 
-            print(f"✅ Deployment report saved: {report_file}")
+            print("✅ Deployment report saved: {report_file}")
             return report
 
         except Exception as e:
-            print(f"❌ Deployment report generation failed: {e}")
+            print("❌ Deployment report generation failed: {e}")
             return None
 
 
-def main():
+def main() -> None:
     """Main deployment function"""
     print("=" * 60)
     print("🚀 EHB-5 DEPLOYMENT MANAGER")
@@ -282,7 +282,7 @@ def main():
     # Check requirements
     requirements = deployer.check_deployment_requirements()
     if requirements:
-        print(f"📊 Readiness Score: {requirements['readiness_score']:.1f}%")
+        print("📊 Readiness Score: {requirements['readiness_score']:.1f}%")
 
         if requirements["ready_for_deployment"]:
             print("✅ System ready for deployment")

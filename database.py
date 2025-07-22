@@ -83,7 +83,7 @@ class DatabaseManager:
                 print("✅ Database initialized successfully")
 
         except Exception as e:
-            print(f"❌ Database initialization error: {e}")
+            print("❌ Database initialization error: {e}")
 
     def create_user(
             self,
@@ -105,7 +105,7 @@ class DatabaseManager:
             print("❌ User already exists")
             return False
         except Exception as e:
-            print(f"❌ Error creating user: {e}")
+            print("❌ Error creating user: {e}")
             return False
 
     def get_user_by_username(self, username: str) -> Optional[Dict]:
@@ -128,7 +128,7 @@ class DatabaseManager:
                     }
                 return None
         except Exception as e:
-            print(f"❌ Error getting user: {e}")
+            print("❌ Error getting user: {e}")
             return None
 
     def create_project(
@@ -147,7 +147,7 @@ class DatabaseManager:
                 conn.commit()
                 return True
         except Exception as e:
-            print(f"❌ Error creating project: {e}")
+            print("❌ Error creating project: {e}")
             return False
 
     def get_all_projects(self) -> List[Dict]:
@@ -175,7 +175,7 @@ class DatabaseManager:
                     for p in projects
                 ]
         except Exception as e:
-            print(f"❌ Error getting projects: {e}")
+            print("❌ Error getting projects: {e}")
             return []
 
     def save_data_file(self, filename: str, file_type: str, content: str,
@@ -191,7 +191,7 @@ class DatabaseManager:
                 conn.commit()
                 return True
         except Exception as e:
-            print(f"❌ Error saving data file: {e}")
+            print("❌ Error saving data file: {e}")
             return False
 
     def get_data_files(self, project_id: Optional[int] = None) -> List[Dict]:
@@ -229,11 +229,11 @@ class DatabaseManager:
                     for f in files
                 ]
         except Exception as e:
-            print(f"❌ Error getting data files: {e}")
+            print("❌ Error getting data files: {e}")
             return []
 
     def log_system_event(self, level: str, message: str,
-                         user_id: Optional[int] = None):
+                         user_id: Optional[int] = None) -> None:
         """Log system events"""
         try:
             with sqlite3.connect(self.db_path) as conn:
@@ -244,7 +244,7 @@ class DatabaseManager:
                 ''', (level, message, user_id))
                 conn.commit()
         except Exception as e:
-            print(f"❌ Error logging system event: {e}")
+            print("❌ Error logging system event: {e}")
 
 
 # Global database instance
