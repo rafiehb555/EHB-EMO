@@ -10,19 +10,20 @@ import os
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 
+
 class DatabaseManager:
     """Database manager for EHB-5 project"""
-    
+
     def __init__(self, db_path: str = "ehb5.db"):
         self.db_path = db_path
         self.init_database()
-    
+
     def init_database(self):
         """Initialize database with required tables"""
         try:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
-                
+
                 # Create users table
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS users (
@@ -35,7 +36,7 @@ class DatabaseManager:
                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )
                 ''')
-                
+
                 # Create projects table
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS projects (
@@ -49,7 +50,7 @@ class DatabaseManager:
                         FOREIGN KEY (created_by) REFERENCES users (id)
                     )
                 ''')
-                
+
                 # Create data_files table
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS data_files (
@@ -65,7 +66,7 @@ class DatabaseManager:
                         FOREIGN KEY (uploaded_by) REFERENCES users (id)
                     )
                 ''')
-                
+
                 # Create system_logs table
                 cursor.execute('''
                     CREATE TABLE IF NOT EXISTS system_logs (
@@ -77,14 +78,19 @@ class DatabaseManager:
                         FOREIGN KEY (user_id) REFERENCES users (id)
                     )
                 ''')
-                
+
                 conn.commit()
                 print("✅ Database initialized successfully")
-                
+
         except Exception as e:
             print(f"❌ Database initialization error: {e}")
-    
-    def create_user(self, username: str, email: str, password_hash: str, role: str = "user") -> bool:
+
+    def create_user(
+            self,
+            username: str,
+            email: str,
+            password_hash: str,
+            role: str = "user") -> bool:
         """Create a new user"""
         try:
             with sqlite3.connect(self.db_path) as conn:
@@ -101,13 +107,14 @@ class DatabaseManager:
         except Exception as e:
             print(f"❌ Error creating user: {e}")
             return False
-    
+
     def get_user_by_username(self, username: str) -> Optional[Dict]:
         """Get user by username"""
         try:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
-                cursor.execute('SELECT * FROM users WHERE username = ?', (username,))
+                cursor.execute(
+                    'SELECT * FROM users WHERE username = ?', (username,))
                 user = cursor.fetchone()
                 if user:
                     return {
@@ -123,8 +130,12 @@ class DatabaseManager:
         except Exception as e:
             print(f"❌ Error getting user: {e}")
             return None
-    
-    def create_project(self, name: str, description: str, created_by: int) -> bool:
+
+    def create_project(
+            self,
+            name: str,
+            description: str,
+            created_by: int) -> bool:
         """Create a new project"""
         try:
             with sqlite3.connect(self.db_path) as conn:
@@ -138,15 +149,15 @@ class DatabaseManager:
         except Exception as e:
             print(f"❌ Error creating project: {e}")
             return False
-    
+
     def get_all_projects(self) -> List[Dict]:
         """Get all projects"""
         try:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute('''
-                    SELECT p.*, u.username as creator_name 
-                    FROM projects p 
+                    SELECT p.*, u.username as creator_name
+                    FROM projects p
                     LEFT JOIN users u ON p.created_by = u.id
                 ''')
                 projects = cursor.fetchall()
@@ -166,9 +177,9 @@ class DatabaseManager:
         except Exception as e:
             print(f"❌ Error getting projects: {e}")
             return []
-    
-    def save_data_file(self, filename: str, file_type: str, content: str, 
-                      project_id: int, uploaded_by: int) -> bool:
+
+    def save_data_file(self, filename: str, file_type: str, content: str,
+                       project_id: int, uploaded_by: int) -> bool:
         """Save a data file to database"""
         try:
             with sqlite3.connect(self.db_path) as conn:
@@ -182,7 +193,7 @@ class DatabaseManager:
         except Exception as e:
             print(f"❌ Error saving data file: {e}")
             return False
-    
+
     def get_data_files(self, project_id: Optional[int] = None) -> List[Dict]:
         """Get data files, optionally filtered by project"""
         try:
@@ -201,7 +212,7 @@ class DatabaseManager:
                         FROM data_files df
                         LEFT JOIN users u ON df.uploaded_by = u.id
                     ''')
-                
+
                 files = cursor.fetchall()
                 return [
                     {
@@ -220,8 +231,9 @@ class DatabaseManager:
         except Exception as e:
             print(f"❌ Error getting data files: {e}")
             return []
-    
-    def log_system_event(self, level: str, message: str, user_id: Optional[int] = None):
+
+    def log_system_event(self, level: str, message: str,
+                         user_id: Optional[int] = None):
         """Log system events"""
         try:
             with sqlite3.connect(self.db_path) as conn:
@@ -234,5 +246,6 @@ class DatabaseManager:
         except Exception as e:
             print(f"❌ Error logging system event: {e}")
 
+
 # Global database instance
-db = DatabaseManager() 
+db = DatabaseManager()

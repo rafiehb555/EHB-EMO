@@ -22,6 +22,7 @@ CORS(app)
 auth_manager = AuthManager()
 data_processor = DataProcessor()
 
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     """Health check endpoint"""
@@ -31,6 +32,7 @@ def health_check():
         'version': '1.0.0'
     })
 
+
 @app.route('/api/auth/register', methods=['POST'])
 def register():
     """User registration endpoint"""
@@ -39,21 +41,22 @@ def register():
         username = data.get('username')
         email = data.get('email')
         password = data.get('password')
-        
+
         if not all([username, email, password]):
             return jsonify({'error': 'Missing required fields'}), 400
-        
+
         # Hash password
         password_hash = hashlib.sha256(password.encode()).hexdigest()
-        
+
         # Create user
         if db.create_user(username, email, password_hash):
             return jsonify({'message': 'User registered successfully'}), 201
         else:
             return jsonify({'error': 'User already exists'}), 409
-            
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/api/auth/login', methods=['POST'])
 def login():
@@ -62,10 +65,10 @@ def login():
         data = request.get_json()
         username = data.get('username')
         password = data.get('password')
-        
+
         if not all([username, password]):
             return jsonify({'error': 'Missing credentials'}), 400
-        
+
         # Verify user
         user = auth_manager.authenticate_user(username, password)
         if user:
@@ -83,9 +86,10 @@ def login():
             }), 200
         else:
             return jsonify({'error': 'Invalid credentials'}), 401
-            
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/api/projects', methods=['GET'])
 @auth_manager.require_auth
@@ -100,6 +104,7 @@ def get_projects():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 @app.route('/api/projects', methods=['POST'])
 @auth_manager.require_auth
 def create_project():
@@ -108,18 +113,19 @@ def create_project():
         data = request.get_json()
         name = data.get('name')
         description = data.get('description', '')
-        
+
         if not name:
             return jsonify({'error': 'Project name is required'}), 400
-        
+
         user_id = session.get('user_id')
         if db.create_project(name, description, user_id):
             return jsonify({'message': 'Project created successfully'}), 201
         else:
             return jsonify({'error': 'Failed to create project'}), 500
-            
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/api/data/files', methods=['GET'])
 @auth_manager.require_auth
@@ -135,6 +141,7 @@ def get_data_files():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+
 @app.route('/api/data/files', methods=['POST'])
 @auth_manager.require_auth
 def upload_data_file():
@@ -145,18 +152,24 @@ def upload_data_file():
         file_type = data.get('file_type')
         content = data.get('content')
         project_id = data.get('project_id')
-        
+
         if not all([filename, file_type, content]):
             return jsonify({'error': 'Missing required fields'}), 400
-        
+
         user_id = session.get('user_id')
-        if db.save_data_file(filename, file_type, content, project_id, user_id):
+        if db.save_data_file(
+                filename,
+                file_type,
+                content,
+                project_id,
+                user_id):
             return jsonify({'message': 'File uploaded successfully'}), 201
         else:
             return jsonify({'error': 'Failed to upload file'}), 500
-            
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/api/data/process', methods=['POST'])
 @auth_manager.require_auth
@@ -166,21 +179,22 @@ def process_data():
         data = request.get_json()
         input_data = data.get('data')
         operation = data.get('operation', 'analyze')
-        
+
         if not input_data:
             return jsonify({'error': 'No data provided'}), 400
-        
+
         # Process data
         result = data_processor.process_data(input_data, operation)
-        
+
         return jsonify({
             'result': result,
             'operation': operation,
             'processed_at': datetime.datetime.now().isoformat()
         }), 200
-        
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 @app.route('/api/system/status', methods=['GET'])
 def get_system_status():
@@ -189,7 +203,7 @@ def get_system_status():
         # Get database status
         projects_count = len(db.get_all_projects())
         files_count = len(db.get_data_files())
-        
+
         return jsonify({
             'status': 'operational',
             'database': 'connected',
@@ -202,13 +216,14 @@ def get_system_status():
             },
             'timestamp': datetime.datetime.now().isoformat()
         }), 200
-        
+
     except Exception as e:
         return jsonify({
             'status': 'error',
             'error': str(e),
             'timestamp': datetime.datetime.now().isoformat()
         }), 500
+
 
 @app.route('/api/system/logs', methods=['GET'])
 @auth_manager.require_auth
@@ -224,21 +239,22 @@ def get_system_logs():
                 'timestamp': datetime.datetime.now().isoformat()
             }
         ]
-        
+
         return jsonify({
             'logs': logs,
             'count': len(logs)
         }), 200
-        
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     print("🚀 Starting EHB-5 API Server...")
     print("📊 API URL: http://localhost:5000")
     print("📚 API Documentation: http://localhost:5000/api/health")
-    
+
     # Log system startup
     db.log_system_event('INFO', 'API Server started')
-    
-    app.run(host='0.0.0.0', port=5000, debug=True) 
+
+    app.run(host='0.0.0.0', port=5000, debug=True)
