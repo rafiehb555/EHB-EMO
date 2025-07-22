@@ -29,7 +29,7 @@ if (-not (Test-Path $workspaceRoot)) {
 $directories = @(
     "tools",
     "sdk",
-    "extensions", 
+    "extensions",
     "ai-models",
     "config",
     "projects",
@@ -48,149 +48,149 @@ foreach ($dir in $directories) {
 # Install Node.js and npm packages
 if (-not $SkipNode) {
     Write-Host "📦 Installing Node.js packages..." -ForegroundColor Blue
-    
+
     # Core Framework
     npm install -g react react-dom react-router-dom typescript @types/react @types/react-dom
-    
+
     # State Management
     npm install -g redux react-redux @reduxjs/toolkit zustand
-    
+
     # UI Components & Design
     npm install -g antd material-ui @mui/material @mui/icons-material @emotion/react @emotion/styled
     npm install -g framer-motion react-spring react-transition-group styled-components
     npm install -g tailwindcss @tailwindcss/forms @tailwindcss/typography
-    
+
     # Charts & Analytics
     npm install -g chart.js react-chartjs-2 d3 recharts victory nivo
-    
+
     # Real-time & WebSocket
     npm install -g socket.io socket.io-client ws pusher-js
-    
+
     # AI & Machine Learning
     npm install -g openai @tensorflow/tfjs brain.js ml5.js onnxruntime-web
-    
+
     # Data Processing
     npm install -g lodash ramda date-fns moment dayjs numeral
-    
+
     # HTTP & API
     npm install -g axios fetch swr react-query @tanstack/react-query
-    
+
     # Form Handling
     npm install -g react-hook-form formik yup @hookform/resolvers
-    
+
     # Validation & Testing
     npm install -g joi zod jest @testing-library/react @testing-library/jest-dom cypress
-    
+
     # Development Tools
     npm install -g eslint prettier husky lint-staged commitizen cz-conventional-changelog
-    
+
     # Build Tools
     npm install -g webpack webpack-cli webpack-dev-server babel-loader @babel/core @babel/preset-react @babel/preset-typescript
-    
+
     # CSS & Styling
     npm install -g sass less postcss autoprefixer css-loader style-loader mini-css-extract-plugin
-    
+
     # Performance & Optimization
     npm install -g react-window react-virtualized react-lazyload workbox-webpack-plugin
-    
+
     # Security
     npm install -g helmet cors bcryptjs jsonwebtoken express-rate-limit
-    
+
     # Database & Storage
     npm install -g mongoose prisma @prisma/client redis ioredis
-    
+
     # File Handling
     npm install -g multer sharp pdf-lib xlsx csv-parser
-    
+
     # Notifications & Alerts
     npm install -g react-toastify react-hot-toast notistack react-notification-system
-    
+
     # Internationalization
     npm install -g react-i18next i18next i18next-browser-languagedetector
-    
+
     # Accessibility
     npm install -g react-aria react-focus-lock react-modal react-remove-scroll
-    
+
     # Utilities
     npm install -g uuid nanoid classnames clsx immer debounce throttle
-    
+
     Write-Host "✅ Node.js packages installed successfully" -ForegroundColor Green
 }
 
 # Install Python packages
 if (-not $SkipPython) {
     Write-Host "🐍 Installing Python packages..." -ForegroundColor Blue
-    
+
     # Core AI/ML
     pip install tensorflow torch torchvision torchaudio
     pip install openai transformers diffusers accelerate
     pip install scikit-learn pandas numpy matplotlib seaborn
     pip install jupyter notebook jupyterlab
-    
+
     # Data Processing
     pip install pandas numpy scipy
     pip install opencv-python pillow
     pip install requests beautifulsoup4 lxml
-    
+
     # Web Development
     pip install flask fastapi uvicorn
     pip install django djangorestframework
     pip install aiohttp asyncio
-    
+
     # Database
     pip install sqlalchemy psycopg2-binary pymongo redis
     pip install alembic
-    
+
     # Testing
     pip install pytest pytest-cov pytest-asyncio
     pip install selenium playwright
-    
+
     # Development Tools
     pip install black flake8 mypy isort
     pip install pre-commit
-    
+
     # Monitoring & Logging
     pip install prometheus-client
     pip install structlog python-json-logger
-    
+
     # Security
     pip install cryptography bcrypt
     pip install python-jose[cryptography]
-    
+
     # File Processing
     pip install python-multipart
     pip install python-magic
-    
+
     Write-Host "✅ Python packages installed successfully" -ForegroundColor Green
 }
 
 # Install AI Models and Tools
 if (-not $SkipAI) {
     Write-Host "🤖 Installing AI models and tools..." -ForegroundColor Blue
-    
+
     # Create AI models directory
     $aiModelsPath = Join-Path $workspaceRoot "ai-models"
-    
+
     # Download pre-trained models
     Write-Host "📥 Downloading AI models..." -ForegroundColor Yellow
-    
+
     # TensorFlow models
     python -c "import tensorflow as tf; print('TensorFlow version:', tf.__version__)"
-    
+
     # OpenAI models (requires API key)
     Write-Host "⚠️  OpenAI models require API key configuration" -ForegroundColor Yellow
-    
+
     # Hugging Face models
     pip install transformers
     python -c "from transformers import pipeline; print('Hugging Face models ready')"
-    
+
     Write-Host "✅ AI models and tools installed successfully" -ForegroundColor Green
 }
 
 # Install VS Code Extensions
 if (-not $SkipExtensions) {
     Write-Host "🔧 Installing VS Code extensions..." -ForegroundColor Blue
-    
+
     # Core Extensions
     code --install-extension ms-vscode.vscode-typescript-next
     code --install-extension esbenp.prettier-vscode
@@ -199,51 +199,51 @@ if (-not $SkipExtensions) {
     code --install-extension ms-vscode.vscode-json
     code --install-extension ms-vscode.vscode-css-peek
     code --install-extension ms-vscode.vscode-html-css-support
-    
+
     # Git & Version Control
     code --install-extension ms-vscode.vscode-git
     code --install-extension eamodio.gitlens
-    
+
     # Debugging
     code --install-extension ms-vscode.vscode-debugger-for-chrome
     code --install-extension ms-vscode.vscode-debugger-for-firefox
-    
+
     # React & JavaScript
     code --install-extension ms-vscode.vscode-react-native
     code --install-extension dsznajder.es7-react-js-snippets
     code --install-extension burkeholland.simple-react-snippets
-    
+
     # Python
     code --install-extension ms-python.python
     code --install-extension ms-python.vscode-pylance
     code --install-extension ms-python.black-formatter
-    
+
     # AI & Copilot
     code --install-extension GitHub.copilot
     code --install-extension GitHub.copilot-chat
-    
+
     # Database
     code --install-extension cweijan.vscode-mysql-client2
     code --install-extension ms-mssql.mssql
-    
+
     # Docker
     code --install-extension ms-azuretools.vscode-docker
-    
+
     # Testing
     code --install-extension orta.vscode-jest
     code --install-extension ms-vscode.vscode-js-debug
-    
+
     # Themes & Icons
     code --install-extension PKief.material-icon-theme
     code --install-extension zhuangtongfa.Material-theme
     code --install-extension dracula-theme.theme-dracula
-    
+
     # Productivity
     code --install-extension christian-kohler.path-intellisense
     code --install-extension formulahendry.auto-rename-tag
     code --install-extension bradlc.vscode-tailwindcss
     code --install-extension ms-vscode.vscode-css-peek
-    
+
     Write-Host "✅ VS Code extensions installed successfully" -ForegroundColor Green
 }
 
@@ -258,7 +258,7 @@ git config --global init.defaultBranch main
 # Install Chocolatey packages
 if (Get-Command choco -ErrorAction SilentlyContinue) {
     Write-Host "📦 Installing Chocolatey packages..." -ForegroundColor Yellow
-    
+
     choco install -y postman
     choco install -y docker-desktop
     choco install -y mongodb-compass
@@ -266,7 +266,7 @@ if (Get-Command choco -ErrorAction SilentlyContinue) {
     choco install -y insomnia
     choco install -y figma
     choco install -y adobe-creative-cloud
-    
+
     Write-Host "✅ Chocolatey packages installed successfully" -ForegroundColor Green
 }
 
@@ -489,4 +489,4 @@ Write-Host "   • Use 'npm run build' for production" -ForegroundColor White
 Write-Host "   • Use 'npm test' for testing" -ForegroundColor White
 Write-Host "   • Check the logs in $workspaceRoot\logs" -ForegroundColor White
 
-Write-Host "`n🎯 Happy coding with EHB-5 Dashboard!" -ForegroundColor Green 
+Write-Host "`n🎯 Happy coding with EHB-5 Dashboard!" -ForegroundColor Green

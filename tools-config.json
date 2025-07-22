@@ -3,7 +3,7 @@
     "version": "2.0.0",
     "description": "Comprehensive Tools Configuration for EHB-5 Dashboard",
     "lastUpdated": "2025-01-27T10:00:00Z",
-    
+
     "aiTools": {
       "replitAI": {
         "name": "Replit AI",
@@ -465,4 +465,4 @@
     "deploy:prod": "vercel --prod",
     "analyze": "webpack-bundle-analyzer dist/bundle.js"
   }
-} 
+}

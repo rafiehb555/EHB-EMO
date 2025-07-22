@@ -129,7 +129,7 @@ class CursorErrorHandler {
 
         // Monitor file system changes
         this.monitorFileSystem();
-        
+
         // Monitor network status
         this.monitorNetworkStatus();
     }
@@ -155,7 +155,7 @@ class CursorErrorHandler {
 
     handleError(errorMessage) {
         console.log('🔍 Detected Error:', errorMessage);
-        
+
         const errorType = this.classifyError(errorMessage);
         if (errorType) {
             this.logError(errorType, errorMessage);
@@ -181,14 +181,14 @@ class CursorErrorHandler {
             timestamp: new Date(),
             severity: this.errorPatterns[errorType]?.severity || 'unknown'
         };
-        
+
         this.errorLog.push(errorLog);
         console.log(`📝 Logged ${errorType} error:`, errorLog);
     }
 
     async autoResolveError(errorType, errorMessage) {
         console.log(`🛠️ Auto-resolving ${errorType} error...`);
-        
+
         const solutions = this.solutions[errorType];
         if (!solutions) {
             console.log(`❌ No solutions found for ${errorType}`);
@@ -216,13 +216,13 @@ class CursorErrorHandler {
     async splitLargeEdit(errorMessage) {
         if (errorMessage.includes('maximum tokens')) {
             console.log('📦 Splitting large edit into chunks...');
-            
+
             // Get the current edit content
             const editContent = this.getCurrentEditContent();
             if (!editContent) return false;
 
             const chunks = this.splitContentIntoChunks(editContent, 1000);
-            
+
             for (let i = 0; i < chunks.length; i++) {
                 try {
                     await this.performChunkEdit(chunks[i], i);
@@ -231,7 +231,7 @@ class CursorErrorHandler {
                     console.log(`⚠️ Chunk ${i} failed:`, error);
                 }
             }
-            
+
             return true;
         }
         return false;
@@ -240,15 +240,15 @@ class CursorErrorHandler {
     async useSearchReplace(errorMessage) {
         if (errorMessage.includes('edit_file')) {
             console.log('🔄 Switching to search_replace method...');
-            
+
             const targetFile = this.extractTargetFile(errorMessage);
             const newContent = this.getCurrentEditContent();
-            
+
             if (targetFile && newContent) {
                 try {
                     // Read current file content
                     const currentContent = await this.readFileContent(targetFile);
-                    
+
                     // Use search_replace with exact content
                     await this.performSearchReplace(targetFile, currentContent, newContent);
                     return true;
@@ -263,7 +263,7 @@ class CursorErrorHandler {
     async createMissingFile(errorMessage) {
         if (errorMessage.includes('not found') || errorMessage.includes('missing')) {
             console.log('📄 Creating missing file...');
-            
+
             const targetFile = this.extractTargetFile(errorMessage);
             if (targetFile) {
                 try {
@@ -281,7 +281,7 @@ class CursorErrorHandler {
     async fixPermissions(errorMessage) {
         if (errorMessage.includes('permission') || errorMessage.includes('denied')) {
             console.log('🔐 Fixing file permissions...');
-            
+
             const targetFile = this.extractTargetFile(errorMessage);
             if (targetFile) {
                 try {
@@ -300,15 +300,15 @@ class CursorErrorHandler {
     async findExactString(errorMessage) {
         if (errorMessage.includes('not found')) {
             console.log('🔍 Finding exact string match...');
-            
+
             const targetFile = this.extractTargetFile(errorMessage);
             const searchString = this.extractSearchString(errorMessage);
-            
+
             if (targetFile && searchString) {
                 try {
                     const fileContent = await this.readFileContent(targetFile);
                     const exactMatch = this.findExactMatch(fileContent, searchString);
-                    
+
                     if (exactMatch) {
                         await this.performSearchReplace(targetFile, exactMatch, this.getCurrentEditContent());
                         return true;
@@ -323,7 +323,7 @@ class CursorErrorHandler {
 
     async useGrepSearch(errorMessage) {
         console.log('🔍 Using grep search to find content...');
-        
+
         const targetFile = this.extractTargetFile(errorMessage);
         if (targetFile) {
             try {
@@ -342,13 +342,13 @@ class CursorErrorHandler {
 
     async readFileFirst(errorMessage) {
         console.log('📖 Reading file content first...');
-        
+
         const targetFile = this.extractTargetFile(errorMessage);
         if (targetFile) {
             try {
                 const fileContent = await this.readFileContent(targetFile);
                 this.fileCache.set(targetFile, fileContent);
-                
+
                 // Now try the edit again
                 await this.retryEditOperation(targetFile);
                 return true;
@@ -362,7 +362,7 @@ class CursorErrorHandler {
     // Solution Methods for Linter Errors
     async fixSyntaxErrors(errorMessage) {
         console.log('🔧 Fixing syntax errors...');
-        
+
         const targetFile = this.extractTargetFile(errorMessage);
         if (targetFile) {
             try {
@@ -380,7 +380,7 @@ class CursorErrorHandler {
     async addMissingSemicolons(errorMessage) {
         if (errorMessage.includes('semicolon')) {
             console.log('🔧 Adding missing semicolons...');
-            
+
             const targetFile = this.extractTargetFile(errorMessage);
             if (targetFile) {
                 try {
@@ -416,7 +416,7 @@ class CursorErrorHandler {
         const lines = content.split('\n');
         const chunks = [];
         let currentChunk = '';
-        
+
         for (const line of lines) {
             if ((currentChunk + line).length > maxTokens) {
                 chunks.push(currentChunk);
@@ -425,11 +425,11 @@ class CursorErrorHandler {
                 currentChunk += line + '\n';
             }
         }
-        
+
         if (currentChunk) {
             chunks.push(currentChunk);
         }
-        
+
         return chunks;
     }
 
@@ -555,10 +555,10 @@ class CursorErrorHandler {
     checkForErrors() {
         // Check for any pending errors
         if (this.errorLog.length > 0) {
-            const recentErrors = this.errorLog.filter(error => 
+            const recentErrors = this.errorLog.filter(error =>
                 Date.now() - error.timestamp.getTime() < 60000
             );
-            
+
             if (recentErrors.length > 0) {
                 console.log(`⚠️ Found ${recentErrors.length} recent errors`);
             }
@@ -574,16 +574,16 @@ class CursorErrorHandler {
 
     async performAutoRecovery() {
         console.log('🔄 Performing auto-recovery...');
-        
+
         // Check for stuck operations
         if (this.autoRetryCount > 0) {
             console.log(`🔄 Retrying failed operations (attempt ${this.autoRetryCount})`);
             this.autoRetryCount = 0;
         }
-        
+
         // Clean up temporary files
         await this.cleanupTempFiles();
-        
+
         // Validate file system
         await this.validateFileSystem();
     }
@@ -649,4 +649,4 @@ window.autoRetryOperation = async (operation, maxRetries = 3) => {
         }
     }
     throw new Error('Operation failed after maximum retries');
-}; 
+};

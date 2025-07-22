@@ -3,7 +3,7 @@
     "version": "2.0.0",
     "description": "Intelligent Cursor Configuration with Auto-Error Recovery",
     "lastUpdated": "2025-01-27T10:00:00Z",
-    
+
     "errorHandling": {
       "enabled": true,
       "autoRecovery": true,
@@ -22,7 +22,7 @@
           ],
           "solutions": [
             "splitLargeEdit",
-            "useSearchReplace", 
+            "useSearchReplace",
             "createMissingFile",
             "fixPermissions"
           ]
@@ -42,7 +42,7 @@
         "linterError": {
           "patterns": [
             "linter.*error",
-            "syntax.*error", 
+            "syntax.*error",
             "declaration.*expected",
             "missing.*semicolon"
           ],
@@ -68,7 +68,7 @@
       },
       "dataGenerators": {
         "config": "generateConfigData",
-        "json": "generateJsonData", 
+        "json": "generateJsonData",
         "js": "generateJsData",
         "css": "generateCssData",
         "html": "generateHtmlData",
@@ -397,4 +397,4 @@
     "cursor-error-handler": "file:./cursor-error-handler.js",
     "auto-recovery-system": "file:./auto-recovery-system.js"
   }
-} 
+}

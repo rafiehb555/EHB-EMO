@@ -14,16 +14,16 @@ class IntelligentDashboard {
 
     async init() {
         console.log('🚀 Initializing Intelligent Dashboard...');
-        
+
         // Initialize all components
         await this.initializeDashboard();
         await this.setupEventListeners();
         await this.initializeCharts();
         await this.startRealTimeUpdates();
-        
+
         this.isInitialized = true;
         console.log('✅ Intelligent Dashboard initialized successfully');
-        
+
         // Show welcome notification
         this.showNotification('Intelligent Dashboard loaded successfully!', 'success');
     }
@@ -45,7 +45,7 @@ class IntelligentDashboard {
 
         // Initialize charts
         this.initializeCharts();
-        
+
         // Update initial display
         this.updateDashboard();
     }
@@ -129,16 +129,16 @@ class IntelligentDashboard {
     async initializeCharts() {
         // Error Distribution Chart
         this.initializeErrorDistributionChart();
-        
+
         // Recovery Success Rate Chart
         this.initializeRecoveryChart();
-        
+
         // System Performance Chart
         this.initializeSystemPerformanceChart();
-        
+
         // Error Trends Chart
         this.initializeErrorTrendsChart();
-        
+
         // Performance Trends Chart
         this.initializePerformanceTrendsChart();
     }
@@ -378,7 +378,7 @@ class IntelligentDashboard {
 
         // Update recovery chart
         if (this.charts.recovery) {
-            const newData = this.charts.recovery.data.datasets[0].data.map(value => 
+            const newData = this.charts.recovery.data.datasets[0].data.map(value =>
                 Math.max(95, Math.min(100, value + (Math.random() - 0.5) * 2))
             );
             this.charts.recovery.data.datasets[0].data = newData;
@@ -416,9 +416,9 @@ class IntelligentDashboard {
                 <span>${newActivity.text}</span>
                 <small>${newActivity.time}</small>
             `;
-            
+
             feed.insertBefore(activityItem, feed.firstChild);
-            
+
             // Remove old activities if more than 5
             while (feed.children.length > 5) {
                 feed.removeChild(feed.lastChild);
@@ -444,7 +444,7 @@ class IntelligentDashboard {
 
     checkSystemHealth() {
         const healthScore = Math.max(85, Math.min(100, 100 - (this.metrics.errors * 2)));
-        
+
         if (healthScore < 90) {
             this.showNotification('System health is below optimal levels', 'warning');
         }
@@ -573,17 +573,17 @@ class IntelligentDashboard {
         const notification = document.getElementById('notification');
         const notificationText = document.getElementById('notificationText');
         const notificationCount = document.getElementById('notificationCount');
-        
+
         if (notification && notificationText) {
             notificationText.textContent = message;
             notification.className = `notification show ${type}`;
-            
+
             // Update notification count
             if (notificationCount) {
                 const currentCount = parseInt(notificationCount.textContent) || 0;
                 notificationCount.textContent = currentCount + 1;
             }
-            
+
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 5000);
@@ -616,7 +616,7 @@ class IntelligentDashboard {
         const modal = document.getElementById('modal');
         const modalTitle = document.getElementById('modalTitle');
         const modalBody = document.getElementById('modalBody');
-        
+
         if (modal && modalTitle && modalBody) {
             modalTitle.textContent = title;
             modalBody.innerHTML = content;
@@ -726,4 +726,4 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log('🚀 Intelligent Dashboard System Ready');
 console.log('📊 Real-time monitoring enabled');
 console.log('🛠️ Error handling system active');
-console.log('🔄 Auto-recovery system ready'); 
+console.log('🔄 Auto-recovery system ready');

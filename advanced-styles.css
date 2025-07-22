@@ -14,7 +14,7 @@
   --primary-700: #1d4ed8;
   --primary-800: #1e40af;
   --primary-900: #1e3a8a;
-  
+
   --secondary-50: #f8fafc;
   --secondary-100: #f1f5f9;
   --secondary-200: #e2e8f0;
@@ -25,7 +25,7 @@
   --secondary-700: #334155;
   --secondary-800: #1e293b;
   --secondary-900: #0f172a;
-  
+
   --success-50: #f0fdf4;
   --success-100: #dcfce7;
   --success-200: #bbf7d0;
@@ -36,7 +36,7 @@
   --success-700: #15803d;
   --success-800: #166534;
   --success-900: #14532d;
-  
+
   --warning-50: #fffbeb;
   --warning-100: #fef3c7;
   --warning-200: #fde68a;
@@ -47,7 +47,7 @@
   --warning-700: #b45309;
   --warning-800: #92400e;
   --warning-900: #78350f;
-  
+
   --error-50: #fef2f2;
   --error-100: #fee2e2;
   --error-200: #fecaca;
@@ -58,11 +58,11 @@
   --error-700: #b91c1c;
   --error-800: #991b1b;
   --error-900: #7f1d1d;
-  
+
   /* Typography */
   --font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
-  
+
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -72,14 +72,14 @@
   --font-size-3xl: 1.875rem;
   --font-size-4xl: 2.25rem;
   --font-size-5xl: 3rem;
-  
+
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
-  
+
   /* Spacing */
   --spacing-0: 0;
   --spacing-1: 0.25rem;
@@ -94,7 +94,7 @@
   --spacing-16: 4rem;
   --spacing-20: 5rem;
   --spacing-24: 6rem;
-  
+
   /* Border Radius */
   --radius-none: 0;
   --radius-sm: 0.125rem;
@@ -105,7 +105,7 @@
   --radius-2xl: 1rem;
   --radius-3xl: 1.5rem;
   --radius-full: 9999px;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -113,12 +113,12 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  
+
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
   --transition-base: 300ms ease-in-out;
   --transition-slow: 500ms ease-in-out;
-  
+
   /* Z-Index */
   --z-dropdown: 1000;
   --z-sticky: 1020;
@@ -127,14 +127,14 @@
   --z-modal: 1050;
   --z-popover: 1060;
   --z-tooltip: 1070;
-  
+
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-800) 100%);
   --gradient-secondary: linear-gradient(135deg, var(--secondary-600) 0%, var(--secondary-800) 100%);
   --gradient-success: linear-gradient(135deg, var(--success-600) 0%, var(--success-800) 100%);
   --gradient-warning: linear-gradient(135deg, var(--warning-600) 0%, var(--warning-800) 100%);
   --gradient-error: linear-gradient(135deg, var(--error-600) 0%, var(--error-800) 100%);
-  
+
   /* Glass Morphism */
   --glass-bg: rgba(255, 255, 255, 0.1);
   --glass-border: rgba(255, 255, 255, 0.2);
@@ -153,7 +153,7 @@
   --primary-700: #bfdbfe;
   --primary-800: #dbeafe;
   --primary-900: #eff6ff;
-  
+
   --secondary-50: #0f172a;
   --secondary-100: #1e293b;
   --secondary-200: #334155;
@@ -837,25 +837,25 @@ body {
   .container {
     padding: 0 var(--spacing-3);
   }
-  
+
   .hero-text h2 {
     font-size: var(--font-size-4xl);
   }
-  
+
   .hero-stats {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: var(--spacing-4);
   }
-  
+
   .dashboard-grid {
     grid-template-columns: 1fr;
     gap: var(--spacing-6);
   }
-  
+
   .nav {
     gap: var(--spacing-3);
   }
-  
+
   .nav-link {
     padding: var(--spacing-2) var(--spacing-3);
     font-size: var(--font-size-sm);
@@ -866,16 +866,16 @@ body {
   .hero-text h2 {
     font-size: var(--font-size-3xl);
   }
-  
+
   .hero-subtitle {
     font-size: var(--font-size-lg);
   }
-  
+
   .feature-tag {
     font-size: var(--font-size-xs);
     padding: var(--spacing-1) var(--spacing-3);
   }
-  
+
   .card {
     padding: var(--spacing-6);
   }
@@ -889,7 +889,7 @@ body {
   .modal {
     display: none !important;
   }
-  
+
   .card {
     break-inside: avoid;
     box-shadow: none;
@@ -941,4 +941,4 @@ body {
 
 .skip-link:focus {
   top: 6px;
-} 
+}

@@ -1,7 +1,5 @@
 {
   "version": 2,
-  "name": "ehb-5",
-  "description": "EHB-5 Data Processing and Configuration Management System",
   "builds": [
     {
       "src": "main.py",
@@ -27,21 +25,11 @@
     "EHB5_HOST": "0.0.0.0",
     "EHB5_PORT": "5000",
     "EHB5_DASHBOARD_PORT": "8000",
-    "JWT_SECRET": "@jwt_secret",
+    "JWT_SECRET": "ehb5-secure-production-secret-2024",
     "DATABASE_PATH": "ehb5.db",
     "LOG_LEVEL": "INFO",
     "DEBUG": "false"
   },
-  "functions": {
-    "main.py": {
-      "runtime": "python3.9",
-      "maxDuration": 30
-    },
-    "api_server.py": {
-      "runtime": "python3.9",
-      "maxDuration": 30
-    }
-  },
   "regions": ["iad1"],
   "public": true
-} 
+}
