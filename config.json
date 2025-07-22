@@ -1,0 +1,15 @@
+{
+  "project": "EHB-5",
+  "version": "1.0.0",
+  "description": "EHB-5 Project Configuration",
+  "settings": {
+    "database": "enabled",
+    "api": "active",
+    "debug": false
+  },
+  "features": [
+    "data processing",
+    "file management",
+    "user interface"
+  ]
+} 
