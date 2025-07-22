@@ -1,0 +1,93 @@
+{
+  "cursorGlobalConfig": {
+    "version": "1.0.0",
+    "description": "Centralized Cursor Configuration for All Projects",
+    "globalSettings": {
+      "workspaceRoot": "C:/CursorWorkspace",
+      "autoInstallExtensions": true,
+      "sharedEnvironment": true,
+      "centralizedPackages": true
+    },
+    "extensions": {
+      "required": [
+        "ms-vscode.vscode-typescript-next",
+        "bradlc.vscode-tailwindcss",
+        "esbenp.prettier-vscode",
+        "ms-vscode.vscode-eslint",
+        "ms-vscode.vscode-json",
+        "ms-vscode.vscode-python",
+        "ms-vscode.vscode-java",
+        "ms-vscode.vscode-cpptools",
+        "ms-vscode.vscode-go",
+        "ms-vscode.vscode-rust",
+        "ms-vscode.vscode-php",
+        "ms-vscode.vscode-csharp",
+        "ms-vscode.vscode-docker",
+        "ms-vscode.vscode-git",
+        "ms-vscode.vscode-github",
+        "ms-vscode.vscode-markdown",
+        "ms-vscode.vscode-yaml",
+        "ms-vscode.vscode-xml",
+        "ms-vscode.vscode-css",
+        "ms-vscode.vscode-html"
+      ],
+      "optional": [
+        "ms-vscode.vscode-theme-colorful",
+        "ms-vscode.vscode-icons",
+        "ms-vscode.vscode-material-icon-theme",
+        "ms-vscode.vscode-bracket-pair-colorizer",
+        "ms-vscode.vscode-indent-rainbow",
+        "ms-vscode.vscode-auto-rename-tag"
+      ]
+    },
+    "globalPackages": {
+      "node": {
+        "globalPackages": [
+          "npm",
+          "yarn",
+          "pnpm",
+          "typescript",
+          "eslint",
+          "prettier",
+          "nodemon",
+          "concurrently",
+          "cross-env",
+          "dotenv"
+        ],
+        "packageManager": "npm"
+      },
+      "python": {
+        "globalPackages": [
+          "pip",
+          "virtualenv",
+          "pytest",
+          "black",
+          "flake8",
+          "mypy"
+        ]
+      }
+    },
+    "environmentVariables": {
+      "NODE_ENV": "development",
+      "CURSOR_GLOBAL_CONFIG": "C:/CursorWorkspace/config",
+      "GLOBAL_PACKAGES_PATH": "C:/CursorWorkspace/packages",
+      "SHARED_EXTENSIONS_PATH": "C:/CursorWorkspace/extensions"
+    },
+    "workspaceSettings": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true,
+        "source.organizeImports": true
+      },
+      "files.autoSave": "afterDelay",
+      "files.autoSaveDelay": 1000,
+      "editor.tabSize": 2,
+      "editor.insertSpaces": true,
+      "editor.rulers": [80, 120],
+      "editor.wordWrap": "bounded",
+      "editor.minimap.enabled": false,
+      "workbench.colorTheme": "Default Dark+",
+      "workbench.iconTheme": "vs-seti"
+    }
+  }
+} 
