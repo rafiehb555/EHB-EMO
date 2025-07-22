@@ -16,12 +16,12 @@ from pathlib import Path
 class DeploymentManager:
     """Manages deployment of EHB-5 system"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.project_root = Path(__file__).parent
         self.deployment_dir = self.project_root / "deployment"
         self.backup_dir = self.project_root / "backups"
 
-    def create_deployment_package(self):
+    def create_deployment_package(self) -> None:
         """Create deployment package"""
         try:
             print("📦 Creating deployment package...")
@@ -66,7 +66,7 @@ class DeploymentManager:
             print(f"❌ Deployment package creation failed: {e}")
             return False
 
-    def _create_deployment_script(self):
+    def _create_deployment_script(self) -> None:
         """Create deployment script for different platforms"""
 
         # Windows deployment script
@@ -106,7 +106,7 @@ python main.py
         # Make Linux script executable
         os.chmod(self.deployment_dir / "deploy.sh", 0o755)
 
-    def create_backup(self):
+    def create_backup(self) -> None:
         """Create backup of current system"""
         try:
             print("💾 Creating system backup...")
@@ -134,7 +134,7 @@ python main.py
             print(f"❌ Backup creation failed: {e}")
             return False
 
-    def check_deployment_requirements(self):
+    def check_deployment_requirements(self) -> None:
         """Check if system meets deployment requirements"""
         try:
             print("🔍 Checking deployment requirements...")
@@ -203,7 +203,7 @@ python main.py
             print(f"❌ Requirements check failed: {e}")
             return None
 
-    def deploy_to_production(self, target_dir: str = None):
+    def deploy_to_production(self, target_dir: str = None) -> None:
         """Deploy system to production"""
         try:
             print("🚀 Starting production deployment...")
@@ -234,7 +234,7 @@ python main.py
             print(f"❌ Production deployment failed: {e}")
             return False
 
-    def generate_deployment_report(self):
+    def generate_deployment_report(self) -> None:
         """Generate deployment report"""
         try:
             print("📊 Generating deployment report...")

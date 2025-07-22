@@ -14,7 +14,7 @@ from typing import Dict, List, Any, Optional
 class DataProcessor:
     """Data processor for EHB-5 project"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.supported_operations = [
             'analyze', 'validate', 'transform', 'summarize', 'extract'
         ]

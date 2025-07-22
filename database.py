@@ -14,11 +14,11 @@ from typing import Dict, List, Optional, Any
 class DatabaseManager:
     """Database manager for EHB-5 project"""
 
-    def __init__(self, db_path: str = "ehb5.db"):
+    def __init__(self, db_path: str = "ehb5.db") -> None:
         self.db_path = db_path
         self.init_database()
 
-    def init_database(self):
+    def init_database(self) -> None:
         """Initialize database with required tables"""
         try:
             with sqlite3.connect(self.db_path) as conn:

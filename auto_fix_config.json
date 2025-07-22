@@ -1,0 +1,14 @@
+{
+  "auto_fix": true,
+  "fix_imports": true,
+  "fix_formatting": true,
+  "fix_whitespace": true,
+  "fix_type_annotations": true,
+  "clean_cache": true,
+  "exclude_files": [
+    "node_modules",
+    ".git",
+    ".venv",
+    "__pycache__"
+  ]
+}

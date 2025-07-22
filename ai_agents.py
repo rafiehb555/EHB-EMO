@@ -16,14 +16,14 @@ from data_processor import DataProcessor
 class BaseAgent:
     """Base class for all AI agents"""
 
-    def __init__(self, name: str, description: str):
+    def __init__(self, name: str, description: str) -> None:
         self.name = name
         self.description = description
         self.status = "active"
         self.last_activity = datetime.now().isoformat()
         self.tasks = []
 
-    def log_activity(self, action: str, status: str = "completed"):
+    def log_activity(self, action: str, status: str = "completed") -> None:
         """Log agent activity"""
         activity = {
             "action": action,
@@ -37,7 +37,7 @@ class BaseAgent:
 
         return activity
 
-    def update_status(self, status: str):
+    def update_status(self, status: str) -> None:
         """Update agent status"""
         self.status = status
         self.last_activity = datetime.now().isoformat()
@@ -46,7 +46,7 @@ class BaseAgent:
 class DataProcessorAgent(BaseAgent):
     """AI Agent for data processing and analysis"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             "Data Processing Agent",
             "Handles data processing and analysis"
@@ -123,7 +123,7 @@ class DataProcessorAgent(BaseAgent):
 class ConfigManagerAgent(BaseAgent):
     """AI Agent for configuration management"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             "Configuration Manager",
             "Manages project configurations and settings"
@@ -267,7 +267,7 @@ class ConfigManagerAgent(BaseAgent):
 class FileOrganizerAgent(BaseAgent):
     """AI Agent for file organization and management"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             "File Organizer Agent",
             "Organizes and manages project files"
@@ -430,7 +430,7 @@ class FileOrganizerAgent(BaseAgent):
 class CodeAnalyzerAgent(BaseAgent):
     """AI Agent for code analysis and quality assessment"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             "Code Analysis Agent",
             "Analyzes code quality and provides suggestions"
@@ -451,7 +451,8 @@ class CodeAnalyzerAgent(BaseAgent):
                 "file_path": file_path,
                 "total_lines": len(lines),
                 "non_empty_lines": len([line for line in lines if line.strip()]),
-                "comment_lines": len([line for line in lines if line.strip().startswith('#')]),
+                "comment_lines": len([line for line in lines if line.strip().startswith('
+    #')]),
                 "issues": [],
                 "suggestions": []
             }
@@ -539,7 +540,7 @@ class CodeAnalyzerAgent(BaseAgent):
 class DeploymentManagerAgent(BaseAgent):
     """AI Agent for deployment and release management"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(
             "Deployment Manager",
             "Manages project deployment and releases"
@@ -625,7 +626,7 @@ class DeploymentManagerAgent(BaseAgent):
 class AgentManager:
     """Manages all AI agents"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.agents = {
             "dataProcessor": DataProcessorAgent(),
             "configManager": ConfigManagerAgent(),

@@ -22,13 +22,13 @@ sys.path.append(str(current_dir))
 class EHB5Application:
     """Main EHB-5 application class"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.db = DatabaseManager()
         self.data_processor = DataProcessor()
         self.auth_manager = AuthManager()
         self.api_app = api_app
 
-    def start_api_server(self, port: int = 5000):
+    def start_api_server(self, port: int = 5000) -> None:
         """Start the API server in a separate thread"""
         def run_server():
             self.api_app.run(host='0.0.0.0', port=port, debug=False)
@@ -37,7 +37,7 @@ class EHB5Application:
         server_thread.start()
         return server_thread
 
-    def start_dashboard_server(self, port: int = 8000):
+    def start_dashboard_server(self, port: int = 8000) -> None:
         """Start the dashboard server"""
         import http.server
         import socketserver
@@ -72,7 +72,7 @@ class EHB5Application:
             print(f"❌ Error starting dashboard server: {e}")
             return False
 
-    def initialize_system(self):
+    def initialize_system(self) -> None:
         """Initialize the EHB-5 system"""
         print("=" * 50)
         print("🎯 EHB-5 System Initialization")
@@ -104,7 +104,7 @@ class EHB5Application:
         print("✅ System initialization completed!")
         print("=" * 50)
 
-    def run(self):
+    def run(self) -> None:
         """Run the complete EHB-5 application"""
         try:
             # Initialize system

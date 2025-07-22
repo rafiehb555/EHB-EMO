@@ -15,7 +15,7 @@ from database import db
 class AuthManager:
     """Authentication manager for EHB-5 project"""
 
-    def __init__(self, secret_key: str = 'ehb5-secret-key-2024'):
+    def __init__(self, secret_key: str = 'ehb5-secret-key-2024') -> None:
         self.secret_key = secret_key
 
     def authenticate_user(self, username: str, password: str) -> dict:
@@ -66,7 +66,7 @@ class AuthManager:
             print(f"❌ Token verification error: {e}")
             return None
 
-    def require_auth(self, f):
+    def require_auth(self, f) -> None:
         """Decorator to require authentication for API endpoints"""
         @functools.wraps(f)
         def decorated_function(*args, **kwargs):
