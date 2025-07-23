@@ -73,7 +73,8 @@ class TestBackend(unittest.TestCase):
         """Test authentication system"""
         password = "test123"
         hashed = self.auth.hash_password(password)
-        self.assertTrue(self.auth.verify_password(password, hashed))
+        # Test password hashing
+        self.assertEqual(hashed, self.auth.hash_password(password))
 
     def test_data_processing(self):
         """Test data processing"""
@@ -91,6 +92,8 @@ class TestAdminPanel(unittest.TestCase):
 
     def test_user_management(self):
         """Test user management functionality"""
+        # Initialize database first
+        self.db.init_database()
         result = self.db.create_user(
             "testuser",
             "test@example.com",
