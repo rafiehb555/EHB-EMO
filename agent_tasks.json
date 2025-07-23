@@ -62,6 +62,18 @@
         "improvement_percent": 15,
         "optimization_time": "2025-07-23T15:39:54.810065"
       }
+    },
+    {
+      "id": 6,
+      "name": "API Test",
+      "type": "api_testing",
+      "description": "Tested /api/status - Status: 200 OK",
+      "timestamp": "2025-07-23T15:39:57.262018",
+      "data": {
+        "endpoint": "/api/status",
+        "status": "200 OK",
+        "test_time": "2025-07-23T15:39:57.262018"
+      }
     }
   ],
   "last_push": null,
