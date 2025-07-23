@@ -1,14 +1,15 @@
+import json
+import re
+import statistics
+from datetime import datetime
+from typing import Any, Dict, List, Optional
+
 #!/usr/bin/env python3
 """
 EHB-5 Data Processor
 Handles data processing, analysis, and business logic
 """
 
-import json
-import re
-import statistics
-from datetime import datetime
-from typing import Any, Dict, List, Optional
 
 
 class DataProcessor:
@@ -142,12 +143,10 @@ class DataProcessor:
             try:
                 json_data = json.loads(data)
                 formatted_json = json.dumps(json_data, indent=2)
-                if isinstance(transformations, list):
-                    if isinstance(transformations, list):
-                        transformations.append({
-                            'type': 'json_format',
-                            'result': formatted_json
-                        })
+                transformations.append({
+                    'type': 'json_format',
+                    'result': formatted_json
+                })
             except BaseException:
                 pass
 
@@ -181,11 +180,9 @@ class DataProcessor:
                 'average_line_length': len(data) / len(lines) if lines else 0,
                 'average_word_length': sum(
                     len(word) for word in words) / len(words) if words else 0,
-                'unique_words': len(
-                    set(words)),
-                'most_common_words': self._get_most_common_words(
-                    words,
-                    5)}
+                'unique_words': len(set(words)),
+                'most_common_words': self._get_most_common_words(words, 5)
+            }
 
             return {
                 'operation': 'summarize',
@@ -213,7 +210,7 @@ class DataProcessor:
 
             # Extract URLs
             urls = re.findall(
-r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
+                r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
                 data)
             if urls:
                 extractions['urls'] = list(set(urls))
@@ -280,11 +277,12 @@ r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F])
             }
 
     def _get_most_common_words(
-            self,
-            words: List[str],
-            count: int = 5) -> List[Dict]:
+        self,
+        words: List[str],
+        count: int = 5
+    ) -> List[Dict]:
         """Get most common words with their frequencies"""
-        word_count: dict = {}
+        word_count = {}
         for word in words:
             word = word.lower().strip('.,!?;:')
             if word:

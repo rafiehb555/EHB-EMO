@@ -10,14 +10,15 @@ import threading
 import time
 from pathlib import Path
 
+# Add current directory to Python path
+current_dir = Path(__file__).parent
+sys.path.append(str(current_dir))
+
 from api_server import app as api_app
 from auth_manager import AuthManager
 from data_processor import DataProcessor
 from database import DatabaseManager
 
-# Add current directory to Python path
-current_dir = Path(__file__).parent
-sys.path.append(str(current_dir))
 
 
 class EHB5Application:
@@ -92,42 +93,47 @@ class EHB5Application:
             "admin",
             "admin@ehb5.com",
             admin_password_hash,
-                "admin"):
+            "admin"):
             print("✅ Admin user created successfully")
             print("   Username: admin")
             print(f"   Password: {admin_password}")
         else:
             print("ℹ️  Admin user already exists")
 
-        # Log system startup
-        self.db.log_system_event('INFO', 'EHB-5 System initialized')
+        # Initialize data processor
+        print("🔧 Initializing data processor...")
+        self.data_processor.supported_operations = [
+            'analyze', 'validate', 'transform', 'summarize', 'extract'
+        ]
+        print("✅ Data processor initialized")
 
-        print("✅ System initialization completed!")
-        print("=" * 50)
+        # Log system startup
+        self.db.log_system_event('INFO', 'EHB-5 System initialized successfully')
+        print("✅ System initialization complete")
 
     def run(self) -> None:
-        """Run the complete EHB-5 application"""
+        """Run the EHB-5 application"""
         try:
             # Initialize system
             self.initialize_system()
 
             # Start API server
-            print("🚀 Starting API server...")
-            self.start_api_server()
-            time.sleep(2)  # Give API server time to start
+            print("\n🚀 Starting API server...")
+            api_thread = self.start_api_server(5000)
+            print("✅ API server started on port 5000")
 
             # Start dashboard server
-            print("🌐 Starting dashboard server...")
-            self.start_dashboard_server()
+            print("\n🌐 Starting dashboard server...")
+            self.start_dashboard_server(8000)
 
         except KeyboardInterrupt:
             print("\n🛑 EHB-5 application stopped by user")
         except Exception as e:
-            print(f"❌ Application error: {e}")
+            print(f"❌ Error running EHB-5 application: {e}")
 
 
 def main() -> None:
-    """Main function"""
+    """Main entry point"""
     app = EHB5Application()
     app.run()
 

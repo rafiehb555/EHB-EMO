@@ -1,17 +1,16 @@
+import datetime
+import functools
+import hashlib
+import jwt
+from flask import jsonify, request, session
+from database import db
+
 #!/usr/bin/env python3
 """
 EHB-5 Authentication Manager
 Handles user authentication and JWT token management
 """
 
-import datetime
-import functools
-import hashlib
-
-import jwt  # type: ignore  # type: ignore
-from flask import jsonify, request, session
-
-from database import db
 
 
 class AuthManager:
@@ -32,9 +31,7 @@ class AuthManager:
             password_hash = hashlib.sha256(password.encode()).hexdigest()
             if user['password_hash'] == password_hash:
                 return user
-
             return None
-
         except Exception as e:
             print(f"❌ Authentication error: {e}")
             return None
@@ -45,7 +42,7 @@ class AuthManager:
             payload = {
                 'user_id': user_id,
                 'username': username,
-'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24),
                 'iat': datetime.datetime.utcnow()
             }
             return jwt.encode(payload, self.secret_key, algorithm='HS256')
@@ -68,10 +65,10 @@ class AuthManager:
             print(f"❌ Token verification error: {e}")
             return None
 
-    def require_auth(self, f) -> None:
+    def require_auth(self, f):
         """Decorator to require authentication for API endpoints"""
         @functools.wraps(f)
-        def decorated_function(*args, **kwargs) -> None:
+        def decorated_function(*args, **kwargs):
             # Get token from header
             auth_header = request.headers.get('Authorization')
             if not auth_header:

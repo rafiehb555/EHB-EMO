@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHB-5 Deployment Links</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .link-button {
+            display: block;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .link-button:hover {
+            background: #45a049;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 EHB-5 Deployment Links</h1>
+        <p>Click any link below to test the deployment in your browser:</p>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/" class="link-button">
+            🌐 Main API Endpoint
+        </a>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/api/health" class="link-button">
+            ❤️ Health Check
+        </a>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/api/system/status" class="link-button">
+            📊 System Status
+        </a>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/api/public" class="link-button">
+            🔓 Public Access
+        </a>
+
+        <div class="status">
+            <h3>📋 Instructions:</h3>
+            <ol>
+                <li>Click any link above to open in browser</li>
+                <li>If you see JSON response = ✅ SUCCESS</li>
+                <li>If you see 401 error = ❌ Authentication issue</li>
+                <li>If page doesn't load = ❌ Deployment issue</li>
+            </ol>
+
+            <h3>🎯 Expected Response:</h3>
+            <pre style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px;">
+{
+  "message": "EHB-5 API is running! PUBLIC ACCESS ENABLED",
+  "status": "operational",
+  "version": "2.0.0",
+  "timestamp": "2025-07-23T...",
+  "authentication": "disabled"
+}
+            </pre>
+        </div>
+    </div>
+</body>
+</html>

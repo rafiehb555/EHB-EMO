@@ -1,20 +1,19 @@
+import datetime
+import hashlib
+import os
+import jwt
+from flask import Flask, jsonify, request, session
+from flask_cors import CORS
+from auth_manager import AuthManager
+from data_processor import DataProcessor
+from database import db
+
 #!/usr/bin/env python3
 """
 EHB-5 API Server
 RESTful API endpoints for the EHB-5 project
 """
 
-import datetime
-import hashlib
-import os
-
-import jwt
-from flask import Flask, jsonify, request, session
-from flask_cors import CORS
-
-from auth_manager import AuthManager
-from data_processor import DataProcessor
-from database import db
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'ehb5-secret-key-2024')
@@ -26,7 +25,7 @@ data_processor = DataProcessor()
 
 
 @app.route('/api/health', methods=['GET'])
-def health_check() -> None:
+def health_check():
     """Health check endpoint"""
     return jsonify({
         'status': 'healthy',
@@ -36,7 +35,7 @@ def health_check() -> None:
 
 
 @app.route('/api/auth/register', methods=['POST'])
-def register() -> None:
+def register():
     """User registration endpoint"""
     try:
         data = request.get_json()
@@ -61,7 +60,7 @@ def register() -> None:
 
 
 @app.route('/api/auth/login', methods=['POST'])
-def login() -> None:
+def login():
     """User login endpoint"""
     try:
         data = request.get_json()
@@ -93,9 +92,37 @@ def login() -> None:
         return jsonify({'error': str(e)}), 500
 
 
+@app.route('/api/users', methods=['GET'])
+@auth_manager.require_auth
+def get_users():
+    """Get all users (admin only)"""
+    try:
+        users = db.get_all_users()
+        return jsonify({
+            'users': users,
+            'total': len(users)
+        }), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/api/users/<int:user_id>', methods=['GET'])
+@auth_manager.require_auth
+def get_user(user_id):
+    """Get specific user by ID"""
+    try:
+        user = db.get_user_by_id(user_id)
+        if user:
+            return jsonify(user), 200
+        else:
+            return jsonify({'error': 'User not found'}), 404
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
 @app.route('/api/projects', methods=['GET'])
 @auth_manager.require_auth
-def get_projects() -> None:
+def get_projects():
     """Get all projects"""
     try:
         projects = db.get_all_projects()
@@ -109,7 +136,7 @@ def get_projects() -> None:
 
 @app.route('/api/projects', methods=['POST'])
 @auth_manager.require_auth
-def create_project() -> None:
+def create_project():
     """Create a new project"""
     try:
         data = request.get_json()
@@ -131,7 +158,7 @@ def create_project() -> None:
 
 @app.route('/api/data/files', methods=['GET'])
 @auth_manager.require_auth
-def get_data_files() -> None:
+def get_data_files():
     """Get all data files"""
     try:
         project_id = request.args.get('project_id', type=int)
@@ -146,7 +173,7 @@ def get_data_files() -> None:
 
 @app.route('/api/data/files', methods=['POST'])
 @auth_manager.require_auth
-def upload_data_file() -> None:
+def upload_data_file():
     """Upload a data file"""
     try:
         data = request.get_json()
@@ -160,11 +187,11 @@ def upload_data_file() -> None:
 
         user_id = session.get('user_id')
         if db.save_data_file(
-                filename,
-                file_type,
-                content,
-                project_id,
-                user_id):
+            filename,
+            file_type,
+            content,
+            project_id,
+            user_id):
             return jsonify({'message': 'File uploaded successfully'}), 201
         else:
             return jsonify({'error': 'Failed to upload file'}), 500
@@ -175,7 +202,7 @@ def upload_data_file() -> None:
 
 @app.route('/api/data/process', methods=['POST'])
 @auth_manager.require_auth
-def process_data() -> None:
+def process_data():
     """Process data using the data processor"""
     try:
         data = request.get_json()
@@ -199,7 +226,7 @@ def process_data() -> None:
 
 
 @app.route('/api/system/status', methods=['GET'])
-def get_system_status() -> None:
+def get_system_status():
     """Get system status"""
     try:
         # Get database status
@@ -229,7 +256,7 @@ def get_system_status() -> None:
 
 @app.route('/api/system/logs', methods=['GET'])
 @auth_manager.require_auth
-def get_system_logs() -> None:
+def get_system_logs():
     """Get system logs"""
     try:
         # This would typically get logs from the database

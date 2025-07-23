@@ -22,6 +22,7 @@ The EHB-5 Intelligent System is a comprehensive, AI-powered development environm
 ### Core Components
 
 ```
+
 EHB-5 Intelligent System
 ├── Intelligent API Server (Node.js/Express)
 ├── Real-time Dashboard (HTML/CSS/JavaScript)
@@ -30,12 +31,15 @@ EHB-5 Intelligent System
 ├── Auto-Recovery Engine
 ├── Configuration Management
 └── CLI Interface
+
 ```
 
 ### Data Flow
 
 ```
+
 User Input → CLI/Dashboard → API Server → AI Agents → System Actions → Real-time Updates
+
 ```
 
 ### Technology Stack
@@ -53,7 +57,8 @@ User Input → CLI/Dashboard → API Server → AI Agents → System Actions →
 
 The core server that handles all API requests, WebSocket connections, and system management.
 
-**Key Features:**
+* *Key Features:**
+
 - RESTful API endpoints
 - Real-time WebSocket communication
 - AI agents management
@@ -61,7 +66,8 @@ The core server that handles all API requests, WebSocket connections, and system
 - System metrics monitoring
 - Error handling and logging
 
-**Ports:**
+* *Ports:**
+
 - HTTP API: 3001
 - WebSocket: 3001 (same port)
 - Dashboard: 3001
@@ -70,7 +76,8 @@ The core server that handles all API requests, WebSocket connections, and system
 
 A modern, responsive web interface for monitoring and controlling the system.
 
-**Features:**
+* *Features:**
+
 - Real-time system metrics
 - AI agents management
 - Error monitoring and resolution
@@ -82,7 +89,8 @@ A modern, responsive web interface for monitoring and controlling the system.
 
 Command-line interface for server management and automation.
 
-**Commands:**
+* *Commands:**
+
 - `start` - Start the server
 - `stop` - Stop the server
 - `status` - Check server status
@@ -114,98 +122,146 @@ Intelligent agents that handle different aspects of the system:
 ### Quick Setup
 
 1. **Clone the repository:**
+
    ```bash
+
    git clone https://github.com/ehb-5/intelligent-system.git
    cd intelligent-system
+
    ```
 
 2. **Install dependencies:**
+
    ```bash
+
    npm install
+
    ```
 
 3. **Run setup:**
+
    ```bash
+
    npm run setup
+
    ```
 
 4. **Start the server:**
+
    ```bash
+
    npm start
+
    ```
 
 5. **Open dashboard:**
+
    ```
+
    http://localhost:3001
+
    ```
 
 ### Advanced Setup
 
 #### Using CLI
+
 ```bash
-# Setup the system
+
+## Setup the system
+
 ehb-api setup
 
-# Start the server
+## Start the server
+
 ehb-api start
 
-# Check status
+## Check status
+
 ehb-api status
 
-# Monitor in real-time
+## Monitor in real-time
+
 ehb-api monitor
+
 ```
 
 #### Using PowerShell Scripts
+
 ```powershell
-# Run setup script
+
+## Run setup script
+
 .\setup-cursor-global.ps1
 
-# Verify setup
+## Verify setup
+
 .\verify-setup.ps1
 
-# Launch project
+## Launch project
+
 .\launch-project.ps1 my-project
+
 ```
 
 ## 📚 API Reference
 
 ### Base URL
+
 ```
+
 http://localhost:3001/api/v1
+
 ```
 
 ### Authentication
+
 Currently, the API uses basic authentication. Add headers for future implementations:
+
 ```javascript
+
 headers: {
   'Authorization': 'Bearer YOUR_TOKEN',
   'Content-Type': 'application/json'
 }
+
 ```
 
 ### Endpoints
 
 #### Health Check
+
 ```http
+
 GET /health
+
 ```
-**Response:**
+
+* *Response:**
+
 ```json
+
 {
   "status": "healthy",
   "timestamp": "2024-01-01T00:00:00.000Z",
   "uptime": 3600,
   "version": "2.0.0"
 }
+
 ```
 
 #### Dashboard Data
+
 ```http
+
 GET /api/v1/dashboard
+
 ```
-**Response:**
+
+* *Response:**
+
 ```json
+
 {
   "metrics": {
     "cpu": 45,
@@ -220,14 +276,21 @@ GET /api/v1/dashboard
   "systemStatus": {...},
   "timestamp": "2024-01-01T00:00:00.000Z"
 }
+
 ```
 
 #### System Metrics
+
 ```http
+
 GET /api/v1/metrics
+
 ```
-**Response:**
+
+* *Response:**
+
 ```json
+
 {
   "cpu": 45,
   "memory": 65,
@@ -235,17 +298,23 @@ GET /api/v1/metrics
   "storage": 75,
   "uptime": 3600
 }
+
 ```
 
 #### AI Agents
 
-**List Agents:**
+* *List Agents:**
+
 ```http
+
 GET /api/v1/agents
+
 ```
 
-**Create Agent:**
+* *Create Agent:**
+
 ```http
+
 POST /api/v1/agents
 Content-Type: application/json
 
@@ -256,10 +325,13 @@ Content-Type: application/json
     "status": "active"
   }
 }
+
 ```
 
-**Update Agent:**
+* *Update Agent:**
+
 ```http
+
 PUT /api/v1/agents/{id}
 Content-Type: application/json
 
@@ -269,56 +341,77 @@ Content-Type: application/json
     "newSetting": "value"
   }
 }
+
 ```
 
-**Delete Agent:**
+* *Delete Agent:**
+
 ```http
+
 DELETE /api/v1/agents/{id}
+
 ```
 
 #### Error Management
 
-**List Errors:**
+* *List Errors:**
+
 ```http
+
 GET /api/v1/errors?limit=50&type=API_ERROR
+
 ```
 
-**Resolve Error:**
+* *Resolve Error:**
+
 ```http
+
 POST /api/v1/errors/resolve
 Content-Type: application/json
 
 {
   "errorId": "error-uuid"
 }
+
 ```
 
 #### Recovery Actions
 
-**List Recovery Actions:**
+* *List Recovery Actions:**
+
 ```http
+
 GET /api/v1/recovery
+
 ```
 
-**Execute Recovery Action:**
+* *Execute Recovery Action:**
+
 ```http
+
 POST /api/v1/recovery/execute
 Content-Type: application/json
 
 {
   "actionId": "action-uuid"
 }
+
 ```
 
 #### File Operations
 
-**Scan Files:**
+* *Scan Files:**
+
 ```http
+
 GET /api/v1/files?path=./src
+
 ```
 
-**Process File:**
+* *Process File:**
+
 ```http
+
 POST /api/v1/files/process
 Content-Type: application/json
 
@@ -326,17 +419,23 @@ Content-Type: application/json
   "filePath": "./test.txt",
   "action": "read"
 }
+
 ```
 
 #### Configuration
 
-**Get Configuration:**
+* *Get Configuration:**
+
 ```http
+
 GET /api/v1/config
+
 ```
 
-**Update Configuration:**
+* *Update Configuration:**
+
 ```http
+
 PUT /api/v1/config
 Content-Type: application/json
 
@@ -345,12 +444,15 @@ Content-Type: application/json
     "newSetting": "value"
   }
 }
+
 ```
 
 #### System Commands
 
-**Execute System Command:**
+* *Execute System Command:**
+
 ```http
+
 POST /api/v1/system/command
 Content-Type: application/json
 
@@ -358,35 +460,47 @@ Content-Type: application/json
   "command": "dir",
   "args": ["/s"]
 }
+
 ```
 
 #### Auto-Recovery
 
-**Trigger Auto-Recovery:**
+* *Trigger Auto-Recovery:**
+
 ```http
+
 POST /api/v1/recovery/auto
+
 ```
 
 ### WebSocket Events
 
 Connect to WebSocket:
+
 ```javascript
+
 const ws = new WebSocket('ws://localhost:3001');
+
 ```
 
 #### Event Types
 
-**Connection:**
+* *Connection:**
+
 ```json
+
 {
   "type": "connection",
   "clientId": "uuid",
   "timestamp": "2024-01-01T00:00:00.000Z"
 }
+
 ```
 
-**Metrics Update:**
+* *Metrics Update:**
+
 ```json
+
 {
   "type": "metrics_update",
   "data": {
@@ -398,19 +512,25 @@ const ws = new WebSocket('ws://localhost:3001');
   },
   "timestamp": "2024-01-01T00:00:00.000Z"
 }
+
 ```
 
-**Agent Updates:**
+* *Agent Updates:**
+
 ```json
+
 {
   "type": "agents_update",
   "data": [...],
   "timestamp": "2024-01-01T00:00:00.000Z"
 }
+
 ```
 
-**Error Events:**
+* *Error Events:**
+
 ```json
+
 {
   "type": "error_logged",
   "data": {
@@ -421,10 +541,13 @@ const ws = new WebSocket('ws://localhost:3001');
     "timestamp": "2024-01-01T00:00:00.000Z"
   }
 }
+
 ```
 
-**Recovery Events:**
+* *Recovery Events:**
+
 ```json
+
 {
   "type": "recovery_action_completed",
   "data": {
@@ -433,6 +556,7 @@ const ws = new WebSocket('ws://localhost:3001');
     "result": {...}
   }
 }
+
 ```
 
 ## 🎛️ Dashboard Usage
@@ -461,15 +585,18 @@ The dashboard provides real-time monitoring of all system components:
 ### Features
 
 #### Real-time Updates
+
 All dashboard components update automatically via WebSocket connections.
 
 #### Interactive Controls
+
 - Click on agents to manage their status
 - Use quick action buttons for common tasks
 - Monitor system metrics in real-time
 - View and resolve errors directly
 
 #### Responsive Design
+
 The dashboard adapts to different screen sizes and devices.
 
 ## 🖥️ CLI Commands
@@ -477,167 +604,259 @@ The dashboard adapts to different screen sizes and devices.
 ### Basic Commands
 
 #### Start Server
+
 ```bash
+
 ehb-api start [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `-p, --port <port>`: Port number (default: 3001)
 - `-e, --env <environment>`: Environment (development/production)
 - `--daemon`: Run as daemon process
 
-**Example:**
+* *Example:**
+
 ```bash
+
 ehb-api start -p 3002 -e production
+
 ```
 
 #### Stop Server
+
 ```bash
+
 ehb-api stop
+
 ```
 
 #### Check Status
+
 ```bash
+
 ehb-api status
+
 ```
 
 #### Monitor Server
+
 ```bash
+
 ehb-api monitor [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `-i, --interval <seconds>`: Update interval (default: 5)
 
-**Example:**
+* *Example:**
+
 ```bash
+
 ehb-api monitor -i 10
+
 ```
 
 ### Configuration Commands
 
 #### Setup Server
+
 ```bash
+
 ehb-api setup [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `--force`: Force setup even if already configured
 
 #### Manage Configuration
+
 ```bash
+
 ehb-api config [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `--show`: Show current configuration
 - `--edit`: Edit configuration interactively
 - `--reset`: Reset to default configuration
 
-**Examples:**
+* *Examples:**
+
 ```bash
+
 ehb-api config --show
 ehb-api config --edit
 ehb-api config --reset
+
 ```
 
 ### Agent Management
 
 #### List Agents
+
 ```bash
+
 ehb-api agents --list
+
 ```
 
 #### Start Agent
+
 ```bash
+
 ehb-api agents --start <agent-id>
+
 ```
 
 #### Stop Agent
+
 ```bash
+
 ehb-api agents --stop <agent-id>
+
 ```
 
 #### Restart Agent
+
 ```bash
+
 ehb-api agents --restart <agent-id>
+
 ```
 
 #### Check Agent Status
+
 ```bash
+
 ehb-api agents --status <agent-id>
+
 ```
 
 ### Logging and Monitoring
 
 #### View Logs
+
 ```bash
+
 ehb-api logs [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `-f, --follow`: Follow log output
 - `-n, --lines <number>`: Number of lines to show
 - `--level <level>`: Log level (error/warn/info/debug)
 
-**Examples:**
+* *Examples:**
+
 ```bash
+
 ehb-api logs -f
 ehb-api logs -n 100 --level error
+
 ```
 
 ### Backup and Recovery
 
 #### Backup Server
+
 ```bash
+
 ehb-api backup [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `-d, --destination <path>`: Backup destination path
 - `--include-logs`: Include log files
 - `--include-config`: Include configuration files
 
-**Example:**
+* *Example:**
+
 ```bash
+
 ehb-api backup -d ./backups/ --include-logs
+
 ```
 
 #### Restore Server
+
 ```bash
+
 ehb-api restore [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `-s, --source <path>`: Backup source path
 - `--force`: Force restore without confirmation
 
-**Example:**
+* *Example:**
+
 ```bash
+
 ehb-api restore -s ./backups/backup-2024-01-01.zip
+
 ```
 
 ### System Management
 
-#### Health Check
+#### Health Check (2)
+
 ```bash
+
 ehb-api health [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `--detailed`: Show detailed health information
 - `--fix`: Attempt to fix health issues
 
-**Example:**
+* *Example:**
+
 ```bash
+
 ehb-api health --detailed --fix
+
 ```
 
 #### Update Server
+
 ```bash
+
 ehb-api update [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `--check`: Check for updates only
 - `--force`: Force update without confirmation
 
 #### Deploy Server
+
 ```bash
+
 ehb-api deploy [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `--environment <env>`: Target environment
 - `--config <path>`: Deployment configuration file
 - `--dry-run`: Simulate deployment
@@ -645,17 +864,27 @@ ehb-api deploy [options]
 ### Utility Commands
 
 #### Open Dashboard
+
 ```bash
+
 ehb-api dashboard [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `--port <port>`: Dashboard port (default: 3001)
 
 #### Run Tests
+
 ```bash
+
 ehb-api test [options]
+
 ```
-**Options:**
+
+* *Options:**
+
 - `--unit`: Run unit tests only
 - `--integration`: Run integration tests only
 - `--coverage`: Generate coverage report
@@ -665,6 +894,7 @@ ehb-api test [options]
 ### Agent Types
 
 #### Main Agent
+
 - **Purpose**: Overall system coordination
 - **Responsibilities**:
   - System monitoring
@@ -673,6 +903,7 @@ ehb-api test [options]
   - Inter-agent communication
 
 #### Data Processing Agent
+
 - **Purpose**: Handle file and data operations
 - **Responsibilities**:
   - File scanning and processing
@@ -681,6 +912,7 @@ ehb-api test [options]
   - Data transformation
 
 #### Analytics Agent
+
 - **Purpose**: Performance analysis and reporting
 - **Responsibilities**:
   - Metrics collection
@@ -689,6 +921,7 @@ ehb-api test [options]
   - Report generation
 
 #### Security Agent
+
 - **Purpose**: Security monitoring and threat detection
 - **Responsibilities**:
   - Security scanning
@@ -697,6 +930,7 @@ ehb-api test [options]
   - Audit logging
 
 #### Recovery Agent
+
 - **Purpose**: Automated error recovery
 - **Responsibilities**:
   - Error detection
@@ -716,6 +950,7 @@ ehb-api test [options]
 ### Agent Communication
 
 Agents communicate through the central API server using:
+
 - **REST API**: For command and control
 - **WebSocket**: For real-time updates
 - **Event System**: For inter-agent communication
@@ -723,6 +958,7 @@ Agents communicate through the central API server using:
 ### Agent Configuration
 
 Each agent can be configured with:
+
 - **Status**: active, inactive, restarting
 - **Parameters**: Custom configuration options
 - **Schedules**: When to perform tasks
@@ -735,6 +971,7 @@ Each agent can be configured with:
 The server configuration is stored in `config/server.json`:
 
 ```json
+
 {
   "server": {
     "port": 3001,
@@ -763,28 +1000,35 @@ The server configuration is stored in `config/server.json`:
     "maxFiles": 5
   }
 }
+
 ```
 
 ### Environment Variables
 
 ```bash
-# Server Configuration
+
+## Server Configuration
+
 PORT=3001
 NODE_ENV=development
 CURSOR_GLOBAL_CONFIG=C:/CursorWorkspace/config
 GLOBAL_PACKAGES_PATH=C:/CursorWorkspace/packages
 SHARED_EXTENSIONS_PATH=C:/CursorWorkspace/extensions
 
-# Security
+## Security
+
 JWT_SECRET=your-jwt-secret
 API_KEY=your-api-key
 
-# Database (for future use)
+## Database (for future use)
+
 DATABASE_URL=your-database-url
 
-# External Services
+## External Services
+
 OPENAI_API_KEY=your-openai-key
 REPLIT_API_KEY=your-replit-key
+
 ```
 
 ### Dashboard Configuration
@@ -803,78 +1047,106 @@ The dashboard can be customized through the settings panel:
 
 #### Server Won't Start
 
-**Symptoms:**
+* *Symptoms:**
+
 - Port already in use
 - Missing dependencies
 - Configuration errors
 
-**Solutions:**
+* *Solutions:**
+
 ```bash
-# Check if port is in use
+
+## Check if port is in use
+
 netstat -ano | findstr :3001
 
-# Kill process using port
+## Kill process using port
+
 taskkill /PID <PID> /F
 
-# Reinstall dependencies
+## Reinstall dependencies
+
 npm install
 
-# Check configuration
+## Check configuration
+
 ehb-api config --show
+
 ```
 
 #### WebSocket Connection Issues
 
-**Symptoms:**
+* *Symptoms:**
+
 - Dashboard not updating
 - Real-time features not working
 
-**Solutions:**
+* *Solutions:**
+
 ```bash
-# Check WebSocket server
+
+## Check WebSocket server
+
 ehb-api status
 
-# Restart server
+## Restart server
+
 ehb-api stop
 ehb-api start
 
-# Check firewall settings
+## Check firewall settings
+
 ```
 
 #### Agent Not Responding
 
-**Symptoms:**
+* *Symptoms:**
+
 - Agent status shows "inactive"
 - No agent metrics
 
-**Solutions:**
+* *Solutions:**
+
 ```bash
-# Check agent status
+
+## Check agent status
+
 ehb-api agents --list
 
-# Restart specific agent
+## Restart specific agent
+
 ehb-api agents --restart <agent-id>
 
-# Check agent logs
+## Check agent logs
+
 ehb-api logs --level error
+
 ```
 
 #### Performance Issues
 
-**Symptoms:**
+* *Symptoms:**
+
 - Slow response times
 - High CPU/memory usage
 
-**Solutions:**
+* *Solutions:**
+
 ```bash
-# Check system health
+
+## Check system health
+
 ehb-api health --detailed
 
-# Monitor performance
+## Monitor performance
+
 ehb-api monitor
 
-# Optimize configuration
+## Optimize configuration
+
 ehb-api config --edit
+
 ```
 
 ### Error Codes
@@ -890,43 +1162,61 @@ ehb-api config --edit
 ### Log Analysis
 
 #### Error Logs
+
 ```bash
-# View error logs
+
+## View error logs
+
 ehb-api logs --level error
 
-# Follow error logs
+## Follow error logs
+
 ehb-api logs -f --level error
+
 ```
 
 #### Debug Mode
+
 ```bash
-# Enable debug logging
+
+## Enable debug logging
+
 NODE_ENV=development ehb-api start
 
-# View debug logs
+## View debug logs
+
 ehb-api logs --level debug
+
 ```
 
 ### Recovery Procedures
 
 #### Automatic Recovery
+
 The system includes automatic recovery for common issues:
+
 - Service restart on failure
 - Configuration validation
 - Resource cleanup
 - Error resolution
 
 #### Manual Recovery
+
 ```bash
-# Full system restart
+
+## Full system restart
+
 ehb-api stop
 ehb-api start
 
-# Reset configuration
+## Reset configuration
+
 ehb-api config --reset
 
-# Restore from backup
+## Restore from backup
+
 ehb-api restore -s ./backups/latest.zip
+
 ```
 
 ## 🚀 Development
@@ -934,6 +1224,7 @@ ehb-api restore -s ./backups/latest.zip
 ### Project Structure
 
 ```
+
 intelligent-system/
 ├── intelligent-api-server.js    # Main server
 ├── intelligent-dashboard.html   # Dashboard UI
@@ -945,51 +1236,76 @@ intelligent-system/
 ├── test/                        # Test files
 ├── docs/                        # Documentation
 └── backups/                     # Backup files
+
 ```
 
 ### Development Setup
 
 1. **Clone repository:**
+
    ```bash
+
    git clone https://github.com/ehb-5/intelligent-system.git
    cd intelligent-system
+
    ```
 
 2. **Install dependencies:**
+
    ```bash
+
    npm install
+
    ```
 
 3. **Run in development mode:**
+
    ```bash
+
    npm run dev
+
    ```
 
 4. **Run tests:**
+
    ```bash
+
    npm test
+
    ```
 
 5. **Lint code:**
+
    ```bash
+
    npm run lint
+
    ```
 
 ### Testing
 
 #### Unit Tests
+
 ```bash
+
 npm run test:unit
+
 ```
 
 #### Integration Tests
+
 ```bash
+
 npm run test:integration
+
 ```
 
 #### Coverage Report
+
 ```bash
+
 npm run test:coverage
+
 ```
 
 ### Contributing
@@ -1012,19 +1328,28 @@ npm run test:coverage
 ### Deployment
 
 #### Development
+
 ```bash
+
 npm run dev
+
 ```
 
 #### Production
+
 ```bash
+
 npm start
+
 ```
 
 #### Docker (Future)
+
 ```bash
+
 docker build -t intelligent-system .
 docker run -p 3001:3001 intelligent-system
+
 ```
 
 ## 📈 Performance Optimization
@@ -1115,7 +1440,7 @@ docker run -p 3001:3001 intelligent-system
 - **Logging**: ELK Stack
 - **Security**: SIEM integration
 
----
+- --
 
 ## 📞 Support
 
@@ -1130,8 +1455,8 @@ For support and questions:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
----
+- --
 
-**Version**: 2.0.0
-**Last Updated**: January 2024
-**Maintainer**: EHB-5 Team
+* *Version**: 2.0.0
+* *Last Updated**: January 2024
+* *Maintainer**: EHB-5 Team

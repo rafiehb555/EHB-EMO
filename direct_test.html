@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHB-5 Direct Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.3);
+        }
+        .error {
+            background: rgba(244, 67, 54, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 EHB-5 Direct Test</h1>
+        <p>Testing deployment without authentication issues...</p>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/" class="test-button">
+            🌐 Test Main API
+        </a>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/api/health" class="test-button">
+            ❤️ Test Health Check
+        </a>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/api/system/status" class="test-button">
+            📊 Test System Status
+        </a>
+
+        <a href="https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/api/public" class="test-button">
+            🔓 Test Public Access
+        </a>
+
+        <div id="result" class="result">
+            Click any button above to test the deployment...
+        </div>
+    </div>
+
+    <script>
+        // Auto-test function
+        async function testEndpoint(url, name) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `Testing ${name}...`;
+            resultDiv.className = 'result';
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `✅ SUCCESS - ${name}\n\n${JSON.stringify(data, null, 2)}`;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `❌ ERROR - ${name}\n\nError: ${error.message}`;
+            }
+        }
+
+        // Auto-test all endpoints
+        window.onload = function() {
+            setTimeout(() => {
+                testEndpoint('https://ehb-5-ewn1itzcc-rafiehb555s-projects.vercel.app/', 'Main API');
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

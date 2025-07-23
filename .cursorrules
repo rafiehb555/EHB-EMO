@@ -1,0 +1,43 @@
+# Cursor Rules for EHB-5 Project
+
+## Code Style
+- Use 4 spaces for Python indentation
+- Use 2 spaces for CSS/HTML indentation
+- Use single quotes for strings in JavaScript
+- Use double quotes for strings in Python
+- Always add trailing commas in objects/arrays
+
+## File Organization
+- Keep related files together
+- Use descriptive file names
+- Group imports at the top
+- Add proper docstrings to functions
+
+## Error Handling
+- Use try-catch blocks appropriately
+- Log errors with context
+- Handle edge cases gracefully
+
+## Performance
+- Optimize imports
+- Use efficient data structures
+- Cache expensive operations
+- Minimize DOM queries
+
+## Security
+- Validate all inputs
+- Sanitize user data
+- Use HTTPS in production
+- Implement proper authentication
+
+## Testing
+- Write unit tests for functions
+- Test edge cases
+- Mock external dependencies
+- Maintain good test coverage
+
+## Cursor-Specific
+- Use Cursor AI features effectively
+- Keep code clean and readable
+- Document complex logic
+- Use meaningful variable names
