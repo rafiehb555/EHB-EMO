@@ -1,0 +1,62 @@
+{
+  "auto_deployment": {
+    "enabled": true,
+    "trigger": "git_push",
+    "branches": ["main", "EHB-PVT-LTD-4"],
+    "environments": {
+      "preview": {
+        "branch": "EHB-PVT-LTD-4",
+        "auto_deploy": true
+      },
+      "production": {
+        "branch": "main",
+        "auto_deploy": true,
+        "require_approval": false
+      }
+    },
+    "vercel_settings": {
+      "framework": "python",
+      "build_command": "pip install -r requirements.txt",
+      "output_directory": "./",
+      "install_command": "pip install -r requirements.txt",
+      "dev_command": "python main.py"
+    },
+    "notifications": {
+      "slack": false,
+      "email": true,
+      "webhook": false
+    },
+    "monitoring": {
+      "health_checks": true,
+      "performance_monitoring": true,
+      "error_tracking": true
+    }
+  },
+  "deployment_hooks": {
+    "pre_deploy": [
+      "python -c 'from test_system import run_all_tests; run_all_tests()'",
+      "python -c 'from deployment_automation import deployment_automation; deployment_automation.check_prerequisites()'"
+    ],
+    "post_deploy": [
+      "curl -f https://ehb-5-exyq48ygf-rafiehb555s-projects.vercel.app/api/health",
+      "curl -f https://ehb-5-exyq48ygf-rafiehb555s-projects.vercel.app/api/system/status"
+    ]
+  },
+  "environment_variables": {
+    "EHB5_ENVIRONMENT": "production",
+    "EHB5_HOST": "0.0.0.0",
+    "EHB5_PORT": "5000",
+    "EHB5_DASHBOARD_PORT": "8000",
+    "JWT_SECRET": "ehb-5-secure-production-secret-2024",
+    "DATABASE_PATH": "ehb5.db",
+    "LOG_LEVEL": "INFO",
+    "DEBUG": "false"
+  },
+  "auto_scaling": {
+    "enabled": true,
+    "min_instances": 1,
+    "max_instances": 10,
+    "cpu_threshold": 80,
+    "memory_threshold": 85
+  }
+}

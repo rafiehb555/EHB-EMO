@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-07-23T04:59:44.469509",
+  "uptime": 1.0241408348083496,
+  "cpu": {
+    "usage_percent": 22.3,
+    "count": 20,
+    "frequency_mhz": 3600.0
+  },
+  "memory": {
+    "usage_percent": 51.8,
+    "available_gb": 30.79,
+    "total_gb": 63.84
+  },
+  "disk": {
+    "usage_percent": 30.2,
+    "free_gb": 272.78,
+    "total_gb": 390.62
+  },
+  "network": {
+    "bytes_sent": 865983581,
+    "bytes_recv": 6868651507,
+    "packets_sent": 3484179,
+    "packets_recv": 5797297
+  },
+  "processes": 445,
+  "system_health": "Excellent"
+}
