@@ -56,7 +56,7 @@ class EnhancedDashboard:
                 'cpu': {
                     'usage_percent': cpu_percent,
                     'count': psutil.cpu_count(),
-                    'frequency': psutil.cpu_freq().current if psutil.cpu_freq() else 0
+'frequency': psutil.cpu_freq().current if psutil.cpu_freq() else 0
                 },
                 'memory': {
                     'usage_percent': memory.percent,
@@ -69,8 +69,8 @@ class EnhancedDashboard:
                     'total_gb': round(disk.total / (1024**3), 2)
                 },
                 'network': {
-                    'bytes_sent_mb': round(network.bytes_sent / (1024*1024), 2),
-                    'bytes_recv_mb': round(network.bytes_recv / (1024*1024), 2)
+'bytes_sent_mb': round(network.bytes_sent / (1024 * 1024), 2),
+'bytes_recv_mb': round(network.bytes_recv / (1024 * 1024), 2)
                 },
                 'processes': len(psutil.pids()),
                 'uptime': time.time()
@@ -88,7 +88,7 @@ class EnhancedDashboard:
 
             return {
                 'total_files': len(python_files),
-                'total_size_mb': round(total_size / (1024*1024), 2),
+                'total_size_mb': round(total_size / (1024 * 1024), 2),
                 'last_updated': datetime.now().isoformat(),
                 'features': [
                     'Advanced System Monitor',
@@ -123,91 +123,129 @@ class EnhancedDashboard:
             }
 
             # Core agents (4)
-            core_agents = ['Data Processor', 'System Monitor', 'Security Manager', 'Performance Optimizer']
+            core_agents = [
+                'Data Processor',
+                'System Monitor',
+                'Security Manager',
+                'Performance Optimizer']
             for i, name in enumerate(core_agents):
                 agents[f'core_agent_{i+1}'] = {
                     'name': name,
                     'status': 'Active',
                     'type': 'Core System',
                     'last_activity': datetime.now().isoformat(),
-                    'tasks_completed': 89 + i*12,
+                    'tasks_completed': 89 + i * 12,
                     'performance': 'Good'
                 }
 
             # AI agents (5)
-            ai_agents = ['ML Processor', 'NLP Engine', 'Pattern Analyzer', 'Predictive Model', 'AI Coordinator']
+            ai_agents = [
+                'ML Processor',
+                'NLP Engine',
+                'Pattern Analyzer',
+                'Predictive Model',
+                'AI Coordinator']
             for i, name in enumerate(ai_agents):
                 agents[f'ai_agent_{i+1}'] = {
                     'name': name,
                     'status': 'Active',
                     'type': 'AI/ML',
                     'last_activity': datetime.now().isoformat(),
-                    'tasks_completed': 67 + i*8,
+                    'tasks_completed': 67 + i * 8,
                     'performance': 'Excellent'
                 }
 
             # Data agents (8)
-            data_agents = ['Data Collector', 'Data Validator', 'Data Transformer', 'Data Analyzer',
-                          'Data Storage', 'Data Backup', 'Data Recovery', 'Data Security']
+            data_agents = [
+                'Data Collector',
+                'Data Validator',
+                'Data Transformer',
+                'Data Analyzer',
+                'Data Storage',
+                'Data Backup',
+                'Data Recovery',
+                'Data Security']
             for i, name in enumerate(data_agents):
                 agents[f'data_agent_{i+1}'] = {
                     'name': name,
                     'status': 'Active',
                     'type': 'Data Management',
                     'last_activity': datetime.now().isoformat(),
-                    'tasks_completed': 45 + i*6,
+                    'tasks_completed': 45 + i * 6,
                     'performance': 'Good'
                 }
 
             # Config agents (6)
-            config_agents = ['Config Manager', 'Settings Optimizer', 'Environment Setup',
-                           'Dependency Manager', 'Version Controller', 'Deployment Manager']
+            config_agents = [
+                'Config Manager',
+                'Settings Optimizer',
+                'Environment Setup',
+                'Dependency Manager',
+                'Version Controller',
+                'Deployment Manager']
             for i, name in enumerate(config_agents):
                 agents[f'config_agent_{i+1}'] = {
                     'name': name,
                     'status': 'Active',
                     'type': 'Configuration',
                     'last_activity': datetime.now().isoformat(),
-                    'tasks_completed': 34 + i*5,
+                    'tasks_completed': 34 + i * 5,
                     'performance': 'Good'
                 }
 
             # File agents (8)
-            file_agents = ['File Monitor', 'File Organizer', 'File Backup', 'File Security',
-                          'File Optimizer', 'File Validator', 'File Indexer', 'File Cleaner']
+            file_agents = [
+                'File Monitor',
+                'File Organizer',
+                'File Backup',
+                'File Security',
+                'File Optimizer',
+                'File Validator',
+                'File Indexer',
+                'File Cleaner']
             for i, name in enumerate(file_agents):
                 agents[f'file_agent_{i+1}'] = {
                     'name': name,
                     'status': 'Active',
                     'type': 'File Management',
                     'last_activity': datetime.now().isoformat(),
-                    'tasks_completed': 23 + i*4,
+                    'tasks_completed': 23 + i * 4,
                     'performance': 'Good'
                 }
 
             # Code agents (6)
-            code_agents = ['Code Analyzer', 'Code Optimizer', 'Code Validator', 'Code Generator',
-                          'Code Security', 'Code Documentation']
+            code_agents = [
+                'Code Analyzer',
+                'Code Optimizer',
+                'Code Validator',
+                'Code Generator',
+                'Code Security',
+                'Code Documentation']
             for i, name in enumerate(code_agents):
                 agents[f'code_agent_{i+1}'] = {
                     'name': name,
                     'status': 'Active',
                     'type': 'Code Management',
                     'last_activity': datetime.now().isoformat(),
-                    'tasks_completed': 56 + i*7,
+                    'tasks_completed': 56 + i * 7,
                     'performance': 'Excellent'
                 }
 
             # Security agents (6)
-            security_agents = ['Security Monitor', 'Threat Detector', 'Access Controller',
-                             'Encryption Manager', 'Audit Logger', 'Compliance Checker']
+            security_agents = [
+                'Security Monitor',
+                'Threat Detector',
+                'Access Controller',
+                'Encryption Manager',
+                'Audit Logger',
+                'Compliance Checker']
             for i, name in enumerate(security_agents):
                 agents[f'security_agent_{i+1}'] = {
                     'name': name,
                     'status': 'Active',
                     'type': 'Security',
                     'last_activity': datetime.now().isoformat(),
-                    'tasks_completed': 78 + i*9,
+                    'tasks_completed': 78 + i * 9,
                     'performance': 'Excellent'
                 }
 
@@ -233,7 +271,7 @@ class EnhancedDashboard:
                 },
                 'auto_fix': {
                     'status': 'Active',
-                    'files_monitored': len([f for f in os.listdir('.') if f.endswith('.py')]),
+'files_monitored': len([f for f in os.listdir('.') if f.endswith('.py')]),
                     'last_fix': datetime.now().isoformat()
                 },
                 'optimization': {
@@ -263,8 +301,10 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 📊 System Overview:
 • CPU Usage: {self.system_metrics.get('cpu', {}).get('usage_percent', 0):.1f}%
-• Memory Usage: {self.system_metrics.get('memory', {}).get('usage_percent', 0):.1f}%
-• Disk Usage: {self.system_metrics.get('disk', {}).get('usage_percent', 0):.1f}%
+• Memory Usage: {self.system_metrics.get('memory', {}).get('usage_percent',
+    0):.1f}%
+• Disk Usage: {self.system_metrics.get('disk', {}).get('usage_percent',
+    0):.1f}%
 • Active Processes: {self.system_metrics.get('processes', 0)}
 
 📁 Project Status:
@@ -274,20 +314,24 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 🤖 AI Agents Status:
 • Total Agents: {len(self.agents_status)}
-• Active Agents: {len([a for a in self.agents_status.values() if a['status'] == 'Active'])}
-• Main Agent: {self.agents_status.get('main_agent', {}).get('status', 'Unknown')}
+• Active Agents: {len([a for a in self.agents_status.values() if a['status'] ==
+    'Active'])}
+• Main Agent: {self.agents_status.get('main_agent', {}).get('status',
+    'Unknown')}
 
 🔧 Features Status:
 """
 
         for feature, status in self.features_status.items():
-            report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
+report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
 
         report += f"""
 📈 Performance Metrics:
-• System Health: {'Excellent' if self.system_metrics.get('cpu', {}).get('usage_percent', 0) < 50 else 'Good'}
+• System Health: {'Excellent' if self.system_metrics.get('cpu',
+    {}).get('usage_percent', 0) < 50 else 'Good'}
 • Uptime: {self.system_metrics.get('uptime', 0):.0f} seconds
-• Network Activity: {self.system_metrics.get('network', {}).get('bytes_sent_mb', 0):.1f} MB sent
+• Network Activity: {self.system_metrics.get('network',
+    {}).get('bytes_sent_mb', 0):.1f} MB sent
 
 🎯 Recommendations:
 """

@@ -178,9 +178,9 @@ python main.py
 
             # Calculate readiness
             missing_files = len(
-                [f for f in requirements["required_files"] if f["status"] == "missing"])
+[f for f in requirements["required_files"] if f["status"] == "missing"])
             missing_deps = len(
-                [d for d in requirements["dependencies"] if d["status"] == "missing"])
+[d for d in requirements["dependencies"] if d["status"] == "missing"])
 
             requirements["ready_for_deployment"] = (
                 requirements["python_version"] and
@@ -251,12 +251,12 @@ python main.py
                     "location": str(
                         self.deployment_dir),
                     "files": list(
-                        self.deployment_dir.glob("*")) if self.deployment_dir.exists() else []},
+self.deployment_dir.glob("*")) if self.deployment_dir.exists() else []},
                 "backup_info": {
                     "location": str(
                         self.backup_dir),
                     "backups": list(
-                        self.backup_dir.glob("*")) if self.backup_dir.exists() else []}}
+self.backup_dir.glob("*")) if self.backup_dir.exists() else []}}
 
             # Save report
             report_file = self.project_root / "deployment_report.json"

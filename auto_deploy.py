@@ -59,8 +59,7 @@ class AutoDeployment:
             return {
                 "current_branch": current_branch,
                 "last_commit": last_commit,
-                "should_deploy": current_branch in self.config["auto_deployment"]["branches"]
-            }
+"should_deploy": current_branch in self.config["auto_deployment"]["branches"]}
         except Exception as e:
             return {"error": str(e), "should_deploy": False}
 
@@ -75,7 +74,7 @@ class AutoDeployment:
         }
 
         try:
-                        # Test system components
+            # Test system components
             cmd = "from test_system import run_all_tests; run_all_tests()"
             result = subprocess.run(
                 ["python", "-c", cmd],
@@ -161,7 +160,8 @@ class AutoDeployment:
 
             # Test API endpoints
             response = requests.get(f"{url}/api/projects", timeout=10)
-            tests["api_endpoints"] = response.status_code in [200, 401]  # 401 is expected without auth
+            tests["api_endpoints"] = response.status_code in [
+                200, 401]  # 401 is expected without auth
 
             print(f"✅ Deployment tests completed: {tests}")
             return tests
@@ -238,7 +238,8 @@ class AutoDeployment:
             return deployment_result
 
         # Step 4: Test deployment
-        test_result = self.test_deployment("https://ehb-5-exyq48ygf-rafiehb555s-projects.vercel.app")
+        test_result = self.test_deployment(
+            "https://ehb-5-exyq48ygf-rafiehb555s-projects.vercel.app")
         deployment_result["steps"]["post_tests"] = test_result
 
         # Step 5: Monitor deployment
@@ -278,6 +279,7 @@ class AutoDeployment:
             except Exception as e:
                 print(f"❌ Continuous deployment error: {e}")
                 time.sleep(60)
+
 
 # Initialize auto deployment
 auto_deploy = AutoDeployment()

@@ -1,200 +1,368 @@
-﻿# EHB-5 Complete Backend System
+﻿# 🚀 EHB-5 Intelligent System
 
-A comprehensive data processing and configuration management system with full backend implementation.
+A comprehensive, AI-powered development environment management platform that provides real-time monitoring, automated error resolution, and intelligent agent management. This system integrates seamlessly with Cursor IDE and provides a centralized configuration for all development tools and environments.
 
-## 🚀 Features
+## 🌟 Features
 
-### Backend Components (100% Complete)
-- ✅ **Database System**: SQLite with full CRUD operations
-- ✅ **REST API**: Complete Flask-based API with authentication
-- ✅ **Authentication**: JWT-based user authentication system
-- ✅ **Data Processing**: Advanced data analysis and transformation
-- ✅ **Business Logic**: Complete business rules implementation
-- ✅ **Integration Layer**: Database and API integrations
+### 🎯 Core Features
+- **Real-time Dashboard**: Modern, responsive web interface for system monitoring
+- **AI Agents Management**: Intelligent agents for different system aspects
+- **Auto-Recovery System**: Automated error detection and resolution
+- **WebSocket Communication**: Real-time updates and notifications
+- **CLI Interface**: Comprehensive command-line management
+- **Security**: Built-in security features and rate limiting
+- **Performance Monitoring**: Real-time system metrics and analytics
 
-### Frontend Components
-- ✅ **Dashboard**: Modern web interface
-- ✅ **Real-time Updates**: Live data visualization
-- ✅ **Responsive Design**: Mobile-friendly interface
+### 🤖 AI Agents
+- **Main Agent**: Overall system coordination and management
+- **Data Processing Agent**: File operations and data handling
+- **Analytics Agent**: Performance analysis and reporting
+- **Security Agent**: Security monitoring and threat detection
+- **Recovery Agent**: Automated error recovery and system restoration
+
+### 📊 Dashboard Features
+- Real-time system metrics (CPU, Memory, Network, Storage)
+- AI agents status and management
+- Error monitoring and resolution
+- Performance analytics with charts
+- Configuration management
+- File operations and backup
+- User activity tracking
+
+### 🔧 CLI Commands
+- Server management (start, stop, status, monitor)
+- Configuration management
+- AI agents control
+- Log viewing and analysis
+- Backup and restore operations
+- System health checks
+- Deployment tools
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 16.0.0 or higher
+- npm 8.0.0 or higher
+- Windows 10/11 (for Windows-specific features)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/ehb-5/intelligent-system.git
+   cd intelligent-system
+   ```
+
+2. **Run the startup script:**
+   ```bash
+   start-intelligent-system.bat
+   ```
+
+3. **Or install manually:**
+   ```bash
+   npm install
+   npm start
+   ```
+
+4. **Open the dashboard:**
+   ```
+   http://localhost:3001
+   ```
+
+### Using CLI
+```bash
+# Setup the system
+node cli.js setup
+
+# Start the server
+node cli.js start
+
+# Check status
+node cli.js status
+
+# Monitor in real-time
+node cli.js monitor
+
+# Manage AI agents
+node cli.js agents --list
+
+# View logs
+node cli.js logs
+
+# System health check
+node cli.js health
+```
 
 ## 📁 Project Structure
 
-### Backend Files
-- `database.py` - SQLite database manager with CRUD operations
-- `api_server.py` - Flask REST API server
-- `auth_manager.py` - JWT authentication system
-- `data_processor.py` - Data analysis and processing engine
-- `main.py` - Unified application entry point
-- `requirements.txt` - Python dependencies
-
-### Frontend Files
-- `index.html` - Main dashboard interface
-- `styles.css` - Modern styling
-- `script.js` - Interactive functionality
-
-### Configuration Files
-- `config.json` - System configuration
-- `data.txt` - Sample data
-- `.gitignore` - Git exclusions
-
-## 🛠️ Installation & Setup
-
-### 1. Install Dependencies
-```bash
-pip install -r requirements.txt
+```
+ehb-5-intelligent-system/
+├── intelligent-api-server.js      # Main API server
+├── intelligent-dashboard.html     # Dashboard UI
+├── intelligent-dashboard.js       # Dashboard logic
+├── cli.js                        # CLI interface
+├── package.json                   # Dependencies
+├── start-intelligent-system.bat   # Windows startup script
+├── INTELLIGENT-SYSTEM-DOCS.md    # Comprehensive documentation
+├── test/                         # Test files
+│   └── intelligent-api.test.js   # API tests
+├── config/                       # Configuration files
+├── logs/                         # Log files
+├── backups/                      # Backup files
+├── data/                         # Data files
+└── public/                       # Static files
 ```
 
-### 2. Run the Application
-```bash
-python main.py
+## 🔌 API Endpoints
+
+### Base URL
+```
+http://localhost:3001/api/v1
 ```
 
-### 3. Access the System
-- **Dashboard**: http://localhost:8000
-- **API**: http://localhost:5000
-- **API Health Check**: http://localhost:5000/api/health
+### Key Endpoints
+- `GET /health` - Health check
+- `GET /dashboard` - Dashboard data
+- `GET /metrics` - System metrics
+- `GET /agents` - List AI agents
+- `POST /agents` - Create agent
+- `PUT /agents/:id` - Update agent
+- `DELETE /agents/:id` - Delete agent
+- `GET /errors` - List errors
+- `POST /errors/resolve` - Resolve error
+- `GET /recovery` - List recovery actions
+- `POST /recovery/execute` - Execute recovery action
+- `GET /files` - Scan files
+- `POST /files/process` - Process file
+- `GET /config` - Get configuration
+- `PUT /config` - Update configuration
+- `POST /system/command` - Execute system command
+- `POST /recovery/auto` - Trigger auto-recovery
 
-## 🔐 Authentication
+## �� WebSocket Events
 
-### Default Admin User
-- **Username**: admin
-- **Password**: admin123
-
-### API Authentication
-All API endpoints require JWT authentication:
-```bash
-curl -H "Authorization: Bearer YOUR_JWT_TOKEN" http://localhost:5000/api/projects
+Connect to WebSocket:
+```javascript
+const ws = new WebSocket('ws://localhost:3001');
 ```
 
-## 📊 API Endpoints
+### Event Types
+- `connection` - Connection established
+- `metrics_update` - System metrics update
+- `agents_update` - AI agents status update
+- `error_logged` - New error logged
+- `error_resolved` - Error resolved
+- `recovery_action_completed` - Recovery action completed
+- `recovery_action_failed` - Recovery action failed
 
-### Authentication
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/login` - User login
+## 🛠️ Configuration
 
-### Projects
-- `GET /api/projects` - Get all projects
-- `POST /api/projects` - Create new project
-
-### Data Files
-- `GET /api/data/files` - Get all data files
-- `POST /api/data/files` - Upload data file
-
-### Data Processing
-- `POST /api/data/process` - Process data with operations:
-  - `analyze` - Data analysis
-  - `validate` - Data validation
-  - `transform` - Data transformation
-  - `summarize` - Data summarization
-  - `extract` - Data extraction
-
-### System
-- `GET /api/system/status` - System status
-- `GET /api/system/logs` - System logs
-- `GET /api/health` - Health check
-
-## 🗄️ Database Schema
-
-### Tables
-- **users** - User accounts and authentication
-- **projects** - Project management
-- **data_files** - File storage and metadata
-- **system_logs** - System event logging
-
-## 🔧 Configuration
-
-Edit `config.json` to customize:
+### Server Configuration (`config/server.json`)
 ```json
 {
-  "project": "EHB-5",
-  "version": "1.0.0",
-  "settings": {
-    "database": "enabled",
-    "api": "active",
-    "debug": false
+  "server": {
+    "port": 3001,
+    "host": "localhost",
+    "environment": "development"
+  },
+  "security": {
+    "rateLimit": true,
+    "cors": true,
+    "helmet": true
+  },
+  "monitoring": {
+    "enabled": true,
+    "interval": 5000,
+    "metrics": true
+  },
+  "agents": {
+    "autoStart": true,
+    "maxAgents": 10,
+    "healthCheck": true
+  },
+  "logging": {
+    "level": "info",
+    "file": "logs/server.log",
+    "maxSize": "10m",
+    "maxFiles": 5
   }
 }
 ```
 
-## 📈 Backend Readiness: 100%
-
-### ✅ Database Layer (25%)
-- SQLite database with full schema
-- CRUD operations for all entities
-- Data relationships and foreign keys
-- System logging and audit trails
-
-### ✅ API Layer (25%)
-- Complete REST API implementation
-- Authentication and authorization
-- Error handling and validation
-- CORS support for frontend integration
-
-### ✅ Business Logic (25%)
-- Data processing engine
-- Multiple operation types
-- Data validation and transformation
-- Statistical analysis capabilities
-
-### ✅ Integration Layer (25%)
-- Database connectivity
-- API endpoint integration
-- File processing system
-- Authentication integration
-
-## 🚀 Quick Start
-
-1. **Clone and Setup**:
-   ```bash
-   git clone https://github.com/rafiehb555/ehb-5.git
-   cd ehb-5
-   pip install -r requirements.txt
-   ```
-
-2. **Run Application**:
-   ```bash
-   python main.py
-   ```
-
-3. **Access Dashboard**:
-   - Open http://localhost:8000
-   - Login with admin/admin123
-
-4. **Test API**:
-   ```bash
-   curl http://localhost:5000/api/health
-   ```
-
-## 🔍 Testing
-
-### Test Database Operations
-```python
-python -c "from database import db; print(db.get_all_projects())"
-```
-
-### Test Data Processing
-```python
-python -c "from data_processor import DataProcessor; dp = DataProcessor(); print(dp.process_data('test data', 'analyze'))"
-```
-
-### Test API Endpoints
+### Environment Variables
 ```bash
-curl -X POST http://localhost:5000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"admin123"}'
+PORT=3001
+NODE_ENV=development
+CURSOR_GLOBAL_CONFIG=C:/CursorWorkspace/config
+GLOBAL_PACKAGES_PATH=C:/CursorWorkspace/packages
+SHARED_EXTENSIONS_PATH=C:/CursorWorkspace/extensions
 ```
 
-## 📝 License
+## 🧪 Testing
 
-This project is open source and available under the MIT License.
+### Run Tests
+```bash
+# All tests
+npm test
+
+# Unit tests only
+npm run test:unit
+
+# Integration tests only
+npm run test:integration
+
+# With coverage
+npm run test:coverage
+```
+
+### Test Coverage
+- API endpoints testing
+- WebSocket communication testing
+- AI agents functionality testing
+- Error handling testing
+- Auto-recovery testing
+- Security testing
+
+## 🔒 Security Features
+
+- **Rate Limiting**: Prevents API abuse
+- **CORS Protection**: Cross-origin resource sharing
+- **Helmet Security**: Security headers
+- **Input Validation**: Request validation
+- **Error Logging**: Comprehensive error tracking
+- **Access Control**: Role-based permissions (future)
+
+## 📈 Performance Features
+
+- **Real-time Monitoring**: Live system metrics
+- **Auto-scaling**: Dynamic resource allocation
+- **Memory Optimization**: Efficient memory usage
+- **WebSocket Efficiency**: Optimized real-time communication
+- **Caching**: Response caching
+- **Compression**: Gzip compression
+
+## 🚀 Deployment
+
+### Development
+```bash
+npm run dev
+```
+
+### Production
+```bash
+npm start
+```
+
+### Docker (Future)
+```bash
+docker build -t intelligent-system .
+docker run -p 3001:3001 intelligent-system
+```
+
+## 📚 Documentation
+
+- **[Comprehensive Documentation](INTELLIGENT-SYSTEM-DOCS.md)** - Complete system documentation
+- **[API Reference](INTELLIGENT-SYSTEM-DOCS.md#api-reference)** - Detailed API documentation
+- **[CLI Commands](INTELLIGENT-SYSTEM-DOCS.md#cli-commands)** - CLI usage guide
+- **[Troubleshooting](INTELLIGENT-SYSTEM-DOCS.md#troubleshooting)** - Common issues and solutions
+
+## 🔧 Development
+
+### Prerequisites
+- Node.js 16.0.0+
+- npm 8.0.0+
+- Git
+
+### Setup
+```bash
+# Clone repository
+git clone https://github.com/ehb-5/intelligent-system.git
+cd intelligent-system
+
+# Install dependencies
+npm install
+
+# Run in development mode
+npm run dev
+
+# Run tests
+npm test
+
+# Lint code
+npm run lint
+```
+
+### Code Style
+- ES6+ features
+- ESLint configuration
+- Comprehensive testing
+- Meaningful commit messages
 
 ## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Submit a pull request
+4. Add tests for new features
+5. Run the test suite
+6. Submit a pull request
+
+## 📞 Support
+
+- **Documentation**: [INTELLIGENT-SYSTEM-DOCS.md](INTELLIGENT-SYSTEM-DOCS.md)
+- **Issues**: GitHub issue tracker
+- **Discussions**: GitHub discussions
+- **Email**: support@ehb-5.com
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🎯 Roadmap
+
+### Version 2.1 (Planned)
+- Machine learning integration
+- Advanced AI agents
+- Mobile dashboard
+- Enhanced security features
+- Performance optimizations
+
+### Version 2.2 (Planned)
+- Cloud deployment support
+- Multi-tenant architecture
+- Advanced analytics
+- Plugin system
+- API gateway
+
+### Version 2.3 (Planned)
+- Microservices architecture
+- Kubernetes deployment
+- Advanced monitoring
+- Machine learning models
+- AI-powered recommendations
+
+## 🙏 Acknowledgments
+
+- **Cursor IDE** - For the development environment integration
+- **Node.js Community** - For the excellent ecosystem
+- **Express.js Team** - For the robust web framework
+- **WebSocket Community** - For real-time communication
+- **AI/ML Community** - For intelligent system concepts
 
 ---
 
-**🎯 EHB-5 Backend System - Complete and Ready for Production!**
+**Version**: 2.0.0
+**Last Updated**: January 2024
+**Maintainer**: EHB-5 Team
+
+---
+
+<div align="center">
+
+**🎉 Welcome to the EHB-5 Intelligent System!**
+
+*Empowering developers with intelligent automation and real-time monitoring.*
+
+[🚀 Quick Start](#quick-start) • [📚 Documentation](INTELLIGENT-SYSTEM-DOCS.md) • [🐛 Report Issues](https://github.com/ehb-5/intelligent-system/issues)
+
+</div>

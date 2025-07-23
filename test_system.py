@@ -28,7 +28,7 @@ def test_database() -> None:
             "password_hash",
             "user")
         print(
-            "✅ User creation: {'Success' if test_user else 'User already exists'}")
+"✅ User creation: {'Success' if test_user else 'User already exists'}")
 
         # Test project creation
         test_project = db.create_project("Test Project", "Test Description", 1)
@@ -61,7 +61,8 @@ def test_data_processor() -> None:
         dp = DataProcessor()
 
         # Test data analysis
-        test_data = "This is test data for EHB-5 project with some numbers: 123, 456, 789"
+test_data = "This is test data for EHB-5 project with some numbers: 123, 456,
+    789"
         result = dp.process_data(test_data, 'analyze')
         print("✅ Data analysis: {result.get('status', 'unknown')}")
 
@@ -101,13 +102,14 @@ def test_auth_manager() -> None:
         hash1 = auth.hash_password(password)
         hash2 = auth.hash_password(password)
         print(
-            "✅ Password hashing: {'Consistent' if hash1 == hash2 else 'Inconsistent'}")
+"✅ Password hashing: {'Consistent' if hash1 == hash2 else 'Inconsistent'}")
 
         # Test password validation
         valid_password = auth.validate_password("strongpass123")
         invalid_password = auth.validate_password("weak")
         print(
-            "✅ Password validation: {'Working' if valid_password and not invalid_password else 'Failed'}")
+"✅ Password validation: {'Working' if valid_password and not invalid_password
+    else 'Failed'}")
 
         return True
 
@@ -144,21 +146,21 @@ def test_ai_agents() -> None:
         if file_agent:
             result = file_agent.scan_files(".")
             print(
-                "✅ File organizer agent: {result.get('total_files', 0)} files scanned")
+"✅ File organizer agent: {result.get('total_files', 0)} files scanned")
 
         # Test code analyzer agent
         code_agent = agent_manager.get_agent("codeAnalyzer")
         if code_agent:
             result = code_agent.analyze_code_quality("main.py")
             print(
-                "✅ Code analyzer agent: {result.get('quality_score', 'unknown')}")
+"✅ Code analyzer agent: {result.get('quality_score', 'unknown')}")
 
         # Test deployment manager agent
         deploy_agent = agent_manager.get_agent("deploymentManager")
         if deploy_agent:
             result = deploy_agent.check_deployment_readiness()
             print(
-                "✅ Deployment manager agent: {result.get('ready_for_deployment', False)}")
+"✅ Deployment manager agent: {result.get('ready_for_deployment', False)}")
 
         return True
 
@@ -244,14 +246,15 @@ def test_file_system() -> None:
             with open("config.json", "r") as f:
                 config = json.load(f)
             print(
-                "✅ Config loaded: {config.get('project', 'Unknown')} v{config.get('version', 'Unknown')}")
+"✅ Config loaded: {config.get('project', 'Unknown')} v{config.get('version',
+    'Unknown')}")
 
         # Check requirements.txt
         if os.path.exists("requirements.txt"):
             with open("requirements.txt", "r") as f:
                 requirements = f.read()
             print(
-                "✅ Requirements file: {len(requirements.splitlines())} dependencies")
+"✅ Requirements file: {len(requirements.splitlines())} dependencies")
 
         return len(missing_files) == 0
 
@@ -318,7 +321,7 @@ def run_comprehensive_test() -> None:
         print("❌ POOR: System needs significant work")
 
     print(
-        "\n⏰ Test completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+"\n⏰ Test completed at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
     return success_rate >= 70

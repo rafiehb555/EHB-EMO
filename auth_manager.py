@@ -43,7 +43,7 @@ class AuthManager:
             payload = {
                 'user_id': user_id,
                 'username': username,
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24),
+'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=24),
                 'iat': datetime.datetime.utcnow()
             }
             return jwt.encode(payload, self.secret_key, algorithm='HS256')

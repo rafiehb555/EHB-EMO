@@ -81,7 +81,8 @@ class RealTimeMonitor:
 
             # EHB-5 specific metrics
             ehb_files = len([f for f in os.listdir('.') if f.endswith('.py')])
-            ehb_size = sum(os.path.getsize(f) for f in os.listdir('.') if f.endswith('.py'))
+            ehb_size = sum(os.path.getsize(f)
+                           for f in os.listdir('.') if f.endswith('.py'))
 
             return {
                 'timestamp': datetime.now().isoformat(),
@@ -106,9 +107,10 @@ class RealTimeMonitor:
                 'processes': processes,
                 'ehb5': {
                     'python_files': ehb_files,
-                    'total_size_mb': round(ehb_size / (1024*1024), 2)
+                    'total_size_mb': round(ehb_size / (1024 * 1024), 2)
                 },
-                'system_health': self.calculate_health(cpu_percent, memory_percent, disk_percent)
+'system_health': self.calculate_health(cpu_percent, memory_percent,
+    disk_percent)
             }
 
         except Exception as e:
@@ -169,8 +171,8 @@ class RealTimeMonitor:
 
         # Network Section
         print("🌐 Network:")
-        sent_mb = metrics['network']['bytes_sent'] / (1024*1024)
-        recv_mb = metrics['network']['bytes_recv'] / (1024*1024)
+        sent_mb = metrics['network']['bytes_sent'] / (1024 * 1024)
+        recv_mb = metrics['network']['bytes_recv'] / (1024 * 1024)
         print(f"   Sent: {sent_mb:>6.1f} MB")
         print(f"   Received: {recv_mb:>6.1f} MB")
         print()
@@ -189,19 +191,19 @@ class RealTimeMonitor:
         if metrics['cpu']['usage_percent'] > self.alert_thresholds['cpu']:
             alerts.append({
                 'timestamp': datetime.now().strftime('%H:%M:%S'),
-                'message': f"⚠️ High CPU usage: {metrics['cpu']['usage_percent']:.1f}%"
+'message': f"⚠️ High CPU usage: {metrics['cpu']['usage_percent']:.1f}%"
             })
 
-        if metrics['memory']['usage_percent'] > self.alert_thresholds['memory']:
+if metrics['memory']['usage_percent'] > self.alert_thresholds['memory']:
             alerts.append({
                 'timestamp': datetime.now().strftime('%H:%M:%S'),
-                'message': f"⚠️ High memory usage: {metrics['memory']['usage_percent']:.1f}%"
+'message': f"⚠️ High memory usage: {metrics['memory']['usage_percent']:.1f}%"
             })
 
         if metrics['disk']['usage_percent'] > self.alert_thresholds['disk']:
             alerts.append({
                 'timestamp': datetime.now().strftime('%H:%M:%S'),
-                'message': f"⚠️ High disk usage: {metrics['disk']['usage_percent']:.1f}%"
+'message': f"⚠️ High disk usage: {metrics['disk']['usage_percent']:.1f}%"
             })
 
         # Add new alerts
@@ -231,14 +233,19 @@ class RealTimeMonitor:
             return "No metrics available"
 
         # Calculate averages
-        cpu_avg = sum(m['cpu']['usage_percent'] for m in self.metrics_history) / len(self.metrics_history)
-        memory_avg = sum(m['memory']['usage_percent'] for m in self.metrics_history) / len(self.metrics_history)
-        disk_avg = sum(m['disk']['usage_percent'] for m in self.metrics_history) / len(self.metrics_history)
+        cpu_avg = sum(m['cpu']['usage_percent']
+for m in self.metrics_history) / len(self.metrics_history)
+        memory_avg = sum(m['memory']['usage_percent']
+for m in self.metrics_history) / len(self.metrics_history)
+        disk_avg = sum(m['disk']['usage_percent']
+for m in self.metrics_history) / len(self.metrics_history)
 
         # Find peak values
         cpu_peak = max(m['cpu']['usage_percent'] for m in self.metrics_history)
-        memory_peak = max(m['memory']['usage_percent'] for m in self.metrics_history)
-        disk_peak = max(m['disk']['usage_percent'] for m in self.metrics_history)
+        memory_peak = max(m['memory']['usage_percent']
+                          for m in self.metrics_history)
+        disk_peak = max(m['disk']['usage_percent']
+                        for m in self.metrics_history)
 
         report = f"""
 📊 EHB-5 Monitoring Summary Report
@@ -254,7 +261,8 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 • Alerts Generated: {len(self.alerts)}
 • Monitoring Duration: {len(self.metrics_history) * 5} seconds
 
-🎯 System Status: {self.metrics_history[-1]['system_health'] if self.metrics_history else 'Unknown'}
+🎯 System Status: {self.metrics_history[-1]['system_health'] if
+    self.metrics_history else 'Unknown'}
 """
         return report
 

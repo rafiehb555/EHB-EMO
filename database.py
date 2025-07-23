@@ -185,7 +185,7 @@ class DatabaseManager:
             with sqlite3.connect(self.db_path) as conn:
                 cursor = conn.cursor()
                 cursor.execute('''
-                    INSERT INTO data_files (filename, file_type, content, project_id, uploaded_by)
+INSERT INTO data_files (filename, file_type, content, project_id, uploaded_by)
                     VALUES (?, ?, ?, ?, ?)
                 ''', (filename, file_type, content, project_id, uploaded_by))
                 conn.commit()

@@ -48,7 +48,7 @@ def test_deployment():
 
     try:
         # Test health check
-        url = "https://ehb-5-exyq48ygf-rafiehb555s-projects.vercel.app/api/health"
+url = "https://ehb-5-exyq48ygf-rafiehb555s-projects.vercel.app/api/health"
         result = subprocess.run(
             ["curl", "-f", url],
             capture_output=True, text=True

@@ -13,9 +13,10 @@ from typing import Dict, List, Any, Optional
 from collections import defaultdict, deque
 from database import db
 
+
 class EnterpriseMonitor:
     """Enterprise-grade monitoring system"""
-    
+
     def __init__(self):
         self.metrics_history = deque(maxlen=10000)
         self.alerts = deque(maxlen=1000)
@@ -35,7 +36,7 @@ class EnterpriseMonitor:
                 "error_rate_high": 5.0
             }
         }
-    
+
     def _setup_alert_rules(self) -> Dict[str, Any]:
         """Setup enterprise alert rules"""
         return {
@@ -94,45 +95,46 @@ class EnterpriseMonitor:
                 }
             }
         }
-    
+
     def start_monitoring(self):
         """Start enterprise monitoring"""
         if not self.monitoring_active:
             self.monitoring_active = True
-            self.monitor_thread = threading.Thread(target=self._monitor_loop, daemon=True)
+            self.monitor_thread = threading.Thread(
+                target=self._monitor_loop, daemon=True)
             self.monitor_thread.start()
             print("✅ Enterprise monitoring started")
-    
+
     def stop_monitoring(self):
         """Stop enterprise monitoring"""
         self.monitoring_active = False
         if self.monitor_thread:
             self.monitor_thread.join()
         print("🛑 Enterprise monitoring stopped")
-    
+
     def _monitor_loop(self):
         """Main monitoring loop"""
         while self.monitoring_active:
             try:
                 # Collect comprehensive metrics
                 metrics = self._collect_enterprise_metrics()
-                
+
                 # Store metrics
                 self.metrics_history.append(metrics)
-                
+
                 # Check alerts
                 self._check_enterprise_alerts(metrics)
-                
+
                 # Log metrics
                 self._log_metrics(metrics)
-                
+
                 # Wait for next collection
                 time.sleep(self.metrics_config["collection_interval"])
-                
+
             except Exception as e:
                 print(f"❌ Enterprise monitoring error: {e}")
                 time.sleep(self.metrics_config["collection_interval"])
-    
+
     def _collect_enterprise_metrics(self) -> Dict[str, Any]:
         """Collect comprehensive enterprise metrics"""
         try:
@@ -140,27 +142,27 @@ class EnterpriseMonitor:
             cpu_percent = psutil.cpu_percent(interval=1)
             cpu_count = psutil.cpu_count()
             cpu_freq = psutil.cpu_freq()
-            
+
             memory = psutil.virtual_memory()
             memory_percent = memory.percent
             memory_available = memory.available / (1024**3)  # GB
             memory_used = memory.used / (1024**3)  # GB
-            
+
             disk = psutil.disk_usage('/')
             disk_percent = disk.percent
             disk_free = disk.free / (1024**3)  # GB
             disk_used = disk.used / (1024**3)  # GB
-            
+
             # Network metrics
             network = psutil.net_io_counters()
             bytes_sent = network.bytes_sent
             bytes_recv = network.bytes_recv
-            
+
             # Process metrics
             process = psutil.Process()
             process_memory = process.memory_info().rss / (1024**2)  # MB
             process_cpu = process.cpu_percent()
-            
+
             # Database metrics
             try:
                 projects = db.get_all_projects()
@@ -172,13 +174,13 @@ class EnterpriseMonitor:
                 }
             except Exception as e:
                 db_metrics = {"error": str(e)}
-            
+
             # Performance metrics
             performance_metrics = self._get_performance_metrics()
-            
+
             # Security metrics
             security_metrics = self._get_security_metrics()
-            
+
             return {
                 "timestamp": datetime.now().isoformat(),
                 "system": {
@@ -217,13 +219,13 @@ class EnterpriseMonitor:
                 "security": security_metrics,
                 "uptime": self._get_uptime()
             }
-            
+
         except Exception as e:
             return {
                 "timestamp": datetime.now().isoformat(),
                 "error": str(e)
             }
-    
+
     def _get_db_size(self) -> float:
         """Get database size in MB"""
         try:
@@ -235,7 +237,7 @@ class EnterpriseMonitor:
             return 0.0
         except Exception:
             return 0.0
-    
+
     def _get_performance_metrics(self) -> Dict[str, Any]:
         """Get performance metrics"""
         try:
@@ -249,7 +251,7 @@ class EnterpriseMonitor:
             }
         except Exception:
             return {"error": "Performance metrics unavailable"}
-    
+
     def _get_security_metrics(self) -> Dict[str, Any]:
         """Get security metrics"""
         try:
@@ -263,7 +265,7 @@ class EnterpriseMonitor:
             }
         except Exception:
             return {"error": "Security metrics unavailable"}
-    
+
     def _get_uptime(self) -> str:
         """Get system uptime"""
         try:
@@ -273,109 +275,164 @@ class EnterpriseMonitor:
             return f"{hours}h {minutes}m"
         except Exception:
             return "Unknown"
-    
+
     def _check_enterprise_alerts(self, metrics: Dict[str, Any]):
         """Check for enterprise alerts"""
         alerts = []
-        
+
         # System alerts
-        if metrics.get("system", {}).get("cpu", {}).get("percent", 0) > self.metrics_config["alert_thresholds"]["cpu_high"]:
+        if metrics.get(
+            "system",
+            {}).get(
+            "cpu",
+            {}).get(
+            "percent",
+                0) > self.metrics_config["alert_thresholds"]["cpu_high"]:
             alerts.append({
                 "type": "high_cpu",
                 "severity": "warning",
-                "message": f"High CPU usage: {metrics['system']['cpu']['percent']}%",
+"message": f"High CPU usage: {metrics['system']['cpu']['percent']}%",
                 "timestamp": datetime.now().isoformat(),
                 "category": "system"
             })
-        
-        if metrics.get("system", {}).get("memory", {}).get("percent", 0) > self.metrics_config["alert_thresholds"]["memory_high"]:
+
+        if metrics.get(
+            "system",
+            {}).get(
+            "memory",
+            {}).get(
+            "percent",
+                0) > self.metrics_config["alert_thresholds"]["memory_high"]:
             alerts.append({
                 "type": "high_memory",
                 "severity": "warning",
-                "message": f"High memory usage: {metrics['system']['memory']['percent']}%",
+"message": f"High memory usage: {metrics['system']['memory']['percent']}%",
                 "timestamp": datetime.now().isoformat(),
                 "category": "system"
             })
-        
-        if metrics.get("system", {}).get("disk", {}).get("percent", 0) > self.metrics_config["alert_thresholds"]["disk_high"]:
+
+        if metrics.get(
+            "system",
+            {}).get(
+            "disk",
+            {}).get(
+            "percent",
+                0) > self.metrics_config["alert_thresholds"]["disk_high"]:
             alerts.append({
                 "type": "low_disk",
                 "severity": "critical",
-                "message": f"Low disk space: {metrics['system']['disk']['percent']}% used",
+"message": f"Low disk space: {metrics['system']['disk']['percent']}% used",
                 "timestamp": datetime.now().isoformat(),
                 "category": "system"
             })
-        
+
         # Performance alerts
-        if metrics.get("performance", {}).get("response_time_avg", 0) > self.metrics_config["alert_thresholds"]["response_time_slow"]:
+        if metrics.get(
+                "performance",
+                {}).get(
+                "response_time_avg",
+0) > self.metrics_config["alert_thresholds"]["response_time_slow"]:
             alerts.append({
                 "type": "slow_response",
                 "severity": "warning",
-                "message": f"Slow response time: {metrics['performance']['response_time_avg']}s",
+"message": f"Slow response time:
+    {metrics['performance']['response_time_avg']}s",
                 "timestamp": datetime.now().isoformat(),
                 "category": "performance"
             })
-        
+
         # Security alerts
         if metrics.get("security", {}).get("failed_logins", 0) > 5:
             alerts.append({
                 "type": "failed_logins",
                 "severity": "warning",
-                "message": f"Multiple failed logins: {metrics['security']['failed_logins']}",
+"message": f"Multiple failed logins: {metrics['security']['failed_logins']}",
                 "timestamp": datetime.now().isoformat(),
                 "category": "security"
             })
-        
+
         # Add alerts to history
         for alert in alerts:
             self.alerts.append(alert)
             print(f"🚨 ENTERPRISE ALERT: {alert['message']}")
-    
+
     def _log_metrics(self, metrics: Dict[str, Any]):
         """Log metrics to database"""
         try:
             # Log system metrics
-            db.log_system_event('INFO', f"Enterprise metrics: CPU {metrics.get('system', {}).get('cpu', {}).get('percent', 0)}%, Memory {metrics.get('system', {}).get('memory', {}).get('percent', 0)}%")
-            
+            db.log_system_event(
+                'INFO',
+f"Enterprise metrics: CPU {metrics.get('system', {}).get('cpu',
+    {}).get('percent', 0)}%, Memory {metrics.get('system', {}).get('memory',
+    {}).get('percent', 0)}%")
+
             # Log alerts
             for alert in list(self.alerts)[-5:]:  # Log last 5 alerts
-                db.log_system_event('WARNING', f"Enterprise Alert: {alert['message']}")
-                
+                db.log_system_event(
+                    'WARNING', f"Enterprise Alert: {alert['message']}")
+
         except Exception as e:
             print(f"❌ Enterprise metrics logging error: {e}")
-    
+
     def get_enterprise_dashboard_data(self) -> Dict[str, Any]:
         """Get comprehensive dashboard data"""
         try:
             # Get recent metrics
-            recent_metrics = list(self.metrics_history)[-100:] if self.metrics_history else []
-            
+            recent_metrics = list(
+                self.metrics_history)[-100:] if self.metrics_history else []
+
             # Calculate averages
             if recent_metrics:
-                cpu_values = [m.get("system", {}).get("cpu", {}).get("percent", 0) for m in recent_metrics]
-                memory_values = [m.get("system", {}).get("memory", {}).get("percent", 0) for m in recent_metrics]
-                disk_values = [m.get("system", {}).get("disk", {}).get("percent", 0) for m in recent_metrics]
-                
+                cpu_values = [
+                    m.get(
+                        "system",
+                        {}).get(
+                        "cpu",
+                        {}).get(
+                        "percent",
+                        0) for m in recent_metrics]
+                memory_values = [
+                    m.get(
+                        "system",
+                        {}).get(
+                        "memory",
+                        {}).get(
+                        "percent",
+                        0) for m in recent_metrics]
+                disk_values = [
+                    m.get(
+                        "system",
+                        {}).get(
+                        "disk",
+                        {}).get(
+                        "percent",
+                        0) for m in recent_metrics]
+
                 avg_cpu = sum(cpu_values) / len(cpu_values)
                 avg_memory = sum(memory_values) / len(memory_values)
                 avg_disk = sum(disk_values) / len(disk_values)
             else:
                 avg_cpu = avg_memory = avg_disk = 0
-            
+
             # Get current metrics
             current_metrics = recent_metrics[-1] if recent_metrics else {}
-            
+
             # Get alerts summary
             recent_alerts = list(self.alerts)[-50:] if self.alerts else []
             alert_summary = {
                 "total_alerts": len(recent_alerts),
-                "critical_alerts": len([a for a in recent_alerts if a.get("severity") == "critical"]),
-                "warning_alerts": len([a for a in recent_alerts if a.get("severity") == "warning"]),
-                "system_alerts": len([a for a in recent_alerts if a.get("category") == "system"]),
-                "security_alerts": len([a for a in recent_alerts if a.get("category") == "security"]),
-                "performance_alerts": len([a for a in recent_alerts if a.get("category") == "performance"])
+"critical_alerts": len([a for a in recent_alerts if a.get("severity") ==
+    "critical"]),
+"warning_alerts": len([a for a in recent_alerts if a.get("severity") ==
+    "warning"]),
+"system_alerts": len([a for a in recent_alerts if a.get("category") ==
+    "system"]),
+"security_alerts": len([a for a in recent_alerts if a.get("category") ==
+    "security"]),
+"performance_alerts": len([a for a in recent_alerts if a.get("category") ==
+    "performance"])
             }
-            
+
             return {
                 "current_metrics": current_metrics,
                 "averages": {
@@ -385,14 +442,14 @@ class EnterpriseMonitor:
                 },
                 "alert_summary": alert_summary,
                 "recent_alerts": recent_alerts[-10:],  # Last 10 alerts
-                "system_health": self._calculate_system_health(current_metrics),
+"system_health": self._calculate_system_health(current_metrics),
                 "monitoring_status": {
                     "active": self.monitoring_active,
-                    "collection_interval": self.metrics_config["collection_interval"],
+"collection_interval": self.metrics_config["collection_interval"],
                     "metrics_count": len(self.metrics_history)
                 }
             }
-            
+
         except Exception as e:
             return {
                 "error": f"Dashboard data error: {str(e)}",
@@ -401,22 +458,35 @@ class EnterpriseMonitor:
                     "error": True
                 }
             }
-    
-    def _calculate_system_health(self, metrics: Dict[str, Any]) -> Dict[str, Any]:
+
+    def _calculate_system_health(
+            self, metrics: Dict[str, Any]) -> Dict[str, Any]:
         """Calculate overall system health score"""
         try:
             health_score = 100
-            
+
             # Deduct for issues
             if metrics.get("system", {}).get("cpu", {}).get("percent", 0) > 80:
                 health_score -= 10
-            if metrics.get("system", {}).get("memory", {}).get("percent", 0) > 85:
+            if metrics.get(
+                "system",
+                {}).get(
+                "memory",
+                {}).get(
+                "percent",
+                    0) > 85:
                 health_score -= 15
-            if metrics.get("system", {}).get("disk", {}).get("percent", 0) > 90:
+            if metrics.get(
+                "system",
+                {}).get(
+                "disk",
+                {}).get(
+                "percent",
+                    0) > 90:
                 health_score -= 20
             if "error" in metrics.get("database", {}):
                 health_score -= 25
-            
+
             # Determine status
             if health_score >= 90:
                 status = "excellent"
@@ -426,13 +496,13 @@ class EnterpriseMonitor:
                 status = "fair"
             else:
                 status = "poor"
-            
+
             return {
                 "score": max(0, health_score),
                 "status": status,
                 "timestamp": datetime.now().isoformat()
             }
-            
+
         except Exception as e:
             return {
                 "score": 0,
@@ -440,5 +510,6 @@ class EnterpriseMonitor:
                 "error": str(e)
             }
 
+
 # Global enterprise monitoring instance
-enterprise_monitor = EnterpriseMonitor() 
+enterprise_monitor = EnterpriseMonitor()

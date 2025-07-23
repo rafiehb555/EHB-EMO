@@ -34,7 +34,7 @@ def start_dashboard() -> None:
     # Check if index.html exists
     if not os.path.exists('index.html'):
         print("❌ Error: index.html not found!")
-        print("Please make sure all dashboard files are in the current directory.")
+print("Please make sure all dashboard files are in the current directory.")
         return False
 
     # Find available port
@@ -100,7 +100,7 @@ def main() -> None:
 
     # Check requirements
     if not check_requirements():
-        print("\n❌ Cannot start dashboard. Please ensure all files are present.")
+print("\n❌ Cannot start dashboard. Please ensure all files are present.")
         return
 
     print("\n🚀 Launching dashboard...")

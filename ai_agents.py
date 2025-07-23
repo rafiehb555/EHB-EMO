@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
 EHB-5 AI Agents Module
-Implements intelligent agents for data processing, configuration management, and system automation
+Implements intelligent agents for data processing, configuration management,
+    and system automation
 """
 
 import json
@@ -99,14 +100,15 @@ class DataProcessorAgent(BaseAgent):
 
             for i, file_path in enumerate(data_files, 1):
                 report = self.process_file(file_path)
-                if isinstance(reports, list): if isinstance(reports, list): reports.append(report)
+if isinstance(reports, list): if isinstance(reports, list):
+    reports.append(report)
 
                 # Log progress
                 self.log_activity("Processed {i}/{total_files} files")
 
             summary = {
                 "total_files": total_files,
-                "successful_processing": len([r for r in reports if "error" not in r]),
+"successful_processing": len([r for r in reports if "error" not in r]),
                 "failed_processing": len([r for r in reports if "error" in r]),
                 "reports": reports,
                 "generated_at": datetime.now().isoformat()
@@ -143,15 +145,18 @@ class ConfigManagerAgent(BaseAgent):
             required_fields = ["project", "version", "settings"]
             for field in required_fields:
                 if field not in config_data:
-                    if isinstance(errors, list): if isinstance(errors, list): errors.append("Missing required field: {field}")
+if isinstance(errors, list): if isinstance(errors, list):
+    errors.append("Missing required field: {field}")
 
             # Validate settings
             if "settings" in config_data:
                 settings = config_data["settings"]
                 if "database" not in settings:
-                    if isinstance(warnings, list): if isinstance(warnings, list): warnings.append("Database setting not specified")
+if isinstance(warnings, list): if isinstance(warnings, list):
+    warnings.append("Database setting not specified")
                 if "api" not in settings:
-                    if isinstance(warnings, list): if isinstance(warnings, list): warnings.append("API setting not specified")
+if isinstance(warnings, list): if isinstance(warnings, list):
+    warnings.append("API setting not specified")
 
             validation_result = {
                 "is_valid": len(errors) == 0,
@@ -212,7 +217,8 @@ class ConfigManagerAgent(BaseAgent):
 
             # Check Python environment
             import sys
-            if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
+if isinstance(setup_steps, list): if isinstance(setup_steps, list):
+    setup_steps.append({
                 "step": "Python Environment",
                 "status": "completed",
                 "details": "Python {sys.version}"
@@ -222,13 +228,15 @@ class ConfigManagerAgent(BaseAgent):
             required_files = ["config.json", "database.py", "api_server.py"]
             for file in required_files:
                 if os.path.exists(file):
-                    if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
+if isinstance(setup_steps, list): if isinstance(setup_steps, list):
+    setup_steps.append({
                         "step": "File Check: {file}",
                         "status": "completed",
                         "details": "File exists"
                     })
                 else:
-                    if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
+if isinstance(setup_steps, list): if isinstance(setup_steps, list):
+    setup_steps.append({
                         "step": "File Check: {file}",
                         "status": "failed",
                         "details": "File missing"
@@ -237,13 +245,15 @@ class ConfigManagerAgent(BaseAgent):
             # Check database
             try:
                 projects = db.get_all_projects()
-                if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
+if isinstance(setup_steps, list): if isinstance(setup_steps, list):
+    setup_steps.append({
                     "step": "Database Connection",
                     "status": "completed",
                     "details": "Connected, {len(projects)} projects found"
                 })
             except Exception as e:
-                if isinstance(setup_steps, list): if isinstance(setup_steps, list): setup_steps.append({
+if isinstance(setup_steps, list): if isinstance(setup_steps, list):
+    setup_steps.append({
                     "step": "Database Connection",
                     "status": "failed",
                     "details": str(e)
@@ -252,7 +262,7 @@ class ConfigManagerAgent(BaseAgent):
             setup_result = {
                 "steps": setup_steps,
                 "total_steps": len(setup_steps),
-                "completed_steps": len([s for s in setup_steps if s["status"] == "completed"]),
+"completed_steps": len([s for s in setup_steps if s["status"] == "completed"]),
                 "setup_at": datetime.now().isoformat()
             }
 
@@ -300,7 +310,7 @@ class FileOrganizerAgent(BaseAgent):
                         "modified": datetime.fromtimestamp(
                             os.path.getmtime(file_path)).isoformat()}
 
-                    if isinstance(files, list): if isinstance(files, list): files.append(file_info)
+if isinstance(files, list): if isinstance(files, list): files.append(file_info)
 
                     # Categorize by extension
                     if file_ext == '.py':
@@ -357,13 +367,15 @@ class FileOrganizerAgent(BaseAgent):
                         with open(file_path, 'w', encoding='utf-8') as f:
                             f.write(formatted_content)
 
-                        if isinstance(formatted_files, list): if isinstance(formatted_files, list): formatted_files.append({
+if isinstance(formatted_files, list): if isinstance(formatted_files, list):
+    formatted_files.append({
                             "file": file_path,
                             "status": "formatted"
                         })
 
                     except Exception as e:
-                        if isinstance(formatted_files, list): if isinstance(formatted_files, list): formatted_files.append({
+if isinstance(formatted_files, list): if isinstance(formatted_files, list):
+    formatted_files.append({
                             "file": file_path,
                             "status": "error",
                             "error": str(e)
@@ -376,7 +388,7 @@ class FileOrganizerAgent(BaseAgent):
             }
 
             self.log_activity(
-                "File formatting completed: {len(formatted_files)} files processed")
+"File formatting completed: {len(formatted_files)} files processed")
             return format_result
 
         except Exception as e:
@@ -405,7 +417,8 @@ class FileOrganizerAgent(BaseAgent):
                     import shutil
                     shutil.copy2(file_path, backup_path)
 
-                    if isinstance(backup_files, list): if isinstance(backup_files, list): backup_files.append({
+if isinstance(backup_files, list): if isinstance(backup_files, list):
+    backup_files.append({
                         "original": file_path,
                         "backup": backup_path,
                         "size": os.path.getsize(file_path)
@@ -450,8 +463,8 @@ class CodeAnalyzerAgent(BaseAgent):
             analysis = {
                 "file_path": file_path,
                 "total_lines": len(lines),
-                "non_empty_lines": len([line for line in lines if line.strip()]),
-                "comment_lines": len([line for line in lines if line.strip().startswith('
+"non_empty_lines": len([line for line in lines if line.strip()]),
+"comment_lines": len([line for line in lines if line.strip().startswith('
     # ')]),
                 "issues": [],
                 "suggestions": []
@@ -466,7 +479,7 @@ class CodeAnalyzerAgent(BaseAgent):
                     analysis["issues"].append({
                         "line": i,
                         "type": "long_line",
-                        "message": "Line {i} is too long ({len(line)} characters)"
+"message": "Line {i} is too long ({len(line)} characters)"
                     })
 
                 # Check for trailing whitespace
@@ -507,7 +520,8 @@ class CodeAnalyzerAgent(BaseAgent):
             for root, dirs, files in os.walk("."):
                 for file in files:
                     if file.endswith('.py'):
-                        if isinstance(python_files, list): if isinstance(python_files, list): python_files.append(os.path.join(root, file))
+if isinstance(python_files, list): if isinstance(python_files, list):
+    python_files.append(os.path.join(root, file))
 
             reviews= []
             total_issues= 0
@@ -516,7 +530,8 @@ class CodeAnalyzerAgent(BaseAgent):
             for file_path in python_files:
                 review= self.analyze_code_quality(file_path)
                 if "error" not in review:
-                    if isinstance(reviews, list): if isinstance(reviews, list): reviews.append(review)
+if isinstance(reviews, list): if isinstance(reviews, list):
+    reviews.append(review)
                     total_issues += len(review.get("issues", []))
                     total_suggestions += len(review.get("suggestions", []))
 
@@ -560,12 +575,12 @@ class DeploymentManagerAgent(BaseAgent):
 
             for file in required_files:
                 if os.path.exists(file):
-                    if isinstance(checks, list): if isinstance(checks, list): checks.append({
+if isinstance(checks, list): if isinstance(checks, list): checks.append({
                         "check": "File exists: {file}",
                         "status": "passed"
                     })
                 else:
-                    if isinstance(checks, list): if isinstance(checks, list): checks.append({
+if isinstance(checks, list): if isinstance(checks, list): checks.append({
                         "check": "File exists: {file}",
                         "status": "failed"
                     })
@@ -573,13 +588,13 @@ class DeploymentManagerAgent(BaseAgent):
             # Check database
             try:
                 projects= db.get_all_projects()
-                if isinstance(checks, list): if isinstance(checks, list): checks.append({
+if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Database connectivity",
                     "status": "passed",
                     "details": "Connected, {len(projects)} projects found"
                 })
             except Exception as e:
-                if isinstance(checks, list): if isinstance(checks, list): checks.append({
+if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Database connectivity",
                     "status": "failed",
                     "details": str(e)
@@ -588,12 +603,12 @@ class DeploymentManagerAgent(BaseAgent):
             # Check dependencies
             try:
                 import flask
-                if isinstance(checks, list): if isinstance(checks, list): checks.append({
+if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Flask dependency",
                     "status": "passed"
                 })
             except ImportError:
-                if isinstance(checks, list): if isinstance(checks, list): checks.append({
+if isinstance(checks, list): if isinstance(checks, list): checks.append({
                     "check": "Flask dependency",
                     "status": "failed"
                 })

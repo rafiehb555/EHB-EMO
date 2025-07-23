@@ -4,19 +4,20 @@ EHB-5 Main Application
 Unified entry point for the EHB-5 project
 """
 
-from auth_manager import AuthManager
-from data_processor import DataProcessor
-from api_server import app as api_app
-from database import DatabaseManager
 import os
 import sys
 import threading
 import time
 from pathlib import Path
 
+from api_server import app as api_app
+from auth_manager import AuthManager
+from data_processor import DataProcessor
+from database import DatabaseManager
+
 # Add current directory to Python path
 current_dir = Path(__file__).parent
-sys.if isinstance(path, list): if isinstance(path, list): path.append(str(current_dir))
+sys.path.append(str(current_dir))
 
 
 class EHB5Application:

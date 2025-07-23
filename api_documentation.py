@@ -10,21 +10,22 @@ from datetime import datetime
 from typing import Dict, List, Any
 from api_server import app
 
+
 class APIDocumentation:
     """API documentation generator"""
-    
+
     def __init__(self):
         self.endpoints = []
         self.examples = {}
         self.schemas = {}
         self.generate_documentation()
-    
+
     def generate_documentation(self):
         """Generate comprehensive API documentation"""
         self._collect_endpoints()
         self._generate_examples()
         self._generate_schemas()
-    
+
     def _collect_endpoints(self):
         """Collect all API endpoints"""
         self.endpoints = [
@@ -179,13 +180,15 @@ class APIDocumentation:
                 }
             }
         ]
-    
+
     def _generate_examples(self):
         """Generate API usage examples"""
         self.examples = {
             "authentication": {
                 "register": {
-                    "curl": 'curl -X POST http://localhost:5000/api/auth/register \\\n  -H "Content-Type: application/json" \\\n  -d \'{"username": "newuser", "password": "SecurePass123!", "email": "user@example.com"}\'',
+"curl": 'curl -X POST http://localhost:5000/api/auth/register \\\n -H
+"Content-Type: application/json" \\\n -d \'{"username": "newuser", "password":
+    "SecurePass123!", "email": "user@example.com"}\'',
                     "python": '''import requests
 
 url = "http://localhost:5000/api/auth/register"
@@ -198,7 +201,9 @@ response = requests.post(url, json=data)
 print(response.json())'''
                 },
                 "login": {
-                    "curl": 'curl -X POST http://localhost:5000/api/auth/login \\\n  -H "Content-Type: application/json" \\\n  -d \'{"username": "admin", "password": "admin123"}\'',
+"curl": 'curl -X POST http://localhost:5000/api/auth/login \\\n -H
+"Content-Type: application/json" \\\n -d \'{"username": "admin", "password":
+    "admin123"}\'',
                     "python": '''import requests
 
 url = "http://localhost:5000/api/auth/login"
@@ -213,7 +218,9 @@ print(f"Token: {token}")'''
             },
             "data_processing": {
                 "analyze": {
-                    "curl": 'curl -X POST http://localhost:5000/api/data/process \\\n  -H "Content-Type: application/json" \\\n  -H "Authorization: Bearer <token>" \\\n  -d \'{"data": "Sample data for analysis", "operation": "analyze"}\'',
+"curl": 'curl -X POST http://localhost:5000/api/data/process \\\n -H
+"Content-Type: application/json" \\\n -H "Authorization: Bearer <token>" \\\n
+    -d \'{"data": "Sample data for analysis", "operation": "analyze"}\'',
                     "python": '''import requests
 
 url = "http://localhost:5000/api/data/process"
@@ -235,16 +242,18 @@ response = requests.get("http://localhost:5000/api/health")
 print(response.json())'''
                 },
                 "system_status": {
-                    "curl": 'curl -H "Authorization: Bearer <token>" \\\n  http://localhost:5000/api/system/status',
+"curl": 'curl -H "Authorization: Bearer <token>" \\\n
+    http://localhost:5000/api/system/status',
                     "python": '''import requests
 
 headers = {"Authorization": "Bearer <token>"}
-response = requests.get("http://localhost:5000/api/system/status", headers=headers)
+response = requests.get("http://localhost:5000/api/system/status",
+    headers=headers)
 print(response.json())'''
                 }
             }
         }
-    
+
     def _generate_schemas(self):
         """Generate data schemas"""
         self.schemas = {
@@ -282,12 +291,12 @@ print(response.json())'''
                 "properties": {
                     "id": {"type": "integer"},
                     "timestamp": {"type": "string", "format": "date-time"},
-                    "level": {"type": "string", "enum": ["INFO", "WARNING", "ERROR"]},
+"level": {"type": "string", "enum": ["INFO", "WARNING", "ERROR"]},
                     "message": {"type": "string"}
                 }
             }
         }
-    
+
     def generate_markdown_docs(self) -> str:
         """Generate markdown documentation"""
         md = f"""# EHB-5 API Documentation
@@ -296,7 +305,8 @@ Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 ## Overview
 
-The EHB-5 API provides comprehensive data processing, user management, and system monitoring capabilities.
+The EHB-5 API provides comprehensive data processing, user management, and
+    system monitoring capabilities.
 
 ### Base URL
 ```
@@ -304,7 +314,8 @@ http://localhost:5000
 ```
 
 ### Authentication
-Most endpoints require authentication using JWT tokens. Include the token in the Authorization header:
+Most endpoints require authentication using JWT tokens. Include the token in
+    the Authorization header:
 ```
 Authorization: Bearer <your_token>
 ```
@@ -312,33 +323,33 @@ Authorization: Bearer <your_token>
 ## Endpoints
 
 """
-        
+
         for endpoint in self.endpoints:
             md += f"### {endpoint['method']} {endpoint['path']}\n\n"
             md += f"{endpoint['description']}\n\n"
-            
+
             if 'headers' in endpoint:
                 md += "**Headers:**\n"
                 for key, value in endpoint['headers'].items():
                     md += f"- `{key}`: {value}\n"
                 md += "\n"
-            
+
             if 'query_params' in endpoint:
                 md += "**Query Parameters:**\n"
                 for key, value in endpoint['query_params'].items():
                     md += f"- `{key}`: {value}\n"
                 md += "\n"
-            
+
             if 'request' in endpoint:
                 md += "**Request Body:**\n"
-                md += f"```json\n{json.dumps(endpoint['request'], indent=2)}\n```\n\n"
-            
+md += f"```json\n{json.dumps(endpoint['request'], indent=2)}\n```\n\n"
+
             md += "**Response:**\n"
-            md += f"```json\n{json.dumps(endpoint['response'], indent=2)}\n```\n\n"
+md += f"```json\n{json.dumps(endpoint['response'], indent=2)}\n```\n\n"
             md += "---\n\n"
-        
+
         return md
-    
+
     def generate_html_docs(self) -> str:
         """Generate HTML documentation"""
         html = f"""<!DOCTYPE html>
@@ -349,11 +360,13 @@ Authorization: Bearer <your_token>
     <title>EHB-5 API Documentation</title>
     <style>
         body {{ font-family: Arial, sans-serif; margin: 40px; }}
-        .endpoint {{ margin: 20px 0; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }}
+.endpoint {{ margin: 20px 0; padding: 20px; border: 1px solid #ddd;
+    border-radius: 5px; }}
         .method {{ font-weight: bold; color: #007bff; }}
         .path {{ font-family: monospace; background: #f8f9fa; padding: 5px; }}
         .description {{ color: #666; margin: 10px 0; }}
-        .code {{ background: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x: auto; }}
+.code {{ background: #f8f9fa; padding: 15px; border-radius: 5px; overflow-x:
+    auto; }}
         .example {{ margin: 10px 0; }}
         .example h4 {{ margin: 5px 0; }}
     </style>
@@ -361,38 +374,40 @@ Authorization: Bearer <your_token>
 <body>
     <h1>EHB-5 API Documentation</h1>
     <p>Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-    
+
     <h2>Base URL</h2>
     <p><code>http://localhost:5000</code></p>
-    
+
     <h2>Authentication</h2>
-    <p>Most endpoints require authentication using JWT tokens. Include the token in the Authorization header:</p>
+<p>Most endpoints require authentication using JWT tokens. Include the token in
+    the Authorization header:</p>
     <div class="code">
         Authorization: Bearer &lt;your_token&gt;
     </div>
-    
+
     <h2>Endpoints</h2>
 """
-        
+
         for endpoint in self.endpoints:
             html += f"""
     <div class="endpoint">
-        <h3><span class="method">{endpoint['method']}</span> <span class="path">{endpoint['path']}</span></h3>
+<h3><span class="method">{endpoint['method']}</span> <span
+    class="path">{endpoint['path']}</span></h3>
         <p class="description">{endpoint['description']}</p>
 """
-            
+
             if 'headers' in endpoint:
                 html += "        <h4>Headers:</h4><ul>"
                 for key, value in endpoint['headers'].items():
                     html += f"<li><code>{key}</code>: {value}</li>"
                 html += "</ul>"
-            
+
             if 'query_params' in endpoint:
                 html += "        <h4>Query Parameters:</h4><ul>"
                 for key, value in endpoint['query_params'].items():
                     html += f"<li><code>{key}</code>: {value}</li>"
                 html += "</ul>"
-            
+
             if 'request' in endpoint:
                 html += f"""
         <h4>Request Body:</h4>
@@ -400,7 +415,7 @@ Authorization: Bearer <your_token>
             <pre>{json.dumps(endpoint['request'], indent=2)}</pre>
         </div>
 """
-            
+
             html += f"""
         <h4>Response:</h4>
         <div class="code">
@@ -408,11 +423,11 @@ Authorization: Bearer <your_token>
         </div>
     </div>
 """
-        
+
         html += """
     <h2>Examples</h2>
 """
-        
+
         for category, examples in self.examples.items():
             html += f"    <h3>{category.title()}</h3>"
             for name, example in examples.items():
@@ -428,14 +443,14 @@ Authorization: Bearer <your_token>
         </div>
 """
                 html += "    </div>"
-        
+
         html += """
 </body>
 </html>
 """
-        
+
         return html
-    
+
     def generate_postman_collection(self) -> Dict:
         """Generate Postman collection"""
         collection = {
@@ -456,7 +471,7 @@ Authorization: Bearer <your_token>
             ],
             "item": []
         }
-        
+
         for endpoint in self.endpoints:
             item = {
                 "name": f"{endpoint['method']} {endpoint['path']}",
@@ -470,7 +485,7 @@ Authorization: Bearer <your_token>
                     }
                 }
             }
-            
+
             # Add headers
             if 'headers' in endpoint:
                 for key, value in endpoint['headers'].items():
@@ -484,7 +499,7 @@ Authorization: Bearer <your_token>
                             "key": key,
                             "value": value
                         })
-            
+
             # Add request body
             if 'request' in endpoint:
                 item['request']['body'] = {
@@ -496,10 +511,11 @@ Authorization: Bearer <your_token>
                         }
                     }
                 }
-            
+
             collection['item'].append(item)
-        
+
         return collection
 
+
 # Global API documentation instance
-api_docs = APIDocumentation() 
+api_docs = APIDocumentation()

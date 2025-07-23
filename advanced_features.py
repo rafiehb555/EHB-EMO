@@ -70,7 +70,8 @@ class AdvancedSystemMonitor:
                     'packets_recv': network.packets_recv
                 },
                 'processes': processes,
-                'system_health': self.calculate_system_health(cpu_percent, memory_percent, disk_percent)
+'system_health': self.calculate_system_health(cpu_percent, memory_percent,
+    disk_percent)
             }
 
             self.metrics = metrics
@@ -80,7 +81,11 @@ class AdvancedSystemMonitor:
             print(f"❌ Error collecting metrics: {e}")
             return {}
 
-    def calculate_system_health(self, cpu: float, memory: float, disk: float) -> str:
+    def calculate_system_health(
+            self,
+            cpu: float,
+            memory: float,
+            disk: float) -> str:
         """Calculate overall system health"""
         if cpu < 50 and memory < 70 and disk < 80:
             return "Excellent"
@@ -148,12 +153,12 @@ class AdvancedAutoFixer:
                 content = f.read()
 
             patterns = {
-                'unused_imports': content.count('import ') - content.count('from '),
-                'long_lines': len([line for line in content.split('\n') if len(line) > 79]),
+'unused_imports': content.count('import ') - content.count('from '),
+'long_lines': len([line for line in content.split('\n') if len(line) > 79]),
                 'missing_types': content.count('def ') - content.count('->'),
-                'bare_except': content.count('except:'),
+                'bare_except': content.count('except Exception:'),
                 'trailing_whitespace': content.count(' \n'),
-                'missing_newlines': content.count('\n\n') < content.count('\n') // 10
+'missing_newlines': content.count('\n\n') < content.count('\n') // 10
             }
 
             self.problem_patterns[file_path] = patterns
@@ -175,7 +180,8 @@ class AdvancedAutoFixer:
         if patterns.get('missing_types', 0) > 3:
             recommendations.append("Add type annotations")
         if patterns.get('bare_except', 0) > 0:
-            recommendations.append("Replace bare except with specific exceptions")
+            recommendations.append(
+                "Replace bare except with specific exceptions")
         if patterns.get('trailing_whitespace', 0) > 0:
             recommendations.append("Remove trailing whitespace")
         if patterns.get('missing_newlines', 0):
@@ -211,7 +217,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
 
         for fix in self.fix_history[-5:]:  # Last 5 fixes
-            report += f"• {fix['file']}: {fix['fix_type']} - {fix['details']}\n"
+report += f"• {fix['file']}: {fix['fix_type']} - {fix['details']}\n"
 
         return report
 
@@ -245,10 +251,12 @@ class PerformanceOptimizer:
                     optimization = {
                         'file': file,
                         'size_reduction': original_size - optimized_size,
-                        'reduction_percent': round((original_size - optimized_size) / original_size * 100, 2)
-                    }
+                        'reduction_percent': round(
+(original_size - optimized_size) / original_size * 100,
+                            2)}
                     optimizations.append(optimization)
-                    print(f"✅ Optimized {file}: {optimization['reduction_percent']}% smaller")
+                    print(
+f"✅ Optimized {file}: {optimization['reduction_percent']}% smaller")
 
             except Exception as e:
                 print(f"❌ Error optimizing {file}: {e}")
@@ -279,8 +287,10 @@ class PerformanceOptimizer:
         if not self.optimization_history:
             return "No optimizations performed yet"
 
-        total_reduction = sum(opt['size_reduction'] for opt in self.optimization_history)
-        avg_reduction = sum(opt['reduction_percent'] for opt in self.optimization_history) / len(self.optimization_history)
+        total_reduction = sum(opt['size_reduction']
+                              for opt in self.optimization_history)
+        avg_reduction = sum(opt['reduction_percent']
+for opt in self.optimization_history) / len(self.optimization_history)
 
         report = f"""
 🚀 Performance Optimization Report
@@ -327,7 +337,10 @@ def main():
         recommendations = auto_fixer.get_fix_recommendations(file)
         if recommendations:
             print(f"📝 {file}: {', '.join(recommendations)}")
-            auto_fixer.log_fix(file, "Analysis", f"Found {len(recommendations)} issues")
+            auto_fixer.log_fix(
+                file,
+                "Analysis",
+                f"Found {len(recommendations)} issues")
 
     # Generate fix report
     print("\n📋 Auto-Fix Report:")
