@@ -8,24 +8,11 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/index.py"
-    },
-    {
       "src": "/(.*)",
       "dest": "/api/index.py"
     }
   ],
   "env": {
-    "EHB5_ENVIRONMENT": "production",
-    "EHB5_HOST": "0.0.0.0",
-    "EHB5_PORT": "5000",
-    "EHB5_DASHBOARD_PORT": "8000",
-    "JWT_SECRET": "ehb5-secure-production-secret-2024",
-    "DATABASE_PATH": "ehb5.db",
-    "LOG_LEVEL": "INFO",
-    "DEBUG": "false"
-  },
-  "regions": ["iad1"],
-  "public": true
+    "EHB5_ENVIRONMENT": "production"
+  }
 }

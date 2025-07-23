@@ -119,7 +119,7 @@ class SecurityManager:
             if attempt > cutoff
         ]
 
-                # Check if should block
+        # Check if should block
         if len(self.failed_attempts[key]) >= self.max_login_attempts:
 self.blocked_ips[ip_address] = datetime.now() +
     timedelta(seconds=self.block_duration)
