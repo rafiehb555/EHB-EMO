@@ -75,6 +75,7 @@ class IntelligentAPIServer {
 
         // Static files
         this.app.use(express.static(path.join(__dirname, 'public')));
+        this.app.use(express.static(__dirname));
     }
 
     setupRoutes() {

@@ -8,7 +8,7 @@ import urllib.request
 
 
 def test_api():
-    url = "https://ehb-5-b108xdrxn-rafiehb555s-projects.vercel.app/"
+    url = "https://ehb-5-3qjm4wjhz-rafiehb555s-projects.vercel.app/"
 
     try:
         print(f"🔍 Testing: {url}")
@@ -21,6 +21,7 @@ def test_api():
         print(f"🕒 Timestamp: {result.get('timestamp', 'unknown')}")
         print(f"📦 Version: {result.get('version', 'unknown')}")
         print(f"💬 Message: {result.get('message', 'unknown')}")
+        print(f"🔓 Authentication: {result.get('authentication', 'unknown')}")
 
         return True
 

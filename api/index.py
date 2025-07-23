@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-EHB-5 Vercel API Handler - FIXED VERSION
-Simplified API for Vercel serverless deployment
+EHB-5 PUBLIC API Handler - NO AUTHENTICATION REQUIRED
+Simplified API for public access
 """
 
 import json
@@ -10,7 +10,7 @@ import os
 
 
 def handler(request, context):
-    """Vercel serverless function handler - FIXED"""
+    """Vercel serverless function handler - PUBLIC ACCESS"""
     try:
         # Parse the request
         method = request.method
@@ -28,7 +28,7 @@ def handler(request, context):
                 'body': ''
             }
 
-        # Route the request
+        # Route the request - NO AUTHENTICATION REQUIRED
         if method == 'GET':
             return handle_get_request(path)
         else:
@@ -40,7 +40,7 @@ def handler(request, context):
 
 
 def handle_get_request(path):
-    """Handle GET requests - FIXED"""
+    """Handle GET requests - PUBLIC ACCESS"""
     try:
         if path == '/' or path == '':
             return send_root_response()
@@ -48,6 +48,8 @@ def handle_get_request(path):
             return send_health_response()
         elif path == '/api/system/status':
             return send_system_status()
+        elif path == '/api/public':
+            return send_public_response()
         else:
             return create_response({'error': 'Endpoint not found', 'path': path}, 404)
     except Exception as e:
@@ -56,7 +58,7 @@ def handle_get_request(path):
 
 
 def create_response(data, status_code=200):
-    """Create a Vercel-compatible response - FIXED"""
+    """Create a Vercel-compatible response"""
     try:
         return {
             'statusCode': status_code,
@@ -78,16 +80,18 @@ def create_response(data, status_code=200):
 
 
 def send_root_response():
-    """Send root response - FIXED"""
+    """Send root response - PUBLIC ACCESS"""
     try:
         data = {
-            'message': 'EHB-5 API is running!',
+            'message': 'EHB-5 API is running! PUBLIC ACCESS ENABLED',
             'status': 'operational',
             'version': '2.0.0',
             'timestamp': datetime.datetime.now().isoformat(),
+            'authentication': 'disabled',
             'endpoints': [
                 '/api/health',
-                '/api/system/status'
+                '/api/system/status',
+                '/api/public'
             ]
         }
         return create_response(data)
@@ -97,13 +101,14 @@ def send_root_response():
 
 
 def send_health_response():
-    """Send health check response - FIXED"""
+    """Send health check response - PUBLIC ACCESS"""
     try:
         data = {
             'status': 'healthy',
             'timestamp': datetime.datetime.now().isoformat(),
             'version': '2.0.0',
-            'environment': os.environ.get('EHB5_ENVIRONMENT', 'production')
+            'environment': os.environ.get('EHB5_ENVIRONMENT', 'production'),
+            'authentication': 'disabled'
         }
         return create_response(data)
     except Exception as e:
@@ -112,7 +117,7 @@ def send_health_response():
 
 
 def send_system_status():
-    """Send system status response - FIXED"""
+    """Send system status response - PUBLIC ACCESS"""
     try:
         data = {
             'status': 'operational',
@@ -120,10 +125,11 @@ def send_system_status():
             'version': '2.0.0',
             'environment': os.environ.get('EHB5_ENVIRONMENT', 'production'),
             'timestamp': datetime.datetime.now().isoformat(),
+            'authentication': 'disabled',
             'features': {
                 'database': 'connected',
                 'api': 'active',
-                'authentication': 'enabled',
+                'authentication': 'disabled',
                 'ai_agents': 'operational',
                 'monitoring': 'active'
             }
@@ -134,10 +140,27 @@ def send_system_status():
         return create_response({'error': 'System status failed'}, 500)
 
 
+def send_public_response():
+    """Send public access confirmation"""
+    try:
+        data = {
+            'message': 'PUBLIC ACCESS CONFIRMED',
+            'status': 'public',
+            'timestamp': datetime.datetime.now().isoformat(),
+            'authentication': 'disabled',
+            'access': 'public'
+        }
+        return create_response(data)
+    except Exception as e:
+        print(f"ERROR in send_public_response: {str(e)}")
+        return create_response({'error': 'Public response failed'}, 500)
+
+
 # For local testing
 if __name__ == "__main__":
-    print("EHB-5 API Handler ready for Vercel deployment")
+    print("EHB-5 PUBLIC API Handler ready for Vercel deployment")
     print("Test endpoints:")
     print("- GET /")
     print("- GET /api/health")
     print("- GET /api/system/status")
+    print("- GET /api/public")

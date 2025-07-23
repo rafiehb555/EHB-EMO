@@ -13,6 +13,8 @@
     }
   ],
   "env": {
-    "EHB5_ENVIRONMENT": "production"
-  }
+    "EHB5_ENVIRONMENT": "production",
+    "VERCEL_PUBLIC": "true"
+  },
+  "public": true
 }
