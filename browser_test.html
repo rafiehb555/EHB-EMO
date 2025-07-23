@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHB-5 Deployment Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        .test-button {
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .success {
+            background: rgba(76, 175, 80, 0.3);
+        }
+        .error {
+            background: rgba(244, 67, 54, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 EHB-5 Deployment Test</h1>
+        <p>Testing Vercel deployment with authentication fix...</p>
+
+        <button class="test-button" onclick="testDeployment()">Test Deployment</button>
+        <button class="test-button" onclick="testHealth()">Test Health Check</button>
+        <button class="test-button" onclick="testSystemStatus()">Test System Status</button>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const deploymentUrl = 'https://ehb-5-p31jbmuv0-rafiehb555s-projects.vercel.app';
+
+        async function testDeployment() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing deployment...</p>';
+
+            try {
+                const response = await fetch(deploymentUrl);
+                const data = await response.json();
+
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h3>✅ SUCCESS!</h3>
+                    <p><strong>Status:</strong> ${data.status}</p>
+                    <p><strong>Message:</strong> ${data.message}</p>
+                    <p><strong>Version:</strong> ${data.version}</p>
+                    <p><strong>Timestamp:</strong> ${data.timestamp}</p>
+                `;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>❌ ERROR</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><strong>Status:</strong> ${error.status || 'Unknown'}</p>
+                `;
+            }
+        }
+
+        async function testHealth() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing health check...</p>';
+
+            try {
+                const response = await fetch(`${deploymentUrl}/api/health`);
+                const data = await response.json();
+
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h3>✅ HEALTH CHECK SUCCESS!</h3>
+                    <p><strong>Status:</strong> ${data.status}</p>
+                    <p><strong>Environment:</strong> ${data.environment}</p>
+                    <p><strong>Version:</strong> ${data.version}</p>
+                `;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>❌ HEALTH CHECK ERROR</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                `;
+            }
+        }
+
+        async function testSystemStatus() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '<p>Testing system status...</p>';
+
+            try {
+                const response = await fetch(`${deploymentUrl}/api/system/status`);
+                const data = await response.json();
+
+                resultDiv.className = 'result success';
+                resultDiv.innerHTML = `
+                    <h3>✅ SYSTEM STATUS SUCCESS!</h3>
+                    <p><strong>Status:</strong> ${data.status}</p>
+                    <p><strong>Uptime:</strong> ${data.uptime}</p>
+                    <p><strong>Environment:</strong> ${data.environment}</p>
+                    <p><strong>Features:</strong> ${JSON.stringify(data.features)}</p>
+                `;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `
+                    <h3>❌ SYSTEM STATUS ERROR</h3>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

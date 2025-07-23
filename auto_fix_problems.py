@@ -48,7 +48,7 @@ class AutoFixSystem:
         self.cleanup_cache()
 
         print("=" * 50)
-        print(ff"✅ Auto-Fix completed! Fixed {len(self.fixed_files)} files")
+        print(f"✅ Auto-Fix completed! Fixed {len(self.fixed_files)} files")
         print("🎯 All problems resolved!")
 
     def start_monitoring(self) -> None:
@@ -91,12 +91,12 @@ class AutoFixSystem:
                     file_path = Path(root) / file
                     self.python_files.append(str(file_path))
 
-        print(ff"📊 Found {len(self.python_files)} Python files")
+        print(f"📊 Found {len(self.python_files)} Python files")
 
     def fix_file(self, file_path: str) -> None:
         """Fix a single Python file"""
         try:
-            print(ff"🔧 Fixing: {file_path}")
+            print(f"🔧 Fixing: {file_path}")
 
             # Read file content
             with open(file_path, 'r', encoding='utf-8') as f:
@@ -110,15 +110,15 @@ class AutoFixSystem:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(fixed_content)
                 self.fixed_files.append(file_path)
-                print(ff"✅ Fixed: {file_path}")
+                print(f"✅ Fixed: {file_path}")
             else:
-                print(ff"ℹ️  No issues found: {file_path}")
+                print(f"ℹ️  No issues found: {file_path}")
 
         except Exception as e:
-            print(ff"❌ Error fixing {file_path}: {e}")
+            print(f"❌ Error fixing {file_path}: {e}")
 
     def apply_fixes(self, content: str) -> str:
-        """Apply all fixes to file content""f"
+        """Apply all fixes to file content"""
         # Fix import issues
         content = self.fix_imports(content)
 
@@ -205,10 +205,10 @@ class AutoFixSystem:
         for dep in deps:
             try:
                 subprocess.run([sys.executable, '-m', 'pip', 'install', dep],
-                             capture_output=True, check=True)
-                print(ff"✅ Installed: {dep}")
+                               capture_output=True, check=True)
+                print(f"✅ Installed: {dep}")
             except subprocess.CalledProcessError:
-                print(ff"⚠️  Failed to install: {dep}")
+                print(f"⚠️  Failed to install: {dep}")
 
     def cleanup_cache(self) -> None:
         """Clean up cache files"""
@@ -233,7 +233,7 @@ class AutoFixSystem:
 
 
 class FileChangeHandler(FileSystemEventHandler):
-    """Handle file system events for auto-fixing""f"
+    """Handle file system events for auto-fixing"""
 
     def __init__(self, auto_fix_system: AutoFixSystem) -> None:
         self.auto_fix_system = auto_fix_system
@@ -255,7 +255,7 @@ class FileChangeHandler(FileSystemEventHandler):
 
         self.last_modified[event.src_path] = current_time
 
-        print(ff"🔄 File changed: {event.src_path}")
+        print(f"🔄 File changed: {event.src_path}")
         self.auto_fix_system.fix_file(event.src_path)
 
 

@@ -18,90 +18,84 @@ class SecurityManager:
     """Enterprise security manager"""
 
     def __init__(self) -> None:
-        self.failed_attempts = {}
-        self.blocked_ips = {}
-        self.session_tokens = {}
-        self.security_log = []
         self.max_login_attempts = 5
         self.block_duration = 300  # 5 minutes
         self.session_timeout = 3600  # 1 hour
+        self.failed_attempts: Dict[str, List[datetime]] = {}
+        self.blocked_ips: Dict[str, datetime] = {}
+        self.session_tokens: Dict[str, Dict] = {}
+        self.security_log: List[Dict] = []
 
     def validate_password_strength(self, password: str) -> Dict:
         """Validate password strength"""
-        errors = []
-        warnings = []
-
         if len(password) < 8:
-            errors.append("Password must be at least 8 characters long")
-        elif len(password) < 12:
-            warnings.append(
-                "Consider using a longer password (12+ characters)")
+            return {
+                "valid": False,
+                "score": 0,
+                "issues": ["Password must be at least 8 characters long"]
+            }
 
-        if not re.search(r'[A-Z]', password):
-            errors.append(
-                "Password must contain at least one uppercase letter")
+        score = self._calculate_strength_score(password)
+        issues = []
 
-        if not re.search(r'[a-z]', password):
-            errors.append(
-                "Password must contain at least one lowercase letter")
+        if len(password) < 12:
+            issues.append("Consider using a longer password")
 
-        if not re.search(r'\d', password):
-            errors.append("Password must contain at least one number")
+        if not any(c.isupper() for c in password):
+            issues.append("Add uppercase letters")
 
-        if not re.search(r'[!@#$%^&*(),.?f":{}|<>]', password):
-            errors.append(
-                "Password must contain at least one special character")
+        if not any(c.islower() for c in password):
+            issues.append("Add lowercase letters")
 
-        # Check for common patterns
-        common_patterns = ['password', '123456', 'qwerty', 'admin']
-        if password.lower() in common_patterns:
-            errors.append("Password cannot be a common pattern")
+        if not any(c.isdigit() for c in password):
+            issues.append("Add numbers")
+
+        if not any(c in "!@#$%^&*()_+-=[]{}|;:,.<>?" for c in password):
+            issues.append("Add special characters")
 
         return {
-            "valid": len(errors) == 0,
-            "errors": errors,
-            "warnings": warnings,
-            "strength_score": self._calculate_strength_score(password)
+            "valid": score >= 3,
+            "score": score,
+            "issues": issues
         }
 
     def _calculate_strength_score(self, password: str) -> int:
-        """Calculate password strength score(0-100)"""
+        """Calculate password strength score"""
         score = 0
 
         # Length bonus
         if len(password) >= 8:
-            score += 20
+            score += 1
         if len(password) >= 12:
-            score += 10
+            score += 1
         if len(password) >= 16:
-            score += 10
+            score += 1
 
         # Character variety bonus
-        if re.search(r'[A-Z]', password):
-            score += 10
-        if re.search(r'[a-z]', password):
-            score += 10
-        if re.search(r'\d', password):
-            score += 10
-        if re.search(r'[!@#$%^&*(),.?f":{}|<>]', password):
-            score += 15
+        if any(c.isupper() for c in password):
+            score += 1
+        if any(c.islower() for c in password):
+            score += 1
+        if any(c.isdigit() for c in password):
+            score += 1
+        if any(c in "!@#$%^&*()_+-=[]{}|;:,.<>?" for c in password):
+            score += 1
 
-        # Complexity bonus
-        unique_chars = len(set(password))
-        if unique_chars >= len(password) * 0.7:
-            score += 15
-
-        return min(100, score)
+        return score
 
     def check_ip_blocked(self, ip_address: str) -> bool:
-        """Check if IP is blocked"""
-        if ip_address in self.blocked_ips:
-            block_time = self.blocked_ips[ip_address]
-            if datetime.now() < block_time:
-                return True
-            else:
-                del self.blocked_ips[ip_address]
-        return False
+        """Check if IP address is blocked"""
+        if ip_address not in self.blocked_ips:
+            return False
+
+        block_time = self.blocked_ips[ip_address]
+
+
+if datetime.now() > block_time + timedelta(seconds=self.block_duration):
+            del self.blocked_ips[ip_address]
+            return False
+
+        return True
 
     def record_failed_attempt(self, ip_address: str, username: str) -> None:
         """Record a failed login attempt"""
@@ -112,7 +106,7 @@ class SecurityManager:
 
         self.failed_attempts[key].append(datetime.now())
 
-        # Remove old attempts (older than 1 hour)
+        # Remove attempts older than 1 hour
         cutoff = datetime.now() - timedelta(hours=1)
         self.failed_attempts[key] = [
             attempt for attempt in self.failed_attempts[key]
@@ -121,10 +115,13 @@ class SecurityManager:
 
         # Check if should block
         if len(self.failed_attempts[key]) >= self.max_login_attempts:
-self.blocked_ips[ip_address] = datetime.now() +
-    timedelta(seconds=self.block_duration)
+            self.blocked_ips[ip_address] = (
+                datetime.now() + timedelta(seconds=self.block_duration)
+            )
             self.log_security_event(
-"BLOCK", f"IP {ip_address} blocked due to multiple failed attempts")
+                "BLOCK",
+                f"IP {ip_address} blocked due to multiple failed attempts"
+            )
 
     def generate_secure_token(self) -> str:
         """Generate a secure session token"""
@@ -150,7 +147,7 @@ self.blocked_ips[ip_address] = datetime.now() +
     def validate_session(
             self,
             token: str,
-            ip_address: str = None) -> Optional[Dict]:
+            ip_address: Optional[str] = None) -> Optional[Dict]:
         """Validate a session token"""
         if token not in self.session_tokens:
             return None
@@ -170,15 +167,17 @@ self.blocked_ips[ip_address] = datetime.now() +
             session["ip_address"] = ip_address
 
         # Check IP address if set
-if session["ip_address"] and ip_address and session["ip_address"] !=
-    ip_address:
+        if (session["ip_address"] and ip_address and
+                session["ip_address"] != ip_address):
             self.log_security_event(
                 "SUSPICIOUS",
                 f"Session IP mismatch for user {session['username']}")
             return None
 
         # Extend session
-session["expires"] = datetime.now() + timedelta(seconds=self.session_timeout)
+        session["expires"] = (
+            datetime.now() + timedelta(seconds=self.session_timeout)
+        )
 
         return {
             "user_id": session["user_id"],
@@ -231,7 +230,7 @@ session["expires"] = datetime.now() + timedelta(seconds=self.session_timeout)
             if datetime.fromisoformat(event["timestamp"]) > last_24h
         ]
 
-        event_counts = {}
+        event_counts: Dict[str, int] = {}
         for event in recent_events:
             event_type = event["type"]
             event_counts[event_type] = event_counts.get(event_type, 0) + 1
@@ -249,7 +248,7 @@ class RateLimiter:
     """API rate limiting"""
 
     def __init__(self) -> None:
-        self.requests = {}
+        self.requests: Dict[str, List[float]] = {}
         self.max_requests = 100  # per minute
         self.window_size = 60  # seconds
 

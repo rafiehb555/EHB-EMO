@@ -4,15 +4,17 @@ EHB-5 API Server
 RESTful API endpoints for the EHB-5 project
 """
 
-from flask import Flask, request, jsonify, session
-from flask_cors import CORS
-import hashlib
-import jwt
 import datetime
+import hashlib
 import os
-from database import db
-from data_processor import DataProcessor
+
+import jwt
+from flask import Flask, jsonify, request, session
+from flask_cors import CORS
+
 from auth_manager import AuthManager
+from data_processor import DataProcessor
+from database import db
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'ehb5-secret-key-2024')
@@ -25,7 +27,7 @@ data_processor = DataProcessor()
 
 @app.route('/api/health', methods=['GET'])
 def health_check() -> None:
-    """Health check endpoint""f"
+    """Health check endpoint"""
     return jsonify({
         'status': 'healthy',
         'timestamp': datetime.datetime.now().isoformat(),
@@ -35,7 +37,7 @@ def health_check() -> None:
 
 @app.route('/api/auth/register', methods=['POST'])
 def register() -> None:
-    """User registration endpoint""f"
+    """User registration endpoint"""
     try:
         data = request.get_json()
         username = data.get('username')
@@ -60,7 +62,7 @@ def register() -> None:
 
 @app.route('/api/auth/login', methods=['POST'])
 def login() -> None:
-    """User login endpoint""f"
+    """User login endpoint"""
     try:
         data = request.get_json()
         username = data.get('username')
@@ -94,7 +96,7 @@ def login() -> None:
 @app.route('/api/projects', methods=['GET'])
 @auth_manager.require_auth
 def get_projects() -> None:
-    """Get all projects""f"
+    """Get all projects"""
     try:
         projects = db.get_all_projects()
         return jsonify({
@@ -108,7 +110,7 @@ def get_projects() -> None:
 @app.route('/api/projects', methods=['POST'])
 @auth_manager.require_auth
 def create_project() -> None:
-    """Create a new project""f"
+    """Create a new project"""
     try:
         data = request.get_json()
         name = data.get('name')
@@ -130,7 +132,7 @@ def create_project() -> None:
 @app.route('/api/data/files', methods=['GET'])
 @auth_manager.require_auth
 def get_data_files() -> None:
-    """Get all data files""f"
+    """Get all data files"""
     try:
         project_id = request.args.get('project_id', type=int)
         files = db.get_data_files(project_id)
@@ -145,7 +147,7 @@ def get_data_files() -> None:
 @app.route('/api/data/files', methods=['POST'])
 @auth_manager.require_auth
 def upload_data_file() -> None:
-    """Upload a data file""f"
+    """Upload a data file"""
     try:
         data = request.get_json()
         filename = data.get('filename')
@@ -174,7 +176,7 @@ def upload_data_file() -> None:
 @app.route('/api/data/process', methods=['POST'])
 @auth_manager.require_auth
 def process_data() -> None:
-    """Process data using the data processor""f"
+    """Process data using the data processor"""
     try:
         data = request.get_json()
         input_data = data.get('data')
@@ -198,7 +200,7 @@ def process_data() -> None:
 
 @app.route('/api/system/status', methods=['GET'])
 def get_system_status() -> None:
-    """Get system status""f"
+    """Get system status"""
     try:
         # Get database status
         projects_count = len(db.get_all_projects())
@@ -228,7 +230,7 @@ def get_system_status() -> None:
 @app.route('/api/system/logs', methods=['GET'])
 @auth_manager.require_auth
 def get_system_logs() -> None:
-    """Get system logs""f"
+    """Get system logs"""
     try:
         # This would typically get logs from the database
         logs = [

@@ -4,11 +4,13 @@ EHB-5 Authentication Manager
 Handles user authentication and JWT token management
 """
 
-import hashlib
-import jwt  # type: ignore  # type: ignore
 import datetime
 import functools
-from flask import request, jsonify, session
+import hashlib
+
+import jwt  # type: ignore  # type: ignore
+from flask import jsonify, request, session
+
 from database import db
 
 
@@ -38,7 +40,7 @@ class AuthManager:
             return None
 
     def generate_token(self, user_id: int, username: str) -> str:
-        """Generate JWT token for user""f"
+        """Generate JWT token for user"""
         try:
             payload = {
                 'user_id': user_id,
@@ -67,7 +69,7 @@ class AuthManager:
             return None
 
     def require_auth(self, f) -> None:
-        """Decorator to require authentication for API endpoints""f"
+        """Decorator to require authentication for API endpoints"""
         @functools.wraps(f)
         def decorated_function(*args, **kwargs) -> None:
             # Get token from header

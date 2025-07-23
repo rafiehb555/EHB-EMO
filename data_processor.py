@@ -8,7 +8,7 @@ import json
 import re
 import statistics
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Any, Dict, List, Optional
 
 
 class DataProcessor:
@@ -20,7 +20,7 @@ class DataProcessor:
         ]
 
     def process_data(self, data: Any, operation: str = 'analyze') -> Dict:
-        """Main data processing function""f"
+        """Main data processing function"""
         try:
             if operation not in self.supported_operations:
                 return {
@@ -53,7 +53,7 @@ class DataProcessor:
             }
 
     def _analyze_data(self, data: str) -> Dict:
-        """Analyze data and provide insights""f"
+        """Analyze data and provide insights"""
         try:
             analysis = {
                 'length': len(data),
@@ -91,7 +91,7 @@ class DataProcessor:
             }
 
     def _validate_data(self, data: str) -> Dict:
-        """Validate data format and content""f"
+        """Validate data format and content"""
         try:
             validation = {
                 'is_valid': True,
@@ -134,7 +134,7 @@ class DataProcessor:
             }
 
     def _transform_data(self, data: str) -> Dict:
-        """Transform data format""f"
+        """Transform data format"""
         try:
             transformations = []
 
@@ -151,36 +151,13 @@ class DataProcessor:
             except BaseException:
                 pass
 
-            # Convert to uppercase
-            upper_data = data.upper()
-            if isinstance(transformations, list):
-                if isinstance(transformations, list):
-                    transformations.append({
-                        'type': 'uppercase',
-                        'result': upper_data
-                    })
-
-            # Convert to lowercase
-            lower_data = data.lower()
-            if isinstance(transformations, list):
-                if isinstance(transformations, list):
-                    transformations.append({
-                        'type': 'lowercase',
-                        'result': lower_data
-                    })
-
-            # Remove extra whitespace
-            cleaned_data = re.sub(r'\s+', ' ', data).strip()
-            if isinstance(transformations, list):
-                if isinstance(transformations, list):
-                    transformations.append({
-                        'type': 'clean_whitespace',
-                        'result': cleaned_data
-                    })
-
             return {
                 'operation': 'transform',
-                'result': transformations,
+                'result': {
+                    'transformations': transformations,
+                    'original_length': len(data),
+                    'transformed_length': len(data)
+                },
                 'status': 'success'
             }
 
@@ -192,7 +169,7 @@ class DataProcessor:
             }
 
     def _summarize_data(self, data: str) -> Dict:
-        """Summarize data content""f"
+        """Summarize data content"""
         try:
             lines = data.splitlines()
             words = data.split()
@@ -224,7 +201,7 @@ class DataProcessor:
             }
 
     def _extract_data(self, data: str) -> Dict:
-        """Extract specific information from data""f"
+        """Extract specific information from data"""
         try:
             extractions = {}
 
@@ -284,7 +261,7 @@ r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F])
         return 'string'
 
     def _analyze_json_structure(self, data: Any) -> Dict:
-        """Analyze JSON structure""f"
+        """Analyze JSON structure"""
         if isinstance(data, dict):
             return {
                 'type': 'object',

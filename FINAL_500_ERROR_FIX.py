@@ -18,6 +18,8 @@ def diagnose_500_error():
 
     # Check current deployment status
     try:
+
+
 result = subprocess.run(['vercel', 'ls'], capture_output=True, text=True)
         print("📊 Current Deployments:")
         print(result.stdout)
@@ -80,9 +82,7 @@ EHB-5 Vercel API Handler - FIXED VERSION
 Simplified API for Vercel serverless deployment
 """
 
-import json
 import datetime
-import os
 
 
 def handler(request, context):

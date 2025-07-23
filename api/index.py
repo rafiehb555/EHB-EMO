@@ -36,7 +36,8 @@ def handler(request, context):
 
     except Exception as e:
         print(f"ERROR in handler: {str(e)}")
-        return create_response({'error': 'Internal server error', 'details': str(e)}, 500)
+        return create_response(
+            {'error': 'Internal server error', 'details': str(e)}, 500)
 
 
 def handle_get_request(path):
@@ -51,7 +52,8 @@ def handle_get_request(path):
         elif path == '/api/public':
             return send_public_response()
         else:
-            return create_response({'error': 'Endpoint not found', 'path': path}, 404)
+            return create_response(
+                {'error': 'Endpoint not found', 'path': path}, 404)
     except Exception as e:
         print(f"ERROR in handle_get_request: {str(e)}")
         return create_response({'error': 'Request processing error'}, 500)

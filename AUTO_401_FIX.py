@@ -80,9 +80,7 @@ EHB-5 PUBLIC API Handler - NO AUTHENTICATION REQUIRED
 Simplified API for public access
 """
 
-import json
 import datetime
-import os
 
 
 def handler(request, context):
@@ -258,6 +256,8 @@ def deploy_public_version():
     print("=" * 50)
 
     try:
+
+
 result = subprocess.run(['vercel', '--prod'], capture_output=True, text=True)
         print("📊 Deployment Output:")
         print(result.stdout)
