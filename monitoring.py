@@ -16,13 +16,13 @@ from database import db
 class SystemMonitor:
     """System monitoring and health checks"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.metrics = {}
         self.alerts = []
         self.monitoring_active = False
         self.monitor_thread = None
 
-    def start_monitoring(self):
+    def start_monitoring(self) -> None:
         """Start system monitoring"""
         if not self.monitoring_active:
             self.monitoring_active = True
@@ -31,14 +31,14 @@ class SystemMonitor:
             self.monitor_thread.start()
             print("✅ System monitoring started")
 
-    def stop_monitoring(self):
+    def stop_monitoring(self) -> None:
         """Stop system monitoring"""
         self.monitoring_active = False
         if self.monitor_thread:
             self.monitor_thread.join()
         print("🛑 System monitoring stopped")
 
-    def _monitor_loop(self):
+    def _monitor_loop(self) -> None:
         """Main monitoring loop"""
         while self.monitoring_active:
             try:
@@ -58,7 +58,7 @@ class SystemMonitor:
                 print(f"❌ Monitoring error: {e}")
                 time.sleep(60)
 
-    def _collect_metrics(self):
+    def _collect_metrics(self) -> None:
         """Collect system metrics"""
         try:
             # CPU metrics
@@ -127,7 +127,7 @@ class SystemMonitor:
         except Exception as e:
             print(f"❌ Metrics collection error: {e}")
 
-    def _check_alerts(self):
+    def _check_alerts(self) -> None:
         """Check for system alerts"""
         alerts = []
 
@@ -188,14 +188,14 @@ class SystemMonitor:
             if datetime.fromisoformat(alert["timestamp"]) > cutoff_time
         ]
 
-    def _log_metrics(self):
+    def _log_metrics(self) -> None:
         """Log metrics to database"""
         try:
             # Log system metrics
             db.log_system_event(
                 'INFO',
-f"System metrics: CPU {self.metrics.get('cpu', {}).get('percent', 0)}%, Memory
-    {self.metrics.get('memory', {}).get('percent', 0)}%")
+f"System metrics: CPU {self.metrics.get('cpu', {}).get('percent', 0)} %, Memory
+                {self.metrics.get('memory', {}).get('percent', 0)} %")
 
             # Log alerts
             for alert in self.alerts[-5:]:  # Log last 5 alerts
@@ -255,7 +255,7 @@ f"System metrics: CPU {self.metrics.get('cpu', {}).get('percent', 0)}%, Memory
 class PerformanceMonitor:
     """Performance monitoring and optimization"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.performance_data = []
         self.slow_queries = []
         self.api_response_times = []
@@ -322,12 +322,12 @@ class PerformanceMonitor:
 class AlertManager:
     """Alert management and notification system"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.alert_rules = []
         self.notifications = []
         self.setup_default_rules()
 
-    def setup_default_rules(self):
+    def setup_default_rules(self) -> None:
         """Setup default alert rules"""
         self.alert_rules = [
             {
@@ -371,7 +371,7 @@ class AlertManager:
         }
         self.alert_rules.append(rule)
 
-    def send_notification(self, alert: Dict):
+    def send_notification(self, alert: Dict) -> None:
         """Send notification for an alert"""
         notification = {
             "id": len(self.notifications) + 1,

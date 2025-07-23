@@ -15,13 +15,13 @@ from typing import Any, Dict, List
 class RealTimeProblemDetector:
     """Real-time problem detection and fixing system"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.problems_found = []
         self.problems_fixed = []
         self.monitoring_active = False
         self.fix_history = []
 
-    def start_monitoring(self):
+    def start_monitoring(self) -> None:
         """Start real-time problem monitoring"""
         print("🔍 Starting Real-Time Problem Detection...")
         print("=" * 50)
@@ -240,7 +240,7 @@ word) if current_line else word
 
         return False
 
-    def log_fix(self, problem: Dict[str, Any]):
+    def log_fix(self, problem: Dict[str, Any]) -> None:
         """Log a fix operation"""
         fix_log = {
             'timestamp': datetime.now().isoformat(),
@@ -251,7 +251,7 @@ word) if current_line else word
         }
         self.fix_history.append(fix_log)
 
-    def generate_problem_report(self):
+    def generate_problem_report(self) -> None:
         """Generate problem detection report"""
         report = f"""
 🔍 Real-Time Problem Detection Report
@@ -280,7 +280,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
         print(report)
 
-    def run_autopep8_on_all_files(self):
+    def run_autopep8_on_all_files(self) -> None:
         """Run autopep8 on all Python files"""
         try:
             print("🔧 Running autopep8 on all files...")
@@ -310,7 +310,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         except Exception as e:
             print(f"❌ Error running autopep8: {e}")
 
-    def install_missing_packages(self):
+    def install_missing_packages(self) -> None:
         """Install missing type stubs and packages"""
         try:
             print("📦 Installing missing packages...")
@@ -341,7 +341,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             print(f"❌ Error installing packages: {e}")
 
 
-def main():
+def main() -> None:
     """Main function to run real-time problem detection"""
     print("🚀 EHB-5 Real-Time Problem Detector")
     print("=" * 50)

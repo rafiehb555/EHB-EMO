@@ -16,7 +16,7 @@ from enterprise_analytics import enterprise_analytics
 class EnterpriseDashboard:
     """Enterprise-grade dashboard system"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.dashboard_config = {
             "refresh_interval": 30,  # seconds
             "max_data_points": 1000,
@@ -36,6 +36,7 @@ class EnterpriseDashboard:
             system_metrics = enterprise_monitor.get_enterprise_dashboard_data()
             security_analytics = enterprise_security.get_security_analytics()
 
+
             # Generate analytics reports
 performance_report = enterprise_analytics.generate_system_performance_report()
 security_report = enterprise_analytics.generate_security_analysis_report()
@@ -43,38 +44,38 @@ user_activity_report = enterprise_analytics.generate_user_activity_report()
 processing_report = enterprise_analytics.generate_data_processing_report()
 ai_analytics_report = enterprise_analytics.generate_ai_agent_analytics_report()
 
-            # Compile dashboard data
-            dashboard_data = {
-                "timestamp": datetime.now().isoformat(),
-                "system_overview": self._get_system_overview(system_metrics),
-                "security_overview": self._get_security_overview(
-                    security_analytics,
-                    security_report),
-"performance_overview": self._get_performance_overview(performance_report),
-                "user_overview": self._get_user_overview(user_activity_report),
-"processing_overview": self._get_processing_overview(processing_report),
-                "ai_overview": self._get_ai_overview(ai_analytics_report),
-                "alerts": self._get_active_alerts(
-                    system_metrics,
-                    security_analytics),
-                "recommendations": self._get_dashboard_recommendations(
-                    system_metrics,
-                    security_analytics,
-                    performance_report),
-                "status": self._get_overall_status(
-                    system_metrics,
-                    security_analytics)}
+# Compile dashboard data
+dashboard_data = {
+    "timestamp": datetime.now().isoformat(),
+    "system_overview": self._get_system_overview(system_metrics),
+    "security_overview": self._get_security_overview(
+        security_analytics,
+        security_report),
+    "performance_overview": self._get_performance_overview(performance_report),
+    "user_overview": self._get_user_overview(user_activity_report),
+    "processing_overview": self._get_processing_overview(processing_report),
+    "ai_overview": self._get_ai_overview(ai_analytics_report),
+    "alerts": self._get_active_alerts(
+        system_metrics,
+        security_analytics),
+    "recommendations": self._get_dashboard_recommendations(
+        system_metrics,
+        security_analytics,
+        performance_report),
+    "status": self._get_overall_status(
+        system_metrics,
+        security_analytics)}
 
-            self.dashboard_data = dashboard_data
-            self.last_update = datetime.now()
+self.dashboard_data = dashboard_data
+self.last_update = datetime.now()
 
-            return dashboard_data
+return dashboard_data
 
-        except Exception as e:
-            return {
-                "error": f"Dashboard data error: {str(e)}",
-                "timestamp": datetime.now().isoformat()
-            }
+except Exception as e:
+    return {
+        "error": f"Dashboard data error: {str(e)}",
+        "timestamp": datetime.now().isoformat()
+    }
 
     def _get_system_overview(
             self, system_metrics: Dict[str, Any]) -> Dict[str, Any]:
@@ -171,8 +172,8 @@ ai_analytics_report = enterprise_analytics.generate_ai_agent_analytics_report()
                     "metrics", {}).get(
 "login_success_rate", 0), "user_engagement": user_activity_report.get(
 "user_engagement", {}), "most_active_users": user_activity_report.get(
-                            "metrics", {}).get(
-                                "most_active_users", [])}
+                    "metrics", {}).get(
+                    "most_active_users", [])}
         except Exception as e:
             return {"error": f"User overview error: {str(e)}"}
 
@@ -265,7 +266,7 @@ ai_analytics_report = enterprise_analytics.generate_ai_agent_analytics_report()
                 "type": "high_security_events",
                 "severity": "warning",
 "message": f"High security events: {security_analytics['total_events_24h']} in
-    24h",
+                24h",
                 "timestamp": datetime.now().isoformat(),
                 "category": "security"
             })
@@ -379,13 +380,13 @@ Any]) -> List[str]:
                     "health_score", 0), "security_score": dashboard_data.get(
                     "security_overview", {}).get(
 "security_score", 0), "performance_score": dashboard_data.get(
-                            "performance_overview", {}).get(
-                                "performance_score", 0), "active_alerts": len(
-                                    dashboard_data.get(
-"alerts", [])), "recommendations_count": len(
-                                            dashboard_data.get(
+                    "performance_overview", {}).get(
+                    "performance_score", 0), "active_alerts": len(
+                    dashboard_data.get(
+                        "alerts", [])), "recommendations_count": len(
+                    dashboard_data.get(
 "recommendations", [])), "last_updated": dashboard_data.get(
-                                                    "timestamp", "")}
+                    "timestamp", "")}
 
         except Exception as e:
             return {

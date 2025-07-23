@@ -8,7 +8,7 @@ import subprocess
 import time
 
 
-def check_git_changes():
+def check_git_changes() -> None:
     """Check if there are new commits to deploy"""
     try:
         result = subprocess.run(
@@ -20,7 +20,7 @@ def check_git_changes():
         return False
 
 
-def deploy_to_vercel():
+def deploy_to_vercel() -> None:
     """Deploy to Vercel"""
     print("🚀 Deploying to Vercel...")
 
@@ -42,31 +42,33 @@ def deploy_to_vercel():
         return False
 
 
-def test_deployment():
+def test_deployment() -> None:
     """Test the deployment"""
     print("🧪 Testing deployment...")
 
     try:
+
+
         # Test health check
 url = "https://ehb-5-exyq48ygf-rafiehb555s-projects.vercel.app/api/health"
-        result = subprocess.run(
-            ["curl", "-f", url],
-            capture_output=True, text=True
-        )
+result = subprocess.run(
+    ["curl", "-f", url],
+    capture_output=True, text=True
+)
 
-        if result.returncode == 0:
-            print("✅ Health check passed!")
-            return True
-        else:
-            print("❌ Health check failed")
-            return False
+if result.returncode == 0:
+    print("✅ Health check passed!")
+    return True
+    else:
+        print("❌ Health check failed")
+        return False
 
     except Exception as e:
         print(f"❌ Test error: {e}")
         return False
 
 
-def run_auto_deployment():
+def run_auto_deployment() -> None:
     """Run automatic deployment"""
     print("🤖 Starting automatic deployment...")
 
@@ -89,7 +91,7 @@ def run_auto_deployment():
     return True
 
 
-def start_continuous_deployment():
+def start_continuous_deployment() -> None:
     """Start continuous deployment monitoring"""
     print("🔄 Starting continuous deployment monitoring...")
     print("📡 Monitoring for changes every 30 seconds...")

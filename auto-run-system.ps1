@@ -283,8 +283,12 @@ function Show-SystemStatus {
         Write-Host ""
         Write-Host "🤖 AI AGENTS" -ForegroundColor Blue
         foreach ($agent in $agents) {
-            $statusColor = if ($agent.status -eq "active") { "Green" } else { "Red" }
-            Write-Host "$($agent.name): $($agent.status)" -ForegroundColor $statusColor
+            if ($agent.status -eq "active") {
+                Write-Host "$($agent.name): $($agent.status)" -ForegroundColor Green
+            }
+            else {
+                Write-Host "$($agent.name): $($agent.status)" -ForegroundColor Red
+            }
         }
     }
 

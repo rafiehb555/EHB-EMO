@@ -18,13 +18,13 @@ import psutil
 class ComprehensiveSystem:
     """Comprehensive EHB-5 system management"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.system_status = {}
         self.agents_data = {}
         self.features_data = {}
         self.monitoring_active = False
 
-    def initialize_system(self):
+    def initialize_system(self) -> None:
         """Initialize the comprehensive system"""
         print("🚀 Initializing EHB-5 Comprehensive System...")
         print("=" * 60)
@@ -40,7 +40,7 @@ class ComprehensiveSystem:
 
         print("✅ System initialized successfully!")
 
-    def collect_system_data(self):
+    def collect_system_data(self) -> None:
         """Collect comprehensive system data"""
         try:
             # System metrics
@@ -96,7 +96,7 @@ class ComprehensiveSystem:
         else:
             return "🔴 Poor"
 
-    def initialize_features(self):
+    def initialize_features(self) -> None:
         """Initialize all system features"""
         try:
             # Initialize 44 agents
@@ -107,7 +107,7 @@ class ComprehensiveSystem:
 'dashboard': {'status': 'Active', 'url': 'http://localhost:8000'},
                 'monitoring': {'status': 'Active', 'real_time': True},
 'auto_fix': {'status': 'Active', 'files_monitored': len([f for f in
-    os.listdir('.') if f.endswith('.py')])},
+os.listdir('.') if f.endswith('.py')])},
 'optimization': {'status': 'Active', 'performance_improvement': '15%'},
                 'security': {'status': 'Active', 'threats_detected': 0},
                 'real_time_monitor': {'status': 'Active'},
@@ -254,7 +254,7 @@ class ComprehensiveSystem:
 
         return agents
 
-    def start_monitoring(self):
+    def start_monitoring(self) -> None:
         """Start system monitoring"""
         try:
             self.monitoring_active = True
@@ -271,7 +271,7 @@ class ComprehensiveSystem:
         except Exception as e:
             print(f"❌ Error starting monitoring: {e}")
 
-    def start_dashboard(self):
+    def start_dashboard(self) -> None:
         """Start the web dashboard"""
         try:
             # Check if dashboard is already running
@@ -284,7 +284,7 @@ class ComprehensiveSystem:
         except Exception as e:
             print(f"❌ Error starting dashboard: {e}")
 
-    def start_real_time_monitor(self):
+    def start_real_time_monitor(self) -> None:
         """Start real-time monitoring"""
         try:
             print("🔍 Starting real-time monitor...")
@@ -369,7 +369,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         except Exception as e:
             print(f"❌ Error saving system data: {e}")
 
-    def run_system(self):
+    def run_system(self) -> None:
         """Run the comprehensive system"""
         print("🚀 Starting EHB-5 Comprehensive System...")
         print("=" * 60)
@@ -390,7 +390,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         print("🚀 System is ready for production use!")
 
 
-def main():
+def main() -> None:
     """Main function to run comprehensive system"""
     system = ComprehensiveSystem()
     system.run_system()

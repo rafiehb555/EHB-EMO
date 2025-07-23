@@ -16,7 +16,7 @@ from database import db
 class DatabaseMigration:
     """Database migration system for production deployment"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.migration_config = {
             "source": {
                 "type": "sqlite",
@@ -44,48 +44,50 @@ class DatabaseMigration:
         print("💾 Creating SQLite database backup...")
 
         try:
+
+
 backup_path = f"ehb5_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.db"
 
-            # Connect to source database
-            source_conn = sqlite3.connect(
-                self.migration_config["source"]["path"])
-            source_cursor = source_conn.cursor()
+# Connect to source database
+source_conn = sqlite3.connect(
+    self.migration_config["source"]["path"])
+source_cursor = source_conn.cursor()
 
-            # Create backup
-            backup_conn = sqlite3.connect(backup_path)
-            source_conn.backup(backup_conn)
+# Create backup
+backup_conn = sqlite3.connect(backup_path)
+source_conn.backup(backup_conn)
 
-            # Verify backup
-            backup_cursor = backup_conn.cursor()
-            backup_cursor.execute(
-                "SELECT COUNT(*) FROM sqlite_master WHERE type='table'")
-            table_count = backup_cursor.fetchone()[0]
+# Verify backup
+backup_cursor = backup_conn.cursor()
+backup_cursor.execute(
+    "SELECT COUNT(*) FROM sqlite_master WHERE type='table'")
+table_count = backup_cursor.fetchone()[0]
 
-            source_cursor.execute(
-                "SELECT COUNT(*) FROM sqlite_master WHERE type='table'")
-            source_table_count = source_cursor.fetchone()[0]
+source_cursor.execute(
+    "SELECT COUNT(*) FROM sqlite_master WHERE type='table'")
+source_table_count = source_cursor.fetchone()[0]
 
-            if table_count == source_table_count:
-                print(f"✅ Backup created successfully: {backup_path}")
-                print(f"📊 Tables backed up: {table_count}")
+if table_count == source_table_count:
+    print(f"✅ Backup created successfully: {backup_path}")
+    print(f"📊 Tables backed up: {table_count}")
 
-                self.migration_log.append({
-                    "timestamp": datetime.now().isoformat(),
-                    "action": "backup_created",
-                    "backup_path": backup_path,
-                    "table_count": table_count
-                })
+    self.migration_log.append({
+        "timestamp": datetime.now().isoformat(),
+        "action": "backup_created",
+        "backup_path": backup_path,
+        "table_count": table_count
+    })
 
-                return {
-                    "status": "success",
-                    "backup_path": backup_path,
-                    "table_count": table_count
-                }
-            else:
-                print("❌ Backup verification failed")
-                return {
-                    "status": "error",
-                    "message": "Backup verification failed"}
+    return {
+        "status": "success",
+        "backup_path": backup_path,
+        "table_count": table_count
+    }
+    else:
+        print("❌ Backup verification failed")
+        return {
+            "status": "error",
+            "message": "Backup verification failed"}
 
         except Exception as e:
             print(f"❌ Backup error: {e}")
@@ -162,31 +164,31 @@ backup_path = f"ehb5_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.db"
             # Create tables
             created_tables = []
 for table_name, table_info in schema_analysis["schema"]["tables"].items(
-            ):
-                columns = table_info["columns"]
-                column_types = table_info["column_types"]
+):
+    columns = table_info["columns"]
+    column_types = table_info["column_types"]
 
-                # Map SQLite types to PostgreSQL types
-                pg_column_definitions = []
-                for i, (col_name, col_type) in enumerate(
-                        zip(columns, column_types)):
-                    pg_type = self._map_sqlite_to_postgresql_type(col_type)
-                    pg_column_definitions.append(f"{col_name} {pg_type}")
+    # Map SQLite types to PostgreSQL types
+    pg_column_definitions = []
+    for i, (col_name, col_type) in enumerate(
+            zip(columns, column_types)):
+        pg_type = self._map_sqlite_to_postgresql_type(col_type)
+        pg_column_definitions.append(f"{col_name} {pg_type}")
 
-                # Create table
-                create_table_sql = f"""
+        # Create table
+        create_table_sql = f"""
                 CREATE TABLE IF NOT EXISTS {table_name} (
                     {', '.join(pg_column_definitions)}
                 );
                 """
 
-                cursor.execute(create_table_sql)
-                created_tables.append(table_name)
+        cursor.execute(create_table_sql)
+        created_tables.append(table_name)
 
-            # Create indexes for better performance
-            if self.migration_config["migration_options"]["create_indexes"]:
-                self._create_postgresql_indexes(
-                    cursor, schema_analysis["schema"]["tables"])
+        # Create indexes for better performance
+        if self.migration_config["migration_options"]["create_indexes"]:
+            self._create_postgresql_indexes(
+                cursor, schema_analysis["schema"]["tables"])
 
             conn.commit()
 
@@ -230,13 +232,13 @@ for table_name, table_info in schema_analysis["schema"]["tables"].items(
         elif "BLOB" in sqlite_type_upper:
             return "BYTEA"
 elif "DATETIME" in sqlite_type_upper or "TIMESTAMP" in sqlite_type_upper:
-            return "TIMESTAMP"
-        elif "BOOLEAN" in sqlite_type_upper:
-            return "BOOLEAN"
+    return "TIMESTAMP"
+    elif "BOOLEAN" in sqlite_type_upper:
+        return "BOOLEAN"
         else:
             return "TEXT"  # Default to TEXT for unknown types
 
-    def _create_postgresql_indexes(self, cursor, tables: Dict[str, Any]):
+def _create_postgresql_indexes(self, cursor, tables: Dict[str, Any]) -> None:
         """Create indexes for better PostgreSQL performance"""
         print("🔍 Creating PostgreSQL indexes...")
 
@@ -289,48 +291,48 @@ f"CREATE INDEX IF NOT EXISTS {index_name} ON {table_name} ({column})")
             }
 
 for table_name, table_info in schema_analysis["schema"]["tables"].items(
-            ):
-                try:
-                    print(f"📦 Migrating table: {table_name}")
+):
+    try:
+        print(f"📦 Migrating table: {table_name}")
 
-                    # Get all data from SQLite
-                    sqlite_cursor.execute(f"SELECT * FROM {table_name}")
-                    rows = sqlite_cursor.fetchall()
+        # Get all data from SQLite
+        sqlite_cursor.execute(f"SELECT * FROM {table_name}")
+        rows = sqlite_cursor.fetchall()
 
-                    if rows:
-                        # Prepare insert statement
-                        columns = table_info["columns"]
-                        placeholders = ", ".join(["%s"] * len(columns))
-insert_sql = f"INSERT INTO {table_name} ({', '.join(columns)}) VALUES
-    ({placeholders})"
+        if rows:
+            # Prepare insert statement
+            columns = table_info["columns"]
+            placeholders = ", ".join(["%s"] * len(columns))
+insert_sql = f"INSERT INTO {table_name}({', '.join(columns)}) VALUES
+({placeholders})"
 
-                        # Insert data into PostgreSQL
-                        pg_cursor.executemany(insert_sql, rows)
+# Insert data into PostgreSQL
+pg_cursor.executemany(insert_sql, rows)
 
-                        migration_stats["tables_migrated"] += 1
-                        migration_stats["total_records_migrated"] += len(rows)
+migration_stats["tables_migrated"] += 1
+migration_stats["total_records_migrated"] += len(rows)
 
-                        print(
-f"✅ Migrated {len(rows)} records from {table_name}")
-                    else:
-                        print(f"ℹ️ Table {table_name} is empty")
+print(
+    f"✅ Migrated {len(rows)} records from {table_name}")
+else:
+    print(f"ℹ️ Table {table_name} is empty")
 
-                except Exception as e:
-                    error_msg = f"Error migrating table {table_name}: {e}"
-                    print(f"❌ {error_msg}")
-                    migration_stats["errors"].append(error_msg)
+    except Exception as e:
+        error_msg = f"Error migrating table {table_name}: {e}"
+        print(f"❌ {error_msg}")
+        migration_stats["errors"].append(error_msg)
 
-            # Commit changes
-            pg_conn.commit()
+        # Commit changes
+        pg_conn.commit()
 
-            print(f"✅ Data migration completed")
-            print(f"📊 Tables migrated: {migration_stats['tables_migrated']}")
-            print(
+        print(f"✅ Data migration completed")
+        print(f"📊 Tables migrated: {migration_stats['tables_migrated']}")
+        print(
 f"📊 Total records migrated: {migration_stats['total_records_migrated']}")
 
-            if migration_stats["errors"]:
-                print(
-                    f"⚠️ Errors encountered: {len(migration_stats['errors'])}")
+        if migration_stats["errors"]:
+            print(
+                f"⚠️ Errors encountered: {len(migration_stats['errors'])}")
 
             return {
                 "status": "success",
@@ -374,30 +376,30 @@ f"📊 Total records migrated: {migration_stats['total_records_migrated']}")
             }
 
 for table_name, table_info in schema_analysis["schema"]["tables"].items(
-            ):
-                try:
-                    # Count records in SQLite
-                    sqlite_cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
-                    sqlite_count = sqlite_cursor.fetchone()[0]
+):
+    try:
+        # Count records in SQLite
+        sqlite_cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
+        sqlite_count = sqlite_cursor.fetchone()[0]
 
-                    # Count records in PostgreSQL
-                    pg_cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
-                    pg_count = pg_cursor.fetchone()[0]
+        # Count records in PostgreSQL
+        pg_cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
+        pg_count = pg_cursor.fetchone()[0]
 
-                    if sqlite_count == pg_count:
-                        validation_results["matching_records"] += 1
-                        print(f"✅ {table_name}: {sqlite_count} records match")
-                    else:
-                        validation_results["mismatches"].append({
-                            "table": table_name,
-                            "sqlite_count": sqlite_count,
-                            "postgresql_count": pg_count
-                        })
-                        validation_results["overall_success"] = False
-                        print(
-f"❌ {table_name}: {sqlite_count} vs {pg_count} records")
+        if sqlite_count == pg_count:
+            validation_results["matching_records"] += 1
+            print(f"✅ {table_name}: {sqlite_count} records match")
+            else:
+                validation_results["mismatches"].append({
+                    "table": table_name,
+                    "sqlite_count": sqlite_count,
+                    "postgresql_count": pg_count
+                })
+                validation_results["overall_success"] = False
+                print(
+                    f"❌ {table_name}: {sqlite_count} vs {pg_count} records")
 
-                    validation_results["tables_validated"] += 1
+                validation_results["tables_validated"] += 1
 
                 except Exception as e:
                     print(f"❌ Validation error for {table_name}: {e}")
@@ -527,11 +529,11 @@ Migration completed at: {datetime.now().isoformat()}
         print("\n" + "=" * 50)
         print("🎉 DATABASE MIGRATION COMPLETED SUCCESSFULLY!")
         print(
-f"📊 Records migrated: {migration_result.get('stats',
-    {}).get('total_records_migrated', 0)}")
+            f"📊 Records migrated: {migration_result.get('stats',
+{}).get('total_records_migrated', 0)}")
         print(
-f"✅ Validation: {'Passed' if validation_result.get('validation',
-    {}).get('overall_success', False) else 'Failed'}")
+            f"✅ Validation: {'Passed' if validation_result.get('validation',
+{}).get('overall_success', False) else 'Failed'}")
         print("📋 Report: database_migration_report.md")
         print("=" * 50)
 

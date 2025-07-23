@@ -16,7 +16,7 @@ from database import db
 class SecurityManager:
     """Enterprise security manager"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.failed_attempts = {}
         self.blocked_ips = {}
         self.session_tokens = {}
@@ -102,7 +102,7 @@ class SecurityManager:
                 del self.blocked_ips[ip_address]
         return False
 
-    def record_failed_attempt(self, ip_address: str, username: str):
+    def record_failed_attempt(self, ip_address: str, username: str) -> None:
         """Record a failed login attempt"""
         key = f"{ip_address}:{username}"
 
@@ -168,24 +168,25 @@ class SecurityManager:
         if session["ip_address"] is None and ip_address:
             session["ip_address"] = ip_address
 
+
         # Check IP address if set
 if session["ip_address"] and ip_address and session["ip_address"] !=
-    ip_address:
-            self.log_security_event(
-                "SUSPICIOUS",
-                f"Session IP mismatch for user {session['username']}")
-            return None
+ip_address:
+    self.log_security_event(
+        "SUSPICIOUS",
+        f"Session IP mismatch for user {session['username']}")
+    return None
 
-        # Extend session
-        session["expires"] = datetime.now(
-        ) + timedelta(seconds=self.session_timeout)
+    # Extend session
+    session["expires"] = datetime.now(
+    ) + timedelta(seconds=self.session_timeout)
 
-        return {
-            "user_id": session["user_id"],
-            "username": session["username"]
-        }
+    return {
+        "user_id": session["user_id"],
+        "username": session["username"]
+    }
 
-    def revoke_session(self, token: str):
+    def revoke_session(self, token: str) -> None:
         """Revoke a session token"""
         if token in self.session_tokens:
             username = self.session_tokens[token]["username"]
@@ -248,7 +249,7 @@ if session["ip_address"] and ip_address and session["ip_address"] !=
 class RateLimiter:
     """API rate limiting"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.requests = {}
         self.max_requests = 100  # per minute
         self.window_size = 60  # seconds

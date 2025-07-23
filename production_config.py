@@ -12,11 +12,11 @@ from pathlib import Path
 class ProductionConfig:
     """Production configuration manager"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.config_file = "production_config.json"
         self.load_config()
 
-    def load_config(self):
+    def load_config(self) -> None:
         """Load production configuration"""
         if os.path.exists(self.config_file):
             with open(self.config_file, 'r') as f:
@@ -24,7 +24,7 @@ class ProductionConfig:
         else:
             self.create_default_config()
 
-    def create_default_config(self):
+    def create_default_config(self) -> None:
         """Create default production configuration"""
         self.config = {
             "environment": "production",
@@ -76,12 +76,12 @@ class ProductionConfig:
         }
         self.save_config()
 
-    def save_config(self):
+    def save_config(self) -> None:
         """Save configuration to file"""
         with open(self.config_file, 'w') as f:
             json.dump(self.config, f, indent=2)
 
-    def get_setting(self, key, default=None):
+    def get_setting(self, key, default=None) -> None:
         """Get a configuration setting"""
         keys = key.split('.')
         value = self.config
@@ -94,7 +94,7 @@ class ProductionConfig:
 
         return value
 
-    def set_setting(self, key, value):
+    def set_setting(self, key, value) -> None:
         """Set a configuration setting"""
         keys = key.split('.')
         config = self.config
@@ -107,7 +107,7 @@ class ProductionConfig:
         config[keys[-1]] = value
         self.save_config()
 
-    def validate_config(self):
+    def validate_config(self) -> None:
         """Validate production configuration"""
         errors = []
         warnings = []
@@ -144,7 +144,7 @@ class ProductionConfig:
             "warnings": warnings
         }
 
-    def get_environment_vars(self):
+    def get_environment_vars(self) -> None:
         """Get environment variables for production"""
         return {
             "EHB5_ENVIRONMENT": self.get_setting("environment", "production"),
@@ -157,7 +157,7 @@ class ProductionConfig:
             "DEBUG": str(self.get_setting("debug", False)).lower()
         }
 
-    def generate_docker_config(self):
+    def generate_docker_config(self) -> None:
         """Generate Docker configuration"""
         dockerfile = """FROM python:3.10-slim
 
@@ -236,7 +236,7 @@ volumes:
         print("✅ Docker configuration generated")
         return True
 
-    def generate_nginx_config(self):
+    def generate_nginx_config(self) -> None:
         """Generate Nginx configuration"""
         nginx_config = """server {
     listen 80;

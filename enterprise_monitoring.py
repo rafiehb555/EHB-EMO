@@ -17,7 +17,7 @@ from database import db
 class EnterpriseMonitor:
     """Enterprise-grade monitoring system"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.metrics_history = deque(maxlen=10000)
         self.alerts = deque(maxlen=1000)
         self.performance_data = deque(maxlen=5000)
@@ -96,7 +96,7 @@ class EnterpriseMonitor:
             }
         }
 
-    def start_monitoring(self):
+    def start_monitoring(self) -> None:
         """Start enterprise monitoring"""
         if not self.monitoring_active:
             self.monitoring_active = True
@@ -105,14 +105,14 @@ class EnterpriseMonitor:
             self.monitor_thread.start()
             print("✅ Enterprise monitoring started")
 
-    def stop_monitoring(self):
+    def stop_monitoring(self) -> None:
         """Stop enterprise monitoring"""
         self.monitoring_active = False
         if self.monitor_thread:
             self.monitor_thread.join()
         print("🛑 Enterprise monitoring stopped")
 
-    def _monitor_loop(self):
+    def _monitor_loop(self) -> None:
         """Main monitoring loop"""
         while self.monitoring_active:
             try:
@@ -276,7 +276,7 @@ class EnterpriseMonitor:
         except Exception:
             return "Unknown"
 
-    def _check_enterprise_alerts(self, metrics: Dict[str, Any]):
+    def _check_enterprise_alerts(self, metrics: Dict[str, Any]) -> None:
         """Check for enterprise alerts"""
         alerts = []
 
@@ -328,15 +328,15 @@ class EnterpriseMonitor:
 
         # Performance alerts
         if metrics.get(
-                "performance",
-                {}).get(
-                "response_time_avg",
+            "performance",
+            {}).get(
+            "response_time_avg",
 0) > self.metrics_config["alert_thresholds"]["response_time_slow"]:
             alerts.append({
                 "type": "slow_response",
                 "severity": "warning",
-"message": f"Slow response time:
-    {metrics['performance']['response_time_avg']}s",
+                "message": f"Slow response time:
+                {metrics['performance']['response_time_avg']}s",
                 "timestamp": datetime.now().isoformat(),
                 "category": "performance"
             })
@@ -356,15 +356,15 @@ class EnterpriseMonitor:
             self.alerts.append(alert)
             print(f"🚨 ENTERPRISE ALERT: {alert['message']}")
 
-    def _log_metrics(self, metrics: Dict[str, Any]):
+    def _log_metrics(self, metrics: Dict[str, Any]) -> None:
         """Log metrics to database"""
         try:
             # Log system metrics
             db.log_system_event(
                 'INFO',
-f"Enterprise metrics: CPU {metrics.get('system', {}).get('cpu',
-    {}).get('percent', 0)}%, Memory {metrics.get('system', {}).get('memory',
-    {}).get('percent', 0)}%")
+                f"Enterprise metrics: CPU {metrics.get('system', {}).get('cpu',
+{}).get('percent', 0)} % , Memory {metrics.get('system', {}).get('memory',
+{}).get('percent', 0)} %")
 
             # Log alerts
             for alert in list(self.alerts)[-5:]:  # Log last 5 alerts
@@ -422,15 +422,15 @@ f"Enterprise metrics: CPU {metrics.get('system', {}).get('cpu',
             alert_summary = {
                 "total_alerts": len(recent_alerts),
 "critical_alerts": len([a for a in recent_alerts if a.get("severity") ==
-    "critical"]),
+                                        "critical"]),
 "warning_alerts": len([a for a in recent_alerts if a.get("severity") ==
-    "warning"]),
+                                       "warning"]),
 "system_alerts": len([a for a in recent_alerts if a.get("category") ==
-    "system"]),
+                                      "system"]),
 "security_alerts": len([a for a in recent_alerts if a.get("category") ==
-    "security"]),
+                                        "security"]),
 "performance_alerts": len([a for a in recent_alerts if a.get("category") ==
-    "performance"])
+                                           "performance"])
             }
 
             return {

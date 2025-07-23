@@ -17,13 +17,13 @@ import psutil
 class EnhancedDashboard:
     """Enhanced dashboard with comprehensive EHB-5 management"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.dashboard_data = {}
         self.agents_status = {}
         self.system_metrics = {}
         self.features_status = {}
 
-    def collect_comprehensive_data(self):
+    def collect_comprehensive_data(self) -> None:
         """Collect all dashboard data"""
         try:
             # System metrics
@@ -323,9 +323,11 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
 
         for feature, status in self.features_status.items():
+
+
 report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
 
-        report += f"""
+report += f"""
 📈 Performance Metrics:
 • System Health: {'Excellent' if self.system_metrics.get('cpu',
     {}).get('usage_percent', 0) < 50 else 'Good'}
@@ -336,10 +338,10 @@ report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
 🎯 Recommendations:
 """
 
-        if self.system_metrics.get('cpu', {}).get('usage_percent', 0) > 70:
-            report += "• Consider optimizing CPU-intensive operations\n"
-        if self.system_metrics.get('memory', {}).get('usage_percent', 0) > 80:
-            report += "• Monitor memory usage, consider cleanup\n"
+if self.system_metrics.get('cpu', {}).get('usage_percent', 0) > 70:
+    report += "• Consider optimizing CPU-intensive operations\n"
+    if self.system_metrics.get('memory', {}).get('usage_percent', 0) > 80:
+        report += "• Monitor memory usage, consider cleanup\n"
         if self.system_metrics.get('disk', {}).get('usage_percent', 0) > 85:
             report += "• Disk space running low, consider cleanup\n"
 
@@ -349,7 +351,7 @@ report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
 
         return report
 
-    def start_dashboard(self):
+    def start_dashboard(self) -> None:
         """Start the enhanced dashboard"""
         print("🚀 Starting EHB-5 Enhanced Dashboard...")
         print("=" * 50)
@@ -371,7 +373,7 @@ report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
         else:
             print("❌ Failed to collect dashboard data")
 
-    def save_dashboard_data(self, filename: str = "dashboard_data.json"):
+def save_dashboard_data(self, filename: str = "dashboard_data.json") -> None:
         """Save dashboard data to file"""
         try:
             data = {
@@ -389,7 +391,7 @@ report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
         except Exception as e:
             print(f"❌ Error saving dashboard data: {e}")
 
-    def open_web_dashboard(self):
+    def open_web_dashboard(self) -> None:
         """Open web dashboard in browser"""
         try:
             # Check if dashboard is running
@@ -401,7 +403,7 @@ report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
             print(f"❌ Error opening web dashboard: {e}")
 
 
-def main():
+def main() -> None:
     """Main function to run enhanced dashboard"""
     print("🚀 EHB-5 Enhanced Dashboard")
     print("=" * 50)

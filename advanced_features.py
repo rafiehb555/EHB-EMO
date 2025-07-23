@@ -17,7 +17,7 @@ import psutil
 class AdvancedSystemMonitor:
     """Advanced system monitoring and analytics"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.metrics = {}
         self.start_time = time.time()
 
@@ -71,7 +71,7 @@ class AdvancedSystemMonitor:
                 },
                 'processes': processes,
 'system_health': self.calculate_system_health(cpu_percent, memory_percent,
-    disk_percent)
+                                                              disk_percent)
             }
 
             self.metrics = metrics
@@ -96,7 +96,7 @@ class AdvancedSystemMonitor:
         else:
             return "Poor"
 
-    def save_metrics(self, filename: str = "system_metrics.json"):
+    def save_metrics(self, filename: str = "system_metrics.json") -> None:
         """Save metrics to file"""
         try:
             with open(filename, 'w') as f:
@@ -142,11 +142,11 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 class AdvancedAutoFixer:
     """Advanced automatic problem fixing with analytics"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.fix_history = []
         self.problem_patterns = {}
 
-    def analyze_problem_patterns(self, file_path: str):
+    def analyze_problem_patterns(self, file_path: str) -> None:
         """Analyze common problem patterns in files"""
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
@@ -189,7 +189,7 @@ class AdvancedAutoFixer:
 
         return recommendations
 
-    def log_fix(self, file_path: str, fix_type: str, details: str):
+    def log_fix(self, file_path: str, fix_type: str, details: str) -> None:
         """Log a fix operation"""
         fix_log = {
             'timestamp': datetime.now().isoformat(),
@@ -217,18 +217,20 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
 
         for fix in self.fix_history[-5:]:  # Last 5 fixes
+
+
 report += f"• {fix['file']}: {fix['fix_type']} - {fix['details']}\n"
 
-        return report
+return report
 
 
 class PerformanceOptimizer:
     """Performance optimization features"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.optimization_history = []
 
-    def optimize_python_files(self):
+    def optimize_python_files(self) -> None:
         """Apply performance optimizations to Python files"""
         optimizations = []
 
@@ -310,7 +312,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         return report
 
 
-def main():
+def main() -> None:
     """Main function to run advanced features"""
     print("🚀 Starting EHB-5 Advanced Features...")
     print("=" * 50)

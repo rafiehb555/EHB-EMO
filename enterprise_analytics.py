@@ -16,7 +16,7 @@ from database import db
 class EnterpriseAnalytics:
     """Enterprise-grade analytics and reporting system"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.analytics_data = defaultdict(list)
         self.report_cache = {}
         self.analytics_config = {
@@ -31,7 +31,7 @@ class EnterpriseAnalytics:
             ]
         }
 
-    def collect_analytics_data(self, data_type: str, data: Dict[str, Any]):
+def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         """Collect analytics data"""
         timestamp = datetime.now().isoformat()
         data_entry = {
@@ -365,7 +365,7 @@ class EnterpriseAnalytics:
                     "total_tasks": len(times),
                     "success_rate": sum(
 1 for entry in ai_data if entry["data"].get("agent_type") == agent_type and
-    entry["data"].get(
+                        entry["data"].get(
                             "success",
                             False)) / len(times) * 100 if times else 0}
 

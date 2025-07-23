@@ -16,7 +16,7 @@ from typing import Dict, List, Any
 class DeploymentAutomation:
     """Automated deployment system for EHB-5"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.config = {
             "project_name": "ehb-5",
             "github_repo": "rafiehb555/ehb-5",
@@ -66,7 +66,7 @@ f"✅ Node.js: {'Available' if checks['node_installed'] else 'Not found'}")
             checks["vercel_cli_installed"] = result.returncode == 0
             print(
 f"✅ Vercel CLI: {'Available' if checks['vercel_cli_installed'] else 'Not
-    found'}")
+                                 found'}")
         except Exception:
             print("❌ Vercel CLI: Not found")
 

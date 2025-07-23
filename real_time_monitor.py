@@ -17,7 +17,7 @@ import psutil
 class RealTimeMonitor:
     """Real-time system monitoring with live updates"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.monitoring = False
         self.metrics_history = []
         self.alert_thresholds = {
@@ -27,7 +27,7 @@ class RealTimeMonitor:
         }
         self.alerts = []
 
-    def start_monitoring(self, interval: int = 5):
+    def start_monitoring(self, interval: int = 5) -> None:
         """Start real-time monitoring"""
         self.monitoring = True
         print("🚀 Starting Real-Time Monitoring...")
@@ -110,7 +110,7 @@ class RealTimeMonitor:
                     'total_size_mb': round(ehb_size / (1024 * 1024), 2)
                 },
 'system_health': self.calculate_health(cpu_percent, memory_percent,
-    disk_percent)
+                                                       disk_percent)
             }
 
         except Exception as e:
@@ -128,7 +128,7 @@ class RealTimeMonitor:
         else:
             return "🔴 Poor"
 
-    def display_live_metrics(self, metrics: Dict[str, Any]):
+    def display_live_metrics(self, metrics: Dict[str, Any]) -> None:
         """Display live metrics in a formatted way"""
         if not metrics:
             return
@@ -184,7 +184,7 @@ class RealTimeMonitor:
                 print(f"   {alert['timestamp']}: {alert['message']}")
             print()
 
-    def check_alerts(self, metrics: Dict[str, Any]):
+    def check_alerts(self, metrics: Dict[str, Any]) -> None:
         """Check for system alerts"""
         alerts = []
 
@@ -194,17 +194,18 @@ class RealTimeMonitor:
 'message': f"⚠️ High CPU usage: {metrics['cpu']['usage_percent']:.1f}%"
             })
 
-if metrics['memory']['usage_percent'] > self.alert_thresholds['memory']:
-            alerts.append({
-                'timestamp': datetime.now().strftime('%H:%M:%S'),
-'message': f"⚠️ High memory usage: {metrics['memory']['usage_percent']:.1f}%"
-            })
 
-        if metrics['disk']['usage_percent'] > self.alert_thresholds['disk']:
-            alerts.append({
-                'timestamp': datetime.now().strftime('%H:%M:%S'),
+if metrics['memory']['usage_percent'] > self.alert_thresholds['memory']:
+    alerts.append({
+        'timestamp': datetime.now().strftime('%H:%M:%S'),
+'message': f"⚠️ High memory usage: {metrics['memory']['usage_percent']:.1f}%"
+    })
+
+    if metrics['disk']['usage_percent'] > self.alert_thresholds['disk']:
+        alerts.append({
+            'timestamp': datetime.now().strftime('%H:%M:%S'),
 'message': f"⚠️ High disk usage: {metrics['disk']['usage_percent']:.1f}%"
-            })
+        })
 
         # Add new alerts
         self.alerts.extend(alerts)
@@ -213,12 +214,12 @@ if metrics['memory']['usage_percent'] > self.alert_thresholds['memory']:
         if len(self.alerts) > 10:
             self.alerts = self.alerts[-10:]
 
-    def stop_monitoring(self):
+    def stop_monitoring(self) -> None:
         """Stop real-time monitoring"""
         self.monitoring = False
         print("⏹️ Monitoring stopped")
 
-    def save_metrics_history(self, filename: str = "metrics_history.json"):
+def save_metrics_history(self, filename: str = "metrics_history.json") -> None:
         """Save metrics history to file"""
         try:
             with open(filename, 'w') as f:
@@ -267,7 +268,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         return report
 
 
-def main():
+def main() -> None:
     """Main function to run real-time monitoring"""
     print("🚀 EHB-5 Real-Time Monitor")
     print("=" * 50)

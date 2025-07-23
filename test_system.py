@@ -60,33 +60,34 @@ def test_data_processor() -> None:
 
         dp = DataProcessor()
 
+
         # Test data analysis
-test_data = "This is test data for EHB-5 project with some numbers: 123, 456,
-    789"
-        result = dp.process_data(test_data, 'analyze')
-        print("✅ Data analysis: {result.get('status', 'unknown')}")
+test_data = "This is test data for EHB - 5 project with some numbers: 123, 456,
+789"
+result = dp.process_data(test_data, 'analyze')
+print("✅ Data analysis: {result.get('status', 'unknown')}")
 
-        # Test data validation
-        result = dp.process_data(test_data, 'validate')
-        print("✅ Data validation: {result.get('status', 'unknown')}")
+# Test data validation
+result = dp.process_data(test_data, 'validate')
+print("✅ Data validation: {result.get('status', 'unknown')}")
 
-        # Test data transformation
-        result = dp.process_data(test_data, 'transform')
-        print("✅ Data transformation: {result.get('status', 'unknown')}")
+# Test data transformation
+result = dp.process_data(test_data, 'transform')
+print("✅ Data transformation: {result.get('status', 'unknown')}")
 
-        # Test data summarization
-        result = dp.process_data(test_data, 'summarize')
-        print("✅ Data summarization: {result.get('status', 'unknown')}")
+# Test data summarization
+result = dp.process_data(test_data, 'summarize')
+print("✅ Data summarization: {result.get('status', 'unknown')}")
 
-        # Test data extraction
-        result = dp.process_data(test_data, 'extract')
-        print("✅ Data extraction: {result.get('status', 'unknown')}")
+# Test data extraction
+result = dp.process_data(test_data, 'extract')
+print("✅ Data extraction: {result.get('status', 'unknown')}")
 
-        return True
+return True
 
-    except Exception as e:
-        print("❌ Data processor test failed: {e}")
-        return False
+except Exception as e:
+    print("❌ Data processor test failed: {e}")
+    return False
 
 
 def test_auth_manager() -> None:
@@ -107,9 +108,9 @@ def test_auth_manager() -> None:
         # Test password validation
         valid_password = auth.validate_password("strongpass123")
         invalid_password = auth.validate_password("weak")
-        print(
-"✅ Password validation: {'Working' if valid_password and not invalid_password
-    else 'Failed'}")
+print("✅ Password validation: {'Working' if valid_password and not
+invalid_password
+                                       else 'Failed'}")
 
         return True
 
@@ -245,9 +246,9 @@ def test_file_system() -> None:
         if os.path.exists("config.json"):
             with open("config.json", "r") as f:
                 config = json.load(f)
-            print(
-"✅ Config loaded: {config.get('project', 'Unknown')} v{config.get('version',
-    'Unknown')}")
+print("✅ Config loaded: {config.get('project', 'Unknown')}
+v{config.get('version',
+'Unknown')}")
 
         # Check requirements.txt
         if os.path.exists("requirements.txt"):

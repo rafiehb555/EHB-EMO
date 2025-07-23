@@ -34,14 +34,16 @@ def start_dashboard() -> None:
     # Check if index.html exists
     if not os.path.exists('index.html'):
         print("❌ Error: index.html not found!")
-print("Please make sure all dashboard files are in the current directory.")
-        return False
 
-    # Find available port
-    PORT = find_available_port(8000)
-    if not PORT:
-        print("❌ No available ports found!")
-        return False
+
+print("Please make sure all dashboard files are in the current directory.")
+return False
+
+# Find available port
+PORT = find_available_port(8000)
+if not PORT:
+    print("❌ No available ports found!")
+    return False
 
     # Create server
     Handler = http.server.SimpleHTTPRequestHandler
@@ -100,11 +102,13 @@ def main() -> None:
 
     # Check requirements
     if not check_requirements():
-print("\n❌ Cannot start dashboard. Please ensure all files are present.")
-        return
 
-    print("\n🚀 Launching dashboard...")
-    start_dashboard()
+
+print("\n❌ Cannot start dashboard. Please ensure all files are present.")
+return
+
+print("\n🚀 Launching dashboard...")
+start_dashboard()
 
 
 if __name__ == "__main__":

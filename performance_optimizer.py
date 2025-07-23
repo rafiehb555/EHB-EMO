@@ -15,7 +15,7 @@ from collections import OrderedDict
 class CacheManager:
     """Intelligent caching system"""
 
-    def __init__(self, max_size: int = 1000, ttl: int = 300):
+    def __init__(self, max_size: int = 1000, ttl: int = 300) -> None:
         self.max_size = max_size
         self.ttl = ttl  # seconds
         self.cache = OrderedDict()
@@ -39,7 +39,7 @@ class CacheManager:
                 return value
             return None
 
-    def set(self, key: str, value: Any):
+    def set(self, key: str, value: Any) -> None:
         """Set value in cache"""
         with self.lock:
             # Remove if exists
@@ -57,7 +57,7 @@ class CacheManager:
                 del self.cache[oldest_key]
                 del self.access_times[oldest_key]
 
-    def clear(self):
+    def clear(self) -> None:
         """Clear all cache"""
         with self.lock:
             self.cache.clear()
@@ -82,12 +82,12 @@ class CacheManager:
 class QueryOptimizer:
     """Database query optimization"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.query_stats = {}
         self.slow_queries = []
         self.optimization_suggestions = []
 
-    def analyze_query(self, query: str, execution_time: float):
+    def analyze_query(self, query: str, execution_time: float) -> None:
         """Analyze query performance"""
         query_hash = hash(query)
 
@@ -139,11 +139,11 @@ f"Frequently executed query ({stats['count']} times): Consider caching")
 class PerformanceProfiler:
     """Performance profiling and monitoring"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.profiles = {}
         self.active_profiles = {}
 
-    def start_profile(self, name: str):
+    def start_profile(self, name: str) -> None:
         """Start profiling a function or operation"""
         self.active_profiles[name] = {
             "start_time": time.time(),
@@ -205,33 +205,35 @@ class PerformanceProfiler:
         }
 
 
-def cache_result(ttl: int = 300):
+def cache_result(ttl: int = 300) -> None:
     """Decorator to cache function results"""
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args, **kwargs) -> None:
+
+
             # Create cache key from function name and arguments
 cache_key = f"{func.__name__}:{hash(str(args) + str(sorted(kwargs.items()))}"
 
-            # Try to get from cache
-            result = cache_manager.get(cache_key)
-            if result is not None:
-                return result
+# Try to get from cache
+result = cache_manager.get(cache_key)
+if result is not None:
+    return result
 
-            # Execute function and cache result
-            result = func(*args, **kwargs)
-            cache_manager.set(cache_key, result)
-            return result
+    # Execute function and cache result
+    result = func(*args, **kwargs)
+    cache_manager.set(cache_key, result)
+    return result
 
-        return wrapper
+    return wrapper
     return decorator
 
 
-def profile_function(name: str = None):
+def profile_function(name: str = None) -> None:
     """Decorator to profile function performance"""
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
-        def wrapper(*args, **kwargs):
+        def wrapper(*args, **kwargs) -> None:
             profile_name = name or func.__name__
             performance_profiler.start_profile(profile_name)
 
@@ -248,7 +250,7 @@ def profile_function(name: str = None):
 class ResourceManager:
     """Resource management and optimization"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.resource_limits = {
             "max_memory_mb": 512,
             "max_cpu_percent": 80,
@@ -298,7 +300,7 @@ class ResourceManager:
         except ImportError:
             return {"error": "psutil not available"}
 
-    def _check_alerts(self):
+    def _check_alerts(self) -> None:
         """Check for resource usage alerts"""
         alerts = []
 

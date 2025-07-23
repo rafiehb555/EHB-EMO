@@ -16,7 +16,7 @@ import requests
 class AutoDeployment:
     """Automatic deployment system for EHB-5"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.config = self.load_config()
         self.deployment_status = {}
         self.last_deployment = None
@@ -252,7 +252,7 @@ class AutoDeployment:
         print("✅ Automatic deployment completed successfully!")
         return deployment_result
 
-    def start_continuous_deployment(self):
+    def start_continuous_deployment(self) -> None:
         """Start continuous deployment monitoring"""
         print("🔄 Starting continuous deployment monitoring...")
         print("📡 Monitoring for Git changes...")

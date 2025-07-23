@@ -14,19 +14,19 @@ from api_server import app
 class APIDocumentation:
     """API documentation generator"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.endpoints = []
         self.examples = {}
         self.schemas = {}
         self.generate_documentation()
 
-    def generate_documentation(self):
+    def generate_documentation(self) -> None:
         """Generate comprehensive API documentation"""
         self._collect_endpoints()
         self._generate_examples()
         self._generate_schemas()
 
-    def _collect_endpoints(self):
+    def _collect_endpoints(self) -> None:
         """Collect all API endpoints"""
         self.endpoints = [
             {
@@ -181,14 +181,15 @@ class APIDocumentation:
             }
         ]
 
-    def _generate_examples(self):
+    def _generate_examples(self) -> None:
         """Generate API usage examples"""
         self.examples = {
             "authentication": {
                 "register": {
-"curl": 'curl -X POST http://localhost:5000/api/auth/register \\\n -H
-"Content-Type: application/json" \\\n -d \'{"username": "newuser", "password":
-    "SecurePass123!", "email": "user@example.com"}\'',
+"curl": 'curl - X POST http: // localhost: 5000 / api / auth / register \\\n -
+    H
+"Content-Type: application/json" \\\n - d \'{"username": "newuser", "password":
+"SecurePass123!", "email": "user@example.com"}\'',
                     "python": '''import requests
 
 url = "http://localhost:5000/api/auth/register"
@@ -201,9 +202,9 @@ response = requests.post(url, json=data)
 print(response.json())'''
                 },
                 "login": {
-"curl": 'curl -X POST http://localhost:5000/api/auth/login \\\n -H
-"Content-Type: application/json" \\\n -d \'{"username": "admin", "password":
-    "admin123"}\'',
+"curl": 'curl - X POST http: // localhost: 5000 / api / auth / login \\\n - H
+"Content-Type: application/json" \\\n - d \'{"username": "admin", "password":
+"admin123"}\'',
                     "python": '''import requests
 
 url = "http://localhost:5000/api/auth/login"
@@ -218,9 +219,9 @@ print(f"Token: {token}")'''
             },
             "data_processing": {
                 "analyze": {
-"curl": 'curl -X POST http://localhost:5000/api/data/process \\\n -H
-"Content-Type: application/json" \\\n -H "Authorization: Bearer <token>" \\\n
-    -d \'{"data": "Sample data for analysis", "operation": "analyze"}\'',
+"curl": 'curl - X POST http: // localhost: 5000 / api / data / process \\\n - H
+"Content-Type: application/json" \\\n - H "Authorization: Bearer <token>" \\\n
+- d \'{"data": "Sample data for analysis", "operation": "analyze"}\'',
                     "python": '''import requests
 
 url = "http://localhost:5000/api/data/process"
@@ -242,8 +243,8 @@ response = requests.get("http://localhost:5000/api/health")
 print(response.json())'''
                 },
                 "system_status": {
-"curl": 'curl -H "Authorization: Bearer <token>" \\\n
-    http://localhost:5000/api/system/status',
+                    "curl": 'curl - H "Authorization: Bearer <token>" \\\n
+                    http: // localhost: 5000 / api / system / status',
                     "python": '''import requests
 
 headers = {"Authorization": "Bearer <token>"}
@@ -254,7 +255,7 @@ print(response.json())'''
             }
         }
 
-    def _generate_schemas(self):
+    def _generate_schemas(self) -> None:
         """Generate data schemas"""
         self.schemas = {
             "User": {
@@ -342,17 +343,20 @@ Authorization: Bearer <your_token>
 
             if 'request' in endpoint:
                 md += "**Request Body:**\n"
+
+
 md += f"```json\n{json.dumps(endpoint['request'], indent=2)}\n```\n\n"
 
-            md += "**Response:**\n"
+md += "**Response:**\n"
 md += f"```json\n{json.dumps(endpoint['response'], indent=2)}\n```\n\n"
-            md += "---\n\n"
+md += "---\n\n"
 
-        return md
+return md
 
-    def generate_html_docs(self) -> str:
-        """Generate HTML documentation"""
-        html = f"""<!DOCTYPE html>
+
+def generate_html_docs(self) -> str:
+    """Generate HTML documentation"""
+    html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -388,18 +392,18 @@ md += f"```json\n{json.dumps(endpoint['response'], indent=2)}\n```\n\n"
     <h2>Endpoints</h2>
 """
 
-        for endpoint in self.endpoints:
-            html += f"""
+    for endpoint in self.endpoints:
+        html += f"""
     <div class="endpoint">
 <h3><span class="method">{endpoint['method']}</span> <span
     class="path">{endpoint['path']}</span></h3>
         <p class="description">{endpoint['description']}</p>
 """
 
-            if 'headers' in endpoint:
-                html += "        <h4>Headers:</h4><ul>"
-                for key, value in endpoint['headers'].items():
-                    html += f"<li><code>{key}</code>: {value}</li>"
+        if 'headers' in endpoint:
+            html += "        <h4>Headers:</h4><ul>"
+            for key, value in endpoint['headers'].items():
+                html += f"<li><code>{key}</code>: {value}</li>"
                 html += "</ul>"
 
             if 'query_params' in endpoint:

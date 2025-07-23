@@ -18,7 +18,7 @@ from database import db
 class EnterpriseSecurityManager:
     """Enterprise-grade security manager with advanced features"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.security_config = {
             "password_policy": {
                 "min_length": 12,
@@ -61,8 +61,8 @@ class EnterpriseSecurityManager:
         if len(
 password) < self.security_config["password_policy"]["min_length"]:
             errors.append(
-f"Password must be at least
-    {self.security_config['password_policy']['min_length']} characters")
+                f"Password must be at least
+{self.security_config['password_policy']['min_length']} characters")
         else:
             score += 20
 
@@ -167,7 +167,7 @@ self, user_id: int, username: str, ip_address: str) -> Dict[str, Any]:
             "ip_address": ip_address,
             "created_at": now,
             "last_activity": now,
-"expires_at": now +
+            "expires_at": now +
 timedelta(minutes=self.security_config["session_policy"]["timeout_minutes"]),
             "user_agent": None,  # Will be set by request
             "session_type": "web",
@@ -178,12 +178,12 @@ timedelta(minutes=self.security_config["session_policy"]["timeout_minutes"]),
         user_sessions = [
 s for s in self.active_sessions.values() if s["user_id"] == user_id]
         if len(
-user_sessions) >=
+            user_sessions) >=
     self.security_config["session_policy"]["max_sessions_per_user"]:
-            # Remove oldest session
-            oldest_session = min(user_sessions, key=lambda x: x["created_at"])
-            self.revoke_session(list(self.active_sessions.keys())[list(
-                self.active_sessions.values()).index(oldest_session)])
+        # Remove oldest session
+        oldest_session = min(user_sessions, key=lambda x: x["created_at"])
+        self.revoke_session(list(self.active_sessions.keys())[list(
+            self.active_sessions.values()).index(oldest_session)])
 
         self.active_sessions[session_id] = session_data
 
@@ -225,25 +225,26 @@ minutes=self.security_config["session_policy"]["inactivity_timeout"])
                 f"Session inactive for user {session['username']}")
             return None
 
+
         # IP address validation
 if ip_address and session["ip_address"] and session["ip_address"] !=
-    ip_address:
-            self.log_security_event(
-                "SESSION_IP_MISMATCH",
-                f"IP mismatch for user {session['username']}")
-            # Don't revoke immediately, but log the suspicious activity
-            session["security_level"] = "medium"
+ip_address:
+    self.log_security_event(
+        "SESSION_IP_MISMATCH",
+        f"IP mismatch for user {session['username']}")
+    # Don't revoke immediately, but log the suspicious activity
+    session["security_level"] = "medium"
 
-        # Update last activity
-        session["last_activity"] = now
+    # Update last activity
+    session["last_activity"] = now
 
-        return {
-            "user_id": session["user_id"],
-            "username": session["username"],
-            "security_level": session["security_level"]
-        }
+    return {
+        "user_id": session["user_id"],
+        "username": session["username"],
+        "security_level": session["security_level"]
+    }
 
-    def revoke_session(self, session_id: str):
+    def revoke_session(self, session_id: str) -> None:
         """Revoke enterprise session"""
         if session_id in self.active_sessions:
             username = self.active_sessions[session_id]["username"]
@@ -332,7 +333,7 @@ if ip_address and session["ip_address"] and session["ip_address"] !=
 class EnterpriseRateLimiter:
     """Enterprise-grade rate limiting with advanced features"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.requests = {}
         self.blocked_ips = {}
         self.whitelist = set()
@@ -400,11 +401,11 @@ class EnterpriseRateLimiter:
             "reset_time": window_start + 60
         }
 
-    def add_to_whitelist(self, ip_address: str):
+    def add_to_whitelist(self, ip_address: str) -> None:
         """Add IP to whitelist"""
         self.whitelist.add(ip_address)
 
-    def add_to_blacklist(self, ip_address: str):
+    def add_to_blacklist(self, ip_address: str) -> None:
         """Add IP to blacklist"""
         self.blacklist.add(ip_address)
         if ip_address in self.requests:
@@ -424,7 +425,7 @@ class EnterpriseRateLimiter:
 class EnterpriseEncryption:
     """Enterprise-grade encryption utilities"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self.encryption_key = secrets.token_hex(32)
         self.algorithm = "AES-256"
 
