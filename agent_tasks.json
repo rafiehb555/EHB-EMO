@@ -11,6 +11,21 @@
         "records_processed": 1500,
         "processing_time": "2025-07-23T15:39:41.841102"
       }
+    },
+    {
+      "id": 2,
+      "name": "Configuration Update",
+      "type": "configuration",
+      "description": "Updated database configuration",
+      "timestamp": "2025-07-23T15:39:45.629701",
+      "data": {
+        "config_type": "database",
+        "changes": [
+          "connection_timeout",
+          "max_connections"
+        ],
+        "update_time": "2025-07-23T15:39:45.629701"
+      }
     }
   ],
   "last_push": null,
