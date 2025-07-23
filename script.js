@@ -267,6 +267,12 @@ function manageApp() {
     showNotification('Opening app management...', 'info');
 }
 
+function openAIAgents() {
+    showNotification('Opening AI Agents Management...', 'info');
+    // Open AI Agents page in new tab
+    window.open('ai_agents_management_with_main_agent.html', '_blank');
+}
+
 // ===== HERO ACTIONS =====
 function quickStart() {
     showNotification('Starting system...', 'info');
