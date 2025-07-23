@@ -22,17 +22,17 @@ def verify_config_file() -> None:
         missing_keys = [key for key in required_keys if key not in config]
 
         if missing_keys:
-            print("❌ Missing keys in config.json: {missing_keys}")
+            print(f"❌ Missing keys in config.json: {missing_keys}")
             return False
 
         print("✅ Config file verified successfully!")
-        print("   Project: {config.get('project')}")
-        print("   Version: {config.get('version')}")
-        print("   Description: {config.get('description')}")
+        print(f"   Project: {config.get('project')}")
+        print(f"   Version: {config.get('version')}")
+        print(f"   Description: {config.get('description')}")
 
         return True
     except Exception as e:
-        print("❌ Error reading config.json: {e}")
+        print(f"❌ Error reading config.json: {e}")
         return False
 
 
@@ -55,7 +55,7 @@ def verify_dashboard_files() -> None:
                     missing_files.append(file)
 
     if missing_files:
-        print("❌ Missing dashboard files: {missing_files}")
+        print(f"❌ Missing dashboard files: {missing_files}")
         return False
 
     print("✅ All dashboard files found!")
@@ -97,9 +97,9 @@ def verify_project_files() -> None:
                 if isinstance(missing_files, list):
                     missing_files.append(file)
 
-    print("✅ Found {len(existing_files)} project files")
+    print(f"✅ Found {len(existing_files)} project files")
     if missing_files:
-        print("⚠️  Missing files: {missing_files}")
+        print(f"⚠️  Missing files: {missing_files}")
 
     return len(existing_files) > 0
 
@@ -128,14 +128,14 @@ def verify_data_connections() -> None:
                         missing_functions.append(func)
 
         if missing_functions:
-            print("❌ Missing JavaScript functions: {missing_functions}")
+            print(f"❌ Missing JavaScript functions: {missing_functions}")
             return False
 
         print("✅ JavaScript data connections verified!")
         return True
 
     except Exception as e:
-        print("❌ Error reading script.js: {e}")
+        print(f"❌ Error reading script.js: {e}")
         return False
 
 
@@ -164,14 +164,14 @@ def verify_css_styles() -> None:
                         missing_classes.append(class_name)
 
         if missing_classes:
-            print("❌ Missing CSS classes: {missing_classes}")
+            print(f"❌ Missing CSS classes: {missing_classes}")
             return False
 
         print("✅ CSS styles verified!")
         return True
 
     except Exception as e:
-        print("❌ Error reading styles.css: {e}")
+        print(f"❌ Error reading styles.css: {e}")
         return False
 
 
@@ -200,14 +200,14 @@ def verify_html_structure() -> None:
                         missing_elements.append(element)
 
         if missing_elements:
-            print("❌ Missing HTML elements: {missing_elements}")
+            print(f"❌ Missing HTML elements: {missing_elements}")
             return False
 
         print("✅ HTML structure verified!")
         return True
 
     except Exception as e:
-        print("❌ Error reading index.html: {e}")
+        print(f"❌ Error reading index.html: {e}")
         return False
 
 
@@ -234,7 +234,7 @@ def generate_summary() -> None:
             passed += 1
         print()
 
-    print("\n🎯 RESULTS: {passed}/{total} verifications passed")
+    print(f"\n🎯 RESULTS: {passed}/{total} verifications passed")
 
     if passed == total:
         print("✅ ALL VERIFICATIONS PASSED!")

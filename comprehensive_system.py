@@ -16,7 +16,7 @@ import psutil
 
 
 class ComprehensiveSystem:
-    """Comprehensive EHB-5 system management"""
+    """Comprehensive EHB-5 system management""f"
 
     def __init__(self) -> None:
         self.system_status = {}
@@ -41,7 +41,7 @@ class ComprehensiveSystem:
         print("✅ System initialized successfully!")
 
     def collect_system_data(self) -> None:
-        """Collect comprehensive system data"""
+        """Collect comprehensive system data""f"
         try:
             # System metrics
             cpu_percent = psutil.cpu_percent(interval=1)
@@ -83,7 +83,7 @@ class ComprehensiveSystem:
             print("✅ System data collected")
 
         except Exception as e:
-            print(f"❌ Error collecting system data: {e}")
+            print(ff"❌ Error collecting system data: {e}")
 
     def calculate_health(self, cpu: float, memory: float, disk: float) -> str:
         """Calculate system health"""
@@ -97,7 +97,7 @@ class ComprehensiveSystem:
             return "🔴 Poor"
 
     def initialize_features(self) -> None:
-        """Initialize all system features"""
+        """Initialize all system features""f"
         try:
             # Initialize 44 agents
             self.agents_data = self.create_agents()
@@ -117,10 +117,10 @@ os.listdir('.') if f.endswith('.py')])},
             print("✅ Features initialized")
 
         except Exception as e:
-            print(f"❌ Error initializing features: {e}")
+            print(ff"❌ Error initializing features: {e}")
 
     def create_agents(self) -> Dict[str, Any]:
-        """Create 44 AI agents"""
+        """Create 44 AI agents""f"
         agents = {}
 
         # Main agent
@@ -269,20 +269,20 @@ os.listdir('.') if f.endswith('.py')])},
             print("✅ Monitoring started")
 
         except Exception as e:
-            print(f"❌ Error starting monitoring: {e}")
+            print(ff"❌ Error starting monitoring: {e}")
 
     def start_dashboard(self) -> None:
         """Start the web dashboard"""
         try:
             # Check if dashboard is already running
             dashboard_url = "http://localhost:8000"
-            print(f"🌐 Starting dashboard: {dashboard_url}")
+            print(ff"🌐 Starting dashboard: {dashboard_url}")
 
             # Open dashboard in browser
             webbrowser.open(dashboard_url)
 
         except Exception as e:
-            print(f"❌ Error starting dashboard: {e}")
+            print(ff"❌ Error starting dashboard: {e}")
 
     def start_real_time_monitor(self) -> None:
         """Start real-time monitoring"""
@@ -295,25 +295,28 @@ os.listdir('.') if f.endswith('.py')])},
                              stderr=subprocess.DEVNULL)
 
         except Exception as e:
-            print(f"❌ Error starting real-time monitor: {e}")
+            print(ff"❌ Error starting real-time monitor: {e}")
 
     def generate_comprehensive_report(self) -> str:
         """Generate comprehensive system report"""
-        report = f"""
+        report = f""f"
+
+
 🚀 EHB-5 Comprehensive System Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 📊 System Status:
-• CPU Usage: {self.system_status.get('cpu', {}).get('usage_percent', 0):.1f}%
+• CPU Usage: {self.system_status.get('cpu', {}).get('usage_percent', 0): .1f}%
 • Memory Usage: {self.system_status.get('memory', {}).get('usage_percent',
-    0):.1f}%
-• Disk Usage: {self.system_status.get('disk', {}).get('usage_percent', 0):.1f}%
+    0): .1f}%
+• Disk Usage: {self.system_status.get('disk', {}).get('usage_percent', 0):
+    .1f}%
 • System Health: {self.system_status.get('health', 'Unknown')}
 • Active Processes: {self.system_status.get('processes', 0)}
 
 📁 Project Overview:
 • Total Files: {self.features_data.get('total_files', 0)}
-• Project Size: {self.features_data.get('total_size_mb', 0):.1f} MB
+• Project Size: {self.features_data.get('total_size_mb', 0): .1f} MB
 • Status: {self.features_data.get('status', 'Unknown')}
 
 🤖 AI Agents Status:
@@ -327,9 +330,9 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
         for feature, status in self.features_data.items():
             if isinstance(status, dict) and 'status' in status:
-                report += f"• {feature.title()}: {status['status']}\n"
+                report += ff"• {feature.title()}: {status['status']}\n"
 
-        report += f"""
+        report += f""f"
 📈 Performance Metrics:
 • System Health: {self.system_status.get('health', 'Unknown')}
 • Monitoring Active: {self.monitoring_active}
@@ -351,8 +354,8 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
     def save_system_data(
             self,
-            filename: str = "comprehensive_system_data.json"):
-        """Save comprehensive system data"""
+            filename: str = "comprehensive_system_data.json") -> None:
+        """Save comprehensive system data""f"
         try:
             data = {
                 'timestamp': datetime.now().isoformat(),
@@ -367,7 +370,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             print(f"✅ System data saved to {filename}")
 
         except Exception as e:
-            print(f"❌ Error saving system data: {e}")
+            print(ff"❌ Error saving system data: {e}")
 
     def run_system(self) -> None:
         """Run the comprehensive system"""

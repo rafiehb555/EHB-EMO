@@ -1,4 +1,4 @@
-# EHB-5 Intelligent System Auto-Runner
+﻿# EHB-5 Intelligent System Auto-Runner
 # This script automatically starts, monitors, and manages the entire intelligent system
 
 param(
@@ -11,7 +11,7 @@ param(
 
 # Set console colors
 $Host.UI.RawUI.ForegroundColor = "Cyan"
-Write-Host "🚀 EHB-5 Intelligent System Auto-Runner" -ForegroundColor Green
+Write-Host "ðŸš€ EHB-5 Intelligent System Auto-Runner" -ForegroundColor Green
 Write-Host "===============================================" -ForegroundColor Green
 Write-Host ""
 
@@ -33,11 +33,11 @@ function Write-Status {
 
     $timestamp = Get-Date -Format "HH:mm:ss"
     switch ($Type) {
-        "Success" { Write-Host "[$timestamp] ✓ $Message" -ForegroundColor Green }
-        "Error" { Write-Host "[$timestamp] ✗ $Message" -ForegroundColor Red }
-        "Warning" { Write-Host "[$timestamp] ⚠ $Message" -ForegroundColor Yellow }
-        "Info" { Write-Host "[$timestamp] ℹ $Message" -ForegroundColor Cyan }
-        "System" { Write-Host "[$timestamp] 🔧 $Message" -ForegroundColor Blue }
+        "Success" { Write-Host "[$timestamp] âœ“ $Message" -ForegroundColor Green }
+        "Error" { Write-Host "[$timestamp] âœ— $Message" -ForegroundColor Red }
+        "Warning" { Write-Host "[$timestamp] âš  $Message" -ForegroundColor Yellow }
+        "Info" { Write-Host "[$timestamp] â„¹ $Message" -ForegroundColor Cyan }
+        "System" { Write-Host "[$timestamp] ðŸ”§ $Message" -ForegroundColor Blue }
     }
 }
 
@@ -248,29 +248,29 @@ function Show-SystemStatus {
 
     # Server status
     if ($script:IsRunning) {
-        Write-Host "🟢 Server Status: RUNNING" -ForegroundColor Green
-        Write-Host "⏱️  Uptime: $uptimeString" -ForegroundColor Cyan
-        Write-Host "🔄 Restarts: $($script:RestartCount)" -ForegroundColor Yellow
-        Write-Host "🌐 URL: http://localhost:$Port" -ForegroundColor Cyan
-        Write-Host "🔌 WebSocket: ws://localhost:$Port" -ForegroundColor Cyan
+        Write-Host "ðŸŸ¢ Server Status: RUNNING" -ForegroundColor Green
+        Write-Host "â±ï¸  Uptime: $uptimeString" -ForegroundColor Cyan
+        Write-Host "ðŸ”„ Restarts: $($script:RestartCount)" -ForegroundColor Yellow
+        Write-Host "ðŸŒ URL: http://localhost:$Port" -ForegroundColor Cyan
+        Write-Host "ðŸ”Œ WebSocket: ws://localhost:$Port" -ForegroundColor Cyan
     }
     else {
-        Write-Host "🔴 Server Status: STOPPED" -ForegroundColor Red
+        Write-Host "ðŸ”´ Server Status: STOPPED" -ForegroundColor Red
     }
 
     # Health check
     if (Test-ServerHealth) {
-        Write-Host "✅ Health Check: PASSED" -ForegroundColor Green
+        Write-Host "âœ… Health Check: PASSED" -ForegroundColor Green
     }
     else {
-        Write-Host "❌ Health Check: FAILED" -ForegroundColor Red
+        Write-Host "âŒ Health Check: FAILED" -ForegroundColor Red
     }
 
     # Metrics
     $metrics = Get-ServerMetrics
     if ($metrics) {
         Write-Host ""
-        Write-Host "📊 SYSTEM METRICS" -ForegroundColor Blue
+        Write-Host "ðŸ“Š SYSTEM METRICS" -ForegroundColor Blue
         Write-Host "CPU Usage: $($metrics.cpu)%" -ForegroundColor White
         Write-Host "Memory Usage: $($metrics.memory)%" -ForegroundColor White
         Write-Host "Network: $($metrics.network) MB/s" -ForegroundColor White
@@ -281,7 +281,7 @@ function Show-SystemStatus {
     # $agents = Get-AgentsStatus
     # if ($agents -and $agents.Count -gt 0) {
     #     Write-Host ""
-    #     Write-Host "🤖 AI AGENTS" -ForegroundColor Blue
+    #     Write-Host "ðŸ¤– AI AGENTS" -ForegroundColor Blue
     #     foreach ($agent in $agents) {
     #         $status = $agent.status
     #         $name = $agent.name

@@ -15,14 +15,14 @@ import psutil
 
 
 class AdvancedSystemMonitor:
-    """Advanced system monitoring and analytics"""
+    """Advanced system monitoring and analytics""f"
 
     def __init__(self) -> None:
         self.metrics = {}
         self.start_time = time.time()
 
     def collect_system_metrics(self) -> Dict[str, Any]:
-        """Collect comprehensive system metrics"""
+        """Collect comprehensive system metrics""f"
         try:
             # CPU metrics
             cpu_percent = psutil.cpu_percent(interval=1)
@@ -78,7 +78,7 @@ class AdvancedSystemMonitor:
             return metrics
 
         except Exception as e:
-            print(f"❌ Error collecting metrics: {e}")
+            print(f"❌ Error collecting metrics: {e}f")
             return {}
 
     def calculate_system_health(
@@ -101,16 +101,18 @@ class AdvancedSystemMonitor:
         try:
             with open(filename, 'w') as f:
                 json.dump(self.metrics, f, indent=2)
-            print(f"✅ Metrics saved to {filename}")
+            print(ff"✅ Metrics saved to {filename}")
         except Exception as e:
-            print(f"❌ Error saving metrics: {e}")
+            print(ff"❌ Error saving metrics: {e}")
 
     def generate_report(self) -> str:
         """Generate system health report"""
         if not self.metrics:
             return "No metrics available"
 
-        report = f"""
+        report = f""f"
+
+
 🔍 EHB-5 System Health Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
@@ -121,7 +123,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 • Active Processes: {self.metrics['processes']}
 • System Health: {self.metrics['system_health']}
 
-⏱️ Uptime: {self.metrics['uptime']:.1f} seconds
+⏱️ Uptime: {self.metrics['uptime']: .1f} seconds
 
 🎯 Recommendations:
 """
@@ -140,14 +142,14 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 
 class AdvancedAutoFixer:
-    """Advanced automatic problem fixing with analytics"""
+    """Advanced automatic problem fixing with analytics""f"
 
     def __init__(self) -> None:
         self.fix_history = []
         self.problem_patterns = {}
 
     def analyze_problem_patterns(self, file_path: str) -> None:
-        """Analyze common problem patterns in files"""
+        """Analyze common problem patterns in files""f"
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -165,7 +167,7 @@ class AdvancedAutoFixer:
             return patterns
 
         except Exception as e:
-            print(f"❌ Error analyzing {file_path}: {e}")
+            print(f"❌ Error analyzing {file_path}: {e}f")
             return {}
 
     def get_fix_recommendations(self, file_path: str) -> List[str]:
@@ -190,7 +192,7 @@ class AdvancedAutoFixer:
         return recommendations
 
     def log_fix(self, file_path: str, fix_type: str, details: str) -> None:
-        """Log a fix operation"""
+        """Log a fix operation""f"
         fix_log = {
             'timestamp': datetime.now().isoformat(),
             'file': file_path,
@@ -204,7 +206,7 @@ class AdvancedAutoFixer:
         if not self.fix_history:
             return "No fixes performed yet"
 
-        report = f"""
+        report = f""f"
 🔧 Auto-Fix Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
@@ -219,7 +221,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         for fix in self.fix_history[-5:]:  # Last 5 fixes
 
 
-report += f"• {fix['file']}: {fix['fix_type']} - {fix['details']}\n"
+report += ff"• {fix['file']}: {fix['fix_type']} - {fix['details']}\n"
 
 return report
 
@@ -231,7 +233,7 @@ class PerformanceOptimizer:
         self.optimization_history = []
 
     def optimize_python_files(self) -> None:
-        """Apply performance optimizations to Python files"""
+        """Apply performance optimizations to Python files""f"
         optimizations = []
 
         # Find Python files
@@ -261,7 +263,7 @@ class PerformanceOptimizer:
 f"✅ Optimized {file}: {optimization['reduction_percent']}% smaller")
 
             except Exception as e:
-                print(f"❌ Error optimizing {file}: {e}")
+                print(ff"❌ Error optimizing {file}: {e}")
 
         self.optimization_history.extend(optimizations)
         return optimizations
@@ -294,7 +296,7 @@ f"✅ Optimized {file}: {optimization['reduction_percent']}% smaller")
         avg_reduction = sum(opt['reduction_percent']
 for opt in self.optimization_history) / len(self.optimization_history)
 
-        report = f"""
+        report = f""f"
 🚀 Performance Optimization Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
@@ -307,7 +309,7 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
 
         for opt in self.optimization_history:
-            report += f"• {opt['file']}: {opt['reduction_percent']}% smaller\n"
+report += ff"• {opt['file']}: {opt['reduction_percent']}% smaller\n"
 
         return report
 
@@ -338,11 +340,11 @@ def main() -> None:
     for file in python_files:
         recommendations = auto_fixer.get_fix_recommendations(file)
         if recommendations:
-            print(f"📝 {file}: {', '.join(recommendations)}")
+            print(ff"📝 {file}: {', '.join(recommendations)}")
             auto_fixer.log_fix(
                 file,
                 "Analysis",
-                f"Found {len(recommendations)} issues")
+                ff"Found {len(recommendations)} issues")
 
     # Generate fix report
     print("\n📋 Auto-Fix Report:")

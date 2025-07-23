@@ -52,9 +52,9 @@ class DeploymentManager:
 
                 if src.exists():
                     shutil.copy2(src, dst)
-                    print("✅ Copied: {file}")
+                    print(f"✅ Copied: {file}")
                 else:
-                    print("⚠️  Missing: {file}")
+                    print(f"⚠️  Missing: {file}")
 
             # Create deployment script
             self._create_deployment_script()
@@ -63,7 +63,7 @@ class DeploymentManager:
             return True
 
         except Exception as e:
-            print("❌ Deployment package creation failed: {e}")
+            print(f"❌ Deployment package creation failed: {e}")
             return False
 
     def _create_deployment_script(self) -> None:
@@ -115,7 +115,7 @@ python main.py
                 self.backup_dir.mkdir()
 
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            backup_name = "ehb5_backup_{timestamp}"
+            backup_name = f"ehb5_backup_{timestamp}"
             backup_path = self.backup_dir / backup_name
 
             # Create backup
@@ -127,17 +127,17 @@ python main.py
                     '.git',
                     '*.pyc'))
 
-            print("✅ Backup created: {backup_name}")
+            print(f"✅ Backup created: {backup_name}")
             return True
 
         except Exception as e:
-            print("❌ Backup creation failed: {e}")
+            print(f"❌ Backup creation failed: {e}")
             return False
 
     def check_deployment_requirements(self) -> None:
         """Check if system meets deployment requirements"""
         try:
-            print("🔍 Checking deployment requirements...")
+            print("🔍 Checking deployment requirements...f")
 
             requirements = {
                 "python_version": sys.version_info >= (3, 8),
@@ -153,27 +153,27 @@ python main.py
 
             for file in required_files:
                 if os.path.exists(file):
-                    requirements["required_files"].append(
+                    requirements["required_filesf"].append(
                         {"file": file, "status": "present"})
                 else:
-                    requirements["required_files"].append(
+                    requirements["required_filesf"].append(
                         {"file": file, "status": "missing"})
 
             # Check dependencies
             try:
                 import flask
-                requirements["dependencies"].append(
+                requirements["dependenciesf"].append(
                     {"package": "flask", "status": "installed"})
             except ImportError:
-                requirements["dependencies"].append(
+                requirements["dependenciesf"].append(
                     {"package": "flask", "status": "missing"})
 
             try:
                 import jwt
-                requirements["dependencies"].append(
+                requirements["dependenciesf"].append(
                     {"package": "PyJWT", "status": "installed"})
             except ImportError:
-                requirements["dependencies"].append(
+                requirements["dependenciesf"].append(
                     {"package": "PyJWT", "status": "missing"})
 
             # Calculate readiness
@@ -195,12 +195,12 @@ python main.py
             ) / 3 * 100
 
             print("✅ Deployment requirements check completed")
-            print("📊 Readiness Score: {requirements['readiness_score']:.1f}%")
+            print(f"📊 Readiness Score: {requirements['readiness_score']:.1f}%")
 
             return requirements
 
         except Exception as e:
-            print("❌ Requirements check failed: {e}")
+            print(f"❌ Requirements check failed: {e}")
             return None
 
     def deploy_to_production(self, target_dir: str = None) -> None:
@@ -225,19 +225,19 @@ python main.py
                 return False
 
             print("✅ Production deployment completed successfully")
-            print("📁 Deployment package: {self.deployment_dir}")
-            print("💾 Backup location: {self.backup_dir}")
+            print(f"📁 Deployment package: {self.deployment_dir}")
+            print(f"💾 Backup location: {self.backup_dir}")
 
             return True
 
         except Exception as e:
-            print("❌ Production deployment failed: {e}")
+            print(f"❌ Production deployment failed: {e}")
             return False
 
     def generate_deployment_report(self) -> None:
         """Generate deployment report"""
         try:
-            print("📊 Generating deployment report...")
+            print("📊 Generating deployment report...f")
 
             requirements = self.check_deployment_requirements()
 
@@ -247,12 +247,12 @@ python main.py
                     "project": "EHB-5",
                     "version": "2.0.0"},
                 "requirements": requirements,
-                "deployment_package": {
+                "deployment_packagef": {
                     "location": str(
                         self.deployment_dir),
                     "files": list(
 self.deployment_dir.glob("*")) if self.deployment_dir.exists() else []},
-                "backup_info": {
+                "backup_infof": {
                     "location": str(
                         self.backup_dir),
                     "backups": list(
@@ -263,11 +263,11 @@ self.backup_dir.glob("*")) if self.backup_dir.exists() else []}}
             with open(report_file, "w") as f:
                 json.dump(report, f, indent=2, default=str)
 
-            print("✅ Deployment report saved: {report_file}")
+            print(f"✅ Deployment report saved: {report_file}")
             return report
 
         except Exception as e:
-            print("❌ Deployment report generation failed: {e}")
+            print(f"❌ Deployment report generation failed: {e}")
             return None
 
 
@@ -282,7 +282,7 @@ def main() -> None:
     # Check requirements
     requirements = deployer.check_deployment_requirements()
     if requirements:
-        print("📊 Readiness Score: {requirements['readiness_score']:.1f}%")
+        print(f"📊 Readiness Score: {requirements['readiness_score']:.1f}%")
 
         if requirements["ready_for_deployment"]:
             print("✅ System ready for deployment")

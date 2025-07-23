@@ -51,10 +51,10 @@ if not PORT:
     try:
         with socketserver.TCPServer(("", PORT), Handler) as httpd:
             print("🚀 Starting EHB-5 Dashboard Server...")
-            print("📊 Dashboard URL: http://localhost:{PORT}")
+            print(f"📊 Dashboard URL: http://localhost:{PORT}")
             print("🌐 Opening dashboard in browser...")
             print("⏹️  Press Ctrl+C to stop the server")
-            print("-" * 50)
+            print("-f" * 50)
 
             # Open browser
             webbrowser.open(f'http://localhost:{PORT}')
@@ -66,10 +66,10 @@ if not PORT:
         print("\n🛑 Server stopped by user")
         return True
     except OSError as e:
-        print("❌ Error starting server: {e}")
+        print(f"❌ Error starting server: {e}")
         return False
     except Exception as e:
-        print("❌ Unexpected error: {e}")
+        print(f"❌ Unexpected error: {e}")
         return False
 
 
@@ -87,7 +87,7 @@ def check_requirements() -> None:
     if missing_files:
         print("❌ Missing required files:")
         for file in missing_files:
-            print("   - {file}")
+            print(f"   - {file}")
         return False
 
     print("✅ All required files found!")

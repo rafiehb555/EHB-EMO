@@ -29,7 +29,7 @@ class EHB5Application:
         self.auth_manager = AuthManager()
         self.api_app = api_app
 
-    def start_api_server(self, port: int = 5000) -> None:
+    def start_api_server(self, port: int = 5000) -> threading.Thread:
         """Start the API server in a separate thread"""
         def run_server() -> None:
             self.api_app.run(host='0.0.0.0', port=port, debug=False)
@@ -38,7 +38,7 @@ class EHB5Application:
         server_thread.start()
         return server_thread
 
-    def start_dashboard_server(self, port: int = 8000) -> None:
+    def start_dashboard_server(self, port: int = 8000) -> bool:
         """Start the dashboard server"""
         import http.server
         import socketserver
@@ -57,8 +57,8 @@ class EHB5Application:
 
         try:
             with socketserver.TCPServer(("", port), Handler) as httpd:
-                print("🚀 Starting EHB-5 Dashboard Server on port {port}...")
-                print("📊 Dashboard URL: http://localhost:{port}")
+                print(f"🚀 Starting EHB-5 Dashboard Server on port {port}...")
+                print(f"📊 Dashboard URL: http://localhost:{port}")
 
                 # Open browser
                 webbrowser.open(f'http://localhost:{port}')
@@ -70,7 +70,7 @@ class EHB5Application:
             print("\n🛑 Dashboard server stopped by user")
             return True
         except Exception as e:
-            print("❌ Error starting dashboard server: {e}")
+            print(f"❌ Error starting dashboard server: {e}")
             return False
 
     def initialize_system(self) -> None:
@@ -95,7 +95,7 @@ class EHB5Application:
                 "admin"):
             print("✅ Admin user created successfully")
             print("   Username: admin")
-            print("   Password: {admin_password}")
+            print(f"   Password: {admin_password}")
         else:
             print("ℹ️  Admin user already exists")
 
@@ -113,7 +113,7 @@ class EHB5Application:
 
             # Start API server
             print("🚀 Starting API server...")
-            api_thread = self.start_api_server()
+            self.start_api_server()
             time.sleep(2)  # Give API server time to start
 
             # Start dashboard server
@@ -123,7 +123,7 @@ class EHB5Application:
         except KeyboardInterrupt:
             print("\n🛑 EHB-5 application stopped by user")
         except Exception as e:
-            print("❌ Application error: {e}")
+            print(f"❌ Application error: {e}")
 
 
 def main() -> None:

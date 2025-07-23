@@ -337,13 +337,13 @@ module.exports = {
     generateEnvFile() {
         return `# EHB-5 Dashboard Environment Variables
 NODE_ENV=development
-PORT=3000
+PORT=3001
 DATABASE_URL=postgresql://user:password@localhost:5432/ehb5
 REDIS_URL=redis://localhost:6379
 JWT_SECRET=your-jwt-secret-here
-CORS_ORIGIN=http://localhost:3000
-API_BASE_URL=http://localhost:3000/api
-SOCKET_URL=ws://localhost:3000
+CORS_ORIGIN=http://localhost:3001
+API_BASE_URL=http://localhost:3001/api
+SOCKET_URL=ws://localhost:3001
 
 # AI API Keys
 OPENAI_API_KEY=your-openai-api-key-here

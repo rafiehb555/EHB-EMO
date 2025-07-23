@@ -1,67 +1,61 @@
 #!/usr/bin/env python3
 """
 EHB-5 Performance Optimizer
-System performance optimization and caching
+Advanced performance optimization and monitoring system
 """
 
-import time
-import threading
 import functools
-from datetime import datetime, timedelta
-from typing import Dict, Any, Callable, List
-from collections import OrderedDict
+import threading
+import time
+from datetime import datetime
+from typing import Any, Callable, Dict, List, Optional
+
+import psutil
 
 
 class CacheManager:
     """Intelligent caching system"""
 
     def __init__(self, max_size: int = 1000, ttl: int = 300) -> None:
+        self.cache = {}
         self.max_size = max_size
-        self.ttl = ttl  # seconds
-        self.cache = OrderedDict()
-        self.access_times = {}
+        self.ttl = ttl
         self.lock = threading.Lock()
+        self.hits = 0
+        self.misses = 0
 
     def get(self, key: str) -> Any:
         """Get value from cache"""
         with self.lock:
             if key in self.cache:
-                # Check if expired
-                if time.time() - self.access_times[key] > self.ttl:
+                item = self.cache[key]
+                if time.time() - item["timestamp"] < self.ttl:
+                    self.hits += 1
+                    return item["value"]
+                else:
                     del self.cache[key]
-                    del self.access_times[key]
-                    return None
 
-                # Move to end (LRU)
-                value = self.cache.pop(key)
-                self.cache[key] = value
-                self.access_times[key] = time.time()
-                return value
+            self.misses += 1
             return None
 
     def set(self, key: str, value: Any) -> None:
         """Set value in cache"""
         with self.lock:
-            # Remove if exists
-            if key in self.cache:
-                del self.cache[key]
-                del self.access_times[key]
-
-            # Add new value
-            self.cache[key] = value
-            self.access_times[key] = time.time()
-
-            # Remove oldest if cache is full
-            if len(self.cache) > self.max_size:
-                oldest_key = next(iter(self.cache))
+            if len(self.cache) >= self.max_size:
+                # Remove oldest item
+                oldest_key = min(self.cache.keys(),
+                               key=lambda k: self.cache[k]["timestamp"])
                 del self.cache[oldest_key]
-                del self.access_times[oldest_key]
+
+            self.cache[key] = {
+                "value": value,
+                "timestamp": time.time()
+            }
 
     def clear(self) -> None:
         """Clear all cache"""
         with self.lock:
             self.cache.clear()
-            self.access_times.clear()
 
     def get_stats(self) -> Dict:
         """Get cache statistics"""
@@ -75,8 +69,8 @@ class CacheManager:
 
     def _calculate_hit_rate(self) -> float:
         """Calculate cache hit rate"""
-        # This is a simplified calculation
-        return 0.85  # Placeholder
+        total = self.hits + self.misses
+        return self.hits / total if total > 0 else 0.0
 
 
 class QueryOptimizer:
@@ -127,11 +121,13 @@ class QueryOptimizer:
         for query_hash, stats in self.query_stats.items():
             if stats["avg_time"] > 0.5:  # Average time > 500ms
                 suggestions.append(
-f"Query taking {stats['avg_time']:.2f}s on average: {stats['query'][:100]}...")
+                    f"Query taking {stats['avg_time']:.2f}s on average: "
+                    f"{stats['query'][:100]}...")
 
             if stats["count"] > 100:  # Frequently executed
                 suggestions.append(
-f"Frequently executed query ({stats['count']} times): Consider caching")
+                    f"Frequently executed query ({stats['count']} times): "
+                    f"Consider caching")
 
         return suggestions
 
@@ -169,22 +165,9 @@ class PerformanceProfiler:
             self.profiles[name] = []
 
         self.profiles[name].append(profile_data)
-
-        # Keep only last 100 profiles per name
-        if len(self.profiles[name]) > 100:
-            self.profiles[name] = self.profiles[name][-100:]
-
         del self.active_profiles[name]
-        return profile_data
 
-    def _get_memory_usage(self) -> float:
-        """Get current memory usage in MB"""
-        try:
-            import psutil
-            process = psutil.Process()
-            return process.memory_info().rss / (1024 * 1024)
-        except ImportError:
-            return 0.0
+        return profile_data
 
     def get_profile_stats(self, name: str) -> Dict:
         """Get profiling statistics for a name"""
@@ -204,44 +187,40 @@ class PerformanceProfiler:
             "total_memory_delta": sum(memory_deltas)
         }
 
+    def _get_memory_usage(self) -> float:
+        """Get current memory usage in MB"""
+        try:
+            process = psutil.Process()
+            return process.memory_info().rss / 1024 / 1024
+        except Exception:
+            return 0.0
 
-def cache_result(ttl: int = 300) -> None:
+
+def cache_result(ttl: int = 300):
     """Decorator to cache function results"""
     def decorator(func: Callable) -> Callable:
+        cache = {}
+
         @functools.wraps(func)
-        def wrapper(*args, **kwargs) -> None:
-
-
+        def wrapper(*args, **kwargs):
             # Create cache key from function name and arguments
-cache_key = f"{func.__name__}:{hash(str(args) + str(sorted(kwargs.items()))}"
+            cache_key = (f"{func.__name__}:"
+                        f"{hash(str(args) + str(sorted(kwargs.items())))}")
 
-# Try to get from cache
-result = cache_manager.get(cache_key)
-if result is not None:
-    return result
+            # Try to get from cache
+            if cache_key in cache:
+                cached_result = cache[cache_key]
+                if time.time() - cached_result["timestamp"] < ttl:
+                    return cached_result["value"]
 
-    # Execute function and cache result
-    result = func(*args, **kwargs)
-    cache_manager.set(cache_key, result)
-    return result
+            # Execute function and cache result
+            result = func(*args, **kwargs)
+            cache[cache_key] = {
+                "value": result,
+                "timestamp": time.time()
+            }
 
-    return wrapper
-    return decorator
-
-
-def profile_function(name: str = None) -> None:
-    """Decorator to profile function performance"""
-    def decorator(func: Callable) -> Callable:
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs) -> None:
-            profile_name = name or func.__name__
-            performance_profiler.start_profile(profile_name)
-
-            try:
-                result = func(*args, **kwargs)
-                return result
-            finally:
-                performance_profiler.end_profile(profile_name)
+            return result
 
         return wrapper
     return decorator
@@ -252,9 +231,9 @@ class ResourceManager:
 
     def __init__(self) -> None:
         self.resource_limits = {
-            "max_memory_mb": 512,
+            "max_memory_mb": 1024,
             "max_cpu_percent": 80,
-            "max_disk_percent": 90
+            "max_disk_percent": 85
         }
         self.current_usage = {}
         self.alerts = []
@@ -262,24 +241,22 @@ class ResourceManager:
     def check_resource_usage(self) -> Dict:
         """Check current resource usage"""
         try:
-            import psutil
-
             # Memory usage
             memory = psutil.virtual_memory()
             memory_percent = memory.percent
-            memory_mb = memory.used / (1024 * 1024)
+            memory_mb = memory.used / 1024 / 1024
 
             # CPU usage
             cpu_percent = psutil.cpu_percent(interval=1)
 
             # Disk usage
-            disk = psutil.disk_usage('/')
+            disk = psutil.disk_usage('.')
             disk_percent = disk.percent
 
             self.current_usage = {
                 "memory": {
                     "percent": memory_percent,
-                    "mb": round(memory_mb, 2),
+                    "used_mb": memory_mb,
                     "limit_mb": self.resource_limits["max_memory_mb"]
                 },
                 "cpu": {
@@ -292,45 +269,45 @@ class ResourceManager:
                 }
             }
 
-            # Check for alerts
-            self._check_alerts()
-
             return self.current_usage
 
-        except ImportError:
-            return {"error": "psutil not available"}
+        except Exception as e:
+            print(f"Error checking resource usage: {e}")
+            return {}
 
-    def _check_alerts(self) -> None:
-        """Check for resource usage alerts"""
+    def get_alerts(self) -> List[Dict]:
+        """Get resource alerts"""
         alerts = []
 
         if self.current_usage.get("memory", {}).get("percent", 0) > 80:
             alerts.append({
                 "type": "high_memory",
-"message": f"High memory usage: {self.current_usage['memory']['percent']}%",
-                "severity": "warning"
+                "message": "Memory usage is high",
+                "value": self.current_usage["memory"]["percent"],
+                "limit": 80
             })
 
         if self.current_usage.get("cpu", {}).get("percent", 0) > 80:
             alerts.append({
                 "type": "high_cpu",
-"message": f"High CPU usage: {self.current_usage['cpu']['percent']}%",
-                "severity": "warning"
+                "message": "CPU usage is high",
+                "value": self.current_usage["cpu"]["percent"],
+                "limit": 80
             })
 
         if self.current_usage.get("disk", {}).get("percent", 0) > 85:
             alerts.append({
                 "type": "low_disk",
-"message": f"Low disk space: {self.current_usage['disk']['percent']}%",
-                "severity": "critical"
+                "message": "Disk space is low",
+                "value": self.current_usage["disk"]["percent"],
+                "limit": 85
             })
 
-        self.alerts = alerts
+        return alerts
 
     def get_optimization_recommendations(self) -> List[str]:
-        """Get performance optimization recommendations"""
+        """Get optimization recommendations"""
         recommendations = []
-
         usage = self.current_usage
 
         if usage.get("memory", {}).get("percent", 0) > 70:
@@ -348,8 +325,73 @@ class ResourceManager:
         return recommendations
 
 
-# Global performance instances
-cache_manager = CacheManager()
-query_optimizer = QueryOptimizer()
-performance_profiler = PerformanceProfiler()
-resource_manager = ResourceManager()
+class PerformanceOptimizer:
+    """Main performance optimization system"""
+
+    def __init__(self) -> None:
+        self.cache_manager = CacheManager()
+        self.query_optimizer = QueryOptimizer()
+        self.profiler = PerformanceProfiler()
+        self.resource_manager = ResourceManager()
+
+    def optimize_system(self) -> Dict:
+        """Run complete system optimization"""
+        print("⚡ Starting Performance Optimization...")
+
+        # Check resource usage
+        resource_usage = self.resource_manager.check_resource_usage()
+        alerts = self.resource_manager.get_alerts()
+recommendations = self.resource_manager.get_optimization_recommendations()
+
+        # Get cache statistics
+        cache_stats = self.cache_manager.get_stats()
+
+        # Get query optimization suggestions
+        query_suggestions = self.query_optimizer.get_optimization_suggestions()
+
+        optimization_report = {
+            "resource_usage": resource_usage,
+            "alerts": alerts,
+            "recommendations": recommendations,
+            "cache_stats": cache_stats,
+            "query_suggestions": query_suggestions,
+            "timestamp": datetime.now().isoformat()
+        }
+
+        print("✅ Performance optimization completed!")
+        return optimization_report
+
+    def start_monitoring(self) -> None:
+        """Start continuous performance monitoring"""
+        print("👁️ Starting performance monitoring...")
+
+        while True:
+            try:
+                self.optimize_system()
+                time.sleep(60)  # Check every minute
+            except KeyboardInterrupt:
+                print("🛑 Performance monitoring stopped")
+                break
+            except Exception as e:
+                print(f"❌ Monitoring error: {e}")
+                time.sleep(10)
+
+
+def main() -> None:
+    """Main function"""
+    optimizer = PerformanceOptimizer()
+
+    if len(sys.argv) > 1 and sys.argv[1] == '--monitor':
+        optimizer.start_monitoring()
+    else:
+        report = optimizer.optimize_system()
+        print("📊 Performance Report:")
+print(f"Memory Usage: {report['resource_usage']['memory']['percent']}%")
+        print(f"CPU Usage: {report['resource_usage']['cpu']['percent']}%")
+        print(f"Disk Usage: {report['resource_usage']['disk']['percent']}%")
+        print(f"Cache Hit Rate: {report['cache_stats']['hit_rate']:.2%}")
+
+
+if __name__ == "__main__":
+    import sys
+    main()

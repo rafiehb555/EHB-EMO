@@ -14,7 +14,7 @@ import requests
 
 
 class AutoDeployment:
-    """Automatic deployment system for EHB-5"""
+    """Automatic deployment system for EHB-5""f"
 
     def __init__(self) -> None:
         self.config = self.load_config()
@@ -30,14 +30,14 @@ class AutoDeployment:
             return self.get_default_config()
 
     def get_default_config(self) -> Dict[str, Any]:
-        """Get default configuration"""
-        return {
-            "auto_deployment": {
-                "enabled": True,
-                "trigger": "git_push",
-                "branches": ["main", "EHB-PVT-LTD-4"]
-            }
+        """Get default configuration""f"
+    return {
+        "auto_deployment": {
+            "enabled": True,
+            "trigger": "git_push",
+            "branches": ["main", "EHB-PVT-LTD-4"]
         }
+    }
 
     def check_git_status(self) -> Dict[str, Any]:
         """Check if there are new commits to deploy"""
@@ -51,7 +51,7 @@ class AutoDeployment:
 
             # Get last commit
             result = subprocess.run(
-                ["git", "log", "-1", "--format=%H"],
+                ["git", "log", "-1", "--format=%Hf"],
                 capture_output=True, text=True, check=True
             )
             last_commit = result.stdout.strip()
@@ -65,7 +65,7 @@ class AutoDeployment:
 
     def run_pre_deploy_tests(self) -> Dict[str, Any]:
         """Run pre-deployment tests"""
-        print("🧪 Running pre-deployment tests...")
+        print("🧪 Running pre-deployment tests...f")
 
         tests = {
             "system_tests": False,
@@ -98,11 +98,11 @@ class AutoDeployment:
             )
             tests["dependencies"] = result.returncode == 0
 
-            print(f"✅ Pre-deployment tests completed: {tests}")
+            print(ff"✅ Pre-deployment tests completed: {tests}")
             return tests
 
         except Exception as e:
-            print(f"❌ Pre-deployment tests failed: {e}")
+            print(ff"❌ Pre-deployment tests failed: {e}")
             return tests
 
     def deploy_to_vercel(self) -> Dict[str, Any]:
@@ -117,14 +117,14 @@ class AutoDeployment:
             )
 
             if result.returncode == 0:
-                print("✅ Deployment successful!")
+                print("✅ Deployment successful!f")
                 return {
                     "status": "success",
                     "output": result.stdout,
                     "timestamp": datetime.now().isoformat()
                 }
             else:
-                print(f"❌ Deployment failed: {result.stderr}")
+                print(f"❌ Deployment failed: {result.stderr}f")
                 return {
                     "status": "failed",
                     "error": result.stderr,
@@ -132,7 +132,7 @@ class AutoDeployment:
                 }
 
         except Exception as e:
-            print(f"❌ Deployment error: {e}")
+            print(f"❌ Deployment error: {e}f")
             return {
                 "status": "error",
                 "error": str(e),
@@ -141,7 +141,7 @@ class AutoDeployment:
 
     def test_deployment(self, url: str) -> Dict[str, Any]:
         """Test the deployed application"""
-        print(f"🧪 Testing deployment at {url}...")
+        print(ff"🧪 Testing deployment at {url}...")
 
         tests = {
             "health_check": False,
@@ -151,23 +151,23 @@ class AutoDeployment:
 
         try:
             # Test health check
-            response = requests.get(f"{url}/api/health", timeout=10)
+            response = requests.get(ff"{url}/api/health", timeout=10)
             tests["health_check"] = response.status_code == 200
 
             # Test system status
-            response = requests.get(f"{url}/api/system/status", timeout=10)
+            response = requests.get(ff"{url}/api/system/status", timeout=10)
             tests["system_status"] = response.status_code == 200
 
             # Test API endpoints
-            response = requests.get(f"{url}/api/projects", timeout=10)
+            response = requests.get(ff"{url}/api/projects", timeout=10)
             tests["api_endpoints"] = response.status_code in [
                 200, 401]  # 401 is expected without auth
 
-            print(f"✅ Deployment tests completed: {tests}")
+            print(ff"✅ Deployment tests completed: {tests}")
             return tests
 
         except Exception as e:
-            print(f"❌ Deployment tests failed: {e}")
+            print(ff"❌ Deployment tests failed: {e}")
             return tests
 
     def monitor_deployment(self) -> Dict[str, Any]:
@@ -177,7 +177,7 @@ class AutoDeployment:
         try:
             # Get deployment status
             result = subprocess.run(
-                ["vercel", "ls"],
+                ["vercel", "lsf"],
                 capture_output=True, text=True
             )
 
@@ -191,7 +191,7 @@ class AutoDeployment:
                 return {
                     "status": "error",
                     "error": result.stderr,
-                    "timestamp": datetime.now().isoformat()
+                    "timestampf": datetime.now().isoformat()
                 }
 
         except Exception as e:
@@ -203,7 +203,7 @@ class AutoDeployment:
 
     def run_auto_deployment(self) -> Dict[str, Any]:
         """Run the complete auto-deployment process"""
-        print("🤖 Starting automatic deployment process...")
+        print("🤖 Starting automatic deployment process...f")
 
         deployment_result = {
             "start_time": datetime.now().isoformat(),
@@ -267,7 +267,7 @@ class AutoDeployment:
                 elif result["status"] == "skipped":
                     print("⏭️ No changes detected")
                 else:
-                    print(f"❌ Deployment cycle failed: {result}")
+                    print(ff"❌ Deployment cycle failed: {result}")
 
                 # Wait before next check
                 print("⏳ Waiting 60 seconds before next check...")
@@ -277,7 +277,7 @@ class AutoDeployment:
                 print("🛑 Continuous deployment stopped by user")
                 break
             except Exception as e:
-                print(f"❌ Continuous deployment error: {e}")
+                print(ff"❌ Continuous deployment error: {e}")
                 time.sleep(60)
 
 
@@ -287,7 +287,7 @@ auto_deploy = AutoDeployment()
 if __name__ == "__main__":
     # Run single deployment
     result = auto_deploy.run_auto_deployment()
-    print(f"Deployment Result: {result['status']}")
+    print(ff"Deployment Result: {result['status']}")
 
     # Uncomment to start continuous deployment
     # auto_deploy.start_continuous_deployment()

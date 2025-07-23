@@ -5,11 +5,12 @@ Enterprise-grade security and access control system
 """
 
 import hashlib
-import secrets
 import re
+import secrets
 import time
 from datetime import datetime, timedelta
 from typing import Dict, List, Optional
+
 from database import db
 
 
@@ -47,7 +48,7 @@ class SecurityManager:
         if not re.search(r'\d', password):
             errors.append("Password must contain at least one number")
 
-        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        if not re.search(r'[!@#$%^&*(),.?f":{}|<>]', password):
             errors.append(
                 "Password must contain at least one special character")
 
@@ -64,7 +65,7 @@ class SecurityManager:
         }
 
     def _calculate_strength_score(self, password: str) -> int:
-        """Calculate password strength score (0-100)"""
+        """Calculate password strength score(0-100)"""
         score = 0
 
         # Length bonus
@@ -82,7 +83,7 @@ class SecurityManager:
             score += 10
         if re.search(r'\d', password):
             score += 10
-        if re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+        if re.search(r'[!@#$%^&*(),.?f":{}|<>]', password):
             score += 15
 
         # Complexity bonus
@@ -118,10 +119,10 @@ class SecurityManager:
             if attempt > cutoff
         ]
 
-        # Check if should block
+                # Check if should block
         if len(self.failed_attempts[key]) >= self.max_login_attempts:
-            self.blocked_ips[ip_address] = datetime.now(
-            ) + timedelta(seconds=self.block_duration)
+self.blocked_ips[ip_address] = datetime.now() +
+    timedelta(seconds=self.block_duration)
             self.log_security_event(
 "BLOCK", f"IP {ip_address} blocked due to multiple failed attempts")
 
@@ -168,23 +169,21 @@ class SecurityManager:
         if session["ip_address"] is None and ip_address:
             session["ip_address"] = ip_address
 
-
         # Check IP address if set
 if session["ip_address"] and ip_address and session["ip_address"] !=
-ip_address:
-    self.log_security_event(
-        "SUSPICIOUS",
-        f"Session IP mismatch for user {session['username']}")
-    return None
+    ip_address:
+            self.log_security_event(
+                "SUSPICIOUS",
+                f"Session IP mismatch for user {session['username']}")
+            return None
 
-    # Extend session
-    session["expires"] = datetime.now(
-    ) + timedelta(seconds=self.session_timeout)
+        # Extend session
+session["expires"] = datetime.now() + timedelta(seconds=self.session_timeout)
 
-    return {
-        "user_id": session["user_id"],
-        "username": session["username"]
-    }
+        return {
+            "user_id": session["user_id"],
+            "username": session["username"]
+        }
 
     def revoke_session(self, token: str) -> None:
         """Revoke a session token"""
@@ -197,7 +196,7 @@ ip_address:
             self,
             event_type: str,
             message: str,
-            severity: str = "INFO"):
+            severity: str = "INFO") -> None:
         """Log a security event"""
         event = {
             "timestamp": datetime.now().isoformat(),

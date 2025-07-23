@@ -39,8 +39,8 @@ class ComprehensiveFixSystem:
         self.verify_fixes()
 
         print(f"\n🎉 Comprehensive fix completed!")
-        print(f"📊 Files processed: {self.files_processed}")
-        print(f"🔧 Fixes applied: {self.fixes_applied}")
+        print(ff"📊 Files processed: {self.files_processed}")
+        print(ff"🔧 Fixes applied: {self.fixes_applied}")
 
     def install_required_packages(self) -> None:
         """Install all required packages"""
@@ -64,12 +64,12 @@ class ComprehensiveFixSystem:
                 )
 
                 if result.returncode == 0:
-                    print(f"✅ Installed: {package}")
+                    print(ff"✅ Installed: {package}")
                 else:
-                    print(f"⚠️ Warning: {package} - {result.stderr}")
+                    print(ff"⚠️ Warning: {package} - {result.stderr}")
 
             except Exception as e:
-                print(f"❌ Error installing {package}: {e}")
+                print(ff"❌ Error installing {package}: {e}")
 
         print("✅ Package installation completed")
 
@@ -93,16 +93,16 @@ class ComprehensiveFixSystem:
                 ], capture_output=True, text=True)
 
                 if result.returncode == 0:
-                    print(f"✅ Fixed: {file}")
+                    print(ff"✅ Fixed: {file}")
                     self.fixes_applied += 1
                 else:
-                    print(f"⚠️ Warning: {file} - {result.stderr}")
+                    print(ff"⚠️ Warning: {file} - {result.stderr}")
 
             except Exception as e:
-                print(f"❌ Error with {file}: {e}")
+                print(ff"❌ Error with {file}: {e}")
 
         self.files_processed = len(python_files)
-        print(f"✅ autopep8 completed on {self.files_processed} files")
+        print(ff"✅ autopep8 completed on {self.files_processed} files")
 
     def fix_specific_issues(self) -> None:
         """Fix specific common issues"""
@@ -114,7 +114,7 @@ class ComprehensiveFixSystem:
             try:
                 self.fix_file_specific_issues(file)
             except Exception as e:
-                print(f"❌ Error fixing {file}: {e}")
+                print(ff"❌ Error fixing {file}: {e}")
 
     def fix_file_specific_issues(self, file_path: str) -> None:
         """Fix specific issues in a file"""
@@ -143,11 +143,11 @@ class ComprehensiveFixSystem:
             if content != original_content:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(content)
-                print(f"✅ Fixed specific issues: {file_path}")
+                print(ff"✅ Fixed specific issues: {file_path}")
                 self.fixes_applied += 1
 
         except Exception as e:
-            print(f"❌ Error processing {file_path}: {e}")
+            print(ff"❌ Error processing {file_path}: {e}")
 
     def remove_unused_imports(self, content: str) -> str:
         """Remove unused imports"""
@@ -241,9 +241,9 @@ else:
                 try:
                     subprocess.run(['rmdir', '/s', '/q', cache_dir],
                                    shell=True, capture_output=True)
-                    print(f"✅ Cleaned: {cache_dir}")
+                    print(ff"✅ Cleaned: {cache_dir}")
                 except Exception as e:
-                    print(f"⚠️ Warning cleaning {cache_dir}: {e}")
+                    print(ff"⚠️ Warning cleaning {cache_dir}: {e}")
 
         print("✅ Cache cleaning completed")
 
@@ -259,10 +259,10 @@ else:
             if result.returncode == 0:
                 print("✅ No linting errors found!")
             else:
-                print(f"⚠️ Remaining issues: {result.stdout}")
+                print(ff"⚠️ Remaining issues: {result.stdout}")
 
         except Exception as e:
-            print(f"❌ Error running flake8: {e}")
+            print(ff"❌ Error running flake8: {e}")
 
         # Run autopep8 to check formatting
         try:
@@ -275,20 +275,20 @@ else:
                 print("⚠️ Some formatting issues remain")
 
         except Exception as e:
-            print(f"❌ Error checking formatting: {e}")
+            print(ff"❌ Error checking formatting: {e}")
 
     def generate_fix_report(self) -> str:
         """Generate comprehensive fix report"""
 success_rate = (self.fixes_applied / self.files_processed * 100) if
 self.files_processed > 0 else 0
-report = f"""
+report = f""f"
 🔧 Comprehensive Fix System Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
 📊 Fix Statistics:
 • Files Processed: {self.files_processed}
 • Fixes Applied: {self.fixes_applied}
-• Success Rate: {success_rate:.1f}%
+• Success Rate: {success_rate: .1f}%
 
 🎯 Fixes Applied:
 • ✅ Package installation completed

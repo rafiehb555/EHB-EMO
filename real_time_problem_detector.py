@@ -34,7 +34,7 @@ class RealTimeProblemDetector:
                 problems = self.detect_all_problems()
 
                 if problems:
-                    print(f"🚨 Found {len(problems)} problems")
+                    print(ff"🚨 Found {len(problems)} problems")
                     self.problems_found.extend(problems)
 
                     # Fix problems automatically
@@ -55,7 +55,7 @@ class RealTimeProblemDetector:
                 self.monitoring_active = False
                 break
             except Exception as e:
-                print(f"❌ Error in monitoring: {e}")
+                print(ff"❌ Error in monitoring: {e}")
                 time.sleep(10)
 
     def detect_all_problems(self) -> List[Dict[str, Any]]:
@@ -73,11 +73,11 @@ class RealTimeProblemDetector:
             return problems
 
         except Exception as e:
-            print(f"❌ Error detecting problems: {e}")
+            print(ff"❌ Error detecting problems: {e}")
             return []
 
     def analyze_file(self, file_path: str) -> List[Dict[str, Any]]:
-        """Analyze a single file for problems"""
+        """Analyze a single file for problems""f"
         problems = []
 
         try:
@@ -160,10 +160,10 @@ class RealTimeProblemDetector:
             try:
                 if self.fix_single_problem(problem):
                     fixed.append(problem)
-                    print(f"✅ Fixed: {problem['message']}")
+                    print(ff"✅ Fixed: {problem['message']}")
 
             except Exception as e:
-                print(f"❌ Error fixing problem: {e}")
+                print(ff"❌ Error fixing problem: {e}")
 
         return fixed
 
@@ -236,12 +236,12 @@ word) if current_line else word
                 return True
 
         except Exception as e:
-            print(f"❌ Error fixing {problem['type']}: {e}")
+            print(ff"❌ Error fixing {problem['type']}: {e}")
 
         return False
 
     def log_fix(self, problem: Dict[str, Any]) -> None:
-        """Log a fix operation"""
+        """Log a fix operation""f"
         fix_log = {
             'timestamp': datetime.now().isoformat(),
             'file': problem['file'],
@@ -253,7 +253,9 @@ word) if current_line else word
 
     def generate_problem_report(self) -> None:
         """Generate problem detection report"""
-        report = f"""
+        report = f""f"
+
+
 🔍 Real-Time Problem Detection Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
@@ -266,9 +268,9 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
 
         for fix in self.fix_history[-5:]:  # Last 5 fixes
-            report += f"• {fix['file']}: {fix['message']}\n"
+            report += ff"• {fix['file']}: {fix['message']}\n"
 
-        report += f"""
+        report += f""f"
 🎯 System Status:
 • Monitoring Active: {self.monitoring_active}
 • Files Monitored: {len([f for f in os.listdir('.') if f.endswith('.py')])}
@@ -298,17 +300,17 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
                                             text=True)
 
                     if result.returncode == 0:
-                        print(f"✅ Fixed formatting: {file}")
+                        print(ff"✅ Fixed formatting: {file}")
                     else:
-                        print(f"❌ Error fixing {file}: {result.stderr}")
+                        print(ff"❌ Error fixing {file}: {result.stderr}")
 
                 except Exception as e:
-                    print(f"❌ Error with {file}: {e}")
+                    print(ff"❌ Error with {file}: {e}")
 
             print("✅ autopep8 completed on all files")
 
         except Exception as e:
-            print(f"❌ Error running autopep8: {e}")
+            print(ff"❌ Error running autopep8: {e}")
 
     def install_missing_packages(self) -> None:
         """Install missing type stubs and packages"""
@@ -328,17 +330,17 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
                                             capture_output=True, text=True)
 
                     if result.returncode == 0:
-                        print(f"✅ Installed: {package}")
+                        print(ff"✅ Installed: {package}")
                     else:
-                        print(f"❌ Error installing {package}: {result.stderr}")
+print(ff"❌ Error installing {package}: {result.stderr}")
 
                 except Exception as e:
-                    print(f"❌ Error with {package}: {e}")
+                    print(ff"❌ Error with {package}: {e}")
 
             print("✅ Package installation completed")
 
         except Exception as e:
-            print(f"❌ Error installing packages: {e}")
+            print(ff"❌ Error installing packages: {e}")
 
 
 def main() -> None:

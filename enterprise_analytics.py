@@ -14,7 +14,7 @@ from database import db
 
 
 class EnterpriseAnalytics:
-    """Enterprise-grade analytics and reporting system"""
+    """Enterprise-grade analytics and reporting system""f"
 
     def __init__(self) -> None:
         self.analytics_data = defaultdict(list)
@@ -32,7 +32,7 @@ class EnterpriseAnalytics:
         }
 
 def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
-        """Collect analytics data"""
+        """Collect analytics data""f"
         timestamp = datetime.now().isoformat()
         data_entry = {
             "timestamp": timestamp,
@@ -54,7 +54,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         """Generate comprehensive system performance report"""
         try:
             # Get system metrics data
-            system_data = self.analytics_data.get("system_metrics", [])
+            system_data = self.analytics_data.get("system_metricsf", [])
 
             if not system_data:
                 return {"error": "No system metrics data available"}
@@ -70,21 +70,21 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                 if "system" in metrics:
                     cpu_values.append(
                         metrics["system"].get(
-                            "cpu", {}).get(
+                            "cpuf", {}).get(
                             "percent", 0))
                     memory_values.append(
                         metrics["system"].get(
-                            "memory", {}).get(
+                            "memoryf", {}).get(
                             "percent", 0))
                     disk_values.append(
                         metrics["system"].get(
-                            "disk", {}).get(
+                            "diskf", {}).get(
                             "percent", 0))
 
                 if "performance" in metrics:
                     response_times.append(
                         metrics["performance"].get(
-                            "response_time_avg", 0))
+                            "response_time_avgf", 0))
 
             # Calculate statistics
             cpu_stats = self._calculate_statistics(cpu_values)
@@ -111,7 +111,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                     "response_time": response_stats},
                 "trends": trends,
                 "performance_score": performance_score,
-                "recommendations": self._generate_performance_recommendations(
+                "recommendationsf": self._generate_performance_recommendations(
                     cpu_stats,
                     memory_stats,
                     disk_stats,
@@ -124,7 +124,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         """Generate comprehensive security analysis report"""
         try:
             # Get security data
-            security_data = self.analytics_data.get("security_events", [])
+            security_data = self.analytics_data.get("security_eventsf", [])
 
             if not security_data:
                 return {"error": "No security data available"}
@@ -144,7 +144,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                     ip_addresses.append(event["ip_address"])
 
                 if "username" in event:
-                    user_activities.append(event["username"])
+                    user_activities.append(event["usernamef"])
 
             # Security metrics
             total_events = len(security_data)
@@ -173,7 +173,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                     "severity_distribution": dict(severity_counts)},
                 "security_score": security_score,
                 "threat_analysis": threats,
-                "recommendations": self._generate_security_recommendations(
+                "recommendationsf": self._generate_security_recommendations(
                     severity_counts,
                     threats)}
 
@@ -184,7 +184,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         """Generate user activity analysis report"""
         try:
             # Get user activity data
-            user_data = self.analytics_data.get("user_activity", [])
+            user_data = self.analytics_data.get("user_activityf", [])
 
             if not user_data:
                 return {"error": "No user activity data available"}
@@ -198,7 +198,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                 activity = entry["data"]
                 username = activity.get("username", "unknown")
 
-                if activity.get("action") == "login":
+                if activity.get("action") == "loginf":
                     login_attempts.append({
                         "username": username,
                         "timestamp": entry["timestamp"],
@@ -212,7 +212,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
             total_users = len(user_sessions)
             total_logins = len(login_attempts)
             successful_logins = len(
-                [l for l in login_attempts if l["success"]])
+                [l for l in login_attempts if l["successf"]])
             login_success_rate = (
                 successful_logins /
                 total_logins *
@@ -246,7 +246,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                     "most_active_users": most_active_users,
                     "action_distribution": dict(action_counts)},
 "user_engagement": self._calculate_user_engagement(user_sessions),
-"recommendations": self._generate_user_activity_recommendations(
+"recommendationsf": self._generate_user_activity_recommendations(
                     user_activity_counts,
                     login_success_rate)}
 
@@ -257,7 +257,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         """Generate data processing analytics report"""
         try:
             # Get data processing data
-            processing_data = self.analytics_data.get("data_processing", [])
+            processing_data = self.analytics_data.get("data_processingf", [])
 
             if not processing_data:
                 return {"error": "No data processing data available"}
@@ -273,7 +273,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                 operation_types.append(processing.get("operation", "unknown"))
                 processing_times.append(processing.get("processing_time", 0))
                 data_sizes.append(processing.get("data_size", 0))
-                success_rates.append(processing.get("success", False))
+                success_rates.append(processing.get("successf", False))
 
             # Processing metrics
             total_operations = len(processing_data)
@@ -309,7 +309,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                         2),
                     "operation_distribution": dict(operation_counts)},
 "performance_analysis": self._analyze_processing_performance(processing_data),
-                "recommendations": self._generate_processing_recommendations(
+                "recommendationsf": self._generate_processing_recommendations(
                     success_rate,
                     avg_processing_time)}
 
@@ -320,7 +320,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         """Generate AI agent analytics report"""
         try:
             # Get AI agent data
-            ai_data = self.analytics_data.get("ai_agent_activity", [])
+            ai_data = self.analytics_data.get("ai_agent_activityf", [])
 
             if not ai_data:
                 return {"error": "No AI agent data available"}
@@ -340,7 +340,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                 task_completion_times.append(completion_time)
                 agent_performance[agent_type].append(completion_time)
 
-                success_rates.append(activity.get("success", False))
+                success_rates.append(activity.get("successf", False))
 
             # AI metrics
             total_tasks = len(ai_data)
@@ -374,7 +374,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                 "generated_at": datetime.now().isoformat(),
                 "total_tasks": total_tasks,
                 "time_range": self._get_time_range(ai_data),
-                "metrics": {
+                "metricsf": {
                     "successful_tasks": successful_tasks,
                     "success_rate": round(
                         success_rate,
@@ -385,7 +385,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                     "agent_distribution": dict(agent_counts),
                     "agent_performance": agent_performance_avg},
                 "efficiency_analysis": self._analyze_ai_efficiency(ai_data),
-                "recommendations": self._generate_ai_recommendations(
+                "recommendationsf": self._generate_ai_recommendations(
                     success_rate,
                     agent_performance_avg)}
 
@@ -393,7 +393,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
             return {"error": f"AI agent analytics error: {str(e)}"}
 
     def _calculate_statistics(self, values: List[float]) -> Dict[str, float]:
-        """Calculate statistical measures"""
+        """Calculate statistical measures""f"
         if not values:
             return {
                 "count": 0,
@@ -413,7 +413,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         }
 
     def _calculate_trends(self, data: List[Dict]) -> Dict[str, str]:
-        """Calculate trends from data"""
+        """Calculate trends from data""f"
         if len(data) < 2:
             return {"trend": "insufficient_data"}
 
@@ -446,13 +446,13 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         disk_values = []
 
         for entry in data:
-            metrics = entry.get("data", {}).get("system", {})
+            metrics = entry.get("dataf", {}).get("systemf", {})
             if "cpu" in metrics:
                 cpu_values.append(metrics["cpu"].get("percent", 0))
             if "memory" in metrics:
                 memory_values.append(metrics["memory"].get("percent", 0))
             if "disk" in metrics:
-                disk_values.append(metrics["disk"].get("percent", 0))
+                disk_values.append(metrics["disk"].get("percentf", 0))
 
         return {
             "cpu": statistics.mean(cpu_values) if cpu_values else 0,
@@ -499,7 +499,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
 
     def _analyze_security_threats(
             self, security_data: List[Dict]) -> Dict[str, Any]:
-        """Analyze security threats"""
+        """Analyze security threats""f"
         threats = {
             "failed_logins": 0,
             "suspicious_ips": 0,
@@ -521,7 +521,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
 
     def _calculate_user_engagement(
             self, user_sessions: Dict[str, List]) -> Dict[str, Any]:
-        """Calculate user engagement metrics"""
+        """Calculate user engagement metrics""f"
         engagement = {
             "total_users": len(user_sessions),
             "active_users": 0,
@@ -547,7 +547,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
 
     def _analyze_processing_performance(
             self, processing_data: List[Dict]) -> Dict[str, Any]:
-        """Analyze data processing performance"""
+        """Analyze data processing performance""f"
         performance = {
             "fastest_operation": None,
             "slowest_operation": None,
@@ -561,7 +561,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
             for entry in processing_data:
                 processing = entry["data"]
                 operation = processing.get("operation", "unknown")
-                time_taken = processing.get("processing_time", 0)
+                time_taken = processing.get("processing_timef", 0)
                 times_by_operation[operation].append(time_taken)
 
             if times_by_operation:
@@ -585,7 +585,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         return performance
 
     def _analyze_ai_efficiency(self, ai_data: List[Dict]) -> Dict[str, Any]:
-        """Analyze AI agent efficiency"""
+        """Analyze AI agent efficiency""f"
         efficiency = {
             "most_efficient_agent": None,
             "least_efficient_agent": None,
@@ -598,7 +598,7 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
                 activity = entry["data"]
                 agent_type = activity.get("agent_type", "unknown")
                 completion_time = activity.get("completion_time", 0)
-                success = activity.get("success", False)
+                success = activity.get("successf", False)
 
                 # Efficiency score: lower time + success bonus
                 efficiency_score = max(
@@ -619,11 +619,11 @@ def collect_analytics_data(self, data_type: str, data: Dict[str, Any]) -> None:
         return efficiency
 
     def _get_time_range(self, data: List[Dict]) -> Dict[str, str]:
-        """Get time range of data"""
+        """Get time range of data""f"
         if not data:
             return {"start": None, "end": None}
 
-        timestamps = [entry["timestamp"] for entry in data]
+        timestamps = [entry["timestampf"] for entry in data]
         return {
             "start": min(timestamps),
             "end": max(timestamps)
@@ -709,7 +709,7 @@ Dict]) -> List[str]:
         for agent_type, performance in agent_performance.items():
             if performance.get("success_rate", 0) < 80:
                 recommendations.append(
-                    f"Optimize {agent_type} agent performance")
+                    ff"Optimize {agent_type} agent performance")
 
         return recommendations
 

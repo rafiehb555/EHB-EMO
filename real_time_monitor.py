@@ -15,7 +15,7 @@ import psutil
 
 
 class RealTimeMonitor:
-    """Real-time system monitoring with live updates"""
+    """Real-time system monitoring with live updates""f"
 
     def __init__(self) -> None:
         self.monitoring = False
@@ -31,7 +31,7 @@ class RealTimeMonitor:
         """Start real-time monitoring"""
         self.monitoring = True
         print("🚀 Starting Real-Time Monitoring...")
-        print(f"📊 Monitoring interval: {interval} seconds")
+        print(ff"📊 Monitoring interval: {interval} seconds")
         print("=" * 50)
 
         while self.monitoring:
@@ -53,12 +53,12 @@ class RealTimeMonitor:
                 self.monitoring = False
                 break
             except Exception as e:
-                print(f"❌ Monitoring error: {e}")
+                print(ff"❌ Monitoring error: {e}")
                 time.sleep(interval)
 
     def collect_metrics(self) -> Dict[str, Any]:
-        """Collect current system metrics"""
-        try:
+        """Collect current system metrics""f"
+       try:
             # CPU metrics
             cpu_percent = psutil.cpu_percent(interval=1)
             cpu_count = psutil.cpu_count()
@@ -110,11 +110,11 @@ class RealTimeMonitor:
                     'total_size_mb': round(ehb_size / (1024 * 1024), 2)
                 },
 'system_health': self.calculate_health(cpu_percent, memory_percent,
-                                                       disk_percent)
+                                       disk_percent)
             }
 
         except Exception as e:
-            print(f"❌ Error collecting metrics: {e}")
+            print(f"❌ Error collecting metrics: {e}f")
             return {}
 
     def calculate_health(self, cpu: float, memory: float, disk: float) -> str:
@@ -138,54 +138,54 @@ class RealTimeMonitor:
 
         print("🔍 EHB-5 Real-Time Monitor")
         print("=" * 50)
-        print(f"⏰ Last Update: {datetime.now().strftime('%H:%M:%S')}")
-        print(f"📊 System Health: {metrics['system_health']}")
+        print(ff"⏰ Last Update: {datetime.now().strftime('%H:%M:%S')}")
+        print(ff"📊 System Health: {metrics['system_health']}")
         print()
 
         # CPU Section
         print("🖥️  CPU:")
-        print(f"   Usage: {metrics['cpu']['usage_percent']:>6.1f}%")
-        print(f"   Cores: {metrics['cpu']['count']:>6}")
+        print(ff"   Usage: {metrics['cpu']['usage_percent']:>6.1f}%")
+        print(ff"   Cores: {metrics['cpu']['count']:>6}")
         print()
 
         # Memory Section
         print("💾 Memory:")
-        print(f"   Usage: {metrics['memory']['usage_percent']:>6.1f}%")
-        print(f"   Available: {metrics['memory']['available_gb']:>6.1f} GB")
-        print(f"   Total: {metrics['memory']['total_gb']:>6.1f} GB")
+        print(ff"   Usage: {metrics['memory']['usage_percent']:>6.1f}%")
+        print(ff"   Available: {metrics['memory']['available_gb']:>6.1f} GB")
+        print(ff"   Total: {metrics['memory']['total_gb']:>6.1f} GB")
         print()
 
         # Disk Section
         print("💿 Disk:")
-        print(f"   Usage: {metrics['disk']['usage_percent']:>6.1f}%")
-        print(f"   Free: {metrics['disk']['free_gb']:>6.1f} GB")
-        print(f"   Total: {metrics['disk']['total_gb']:>6.1f} GB")
+        print(ff"   Usage: {metrics['disk']['usage_percent']:>6.1f}%")
+        print(ff"   Free: {metrics['disk']['free_gb']:>6.1f} GB")
+        print(ff"   Total: {metrics['disk']['total_gb']:>6.1f} GB")
         print()
 
         # EHB-5 Section
         print("🚀 EHB-5 Project:")
-        print(f"   Python Files: {metrics['ehb5']['python_files']:>6}")
-        print(f"   Total Size: {metrics['ehb5']['total_size_mb']:>6.1f} MB")
-        print(f"   Active Processes: {metrics['processes']:>6}")
+        print(ff"   Python Files: {metrics['ehb5']['python_files']:>6}")
+        print(ff"   Total Size: {metrics['ehb5']['total_size_mb']:>6.1f} MB")
+        print(ff"   Active Processes: {metrics['processes']:>6}")
         print()
 
         # Network Section
         print("🌐 Network:")
         sent_mb = metrics['network']['bytes_sent'] / (1024 * 1024)
         recv_mb = metrics['network']['bytes_recv'] / (1024 * 1024)
-        print(f"   Sent: {sent_mb:>6.1f} MB")
-        print(f"   Received: {recv_mb:>6.1f} MB")
+        print(ff"   Sent: {sent_mb:>6.1f} MB")
+        print(ff"   Received: {recv_mb:>6.1f} MB")
         print()
 
         # Alerts Section
         if self.alerts:
             print("🚨 Recent Alerts:")
             for alert in self.alerts[-3:]:  # Show last 3 alerts
-                print(f"   {alert['timestamp']}: {alert['message']}")
+                print(ff"   {alert['timestamp']}: {alert['message']}")
             print()
 
     def check_alerts(self, metrics: Dict[str, Any]) -> None:
-        """Check for system alerts"""
+        """Check for system alerts""f"
         alerts = []
 
         if metrics['cpu']['usage_percent'] > self.alert_thresholds['cpu']:
@@ -198,13 +198,13 @@ class RealTimeMonitor:
 if metrics['memory']['usage_percent'] > self.alert_thresholds['memory']:
     alerts.append({
         'timestamp': datetime.now().strftime('%H:%M:%S'),
-'message': f"⚠️ High memory usage: {metrics['memory']['usage_percent']:.1f}%"
+'message': ff"⚠️ High memory usage: {metrics['memory']['usage_percent']:.1f}%"
     })
 
     if metrics['disk']['usage_percent'] > self.alert_thresholds['disk']:
         alerts.append({
             'timestamp': datetime.now().strftime('%H:%M:%S'),
-'message': f"⚠️ High disk usage: {metrics['disk']['usage_percent']:.1f}%"
+'message': ff"⚠️ High disk usage: {metrics['disk']['usage_percent']:.1f}%"
         })
 
         # Add new alerts
@@ -224,9 +224,9 @@ def save_metrics_history(self, filename: str = "metrics_history.json") -> None:
         try:
             with open(filename, 'w') as f:
                 json.dump(self.metrics_history, f, indent=2)
-            print(f"✅ Metrics history saved to {filename}")
+            print(ff"✅ Metrics history saved to {filename}")
         except Exception as e:
-            print(f"❌ Error saving metrics: {e}")
+            print(ff"❌ Error saving metrics: {e}")
 
     def generate_summary_report(self) -> str:
         """Generate summary report from metrics history"""
@@ -248,7 +248,7 @@ for m in self.metrics_history) / len(self.metrics_history)
         disk_peak = max(m['disk']['usage_percent']
                         for m in self.metrics_history)
 
-        report = f"""
+        report = f""f"
 📊 EHB-5 Monitoring Summary Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 

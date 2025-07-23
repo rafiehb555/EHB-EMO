@@ -34,11 +34,11 @@ class AuthManager:
             return None
 
         except Exception as e:
-            print("❌ Authentication error: {e}")
+            print(f"❌ Authentication error: {e}")
             return None
 
     def generate_token(self, user_id: int, username: str) -> str:
-        """Generate JWT token for user"""
+        """Generate JWT token for user""f"
         try:
             payload = {
                 'user_id': user_id,
@@ -48,7 +48,7 @@ class AuthManager:
             }
             return jwt.encode(payload, self.secret_key, algorithm='HS256')
         except Exception as e:
-            print("❌ Token generation error: {e}")
+            print(f"❌ Token generation error: {e}")
             return None
 
     def verify_token(self, token: str) -> dict:
@@ -63,11 +63,11 @@ class AuthManager:
             print("❌ Invalid token")
             return None
         except Exception as e:
-            print("❌ Token verification error: {e}")
+            print(f"❌ Token verification error: {e}")
             return None
 
     def require_auth(self, f) -> None:
-        """Decorator to require authentication for API endpoints"""
+        """Decorator to require authentication for API endpoints""f"
         @functools.wraps(f)
         def decorated_function(*args, **kwargs) -> None:
             # Get token from header

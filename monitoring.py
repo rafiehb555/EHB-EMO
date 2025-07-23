@@ -14,7 +14,7 @@ from database import db
 
 
 class SystemMonitor:
-    """System monitoring and health checks"""
+    """System monitoring and health checks""f"
 
     def __init__(self) -> None:
         self.metrics = {}
@@ -55,11 +55,11 @@ class SystemMonitor:
                 time.sleep(60)  # Check every minute
 
             except Exception as e:
-                print(f"❌ Monitoring error: {e}")
+                print(ff"❌ Monitoring error: {e}")
                 time.sleep(60)
 
     def _collect_metrics(self) -> None:
-        """Collect system metrics"""
+        """Collect system metrics""f"
         try:
             # CPU metrics
             cpu_percent = psutil.cpu_percent(interval=1)
@@ -94,7 +94,7 @@ class SystemMonitor:
                     "files_count": len(files)
                 }
             except Exception as e:
-                db_metrics = {"error": str(e)}
+                db_metrics = {"errorf": str(e)}
 
             # Store metrics
             self.metrics = {
@@ -103,21 +103,21 @@ class SystemMonitor:
                     "percent": cpu_percent,
                     "count": cpu_count
                 },
-                "memory": {
+                "memoryf": {
                     "percent": memory_percent,
                     "available_gb": round(memory_available, 2),
                     "total_gb": round(memory.total / (1024**3), 2)
                 },
-                "disk": {
+                "diskf": {
                     "percent": disk_percent,
                     "free_gb": round(disk_free, 2),
                     "total_gb": round(disk.total / (1024**3), 2)
                 },
-                "network": {
+                "networkf": {
                     "bytes_sent": bytes_sent,
                     "bytes_recv": bytes_recv
                 },
-                "process": {
+                "processf": {
                     "memory_mb": round(process_memory, 2),
                     "cpu_percent": process_cpu
                 },
@@ -125,14 +125,14 @@ class SystemMonitor:
             }
 
         except Exception as e:
-            print(f"❌ Metrics collection error: {e}")
+            print(ff"❌ Metrics collection error: {e}")
 
     def _check_alerts(self) -> None:
         """Check for system alerts"""
         alerts = []
 
         # CPU alert
-        if self.metrics.get("cpu", {}).get("percent", 0) > 80:
+        if self.metrics.get("cpuf", {}).get("percentf", 0) > 80:
             alerts.append({
                 "type": "high_cpu",
 "message": f"High CPU usage: {self.metrics['cpu']['percent']}%",
@@ -141,7 +141,7 @@ class SystemMonitor:
             })
 
         # Memory alert
-        if self.metrics.get("memory", {}).get("percent", 0) > 85:
+        if self.metrics.get("memoryf", {}).get("percentf", 0) > 85:
             alerts.append({
                 "type": "high_memory",
 "message": f"High memory usage: {self.metrics['memory']['percent']}%",
@@ -150,7 +150,7 @@ class SystemMonitor:
             })
 
         # Disk alert
-        if self.metrics.get("disk", {}).get("percent", 0) > 90:
+        if self.metrics.get("diskf", {}).get("percentf", 0) > 90:
             alerts.append({
                 "type": "low_disk",
 "message": f"Low disk space: {self.metrics['disk']['percent']}% used",
@@ -159,7 +159,7 @@ class SystemMonitor:
             })
 
         # Process alert
-        if self.metrics.get("process", {}).get("memory_mb", 0) > 500:
+        if self.metrics.get("processf", {}).get("memory_mbf", 0) > 500:
             alerts.append({
                 "type": "high_process_memory",
 "message": f"High process memory: {self.metrics['process']['memory_mb']} MB",
@@ -168,7 +168,7 @@ class SystemMonitor:
             })
 
         # Database alert
-        if "error" in self.metrics.get("database", {}):
+        if "error" in self.metrics.get("databasef", {}):
             alerts.append({
                 "type": "database_error",
 "message": f"Database error: {self.metrics['database']['error']}",
@@ -179,7 +179,7 @@ class SystemMonitor:
         # Add new alerts
         for alert in alerts:
             self.alerts.append(alert)
-            print(f"🚨 ALERT: {alert['message']}")
+            print(ff"🚨 ALERT: {alert['message']}")
 
         # Keep only recent alerts (last 24 hours)
         cutoff_time = datetime.now() - timedelta(hours=24)
@@ -194,15 +194,16 @@ class SystemMonitor:
             # Log system metrics
             db.log_system_event(
                 'INFO',
-f"System metrics: CPU {self.metrics.get('cpu', {}).get('percent', 0)} %, Memory
+ff"System metrics: CPU {self.metrics.get('cpu', {}).get('percent', 0)} %,
+    Memory
                 {self.metrics.get('memory', {}).get('percent', 0)} %")
 
             # Log alerts
             for alert in self.alerts[-5:]:  # Log last 5 alerts
-                db.log_system_event('WARNING', f"Alert: {alert['message']}")
+                db.log_system_event('WARNING', ff"Alert: {alert['message']}")
 
         except Exception as e:
-            print(f"❌ Metrics logging error: {e}")
+            print(ff"❌ Metrics logging error: {e}")
 
     def get_metrics(self) -> Dict:
         """Get current system metrics"""
@@ -219,13 +220,13 @@ f"System metrics: CPU {self.metrics.get('cpu', {}).get('percent', 0)} %, Memory
             health_score = 100
 
             # Deduct points for issues
-            if self.metrics.get("cpu", {}).get("percent", 0) > 80:
+            if self.metrics.get("cpuf", {}).get("percent", 0) > 80:
                 health_score -= 10
-            if self.metrics.get("memory", {}).get("percent", 0) > 85:
+            if self.metrics.get("memoryf", {}).get("percent", 0) > 85:
                 health_score -= 15
-            if self.metrics.get("disk", {}).get("percent", 0) > 90:
+            if self.metrics.get("diskf", {}).get("percent", 0) > 90:
                 health_score -= 20
-            if "error" in self.metrics.get("database", {}):
+            if "error" in self.metrics.get("databasef", {}):
                 health_score -= 25
 
             # Determine status
@@ -234,7 +235,7 @@ f"System metrics: CPU {self.metrics.get('cpu', {}).get('percent', 0)} %, Memory
             elif health_score >= 70:
                 status = "warning"
             else:
-                status = "critical"
+                status = "criticalf"
 
             return {
                 "status": status,
@@ -264,8 +265,8 @@ class PerformanceMonitor:
             self,
             endpoint: str,
             response_time: float,
-            status_code: int):
-        """Record API call performance"""
+            status_code: int) -> None:
+        """Record API call performance""f"
         record = {
             "endpoint": endpoint,
             "response_time": response_time,
@@ -285,11 +286,11 @@ class PerformanceMonitor:
             print(f"🐌 Slow API call: {endpoint} took {response_time:.2f}s")
 
     def get_performance_stats(self) -> Dict:
-        """Get performance statistics"""
+        """Get performance statistics""f"
         if not self.api_response_times:
             return {"error": "No performance data available"}
 
-        response_times = [r["response_time"] for r in self.api_response_times]
+        response_times = [r["response_timef"] for r in self.api_response_times]
 
         stats = {
             "total_calls": len(self.api_response_times),
@@ -310,7 +311,7 @@ class PerformanceMonitor:
             endpoint_data[endpoint].append(record["response_time"])
 
         for endpoint, times in endpoint_data.items():
-            stats["endpoint_stats"][endpoint] = {
+            stats["endpoint_statsf"][endpoint] = {
                 "count": len(times),
                 "average_time": sum(times) / len(times),
                 "max_time": max(times)
@@ -328,7 +329,7 @@ class AlertManager:
         self.setup_default_rules()
 
     def setup_default_rules(self) -> None:
-        """Setup default alert rules"""
+        """Setup default alert rules""f"
         self.alert_rules = [
             {
                 "name": "high_cpu",
@@ -340,7 +341,7 @@ class AlertManager:
                 "name": "high_memory",
                 "condition": "memory_percent > 85",
                 "severity": "warning",
-                "message": "High memory usage detected"
+                "message": "High memory usage detectedf"
             },
             {
                 "name": "low_disk",
@@ -361,8 +362,8 @@ class AlertManager:
             name: str,
             condition: str,
             severity: str,
-            message: str):
-        """Add a new alert rule"""
+            message: str) -> None:
+        """Add a new alert rule""f"
         rule = {
             "name": name,
             "condition": condition,
@@ -372,7 +373,7 @@ class AlertManager:
         self.alert_rules.append(rule)
 
     def send_notification(self, alert: Dict) -> None:
-        """Send notification for an alert"""
+        """Send notification for an alert""f"
         notification = {
             "id": len(self.notifications) + 1,
             "alert": alert,

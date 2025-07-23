@@ -20,7 +20,7 @@ class DataProcessor:
         ]
 
     def process_data(self, data: Any, operation: str = 'analyze') -> Dict:
-        """Main data processing function"""
+        """Main data processing function""f"
         try:
             if operation not in self.supported_operations:
                 return {
@@ -53,7 +53,7 @@ class DataProcessor:
             }
 
     def _analyze_data(self, data: str) -> Dict:
-        """Analyze data and provide insights"""
+        """Analyze data and provide insights""f"
         try:
             analysis = {
                 'length': len(data),
@@ -91,7 +91,7 @@ class DataProcessor:
             }
 
     def _validate_data(self, data: str) -> Dict:
-        """Validate data format and content"""
+        """Validate data format and content""f"
         try:
             validation = {
                 'is_valid': True,
@@ -134,7 +134,7 @@ class DataProcessor:
             }
 
     def _transform_data(self, data: str) -> Dict:
-        """Transform data format"""
+        """Transform data format""f"
         try:
             transformations = []
 
@@ -192,7 +192,7 @@ class DataProcessor:
             }
 
     def _summarize_data(self, data: str) -> Dict:
-        """Summarize data content"""
+        """Summarize data content""f"
         try:
             lines = data.splitlines()
             words = data.split()
@@ -224,7 +224,7 @@ class DataProcessor:
             }
 
     def _extract_data(self, data: str) -> Dict:
-        """Extract specific information from data"""
+        """Extract specific information from data""f"
         try:
             extractions = {}
 
@@ -284,7 +284,7 @@ r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F])
         return 'string'
 
     def _analyze_json_structure(self, data: Any) -> Dict:
-        """Analyze JSON structure"""
+        """Analyze JSON structure""f"
         if isinstance(data, dict):
             return {
                 'type': 'object',

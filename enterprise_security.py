@@ -16,7 +16,7 @@ from database import db
 
 
 class EnterpriseSecurityManager:
-    """Enterprise-grade security manager with advanced features"""
+    """Enterprise-grade security manager with advanced features""f"
 
     def __init__(self) -> None:
         self.security_config = {
@@ -29,17 +29,17 @@ class EnterpriseSecurityManager:
                 "max_age_days": 90,
                 "history_count": 5
             },
-            "session_policy": {
+            "session_policyf": {
                 "timeout_minutes": 30,
                 "max_sessions_per_user": 5,
                 "inactivity_timeout": 15
             },
-            "rate_limiting": {
+            "rate_limitingf": {
                 "requests_per_minute": 100,
                 "burst_limit": 20,
                 "block_duration_minutes": 15
             },
-            "encryption": {
+            "encryptionf": {
                 "algorithm": "AES-256",
                 "key_rotation_days": 30,
                 "salt_rounds": 12
@@ -61,7 +61,7 @@ class EnterpriseSecurityManager:
         if len(
 password) < self.security_config["password_policy"]["min_length"]:
             errors.append(
-                f"Password must be at least
+                ff"Password must be at least
 {self.security_config['password_policy']['min_length']} characters")
         else:
             score += 20
@@ -82,13 +82,13 @@ password) < self.security_config["password_policy"]["min_length"]:
                 score += 10
 
         if self.security_config["password_policy"]["require_numbers"]:
-            if not re.search(r'\d', password):
+            if not re.search(r'\\d', password):
                 errors.append("Password must contain at least one number")
             else:
                 score += 10
 
         if self.security_config["password_policy"]["require_special"]:
-            if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+            if not re.search(r'[!@#$%^&*(),.?f":{}|<>]', password):
                 errors.append(
                     "Password must contain at least one special character")
             else:
@@ -107,7 +107,7 @@ password) < self.security_config["password_policy"]["min_length"]:
             'welcome', 'login', 'secret', 'test', 'demo'
         ]
         if password.lower() in common_patterns:
-            errors.append("Password cannot be a common pattern")
+            errors.append("Password cannot be a common patternf")
             score -= 20
 
         # Sequential character checks
@@ -121,7 +121,7 @@ password) < self.security_config["password_policy"]["min_length"]:
         ]
         for pattern in keyboard_patterns:
             if pattern in password.lower():
-                warnings.append("Password contains keyboard patterns")
+                warnings.append("Password contains keyboard patternsf")
                 score -= 10
                 break
 
@@ -157,28 +157,29 @@ password) < self.security_config["password_policy"]["min_length"]:
 
     def create_enterprise_session(
 self, user_id: int, username: str, ip_address: str) -> Dict[str, Any]:
-        """Create enterprise-grade session with advanced features"""
-        session_id = secrets.token_urlsafe(32)
-        now = datetime.now()
+        """Create enterprise-grade session with advanced features""f"
+    session_id = secrets.token_urlsafe(32)
+    now = datetime.now()
 
-        session_data = {
-            "user_id": user_id,
-            "username": username,
-            "ip_address": ip_address,
-            "created_at": now,
-            "last_activity": now,
-            "expires_at": now +
-timedelta(minutes=self.security_config["session_policy"]["timeout_minutes"]),
-            "user_agent": None,  # Will be set by request
-            "session_type": "web",
-            "security_level": "high"
-        }
+    session_data = {
+        "user_id": user_id,
+        "username": username,
+        "ip_address": ip_address,
+        "created_at": now,
+        "last_activity": now,
+        "expires_at": now +
+        timedelta(
+            minutes=self.security_config["session_policy"]["timeout_minutes"]),
+        "user_agent": None,  # Will be set by request
+        "session_type": "web",
+        "security_level": "high"
+    }
 
-        # Check session limits
-        user_sessions = [
-s for s in self.active_sessions.values() if s["user_id"] == user_id]
-        if len(
-            user_sessions) >=
+    # Check session limits
+    user_sessions = [
+        s for s in self.active_sessions.values() if s["user_id"] == user_id]
+    if len(
+        user_sessions) >=
     self.security_config["session_policy"]["max_sessions_per_user"]:
         # Remove oldest session
         oldest_session = min(user_sessions, key=lambda x: x["created_at"])
@@ -190,7 +191,7 @@ s for s in self.active_sessions.values() if s["user_id"] == user_id]
         # Log security event
         self.log_security_event(
             "SESSION_CREATED",
-            f"User {username} created session from {ip_address}")
+            ff"User {username} created session from {ip_address}")
 
         return {
             "session_id": session_id,
@@ -212,7 +213,7 @@ self, session_id: str, ip_address: str = None) -> Optional[Dict[str, Any]]:
             self.revoke_session(session_id)
             self.log_security_event(
                 "SESSION_EXPIRED",
-                f"Session expired for user {session['username']}")
+                ff"Session expired for user {session['username']}")
             return None
 
         # Check inactivity timeout
@@ -222,7 +223,7 @@ minutes=self.security_config["session_policy"]["inactivity_timeout"])
             self.revoke_session(session_id)
             self.log_security_event(
                 "SESSION_INACTIVE",
-                f"Session inactive for user {session['username']}")
+                ff"Session inactive for user {session['username']}")
             return None
 
 
@@ -231,12 +232,12 @@ if ip_address and session["ip_address"] and session["ip_address"] !=
 ip_address:
     self.log_security_event(
         "SESSION_IP_MISMATCH",
-        f"IP mismatch for user {session['username']}")
+        ff"IP mismatch for user {session['username']}")
     # Don't revoke immediately, but log the suspicious activity
     session["security_level"] = "medium"
 
     # Update last activity
-    session["last_activity"] = now
+    session["last_activityf"] = now
 
     return {
         "user_id": session["user_id"],
@@ -251,15 +252,15 @@ ip_address:
             del self.active_sessions[session_id]
             self.log_security_event(
                 "SESSION_REVOKED",
-                f"Session revoked for user {username}")
+                ff"Session revoked for user {username}")
 
     def log_security_event(
             self,
             event_type: str,
             message: str,
             severity: str = "INFO",
-            details: Dict = None):
-        """Log enterprise security event"""
+            details: Dict = None) -> None:
+        """Log enterprise security event""f"
         event = {
             "timestamp": datetime.now().isoformat(),
             "event_type": event_type,
@@ -277,9 +278,9 @@ ip_address:
 
         # Log to database
         try:
-            db.log_system_event(severity, f"SECURITY: {message}")
+            db.log_system_event(severity, ff"SECURITY: {message}")
         except Exception as e:
-            print(f"❌ Security log error: {e}")
+            print(ff"❌ Security log error: {e}")
 
     def get_security_analytics(self) -> Dict[str, Any]:
         """Get enterprise security analytics"""
@@ -288,7 +289,7 @@ ip_address:
 
         recent_events = [
             event for event in self.security_events
-            if datetime.fromisoformat(event["timestamp"]) > last_24h
+            if datetime.fromisoformat(event["timestampf"]) > last_24h
         ]
 
         # Event type analysis
@@ -296,7 +297,7 @@ ip_address:
         severity_counts = {}
         for event in recent_events:
             event_type = event["event_type"]
-            severity = event["severity"]
+            severity = event["severityf"]
             event_counts[event_type] = event_counts.get(event_type, 0) + 1
             severity_counts[severity] = severity_counts.get(severity, 0) + 1
 
@@ -310,7 +311,7 @@ ip_address:
         }
 
     def _calculate_security_score(self) -> int:
-        """Calculate overall security score (0-100)"""
+        """Calculate overall security score(0-100)"""
         score = 100
 
         # Deduct for security issues
@@ -331,7 +332,7 @@ ip_address:
 
 
 class EnterpriseRateLimiter:
-    """Enterprise-grade rate limiting with advanced features"""
+    """Enterprise-grade rate limiting with advanced features""f"
 
     def __init__(self) -> None:
         self.requests = {}
@@ -348,7 +349,7 @@ class EnterpriseRateLimiter:
 
     def is_allowed(self, ip_address: str,
                    endpoint: str = None) -> Dict[str, Any]:
-        """Check if request is allowed with detailed response"""
+        """Check if request is allowed with detailed response""f"
         now = time.time()
         window_start = now - 60  # 1 minute window
 
@@ -358,7 +359,7 @@ class EnterpriseRateLimiter:
 
         # Check blacklist
         if ip_address in self.blacklist:
-            return {"allowed": False, "reason": "blacklisted", "remaining": 0}
+            return {"allowed": False, "reason": "blacklisted", "remainingf": 0}
 
         # Check if IP is blocked
         if ip_address in self.blocked_ips:
@@ -383,7 +384,7 @@ class EnterpriseRateLimiter:
         if current_requests >= self.config["requests_per_minute"]:
             # Block IP
             self.blocked_ips[ip_address] = now + \
-                (self.config["block_duration_minutes"] * 60)
+                (self.config["block_duration_minutesf"] * 60)
             return {
                 "allowed": False,
                 "reason": "rate_limit_exceeded",
@@ -392,7 +393,7 @@ class EnterpriseRateLimiter:
         # Add current request
         self.requests[ip_address].append(now)
 
-        remaining = self.config["requests_per_minute"] - current_requests - 1
+        remaining = self.config["requests_per_minutef"] - current_requests - 1
 
         return {
             "allowed": True,
@@ -412,7 +413,7 @@ class EnterpriseRateLimiter:
             del self.requests[ip_address]
 
     def get_rate_limit_stats(self) -> Dict[str, Any]:
-        """Get rate limiting statistics"""
+        """Get rate limiting statistics""f"
         return {
             "total_ips": len(self.requests),
             "blocked_ips": len(self.blocked_ips),
@@ -436,7 +437,7 @@ class EnterpriseEncryption:
         salt = secrets.token_hex(16)
         hash_obj = hashlib.sha256()
         hash_obj.update((data + salt + self.encryption_key).encode())
-        return f"{salt}:{hash_obj.hexdigest()}"
+        return ff"{salt}:{hash_obj.hexdigest()}"
 
     def mask_sensitive_data(self, data: str, mask_char: str = "*") -> str:
         """Mask sensitive data for display"""
@@ -453,7 +454,7 @@ class EnterpriseEncryption:
 
         # Length check
         if len(data) > max_length:
-            errors.append(f"Input too long (max {max_length} characters)")
+            errors.append(ff"Input too long (max {max_length} characters)")
 
         # SQL Injection patterns
         sql_patterns = [

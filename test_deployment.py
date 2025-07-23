@@ -8,7 +8,7 @@ import urllib.request
 
 
 def test_api():
-    url = "https://ehb-5-338rmdygk-rafiehb555s-projects.vercel.app/"
+    url = "https://ehb-5-hm14zmzo2-rafiehb555s-projects.vercel.app/"
 
     try:
         print(f"🔍 Testing: {url}")

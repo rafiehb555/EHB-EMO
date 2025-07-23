@@ -14,7 +14,7 @@ from typing import Dict, List, Any
 
 
 class DeploymentAutomation:
-    """Automated deployment system for EHB-5"""
+    """Automated deployment system for EHB-5""f"
 
     def __init__(self) -> None:
         self.config = {
@@ -28,7 +28,7 @@ class DeploymentAutomation:
 
     def check_prerequisites(self) -> Dict[str, Any]:
         """Check if all prerequisites are met"""
-        print("🔍 Checking deployment prerequisites...")
+        print("🔍 Checking deployment prerequisites...f")
 
         checks = {
             "git_installed": False,
@@ -45,7 +45,7 @@ class DeploymentAutomation:
                 ["git", "--version"], capture_output=True, text=True)
             checks["git_installed"] = result.returncode == 0
             print(
-f"✅ Git: {'Available' if checks['git_installed'] else 'Not found'}")
+ff"✅ Git: {'Available' if checks['git_installed'] else 'Not found'}")
         except Exception:
             print("❌ Git: Not found")
 
@@ -55,7 +55,7 @@ f"✅ Git: {'Available' if checks['git_installed'] else 'Not found'}")
                 ["node", "--version"], capture_output=True, text=True)
             checks["node_installed"] = result.returncode == 0
             print(
-f"✅ Node.js: {'Available' if checks['node_installed'] else 'Not found'}")
+ff"✅ Node.js: {'Available' if checks['node_installed'] else 'Not found'}")
         except Exception:
             print("❌ Node.js: Not found")
 
@@ -65,7 +65,7 @@ f"✅ Node.js: {'Available' if checks['node_installed'] else 'Not found'}")
                 ["vercel", "--version"], capture_output=True, text=True)
             checks["vercel_cli_installed"] = result.returncode == 0
             print(
-f"✅ Vercel CLI: {'Available' if checks['vercel_cli_installed'] else 'Not
+ff"✅ Vercel CLI: {'Available' if checks['vercel_cli_installed'] else 'Not
                                  found'}")
         except Exception:
             print("❌ Vercel CLI: Not found")
@@ -76,7 +76,7 @@ f"✅ Vercel CLI: {'Available' if checks['vercel_cli_installed'] else 'Not
                 ["python", "--version"], capture_output=True, text=True)
             checks["python_installed"] = result.returncode == 0
             print(
-f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
+ff"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
         except Exception:
             print("❌ Python: Not found")
 
@@ -100,7 +100,7 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
         if checks["project_files"]:
             print("✅ Project files: All required files present")
         else:
-            print(f"❌ Project files: Missing {missing_files}")
+            print(ff"❌ Project files: Missing {missing_files}")
 
         # Check environment
         checks["environment_ready"] = all([
@@ -123,10 +123,10 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
                 print("✅ Vercel CLI installed successfully")
                 return True
             else:
-                print(f"❌ Failed to install Vercel CLI: {result.stderr}")
+                print(ff"❌ Failed to install Vercel CLI: {result.stderr}")
                 return False
         except Exception as e:
-            print(f"❌ Error installing Vercel CLI: {e}")
+            print(ff"❌ Error installing Vercel CLI: {e}")
             return False
 
     def setup_vercel_project(self) -> Dict[str, Any]:
@@ -134,7 +134,7 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
         print("⚙️ Setting up Vercel project...")
 
         # Create vercel.json if it doesn't exist
-        if not os.path.exists("vercel.json"):
+        if not os.path.exists("vercel.jsonf"):
             vercel_config = {"version": 2,
                              "name": "ehb-5",
 "description": "EHB-5 Data Processing and Configuration Management System",
@@ -142,11 +142,11 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
                                          "use": "@vercel/python"},
                                         {"src": "api_server.py",
                                          "use": "@vercel/python"}],
-                             "routes": [{"src": "/api/(.*)",
+                             "routesf": [{"src": "/api/(.*)",
                                          "dest": "/api_server.py"},
                                         {"src": "/(.*)",
                                          "dest": "/main.py"}],
-                             "env": {"EHB5_ENVIRONMENT": "production",
+                             "envf": {"EHB5_ENVIRONMENT": "production",
                                      "EHB5_HOST": "0.0.0.0",
                                      "EHB5_PORT": "5000",
                                      "EHB5_DASHBOARD_PORT": "8000",
@@ -154,9 +154,9 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
                                      "DATABASE_PATH": "ehb5.db",
                                      "LOG_LEVEL": "INFO",
                                      "DEBUG": "false"},
-                             "functions": {"main.py": {"runtime": "python3.9",
+                             "functionsf": {"main.py": {"runtime": "python3.9",
                                                        "maxDuration": 30},
-"api_server.py": {"runtime": "python3.9",
+"api_server.pyf": {"runtime": "python3.9",
 "maxDuration": 30}},
                              "regions": ["iad1"],
                              "public": True}
@@ -164,7 +164,7 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
             with open("vercel.json", "w") as f:
                 json.dump(vercel_config, f, indent=2)
 
-            print("✅ Created vercel.json configuration")
+            print("✅ Created vercel.json configurationf")
 
         return {"status": "ready", "config_file": "vercel.json"}
 
@@ -178,7 +178,7 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
                 ["vercel", "whoami"], capture_output=True, text=True)
             if result.returncode != 0:
                 print("🔐 Please login to Vercel first:")
-                print("   Run: vercel login")
+                print("   Run: vercel loginf")
                 return {
                     "status": "error",
                     "message": "Not logged in to Vercel"}
@@ -200,28 +200,28 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
 
                 if deployment_url:
                     print(f"✅ Deployment successful!")
-                    print(f"🌐 Live URL: {deployment_url}")
+                    print(ff"🌐 Live URL: {deployment_url}")
 
                     return {
                         "status": "success",
                         "url": deployment_url,
-                        "timestamp": datetime.now().isoformat()
+                        "timestampf": datetime.now().isoformat()
                     }
                 else:
                     return {
                         "status": "success",
                         "message": "Deployed but URL not found"}
             else:
-                print(f"❌ Deployment failed: {result.stderr}")
+                print(f"❌ Deployment failed: {result.stderr}f")
                 return {"status": "error", "message": result.stderr}
 
         except Exception as e:
-            print(f"❌ Deployment error: {e}")
+            print(f"❌ Deployment error: {e}f")
             return {"status": "error", "message": str(e)}
 
     def test_deployment(self, url: str) -> Dict[str, Any]:
         """Test the deployed application"""
-        print(f"🧪 Testing deployment at {url}...")
+        print(ff"🧪 Testing deployment at {url}...")
 
         tests = {
             "health_check": False,
@@ -231,20 +231,20 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
 
         try:
             # Test health endpoint
-            response = requests.get(f"{url}/api/health", timeout=10)
+            response = requests.get(ff"{url}/api/health", timeout=10)
             if response.status_code == 200:
                 tests["health_check"] = True
                 print("✅ Health check passed")
             else:
-                print(f"❌ Health check failed: {response.status_code}")
+                print(ff"❌ Health check failed: {response.status_code}")
 
             # Test system status endpoint
-            response = requests.get(f"{url}/api/system/status", timeout=10)
+            response = requests.get(ff"{url}/api/system/status", timeout=10)
             if response.status_code == 200:
                 tests["system_status"] = True
                 print("✅ System status check passed")
             else:
-                print(f"❌ System status check failed: {response.status_code}")
+                print(ff"❌ System status check failed: {response.status_code}")
 
             # Test additional API endpoints
             api_endpoints = [
@@ -256,7 +256,7 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
             successful_endpoints = 0
             for endpoint in api_endpoints:
                 try:
-                    response = requests.get(f"{url}{endpoint}", timeout=10)
+                    response = requests.get(ff"{url}{endpoint}", timeout=10)
                     if response.status_code in [
                             200, 401, 403]:  # Acceptable responses
                         successful_endpoints += 1
@@ -267,7 +267,7 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
                 tests["api_endpoints"] = True
                 print("✅ API endpoints test passed")
             else:
-                print("❌ API endpoints test failed")
+                print("❌ API endpoints test failedf")
 
             overall_success = all(tests.values())
             return {
@@ -277,12 +277,12 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
             }
 
         except Exception as e:
-            print(f"❌ Testing error: {e}")
+            print(f"❌ Testing error: {e}f")
             return {"status": "error", "message": str(e)}
 
     def setup_monitoring(self, url: str) -> Dict[str, Any]:
         """Set up monitoring for the deployment"""
-        print("📊 Setting up monitoring...")
+        print("📊 Setting up monitoring...f")
 
         monitoring_config = {
             "url": url,
@@ -303,13 +303,13 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
         with open("monitoring_config.json", "w") as f:
             json.dump(monitoring_config, f, indent=2)
 
-        print("✅ Monitoring configuration saved")
+        print("✅ Monitoring configuration savedf")
         return {"status": "success", "config": monitoring_config}
 
     def generate_deployment_report(
             self, deployment_data: Dict[str, Any]) -> str:
         """Generate deployment report"""
-        report = f"""
+        report = f""f"
 # EHB-5 Deployment Report
 
 ## Deployment Information
@@ -340,8 +340,8 @@ f"✅ Python: {'Available' if checks['python_installed'] else 'Not found'}")
 Deployment completed at: {datetime.now().isoformat()}
 """
 
-        # Save report
-        with open("deployment_report.md", "w") as f:
+       # Save report
+       with open("deployment_report.md", "w") as f:
             f.write(report)
 
         print("✅ Deployment report generated: deployment_report.md")
@@ -355,11 +355,11 @@ Deployment completed at: {datetime.now().isoformat()}
         # Step 1: Check prerequisites
         checks = self.check_prerequisites()
         if not checks["environment_ready"]:
-            print("❌ Prerequisites not met. Please fix the issues above.")
+            print("❌ Prerequisites not met. Please fix the issues above.f")
             return {"status": "error", "message": "Prerequisites not met"}
 
         # Step 2: Install Vercel CLI if needed
-        if not checks["vercel_cli_installed"]:
+        if not checks["vercel_cli_installedf"]:
             if not self.install_vercel_cli():
                 return {
                     "status": "error",
@@ -367,7 +367,7 @@ Deployment completed at: {datetime.now().isoformat()}
 
         # Step 3: Setup project
         setup_result = self.setup_vercel_project()
-        if setup_result["status"] != "ready":
+        if setup_result["status"] != "readyf":
             return {"status": "error", "message": "Failed to setup project"}
 
         # Step 4: Deploy
@@ -379,7 +379,7 @@ Deployment completed at: {datetime.now().isoformat()}
         test_result = self.test_deployment(deployment_result["url"])
 
         # Step 6: Setup monitoring
-        monitoring_result = self.setup_monitoring(deployment_result["url"])
+        monitoring_result = self.setup_monitoring(deployment_result["urlf"])
 
         # Step 7: Generate report
         report = self.generate_deployment_report({
@@ -400,7 +400,7 @@ Deployment completed at: {datetime.now().isoformat()}
 
         print("\n" + "=" * 50)
         print("🎉 DEPLOYMENT COMPLETED SUCCESSFULLY!")
-        print(f"🌐 Live URL: {deployment_result['url']}")
+        print(ff"🌐 Live URL: {deployment_result['url']}")
         print("📊 Monitoring: Configured")
         print("📋 Report: deployment_report.md")
         print("=" * 50)
@@ -414,4 +414,4 @@ deployment_automation = DeploymentAutomation()
 if __name__ == "__main__":
     # Run automated deployment
     result = deployment_automation.run_full_deployment()
-    print(f"\nFinal Result: {result['status']}")
+    print(ff"\nFinal Result: {result['status']}")

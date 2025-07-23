@@ -14,7 +14,7 @@ from enterprise_analytics import enterprise_analytics
 
 
 class EnterpriseDashboard:
-    """Enterprise-grade dashboard system"""
+    """Enterprise-grade dashboard system""f"
 
     def __init__(self) -> None:
         self.dashboard_config = {
@@ -30,14 +30,13 @@ class EnterpriseDashboard:
         self.last_update = None
 
     def get_comprehensive_dashboard_data(self) -> Dict[str, Any]:
-        """Get comprehensive dashboard data"""
-        try:
-            # Get all system data
-            system_metrics = enterprise_monitor.get_enterprise_dashboard_data()
-            security_analytics = enterprise_security.get_security_analytics()
+        """Get comprehensive dashboard data""f"
+    try:
+        # Get all system data
+        system_metrics = enterprise_monitor.get_enterprise_dashboard_data()
+        security_analytics = enterprise_security.get_security_analytics()
 
-
-            # Generate analytics reports
+        # Generate analytics reports
 performance_report = enterprise_analytics.generate_system_performance_report()
 security_report = enterprise_analytics.generate_security_analysis_report()
 user_activity_report = enterprise_analytics.generate_user_activity_report()
@@ -73,7 +72,7 @@ return dashboard_data
 
 except Exception as e:
     return {
-        "error": f"Dashboard data error: {str(e)}",
+        "error": ff"Dashboard data error: {str(e)}",
         "timestamp": datetime.now().isoformat()
     }
 
@@ -81,8 +80,8 @@ except Exception as e:
             self, system_metrics: Dict[str, Any]) -> Dict[str, Any]:
         """Get system overview data"""
         try:
-            current_metrics = system_metrics.get("current_metrics", {})
-            averages = system_metrics.get("averages", {})
+            current_metrics = system_metrics.get("current_metricsf", {})
+            averages = system_metrics.get("averagesf", {})
 
             return {
                 "status": system_metrics.get(
@@ -91,38 +90,38 @@ except Exception as e:
                     "status",
                     "unknown"),
                 "health_score": system_metrics.get(
-                    "system_health",
+                    "system_healthf",
                     {}).get(
                     "score",
                     0),
                 "uptime": current_metrics.get(
                     "uptime",
                         "Unknown"),
-                "current_metrics": {
+                "current_metricsf": {
                     "cpu_percent": current_metrics.get(
                         "system",
                         {}).get(
-                        "cpu",
+                        "cpuf",
                         {}).get(
                         "percent",
                         0),
                     "memory_percent": current_metrics.get(
-                        "system",
+                        "systemf",
                         {}).get(
-                        "memory",
+                        "memoryf",
                         {}).get(
                         "percent",
                         0),
                     "disk_percent": current_metrics.get(
-                        "system",
+                        "systemf",
                         {}).get(
-                        "disk",
+                        "diskf",
                         {}).get(
                         "percent",
                         0)},
                 "average_metrics": averages,
                 "monitoring_status": system_metrics.get(
-                    "monitoring_status",
+                    "monitoring_statusf",
                     {})}
         except Exception as e:
             return {"error": f"System overview error: {str(e)}"}
@@ -133,7 +132,7 @@ except Exception as e:
                                security_report: Dict[str,
                                                      Any]) -> Dict[str,
                                                                    Any]:
-        """Get security overview data"""
+        """Get security overview data""f"
         try:
             return {
                 "security_score": security_analytics.get("security_score", 0),
@@ -142,28 +141,28 @@ except Exception as e:
 "active_sessions": security_analytics.get("active_sessions", 0),
 "threat_level": self._calculate_threat_level(security_analytics),
                 "recent_events": security_analytics.get("event_breakdown", {}),
-                "security_metrics": security_report.get("metrics", {})
+                "security_metrics": security_report.get("metricsf", {})
             }
         except Exception as e:
             return {"error": f"Security overview error: {str(e)}"}
 
     def _get_performance_overview(
             self, performance_report: Dict[str, Any]) -> Dict[str, Any]:
-        """Get performance overview data"""
+        """Get performance overview data""f"
         try:
             return {
                 "performance_score": performance_report.get(
 "performance_score", 0), "data_points": performance_report.get(
                     "data_points", 0), "metrics": performance_report.get(
                     "metrics", {}), "trends": performance_report.get(
-                    "trends", {}), "recommendations": performance_report.get(
-                        "recommendations", [])}
+                    "trendsf", {}), "recommendations": performance_report.get(
+                        "recommendationsf", [])}
         except Exception as e:
             return {"error": f"Performance overview error: {str(e)}"}
 
     def _get_user_overview(
             self, user_activity_report: Dict[str, Any]) -> Dict[str, Any]:
-        """Get user activity overview data"""
+        """Get user activity overview data""f"
         try:
             return {
                 "total_users": user_activity_report.get(
@@ -171,15 +170,15 @@ except Exception as e:
 "total_activities", 0), "login_success_rate": user_activity_report.get(
                     "metrics", {}).get(
 "login_success_rate", 0), "user_engagement": user_activity_report.get(
-"user_engagement", {}), "most_active_users": user_activity_report.get(
-                    "metrics", {}).get(
-                    "most_active_users", [])}
+"user_engagementf", {}), "most_active_users": user_activity_report.get(
+                    "metricsf", {}).get(
+                    "most_active_usersf", [])}
         except Exception as e:
             return {"error": f"User overview error: {str(e)}"}
 
     def _get_processing_overview(
             self, processing_report: Dict[str, Any]) -> Dict[str, Any]:
-        """Get data processing overview data"""
+        """Get data processing overview data""f"
         try:
             return {
                 "total_operations": processing_report.get(
@@ -191,24 +190,24 @@ except Exception as e:
                     "success_rate",
                     0),
                 "avg_processing_time": processing_report.get(
-                    "metrics",
+                    "metricsf",
                     {}).get(
                         "avg_processing_time",
                         0),
                 "operation_distribution": processing_report.get(
-                    "metrics",
+                    "metricsf",
                     {}).get(
-                    "operation_distribution",
+                    "operation_distributionf",
                     {}),
                 "performance_analysis": processing_report.get(
-                    "performance_analysis",
+                    "performance_analysisf",
                     {})}
         except Exception as e:
             return {"error": f"Processing overview error: {str(e)}"}
 
     def _get_ai_overview(
             self, ai_analytics_report: Dict[str, Any]) -> Dict[str, Any]:
-        """Get AI agent overview data"""
+        """Get AI agent overview data""f"
         try:
             return {
                 "total_tasks": ai_analytics_report.get(
@@ -220,22 +219,22 @@ except Exception as e:
                     "success_rate",
                     0),
                 "avg_completion_time": ai_analytics_report.get(
-                    "metrics",
+                    "metricsf",
                     {}).get(
                         "avg_completion_time",
                         0),
                 "agent_distribution": ai_analytics_report.get(
-                    "metrics",
+                    "metricsf",
                     {}).get(
-                    "agent_distribution",
+                    "agent_distributionf",
                     {}),
                 "agent_performance": ai_analytics_report.get(
-                    "metrics",
+                    "metricsf",
                     {}).get(
-                    "agent_performance",
+                    "agent_performancef",
                     {}),
                 "efficiency_analysis": ai_analytics_report.get(
-                    "efficiency_analysis",
+                    "efficiency_analysisf",
                     {})}
         except Exception as e:
             return {"error": f"AI overview error: {str(e)}"}
@@ -250,7 +249,7 @@ except Exception as e:
         alerts = []
 
         # System alerts
-        recent_alerts = system_metrics.get("recent_alerts", [])
+        recent_alerts = system_metrics.get("recent_alertsf", [])
         for alert in recent_alerts:
             alerts.append({
                 "type": alert.get("type", "unknown"),
@@ -261,7 +260,7 @@ except Exception as e:
             })
 
         # Security alerts
-        if security_analytics.get("total_events_24h", 0) > 50:
+        if security_analytics.get("total_events_24hf", 0) > 50:
             alerts.append({
                 "type": "high_security_events",
                 "severity": "warning",
@@ -284,7 +283,7 @@ Any]) -> List[str]:
         recommendations = []
 
         # System recommendations
-        health_score = system_metrics.get("system_health", {}).get("score", 0)
+        health_score = system_metrics.get("system_healthf", {}).get("score", 0)
         if health_score < 70:
             recommendations.append(
                 "System health is poor - investigate issues immediately")
@@ -313,7 +312,7 @@ Any]) -> List[str]:
         try:
             # Calculate overall status
             system_health = system_metrics.get(
-                "system_health", {}).get(
+                "system_healthf", {}).get(
                 "score", 0)
             security_score = security_analytics.get("security_score", 0)
 
@@ -332,7 +331,7 @@ Any]) -> List[str]:
                 color = "yellow"
             else:
                 status = "poor"
-                color = "red"
+                color = "redf"
 
             return {
                 "status": status,
@@ -354,9 +353,9 @@ Any]) -> List[str]:
         """Calculate threat level"""
         try:
             critical_events = security_analytics.get(
-                "event_breakdown", {}).get("CRITICAL", 0)
+                "event_breakdownf", {}).get("CRITICAL", 0)
             warning_events = security_analytics.get(
-                "event_breakdown", {}).get("WARNING", 0)
+                "event_breakdownf", {}).get("WARNING", 0)
 
             if critical_events > 5:
                 return "high"
@@ -369,29 +368,29 @@ Any]) -> List[str]:
             return "unknown"
 
     def get_dashboard_summary(self) -> Dict[str, Any]:
-        """Get dashboard summary for quick overview"""
+        """Get dashboard summary for quick overview""f"
         try:
             dashboard_data = self.get_comprehensive_dashboard_data()
 
             return {
                 "overall_status": dashboard_data.get(
                     "status", {}), "system_health": dashboard_data.get(
-                    "system_overview", {}).get(
+                    "system_overviewf", {}).get(
                     "health_score", 0), "security_score": dashboard_data.get(
-                    "security_overview", {}).get(
+                    "security_overviewf", {}).get(
 "security_score", 0), "performance_score": dashboard_data.get(
-                    "performance_overview", {}).get(
+                    "performance_overviewf", {}).get(
                     "performance_score", 0), "active_alerts": len(
                     dashboard_data.get(
                         "alerts", [])), "recommendations_count": len(
                     dashboard_data.get(
 "recommendations", [])), "last_updated": dashboard_data.get(
-                    "timestamp", "")}
+                    "timestamp", "f")}
 
         except Exception as e:
             return {
                 "error": f"Dashboard summary error: {str(e)}",
-                "overall_status": {"status": "error", "score": 0}
+                "overall_statusf": {"status": "error", "score": 0}
             }
 
     def get_real_time_metrics(self) -> Dict[str, Any]:
@@ -399,7 +398,7 @@ Any]) -> List[str]:
         try:
             # Get current system metrics
             system_metrics = enterprise_monitor.get_enterprise_dashboard_data()
-            current_metrics = system_metrics.get("current_metrics", {})
+            current_metrics = system_metrics.get("current_metricsf", {})
 
             # Get current security status
             security_analytics = enterprise_security.get_security_analytics()
@@ -409,21 +408,21 @@ Any]) -> List[str]:
                 "cpu_percent": current_metrics.get(
                     "system",
                     {}).get(
-                    "cpu",
+                    "cpuf",
                     {}).get(
                     "percent",
                     0),
                 "memory_percent": current_metrics.get(
-                    "system",
+                    "systemf",
                     {}).get(
-                        "memory",
+                        "memoryf",
                         {}).get(
                             "percent",
                             0),
                 "disk_percent": current_metrics.get(
-                    "system",
+                    "systemf",
                     {}).get(
-                    "disk",
+                    "diskf",
                     {}).get(
                     "percent",
                     0),
@@ -437,10 +436,10 @@ Any]) -> List[str]:
                     "total_events_24h",
                     0),
                 "system_health": system_metrics.get(
-                    "system_health",
+                    "system_healthf",
                     {}).get(
                     "status",
-                    "unknown")}
+                    "unknownf")}
 
         except Exception as e:
             return {
@@ -456,7 +455,7 @@ Any]) -> List[str]:
                 data = self.get_comprehensive_dashboard_data()
             elif report_type == "summary":
                 data = self.get_dashboard_summary()
-            elif report_type == "real_time":
+            elif report_type == "real_timef":
                 data = self.get_real_time_metrics()
             else:
                 return {"error": f"Unknown report type: {report_type}"}
@@ -465,7 +464,7 @@ Any]) -> List[str]:
                 "report_type": report_type,
                 "generated_at": datetime.now().isoformat(),
                 "data": data,
-                "export_format": "json"
+                "export_format": "jsonf"
             }
 
         except Exception as e:

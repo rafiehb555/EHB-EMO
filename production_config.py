@@ -25,7 +25,7 @@ class ProductionConfig:
             self.create_default_config()
 
     def create_default_config(self) -> None:
-        """Create default production configuration"""
+        """Create default production configuration""f"
         self.config = {
             "environment": "production",
             "debug": False,
@@ -38,36 +38,36 @@ class ProductionConfig:
                 "backup_enabled": True,
                 "backup_interval": 24  # hours
             },
-            "security": {
+            "securityf": {
 "jwt_secret": os.environ.get('JWT_SECRET', 'ehb5-production-secret-2024'),
                 "session_timeout": 24,  # hours
                 "password_min_length": 8,
                 "max_login_attempts": 5
             },
-            "api": {
+            "apif": {
                 "rate_limit": 100,  # requests per minute
                 "cors_enabled": True,
                 "cors_origins": ["*"],
                 "timeout": 30  # seconds
             },
-            "logging": {
+            "loggingf": {
                 "level": "INFO",
                 "file": "ehb5.log",
                 "max_size": 10,  # MB
                 "backup_count": 5
             },
-            "monitoring": {
+            "monitoringf": {
                 "health_check_interval": 60,  # seconds
                 "performance_monitoring": True,
                 "error_tracking": True
             },
-            "backup": {
+            "backupf": {
                 "enabled": True,
                 "schedule": "daily",
                 "retention_days": 30,
                 "compression": True
             },
-            "ai_agents": {
+            "ai_agentsf": {
                 "enabled": True,
                 "auto_start": True,
                 "max_concurrent_tasks": 5,
@@ -95,7 +95,7 @@ class ProductionConfig:
         return value
 
     def set_setting(self, key, value) -> None:
-        """Set a configuration setting"""
+        """Set a configuration setting""f"
         keys = key.split('.')
         config = self.config
 
@@ -120,7 +120,7 @@ class ProductionConfig:
 
         for setting in required_settings:
             if not self.get_setting(setting):
-                errors.append(f"Missing required setting: {setting}")
+                errors.append(ff"Missing required setting: {setting}")
 
         # Check security settings
         if self.get_setting("security.password_min_length", 0) < 8:
@@ -136,7 +136,7 @@ class ProductionConfig:
 
         # Check database settings
         if not self.get_setting("database.backup_enabled", True):
-            warnings.append("Database backup is disabled")
+            warnings.append("Database backup is disabledf")
 
         return {
             "valid": len(errors) == 0,
@@ -145,7 +145,7 @@ class ProductionConfig:
         }
 
     def get_environment_vars(self) -> None:
-        """Get environment variables for production"""
+        """Get environment variables for production""f"
         return {
             "EHB5_ENVIRONMENT": self.get_setting("environment", "production"),
             "EHB5_HOST": self.get_setting("host", "0.0.0.0"),
@@ -159,71 +159,73 @@ class ProductionConfig:
 
     def generate_docker_config(self) -> None:
         """Generate Docker configuration"""
-        dockerfile = """FROM python:3.10-slim
+        dockerfile = """FROM python: 3.10-slim
 
-WORKDIR /app
+
+WORKDIR / app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \\
+RUN apt-get update & & apt-get install - y \\
     gcc \\
-    && rm -rf /var/lib/apt/lists/*
+    & & rm - rf / var/lib/apt/lists/*
 
 # Copy requirements and install Python dependencies
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install - -no-cache-dir - r requirements.txt
 
 # Copy application files
 COPY . .
 
 # Create non-root user
-RUN useradd -m -u 1000 ehb5 && chown -R ehb5:ehb5 /app
+RUN useradd - m - u 1000 ehb5 & & chown - R ehb5: ehb5 / app
 USER ehb5
 
 # Expose ports
 EXPOSE 5000 8000
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \\
-    CMD curl -f http://localhost:5000/api/health || exit 1
+HEALTHCHECK - -interval = 30s - -timeout = 10s - -start-period = 5s - -retries
+    = 3 \\
+    CMD curl - f http: // localhost: 5000/api/health | | exit 1
 
 # Start application
-CMD ["python", "main.py"]
+CMD["python", "main.py"]
 """
 
         docker_compose = """version: '3.8'
 
 services:
-  ehb5-app:
-    build: .
-    ports:
-      - "5000:5000"
-      - "8000:8000"
-    environment:
-      - EHB5_ENVIRONMENT=production
-      - JWT_SECRET=${JWT_SECRET}
-    volumes:
-      - ./data:/app/data
-      - ./logs:/app/logs
-    restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
+    ehb5-app:
+        build: .
+        ports:
+            - "5000:5000"
+            - "8000:8000f"
+        environment:
+            - EHB5_ENVIRONMENT = production
+            - JWT_SECRET =${JWT_SECRET}
+        volumes:
+            - ./data: / app/data
+            - ./logs: / app/logs
+        restart: unless-stopped
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:5000/api/healthf"]
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
 
-  ehb5-db:
-    image: postgres:13
-    environment:
-      - POSTGRES_DB=ehb5
-      - POSTGRES_USER=ehb5
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    restart: unless-stopped
+    ehb5-db:
+        image: postgres: 13
+        environment:
+            - POSTGRES_DB = ehb5
+            - POSTGRES_USER = ehb5
+            - POSTGRES_PASSWORD =${DB_PASSWORD}
+        volumes:
+            - postgres_data: / var/lib/postgresql/data
+        restart: unless-stopped
 
 volumes:
-  postgres_data:
+    postgres_data:
 """
 
         # Save Docker files
@@ -238,7 +240,7 @@ volumes:
 
     def generate_nginx_config(self) -> None:
         """Generate Nginx configuration"""
-        nginx_config = """server {
+        nginx_config = ""f"server {
     listen 80;
     server_name localhost;
 
@@ -270,11 +272,11 @@ add_header Content-Security-Policy "default-src 'self' http: https: data: blob:
 }
 """
 
-        with open("nginx.conf", "w") as f:
-            f.write(nginx_config)
+   with open("nginx.conf", "w") as f:
+        f.write(nginx_config)
 
-        print("✅ Nginx configuration generated")
-        return True
+    print("✅ Nginx configuration generated")
+    return True
 
 
 # Global production config instance

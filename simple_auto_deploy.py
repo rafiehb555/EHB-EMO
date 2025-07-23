@@ -34,11 +34,11 @@ def deploy_to_vercel() -> None:
             print("✅ Deployment successful!")
             return True
         else:
-            print(f"❌ Deployment failed: {result.stderr}")
+            print(ff"❌ Deployment failed: {result.stderr}")
             return False
 
     except Exception as e:
-        print(f"❌ Deployment error: {e}")
+        print(ff"❌ Deployment error: {e}")
         return False
 
 
@@ -64,7 +64,7 @@ if result.returncode == 0:
         return False
 
     except Exception as e:
-        print(f"❌ Test error: {e}")
+        print(ff"❌ Test error: {e}")
         return False
 
 
@@ -110,14 +110,14 @@ def start_continuous_deployment() -> None:
             print("🛑 Continuous deployment stopped by user")
             break
         except Exception as e:
-            print(f"❌ Continuous deployment error: {e}")
+            print(ff"❌ Continuous deployment error: {e}")
             time.sleep(30)
 
 
 if __name__ == "__main__":
     # Run single deployment
     success = run_auto_deployment()
-    print(f"Deployment Result: {'Success' if success else 'Failed'}")
+    print(ff"Deployment Result: {'Success' if success else 'Failed'}")
 
     # Uncomment to start continuous deployment
     # start_continuous_deployment()

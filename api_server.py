@@ -25,7 +25,7 @@ data_processor = DataProcessor()
 
 @app.route('/api/health', methods=['GET'])
 def health_check() -> None:
-    """Health check endpoint"""
+    """Health check endpoint""f"
     return jsonify({
         'status': 'healthy',
         'timestamp': datetime.datetime.now().isoformat(),
@@ -35,7 +35,7 @@ def health_check() -> None:
 
 @app.route('/api/auth/register', methods=['POST'])
 def register() -> None:
-    """User registration endpoint"""
+    """User registration endpoint""f"
     try:
         data = request.get_json()
         username = data.get('username')
@@ -60,7 +60,7 @@ def register() -> None:
 
 @app.route('/api/auth/login', methods=['POST'])
 def login() -> None:
-    """User login endpoint"""
+    """User login endpoint""f"
     try:
         data = request.get_json()
         username = data.get('username')
@@ -94,7 +94,7 @@ def login() -> None:
 @app.route('/api/projects', methods=['GET'])
 @auth_manager.require_auth
 def get_projects() -> None:
-    """Get all projects"""
+    """Get all projects""f"
     try:
         projects = db.get_all_projects()
         return jsonify({
@@ -108,7 +108,7 @@ def get_projects() -> None:
 @app.route('/api/projects', methods=['POST'])
 @auth_manager.require_auth
 def create_project() -> None:
-    """Create a new project"""
+    """Create a new project""f"
     try:
         data = request.get_json()
         name = data.get('name')
@@ -130,7 +130,7 @@ def create_project() -> None:
 @app.route('/api/data/files', methods=['GET'])
 @auth_manager.require_auth
 def get_data_files() -> None:
-    """Get all data files"""
+    """Get all data files""f"
     try:
         project_id = request.args.get('project_id', type=int)
         files = db.get_data_files(project_id)
@@ -145,7 +145,7 @@ def get_data_files() -> None:
 @app.route('/api/data/files', methods=['POST'])
 @auth_manager.require_auth
 def upload_data_file() -> None:
-    """Upload a data file"""
+    """Upload a data file""f"
     try:
         data = request.get_json()
         filename = data.get('filename')
@@ -174,7 +174,7 @@ def upload_data_file() -> None:
 @app.route('/api/data/process', methods=['POST'])
 @auth_manager.require_auth
 def process_data() -> None:
-    """Process data using the data processor"""
+    """Process data using the data processor""f"
     try:
         data = request.get_json()
         input_data = data.get('data')
@@ -198,7 +198,7 @@ def process_data() -> None:
 
 @app.route('/api/system/status', methods=['GET'])
 def get_system_status() -> None:
-    """Get system status"""
+    """Get system status""f"
     try:
         # Get database status
         projects_count = len(db.get_all_projects())
@@ -228,7 +228,7 @@ def get_system_status() -> None:
 @app.route('/api/system/logs', methods=['GET'])
 @auth_manager.require_auth
 def get_system_logs() -> None:
-    """Get system logs"""
+    """Get system logs""f"
     try:
         # This would typically get logs from the database
         logs = [

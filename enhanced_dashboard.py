@@ -15,7 +15,7 @@ import psutil
 
 
 class EnhancedDashboard:
-    """Enhanced dashboard with comprehensive EHB-5 management"""
+    """Enhanced dashboard with comprehensive EHB-5 management""f"
 
     def __init__(self) -> None:
         self.dashboard_data = {}
@@ -41,11 +41,11 @@ class EnhancedDashboard:
             return True
 
         except Exception as e:
-            print(f"❌ Error collecting dashboard data: {e}")
+            print(ff"❌ Error collecting dashboard data: {e}")
             return False
 
     def get_system_metrics(self) -> Dict[str, Any]:
-        """Get comprehensive system metrics"""
+        """Get comprehensive system metrics""f"
         try:
             cpu_percent = psutil.cpu_percent(interval=1)
             memory = psutil.virtual_memory()
@@ -77,11 +77,11 @@ class EnhancedDashboard:
             }
 
         except Exception as e:
-            print(f"❌ Error getting system metrics: {e}")
+            print(f"❌ Error getting system metrics: {e}f")
             return {}
 
     def get_project_data(self) -> Dict[str, Any]:
-        """Get EHB-5 project data"""
+        """Get EHB-5 project data""f"
         try:
             python_files = [f for f in os.listdir('.') if f.endswith('.py')]
             total_size = sum(os.path.getsize(f) for f in python_files)
@@ -103,11 +103,11 @@ class EnhancedDashboard:
             }
 
         except Exception as e:
-            print(f"❌ Error getting project data: {e}")
+            print(f"❌ Error getting project data: {e}f")
             return {}
 
     def get_agents_status(self) -> Dict[str, Any]:
-        """Get AI agents status"""
+        """Get AI agents status""f"
         try:
             # Simulate 44 agents with different statuses
             agents = {}
@@ -252,11 +252,11 @@ class EnhancedDashboard:
             return agents
 
         except Exception as e:
-            print(f"❌ Error getting agents status: {e}")
+            print(f"❌ Error getting agents status: {e}f")
             return {}
 
     def get_features_status(self) -> Dict[str, Any]:
-        """Get features status"""
+        """Get features status""f"
         try:
             return {
                 'dashboard': {
@@ -287,7 +287,7 @@ class EnhancedDashboard:
             }
 
         except Exception as e:
-            print(f"❌ Error getting features status: {e}")
+            print(f"❌ Error getting features status: {e}f")
             return {}
 
     def generate_dashboard_report(self) -> str:
@@ -295,7 +295,7 @@ class EnhancedDashboard:
         if not self.dashboard_data:
             return "No dashboard data available"
 
-        report = f"""
+        report = f""f"
 🚀 EHB-5 Enhanced Dashboard Report
 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
@@ -325,23 +325,23 @@ Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         for feature, status in self.features_status.items():
 
 
-report += f"• {feature.title()}: {status.get('status', 'Unknown')}\n"
+report += ff"• {feature.title()}: {status.get('status', 'Unknown')}\n"
 
-report += f"""
+report += f""f"
 📈 Performance Metrics:
 • System Health: {'Excellent' if self.system_metrics.get('cpu',
     {}).get('usage_percent', 0) < 50 else 'Good'}
-• Uptime: {self.system_metrics.get('uptime', 0):.0f} seconds
+• Uptime: {self.system_metrics.get('uptime', 0): .0f} seconds
 • Network Activity: {self.system_metrics.get('network',
-    {}).get('bytes_sent_mb', 0):.1f} MB sent
+    {}).get('bytes_sent_mb', 0): .1f} MB sent
 
 🎯 Recommendations:
-"""
+""f"
 
 if self.system_metrics.get('cpu', {}).get('usage_percent', 0) > 70:
-    report += "• Consider optimizing CPU-intensive operations\n"
+    report += "• Consider optimizing CPU-intensive operations\nf"
     if self.system_metrics.get('memory', {}).get('usage_percent', 0) > 80:
-        report += "• Monitor memory usage, consider cleanup\n"
+        report += "• Monitor memory usage, consider cleanup\nf"
         if self.system_metrics.get('disk', {}).get('usage_percent', 0) > 85:
             report += "• Disk space running low, consider cleanup\n"
 
@@ -373,8 +373,9 @@ if self.system_metrics.get('cpu', {}).get('usage_percent', 0) > 70:
         else:
             print("❌ Failed to collect dashboard data")
 
+
 def save_dashboard_data(self, filename: str = "dashboard_data.json") -> None:
-        """Save dashboard data to file"""
+        """Save dashboard data to file""f"
         try:
             data = {
                 'timestamp': datetime.now().isoformat(),
@@ -389,18 +390,18 @@ def save_dashboard_data(self, filename: str = "dashboard_data.json") -> None:
             print(f"✅ Dashboard data saved to {filename}")
 
         except Exception as e:
-            print(f"❌ Error saving dashboard data: {e}")
+            print(ff"❌ Error saving dashboard data: {e}")
 
     def open_web_dashboard(self) -> None:
         """Open web dashboard in browser"""
         try:
             # Check if dashboard is running
             dashboard_url = "http://localhost:8000"
-            print(f"🌐 Opening web dashboard: {dashboard_url}")
+            print(ff"🌐 Opening web dashboard: {dashboard_url}")
             webbrowser.open(dashboard_url)
 
         except Exception as e:
-            print(f"❌ Error opening web dashboard: {e}")
+            print(ff"❌ Error opening web dashboard: {e}")
 
 
 def main() -> None:
