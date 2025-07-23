@@ -26,6 +26,18 @@
         ],
         "update_time": "2025-07-23T15:39:45.629701"
       }
+    },
+    {
+      "id": 3,
+      "name": "Security Scan",
+      "type": "security",
+      "description": "Completed vulnerability scan - 0 threats found",
+      "timestamp": "2025-07-23T15:39:48.903405",
+      "data": {
+        "scan_type": "vulnerability",
+        "threats_found": 0,
+        "scan_time": "2025-07-23T15:39:48.903405"
+      }
     }
   ],
   "last_push": null,
