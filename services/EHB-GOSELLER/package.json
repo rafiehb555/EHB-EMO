@@ -1,0 +1,66 @@
+{
+  "name": "ehb-goseller",
+  "version": "1.0.0",
+  "description": "EHB Goseller - E-commerce Seller Management Platform",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backend\" \"npm run dev:admin\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:admin": "cd admin-panel && npm run dev",
+    "build": "npm run build:frontend && npm run build:backend && npm run build:admin",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "build:admin": "cd admin-panel && npm run build",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install && cd ../admin-panel && npm install",
+    "test": "npm run test:frontend && npm run test:backend && npm run test:admin",
+    "test:frontend": "cd frontend && npm test",
+    "test:backend": "cd backend && npm test",
+    "test:admin": "cd admin-panel && npm test",
+    "lint": "npm run lint:frontend && npm run lint:backend && npm run lint:admin",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:admin": "cd admin-panel && npm run lint",
+    "setup": "npm run setup:env && npm run setup:db && npm run setup:tools",
+    "setup:env": "node scripts/setup-env.js",
+    "setup:db": "node scripts/setup-database.js",
+    "setup:tools": "node scripts/setup-tools.js"
+  },
+  "keywords": [
+    "ecommerce",
+    "seller",
+    "management",
+    "platform",
+    "react",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "EHB Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2",
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.5",
+    "eslint": "^8.56.0",
+    "prettier": "^3.1.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "cross-env": "^7.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ehb-5/goseller"
+  },
+  "bugs": {
+    "url": "https://github.com/ehb-5/goseller/issues"
+  },
+  "homepage": "https://github.com/ehb-5/goseller#readme"
+}

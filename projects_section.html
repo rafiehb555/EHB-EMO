@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHB-5 Projects</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .projects-container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .project-status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #10b981;
+            color: white;
+        }
+
+        .status-development {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 5px;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .project-files {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .file-icon {
+            color: #667eea;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="modern-ui">
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+
+    <div class="projects-container">
+        <div class="section-header">
+            <h1><i class="fas fa-project-diagram"></i> EHB-5 Projects</h1>
+            <p>Manage and monitor all your development projects</p>
+        </div>
+
+        <!-- Current EHB-5 Project -->
+        <div class="project-card">
+            <div class="project-header">
+                <h2 class="project-title">EHB-5 Dashboard System</h2>
+                <span class="project-status status-active">Active Development</span>
+            </div>
+
+            <div class="project-description">
+                Advanced AI-Powered Data Processing & Management System with 49 AI agents, real-time monitoring,
+                and comprehensive development tools. This is the main project currently under active development.
+            </div>
+
+            <div class="project-metrics">
+                <div class="metric">
+                    <span class="metric-value">49</span>
+                    <span class="metric-label">AI Agents</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">95%</span>
+                    <span class="metric-label">System Health</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">2.0</span>
+                    <span class="metric-label">Version</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">100%</span>
+                    <span class="metric-label">Uptime</span>
+                </div>
+            </div>
+
+            <div class="project-actions">
+                <button class="action-btn" onclick="openProject('ehb5')">
+                    <i class="fas fa-external-link-alt"></i>
+                    Open Project
+                </button>
+                <button class="action-btn" onclick="testProject('ehb5')">
+                    <i class="fas fa-play"></i>
+                    Test System
+                </button>
+                <button class="action-btn" onclick="deployProject('ehb5')">
+                    <i class="fas fa-rocket"></i>
+                    Deploy
+                </button>
+                <button class="action-btn secondary" onclick="viewLogs('ehb5')">
+                    <i class="fas fa-list"></i>
+                    View Logs
+                </button>
+                <button class="action-btn secondary" onclick="backupProject('ehb5')">
+                    <i class="fas fa-download"></i>
+                    Backup
+                </button>
+            </div>
+
+            <div class="project-files">
+                <h4><i class="fas fa-folder"></i> Key Project Files</h4>
+                <div class="file-list">
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>main.py</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>ai_agents.py</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>api_server.py</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>database.py</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>index.html</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>script.js</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>styles.css</span>
+                    </div>
+                    <div class="file-item">
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>config.json</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sample Projects -->
+        <div class="project-card">
+            <div class="project-header">
+                <h2 class="project-title">EHB-AI-Marketplace</h2>
+                <span class="project-status status-development">In Development</span>
+            </div>
+
+            <div class="project-description">
+                AI-powered marketplace for trading and selling AI models, datasets, and services.
+            </div>
+
+            <div class="project-metrics">
+                <div class="metric">
+                    <span class="metric-value">0%</span>
+                    <span class="metric-label">Progress</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">0</span>
+                    <span class="metric-label">Components</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">1.0</span>
+                    <span class="metric-label">Version</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">0%</span>
+                    <span class="metric-label">Uptime</span>
+                </div>
+            </div>
+
+            <div class="project-actions">
+                <button class="action-btn" onclick="openProject('marketplace')">
+                    <i class="fas fa-external-link-alt"></i>
+                    Open Project
+                </button>
+                <button class="action-btn secondary" onclick="startDevelopment('marketplace')">
+                    <i class="fas fa-code"></i>
+                    Start Development
+                </button>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-header">
+                <h2 class="project-title">EHB-Blockchain</h2>
+                <span class="project-status status-development">Planned</span>
+            </div>
+
+            <div class="project-description">
+                Blockchain-based decentralized system for secure data transactions and smart contracts.
+            </div>
+
+            <div class="project-metrics">
+                <div class="metric">
+                    <span class="metric-value">0%</span>
+                    <span class="metric-label">Progress</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">0</span>
+                    <span class="metric-label">Components</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">1.0</span>
+                    <span class="metric-label">Version</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-value">0%</span>
+                    <span class="metric-label">Uptime</span>
+                </div>
+            </div>
+
+            <div class="project-actions">
+                <button class="action-btn secondary" onclick="planProject('blockchain')">
+                    <i class="fas fa-lightbulb"></i>
+                    Plan Project
+                </button>
+                <button class="action-btn secondary" onclick="createProject('blockchain')">
+                    <i class="fas fa-plus"></i>
+                    Create Project
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openProject(projectId) {
+            if (projectId === 'ehb5') {
+                window.location.href = 'index.html';
+            } else {
+                alert(`Opening ${projectId} project...`);
+            }
+        }
+
+        function testProject(projectId) {
+            if (projectId === 'ehb5') {
+                window.open('test_ai_agents_interactive.py', '_blank');
+            } else {
+                alert(`Testing ${projectId} project...`);
+            }
+        }
+
+        function deployProject(projectId) {
+            if (projectId === 'ehb5') {
+                alert('Deploying EHB-5 to production...');
+            } else {
+                alert(`Deploying ${projectId} project...`);
+            }
+        }
+
+        function viewLogs(projectId) {
+            alert(`Viewing logs for ${projectId} project...`);
+        }
+
+        function backupProject(projectId) {
+            alert(`Creating backup for ${projectId} project...`);
+        }
+
+        function startDevelopment(projectId) {
+            alert(`Starting development for ${projectId} project...`);
+        }
+
+        function planProject(projectId) {
+            alert(`Planning ${projectId} project...`);
+        }
+
+        function createProject(projectId) {
+            alert(`Creating ${projectId} project...`);
+        }
+    </script>
+</body>
+</html>

@@ -116,6 +116,33 @@ function initializeNavigation() {
     });
 }
 
+// Navigation functionality
+function navigateToSection(section) {
+    // Hide all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach(s => s.style.display = 'none');
+
+    // Show selected section
+    const targetSection = document.getElementById(section);
+    if (targetSection) {
+        targetSection.style.display = 'block';
+    }
+
+    // Update active nav link
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => link.classList.remove('active'));
+
+    const activeLink = document.querySelector(`[href="#${section}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+
+// Projects navigation
+function openProjects() {
+    window.location.href = 'projects_section.html';
+}
+
 // ===== SYSTEM STATS =====
 function updateSystemStats() {
     // Simulate real-time data
@@ -227,50 +254,69 @@ function updateLastUpdated() {
     }
 }
 
-// ===== QUICK ACTIONS =====
+// AI Agent Prompt System
+function openAIAgentPrompt() {
+    window.location.href = 'ai_agent_prompt_system.html';
+}
+
+// Fix popup issues - replace alerts with proper functionality
 function runScript() {
-    showNotification('Script execution started...', 'info');
+    console.log('Running script...');
+    // Simulate script execution
     setTimeout(() => {
-        showNotification('Script executed successfully!', 'success');
-    }, 2000);
+        updateActivityLog('Script executed successfully');
+        showNotification('Script completed successfully!', 'success');
+    }, 1000);
 }
 
 function loadConfig() {
-    showNotification('Loading configuration...', 'info');
+    console.log('Loading configuration...');
+    // Simulate config loading
     setTimeout(() => {
-        showNotification('Configuration loaded successfully!', 'success');
-    }, 1500);
+        updateActivityLog('Configuration loaded successfully');
+        showNotification('Configuration loaded!', 'success');
+    }, 1000);
 }
 
 function processData() {
-    showNotification('Processing data...', 'info');
+    console.log('Processing data...');
+    // Simulate data processing
     setTimeout(() => {
+        updateActivityLog('Data processed successfully');
         showNotification('Data processing completed!', 'success');
-    }, 3000);
+    }, 1500);
 }
 
 function scanFiles() {
-    showNotification('Scanning files...', 'info');
+    console.log('Scanning files...');
+    // Simulate file scanning
     setTimeout(() => {
+        updateActivityLog('File scan completed');
         showNotification('File scan completed!', 'success');
-    }, 2500);
+    }, 2000);
 }
 
 function backupSystem() {
-    showNotification('Creating backup...', 'info');
+    console.log('Creating backup...');
+    // Simulate backup creation
     setTimeout(() => {
-        showNotification('System backup completed!', 'success');
-    }, 4000);
+        updateActivityLog('System backup created');
+        showNotification('Backup created successfully!', 'success');
+    }, 3000);
 }
 
 function manageApp() {
-    showNotification('Opening app management...', 'info');
+    console.log('Opening app management...');
+    // Simulate app management
+    setTimeout(() => {
+        updateActivityLog('App management accessed');
+        showNotification('App management opened!', 'success');
+    }, 1000);
 }
 
 function openAIAgents() {
-    showNotification('Opening AI Agents Management...', 'info');
-    // Open AI Agents page in new tab
-    window.open('ai_agents_management_with_main_agent.html', '_blank');
+    console.log('Opening AI Agents...');
+    window.location.href = 'ai_agents_management_with_main_agent.html';
 }
 
 // ===== HERO ACTIONS =====
@@ -285,77 +331,15 @@ function openTutorial() {
     showNotification('Opening tutorial...', 'info');
 }
 
-// ===== API TESTING =====
-async function testMainAPI() {
-    const resultEl = document.getElementById('test-result');
-    resultEl.style.display = 'block';
-    resultEl.className = 'test-result';
-    resultEl.textContent = 'Testing main API...';
-
-    try {
-        const response = await fetch('https://ehb-5-rafiehb555s-projects.vercel.app/');
-        const data = await response.json();
-
-        resultEl.className = 'test-result success';
-        resultEl.textContent = JSON.stringify(data, null, 2);
-    } catch (error) {
-        resultEl.className = 'test-result error';
-        resultEl.textContent = `Error: ${error.message}`;
-    }
-}
-
-async function testHealth() {
-    const resultEl = document.getElementById('test-result');
-    resultEl.style.display = 'block';
-    resultEl.className = 'test-result';
-    resultEl.textContent = 'Testing health endpoint...';
-
-    try {
-        const response = await fetch('https://ehb-5-rafiehb555s-projects.vercel.app/health');
-        const data = await response.json();
-
-        resultEl.className = 'test-result success';
-        resultEl.textContent = JSON.stringify(data, null, 2);
-    } catch (error) {
-        resultEl.className = 'test-result error';
-        resultEl.textContent = `Error: ${error.message}`;
-    }
-}
-
-async function testStatus() {
-    const resultEl = document.getElementById('test-result');
-    resultEl.style.display = 'block';
-    resultEl.className = 'test-result';
-    resultEl.textContent = 'Testing status endpoint...';
-
-    try {
-        const response = await fetch('https://ehb-5-rafiehb555s-projects.vercel.app/api/status');
-        const data = await response.json();
-
-        resultEl.className = 'test-result success';
-        resultEl.textContent = JSON.stringify(data, null, 2);
-    } catch (error) {
-        resultEl.className = 'test-result error';
-        resultEl.textContent = `Error: ${error.message}`;
-    }
-}
-
-// ===== NOTIFICATIONS =====
-function toggleNotifications() {
-    showNotification('Notifications toggled', 'info');
-}
-
-function openProfile() {
-    showNotification('Opening user profile...', 'info');
-}
-
+// Notification system
 function showNotification(message, type = 'info') {
-    // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.innerHTML = `
-        <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
-        <span>${message}</span>
+        <div class="notification-content">
+            <i class="fas fa-${type === 'success' ? 'check' : 'info'}-circle"></i>
+            <span>${message}</span>
+        </div>
         <button onclick="this.parentElement.remove()" class="notification-close">
             <i class="fas fa-times"></i>
         </button>
@@ -366,28 +350,60 @@ function showNotification(message, type = 'info') {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
+        background: ${type === 'success' ? '#10b981' : '#3b82f6'};
         color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        z-index: 1000;
         display: flex;
         align-items: center;
-        gap: 12px;
-        z-index: 1000;
-        max-width: 400px;
-        animation: slideInRight 0.3s ease-out;
+        gap: 10px;
+        animation: slideIn 0.3s ease;
     `;
 
-    // Add to page
     document.body.appendChild(notification);
 
-    // Remove after 5 seconds
+    // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentElement) {
             notification.remove();
         }
     }, 5000);
+}
+
+// API Testing functions
+function testMainAPI() {
+    fetch('/api/health')
+        .then(response => response.json())
+        .then(data => {
+            showNotification('API Test: ' + JSON.stringify(data), 'success');
+        })
+        .catch(error => {
+            showNotification('API Test failed: ' + error.message, 'error');
+        });
+}
+
+function testHealth() {
+    fetch('/api/health')
+        .then(response => response.json())
+        .then(data => {
+            showNotification('Health Check: ' + JSON.stringify(data), 'success');
+        })
+        .catch(error => {
+            showNotification('Health Check failed: ' + error.message, 'error');
+        });
+}
+
+function testStatus() {
+    fetch('/api/system/status')
+        .then(response => response.json())
+        .then(data => {
+            showNotification('Status Check: ' + JSON.stringify(data), 'success');
+        })
+        .catch(error => {
+            showNotification('Status Check failed: ' + error.message, 'error');
+        });
 }
 
 // ===== UTILITY FUNCTIONS =====
@@ -438,18 +454,21 @@ style.textContent = `
 document.head.appendChild(style);
 
 // ===== EXPORT FUNCTIONS =====
+window.openAIAgentPrompt = openAIAgentPrompt;
 window.runScript = runScript;
 window.loadConfig = loadConfig;
 window.processData = processData;
 window.scanFiles = scanFiles;
 window.backupSystem = backupSystem;
 window.manageApp = manageApp;
-window.quickStart = quickStart;
-window.openTutorial = openTutorial;
+window.openAIAgents = openAIAgents;
+window.showNotification = showNotification;
 window.testMainAPI = testMainAPI;
 window.testHealth = testHealth;
 window.testStatus = testStatus;
 window.toggleNotifications = toggleNotifications;
 window.openProfile = openProfile;
+window.navigateToSection = navigateToSection;
+window.openProjects = openProjects;
 
 console.log('🎯 EHB-5 Professional Dashboard JavaScript loaded successfully');

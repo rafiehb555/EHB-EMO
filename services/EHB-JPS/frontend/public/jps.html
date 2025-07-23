@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EHB-JPS - Job Portal System</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .jps-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            max-width: 600px;
+            margin: 20px;
+        }
+        .jps-logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        .jps-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .jps-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .jps-features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .feature-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        .jps-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 25px;
+            padding: 15px 30px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        .jps-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .jps-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="jps-container">
+        <div class="jps-logo">🏢</div>
+        <h1 class="jps-title">EHB-JPS</h1>
+        <p class="jps-subtitle">Advanced Job Portal System</p>
+
+        <div class="jps-features">
+            <span class="feature-tag">🤖 AI-Powered</span>
+            <span class="feature-tag">🔍 Smart Search</span>
+            <span class="feature-tag">📊 Analytics</span>
+            <span class="feature-tag">🔐 Secure</span>
+            <span class="feature-tag">📱 Responsive</span>
+            <span class="feature-tag">⚡ Fast</span>
+        </div>
+
+        <div class="jps-stats">
+            <div class="stat-item">
+                <span class="stat-number">97</span>
+                <span class="stat-label">Jobs Posted</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">27</span>
+                <span class="stat-label">Companies</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">156</span>
+                <span class="stat-label">Applications</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">99.7%</span>
+                <span class="stat-label">Uptime</span>
+            </div>
+        </div>
+
+        <div>
+            <a href="/jps/" class="jps-button">🚀 Launch JPS Dashboard</a>
+            <a href="/jps/jobs" class="jps-button">💼 Browse Jobs</a>
+            <a href="/jps/companies" class="jps-button">🏢 View Companies</a>
+        </div>
+
+        <div style="margin-top: 30px; opacity: 0.8;">
+            <p>EHB-JPS - Next Generation Job Portal System</p>
+            <p>Powered by React, TypeScript & Advanced AI</p>
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect to JPS dashboard after 3 seconds
+        setTimeout(() => {
+            window.location.href = '/jps/';
+        }, 3000);
+
+        // Add some interactive effects
+        document.querySelectorAll('.jps-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Animate stats
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const finalValue = stat.textContent;
+                const isPercentage = finalValue.includes('%');
+                const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+
+                let current = 0;
+                const increment = numericValue / 50;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= numericValue) {
+                        current = numericValue;
+                        clearInterval(timer);
+                    }
+
+                    if (isPercentage) {
+                        stat.textContent = current.toFixed(1) + '%';
+                    } else {
+                        stat.textContent = Math.floor(current);
+                    }
+                }, 30);
+            });
+        }
+
+        // Start animation after page load
+        window.addEventListener('load', animateStats);
+    </script>
+</body>
+</html>
