@@ -3,55 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EHB-5 Dashboard - Advanced AI Management System</title>
+    <title>EHB-5 Professional Dashboard</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <!-- Enhanced Header -->
-        <header class="header">
-            <div class="logo">
-                <i class="fas fa-brain"></i>
-                <h1>EHB-5 Dashboard</h1>
-                <span class="version-badge">v2.0</span>
-            </div>
-            <nav class="nav">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#dashboard" class="nav-link">Dashboard</a>
-                <a href="#agents" class="nav-link">Agents</a>
-                <a href="#tools" class="nav-link">Tools</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#analytics" class="nav-link">Analytics</a>
-                <a href="#settings" class="nav-link">Settings</a>
-            </nav>
-            <div class="header-actions">
-                <button class="btn-notification" onclick="toggleNotifications()" aria-label="Toggle notifications">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-count">3</span>
-                </button>
-                <button class="btn-profile" onclick="openProfile()" aria-label="Open user profile">
-                    <i class="fas fa-user"></i>
-                </button>
-            </div>
-        </header>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Enhanced Hero Section -->
-            <section id="home" class="hero">
+    <style>
+        .modern-ui {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', sans-serif;
+        }
+        .modern-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .modern-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .modern-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
+</head>
+<body class="modern-ui">
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1>EHB-5 Dashboard</h1>
+                    <span class="version-badge">v2.0</span>
+                </div>
+
+                <nav class="nav">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#dashboard" class="nav-link">Dashboard</a>
+                    <a href="#agents" class="nav-link">Agents</a>
+                    <a href="#tools" class="nav-link">Tools</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#analytics" class="nav-link">Analytics</a>
+                    <a href="#settings" class="nav-link">Settings</a>
+                </nav>
+
+                <div class="header-actions">
+                    <button class="btn-notification" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </button>
+                    <button class="btn-profile" onclick="openProfile()">
+                        <i class="fas fa-user"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <section id="home" class="hero fade-in">
                 <div class="hero-content">
-                    <div class="hero-text">
-                        <h2>Welcome to EHB-5</h2>
-                        <p class="hero-subtitle">Advanced Data Processing & Configuration Management System with AI Agents</p>
-                        <div class="hero-features">
-                            <span class="feature-tag"><i class="fas fa-robot"></i> AI-Powered</span>
-                            <span class="feature-tag"><i class="fas fa-bolt"></i> Real-Time</span>
-                            <span class="feature-tag"><i class="fas fa-shield-alt"></i> Secure</span>
-                            <span class="feature-tag"><i class="fas fa-chart-line"></i> Analytics</span>
-                        </div>
+                    <h2>Welcome to EHB-5</h2>
+                    <p class="hero-subtitle">Advanced AI-Powered Data Processing & Management System</p>
+
+                    <div class="hero-features">
+                        <span class="feature-tag"><i class="fas fa-robot"></i> AI-Powered</span>
+                        <span class="feature-tag"><i class="fas fa-bolt"></i> Real-Time</span>
+                        <span class="feature-tag"><i class="fas fa-shield-alt"></i> Secure</span>
+                        <span class="feature-tag"><i class="fas fa-chart-line"></i> Analytics</span>
                     </div>
+
                     <div class="hero-stats">
                         <div class="stat-card">
                             <i class="fas fa-database"></i>
@@ -84,461 +118,250 @@
                             <label>System Uptime</label>
                         </div>
                     </div>
-                </div>
-                <div class="hero-actions">
-                    <button class="btn btn-primary btn-large" onclick="quickStart()" aria-label="Quick start system">
-                        <i class="fas fa-rocket"></i> Quick Start
-                    </button>
-                    <button class="btn btn-secondary btn-large" onclick="openTutorial()" aria-label="Watch tutorial">
-                        <i class="fas fa-play"></i> Watch Tutorial
-                    </button>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-large" onclick="quickStart()">
+                            <i class="fas fa-rocket"></i> Quick Start
+                        </button>
+                        <button class="btn btn-secondary btn-large" onclick="openTutorial()">
+                            <i class="fas fa-play"></i> Watch Tutorial
+                        </button>
+                    </div>
                 </div>
             </section>
 
-            <!-- Enhanced Dashboard Section -->
-            <section id="dashboard" class="dashboard">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="dashboard slide-in">
                 <div class="section-header">
-                    <h2>System Dashboard</h2>
-                    <div class="dashboard-controls">
-                        <button class="btn-refresh" onclick="refreshDashboard()" aria-label="Refresh dashboard">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <button class="btn-fullscreen" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
-                            <i class="fas fa-expand"></i>
-                        </button>
+                    <h3 class="section-title">
+                        <i class="fas fa-tachometer-alt"></i>
+                        System Dashboard
+                    </h3>
+                </div>
+
+                <!-- System Status Cards -->
+                <div class="status-grid">
+                    <div class="status-card">
+                        <div class="status-icon success">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="status-text">
+                            <div class="status-label">Server Online</div>
+                            <div class="status-description">All systems operational</div>
+                        </div>
+                    </div>
+
+                    <div class="status-card">
+                        <div class="status-icon success">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="status-text">
+                            <div class="status-label">Database Connected</div>
+                            <div class="status-description">Connection stable</div>
+                        </div>
+                    </div>
+
+                    <div class="status-card">
+                        <div class="status-icon success">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="status-text">
+                            <div class="status-label">Security Active</div>
+                            <div class="status-description">All protections enabled</div>
+                        </div>
+                    </div>
+
+                    <div class="status-card">
+                        <div class="status-icon success">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="status-text">
+                            <div class="status-label">AI Agents Running</div>
+                            <div class="status-description">Processing tasks</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="dashboard-grid">
-                    <!-- System Status -->
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <h3>System Status</h3>
-                            <button class="btn-icon" onclick="editProject()" aria-label="Edit project">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                        </div>
-                        <div class="status-grid">
-                            <div class="status-item online">
-                                <i class="fas fa-server"></i>
-                                <span>Server Online</span>
-                            </div>
-                            <div class="status-item online">
-                                <i class="fas fa-database"></i>
-                                <span>Database Connected</span>
-                            </div>
-                            <div class="status-item online">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>Security Active</span>
-                            </div>
-                            <div class="status-item online">
-                                <i class="fas fa-robot"></i>
-                                <span>AI Agents Running</span>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Main Dashboard Grid -->
+                <div class="cards-grid">
                     <!-- Recent Activity -->
-                    <div class="dashboard-card">
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Recent Activity</h3>
-                            <button class="btn-icon" onclick="viewAllActivity()" aria-label="View all activity">
-                                <i class="fas fa-list"></i>
-                            </button>
+                            <h4 class="card-title">
+                                <i class="fas fa-history"></i>
+                                Recent Activity
+                            </h4>
                         </div>
-                        <div class="activity-list">
-                            <div class="activity-item">
-                                <i class="fas fa-file-code"></i>
-                                <span>Script executed successfully</span>
-                                <small>2 minutes ago</small>
-                            </div>
-                            <div class="activity-item">
-                                <i class="fas fa-database"></i>
-                                <span>Database backup completed</span>
-                                <small>5 minutes ago</small>
-                            </div>
-                            <div class="activity-item">
-                                <i class="fas fa-user"></i>
-                                <span>New user registered</span>
-                                <small>10 minutes ago</small>
+                        <div class="card-content">
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <div class="activity-icon success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <div class="activity-text">Script executed successfully</div>
+                                        <div class="activity-time">2 minutes ago</div>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-icon success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <div class="activity-text">Database backup completed</div>
+                                        <div class="activity-time">5 minutes ago</div>
+                                    </div>
+                                </div>
+
+                                <div class="activity-item">
+                                    <div class="activity-icon success">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <div class="activity-text">New user registered</div>
+                                        <div class="activity-time">10 minutes ago</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Quick Actions -->
-                    <div class="dashboard-card">
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Quick Actions</h3>
+                            <h4 class="card-title">
+                                <i class="fas fa-bolt"></i>
+                                Quick Actions
+                            </h4>
                         </div>
-                        <div class="action-grid">
-                            <button class="action-btn primary" onclick="runScript()" aria-label="Run script">
-                                <i class="fas fa-play"></i>
-                                <span>Run Script</span>
-                            </button>
-                            <button class="action-btn secondary" onclick="loadConfig()" aria-label="Load configuration">
-                                <i class="fas fa-cog"></i>
-                                <span>Load Config</span>
-                            </button>
-                            <button class="action-btn success" onclick="processData()" aria-label="Process data">
-                                <i class="fas fa-chart-bar"></i>
-                                <span>Process Data</span>
-                            </button>
-                            <button class="action-btn info" onclick="scanFiles()" aria-label="Scan files">
-                                <i class="fas fa-search"></i>
-                                <span>Scan Files</span>
-                            </button>
-                            <button class="action-btn warning" onclick="backupSystem()" aria-label="Backup system">
-                                <i class="fas fa-download"></i>
-                                <span>Backup</span>
-                            </button>
-                            <button class="action-btn danger" onclick="emergencyStop()" aria-label="Emergency stop">
-                                <i class="fas fa-stop"></i>
-                                <span>Emergency Stop</span>
-                            </button>
+                        <div class="card-content">
+                            <div class="actions-grid">
+                                <button class="action-btn" onclick="runScript()">
+                                    <i class="fas fa-play"></i>
+                                    <span>Run Script</span>
+                                </button>
+
+                                <button class="action-btn" onclick="loadConfig()">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Load Config</span>
+                                </button>
+
+                                <button class="action-btn" onclick="processData()">
+                                    <i class="fas fa-file-import"></i>
+                                    <span>Process Data</span>
+                                </button>
+
+                                <button class="action-btn" onclick="scanFiles()">
+                                    <i class="fas fa-search"></i>
+                                    <span>Scan Files</span>
+                                </button>
+
+                                <button class="action-btn" onclick="backupSystem()">
+                                    <i class="fas fa-download"></i>
+                                    <span>Backup</span>
+                                </button>
+
+                                <button class="action-btn" onclick="manageApp()">
+                                    <i class="fas fa-cogs"></i>
+                                    <span>Manage App</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Performance Metrics -->
-                    <div class="dashboard-card">
-                        <div class="card-header">
-                            <h3>Performance Metrics</h3>
-                            <div class="time-controls">
-                                <button class="time-btn active" onclick="setTimeRange('1h')" aria-label="1 hour">1H</button>
-                                <button class="time-btn" onclick="setTimeRange('24h')" aria-label="24 hours">24H</button>
-                                <button class="time-btn" onclick="setTimeRange('7d')" aria-label="7 days">7D</button>
-                            </div>
-                        </div>
-                        <div class="metrics-grid">
-                            <div class="metric-item">
-                                <span class="metric-value">98.5%</span>
-                                <span class="metric-label">CPU Usage</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value">2.3GB</span>
-                                <span class="metric-label">Memory Used</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value">45ms</span>
-                                <span class="metric-label">Response Time</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value">1.2K</span>
-                                <span class="metric-label">Requests/min</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- AI Agents Section -->
-            <section id="agents" class="agents">
-                <div class="section-header">
-                    <h2>AI Agents Management</h2>
-                    <button class="btn-icon" onclick="openAIAgents()" aria-label="Open AI agents">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                </div>
-
-                <!-- Agent Summary -->
-                <div class="agent-summary">
-                    <div class="summary-card">
-                        <h4><i class="fas fa-robot"></i> Total Agents</h4>
-                        <span class="summary-value" id="totalAgents">44</span>
-                    </div>
-                    <div class="summary-card">
-                        <h4><i class="fas fa-play-circle"></i> Active</h4>
-                        <span class="summary-value" id="activeAgents">44</span>
-                    </div>
-                    <div class="summary-card">
-                        <h4><i class="fas fa-check-circle"></i> Completion</h4>
-                        <span class="summary-value" id="completionRate">100%</span>
-                    </div>
-                    <div class="summary-card">
-                        <h4><i class="fas fa-pause-circle"></i> Inactive</h4>
-                        <span class="summary-value" id="inactiveAgents">0</span>
-                    </div>
-                </div>
-
-                <!-- Main Agent Section -->
-                <div class="main-agent-section">
-                    <h4><i class="fas fa-crown"></i> Main AI Agent (Central Coordinator)</h4>
-                    <div class="main-agent-card" id="mainAgentCard">
-                        <!-- Main agent will be loaded here -->
-                    </div>
-                </div>
-
-                <!-- Sub-Agents Sections -->
-                <div class="sub-agents-sections">
-                    <div class="agent-category">
-                        <h4><i class="fas fa-cube"></i> Core System Agents</h4>
-                        <div class="agents-grid" id="coreAgentsGrid">
-                            <!-- Core agents will be loaded here -->
-                        </div>
-                    </div>
-
-                    <div class="agent-category">
-                        <h4><i class="fas fa-brain"></i> AI Agents</h4>
-                        <div class="agents-grid" id="aiAgentsGrid">
-                            <!-- AI agents will be loaded here -->
-                        </div>
-                    </div>
-
-                    <div class="agent-category">
-                        <h4><i class="fas fa-database"></i> Data Processing Agents</h4>
-                        <div class="agents-grid" id="dataAgentsGrid">
-                            <!-- Data agents will be loaded here -->
-                        </div>
-                    </div>
-
-                    <div class="agent-category">
-                        <h4><i class="fas fa-cogs"></i> Configuration Agents</h4>
-                        <div class="agents-grid" id="configAgentsGrid">
-                            <!-- Config agents will be loaded here -->
-                        </div>
-                    </div>
-
-                    <div class="agent-category">
-                        <h4><i class="fas fa-folder-open"></i> File Management Agents</h4>
-                        <div class="agents-grid" id="fileAgentsGrid">
-                            <!-- File agents will be loaded here -->
-                        </div>
-                    </div>
-
-                    <div class="agent-category">
-                        <h4><i class="fas fa-code"></i> Code Analysis Agents</h4>
-                        <div class="agents-grid" id="codeAgentsGrid">
-                            <!-- Code agents will be loaded here -->
-                        </div>
-                    </div>
-
-                    <div class="agent-category">
-                        <h4><i class="fas fa-shield-alt"></i> Security Agents</h4>
-                        <div class="agents-grid" id="securityAgentsGrid">
-                            <!-- Security agents will be loaded here -->
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Enhanced Tools Section -->
-            <section id="tools" class="tools">
-                <div class="section-header">
-                    <h3>Development Tools</h3>
-                    <div class="section-actions">
-                        <button class="btn btn-primary" onclick="installTool()">
-                            <i class="fas fa-download"></i> Install Tool
-                        </button>
-                        <button class="btn btn-secondary" onclick="updateTools()">
-                            <i class="fas fa-sync"></i> Update All
-                        </button>
-                    </div>
-                </div>
-                <div class="tools-grid" id="toolsGrid">
-                    <!-- Tools will be loaded here -->
-                </div>
-            </section>
-
-            <!-- Enhanced Projects Section -->
-            <section id="projects" class="projects">
-                <div class="section-header">
-                    <h3>Project Files</h3>
-                    <div class="section-actions">
-                        <button class="btn btn-primary" onclick="uploadFile()">
-                            <i class="fas fa-upload"></i> Upload File
-                        </button>
-                        <button class="btn btn-secondary" onclick="createFile()">
-                            <i class="fas fa-plus"></i> New File
-                        </button>
-                    </div>
-                </div>
-                <div class="file-controls">
-                    <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search files..." onkeyup="searchFiles(this.value)">
-                    </div>
-                    <div class="filter-controls">
-                        <label for="fileFilter">Filter files:</label>
-                        <select id="fileFilter" onchange="filterFiles(this.value)" aria-label="Filter files by type">
-                            <option value="all">All Files</option>
-                            <option value="data">Data Files</option>
-                            <option value="config">Config Files</option>
-                            <option value="script">Scripts</option>
-                            <option value="web">Web Files</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="file-grid" id="fileGrid">
-                    <!-- Files will be loaded here -->
-                </div>
-            </section>
-
-            <!-- New Analytics Section -->
-            <section id="analytics" class="analytics">
-                <div class="section-header">
-                    <h3>System Analytics</h3>
-                    <div class="section-actions">
-                        <button class="btn btn-primary" onclick="exportAnalytics()" aria-label="Export analytics">
-                            <i class="fas fa-download"></i> Export
-                        </button>
-                        <button class="btn btn-secondary" onclick="generateReport()" aria-label="Generate report">
-                            <i class="fas fa-chart-bar"></i> Generate Report
-                        </button>
-                    </div>
-                </div>
-                <div class="analytics-grid">
-                    <div class="card analytics-card">
-                        <h4><i class="fas fa-chart-line"></i> Performance Trends</h4>
-                        <div class="chart-container">
-                            <canvas id="performanceChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="card analytics-card">
-                        <h4><i class="fas fa-pie-chart"></i> Resource Usage</h4>
-                        <div class="chart-container">
-                            <canvas id="resourceChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="card analytics-card">
-                        <h4><i class="fas fa-bar-chart"></i> Activity Summary</h4>
-                        <div class="chart-container">
-                            <canvas id="activityChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Enhanced Settings Section -->
-            <section id="settings" class="settings">
-                <div class="section-header">
-                    <h3>System Settings</h3>
-                    <div class="section-actions">
-                        <button class="btn btn-primary" onclick="saveSettings()" aria-label="Save all settings">
-                            <i class="fas fa-save"></i> Save All
-                        </button>
-                        <button class="btn btn-secondary" onclick="resetSettings()" aria-label="Reset settings">
-                            <i class="fas fa-undo"></i> Reset
-                        </button>
-                    </div>
-                </div>
-                <div class="settings-grid">
                     <div class="card">
                         <div class="card-header">
-                            <h4><i class="fas fa-palette"></i> Theme Settings</h4>
+                            <h4 class="card-title">
+                                <i class="fas fa-chart-line"></i>
+                                Performance Metrics
+                            </h4>
                         </div>
-                        <div class="setting-item">
-                            <label for="darkMode">Dark Mode:</label>
-                            <input type="checkbox" id="darkMode" onchange="toggleTheme()">
-                        </div>
-                        <div class="setting-item">
-                            <label for="autoTheme">Auto Theme:</label>
-                            <input type="checkbox" id="autoTheme" checked>
-                        </div>
-                        <div class="setting-item">
-                            <label for="accentColor">Accent Color:</label>
-                            <input type="color" id="accentColor" value="#667eea">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4><i class="fas fa-bell"></i> Notifications</h4>
-                        </div>
-                        <div class="setting-item">
-                            <label for="notifications">Enable Notifications:</label>
-                            <input type="checkbox" id="notifications" checked>
-                        </div>
-                        <div class="setting-item">
-                            <label for="soundAlerts">Sound Alerts:</label>
-                            <input type="checkbox" id="soundAlerts" checked>
-                        </div>
-                        <div class="setting-item">
-                            <label for="emailNotifications">Email Notifications:</label>
-                            <input type="checkbox" id="emailNotifications">
-                        </div>
-                        <div class="setting-item">
-                            <label for="refreshInterval">Auto Refresh Interval:</label>
-                            <select id="refreshInterval" aria-label="Auto refresh interval">
-                                <option value="30">30 seconds</option>
-                                <option value="60" selected>1 minute</option>
-                                <option value="300">5 minutes</option>
-                                <option value="600">10 minutes</option>
-                            </select>
-                        </div>
-                        <div class="setting-item">
-                            <label for="sessionTimeout">Session Timeout:</label>
-                            <select id="sessionTimeout" aria-label="Session timeout">
-                                <option value="1800">30 minutes</option>
-                                <option value="3600" selected>1 hour</option>
-                                <option value="7200">2 hours</option>
-                                <option value="14400">4 hours</option>
-                            </select>
+                        <div class="card-content">
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <div class="metric-value">98.5%</div>
+                                    <div class="metric-label">CPU Usage</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-value">2.3GB</div>
+                                    <div class="metric-label">Memory Used</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-value">45ms</div>
+                                    <div class="metric-label">Response Time</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <div class="metric-value">1.2K</div>
+                                    <div class="metric-label">Requests/Min</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
 
-        <!-- Enhanced Footer -->
-        <footer class="footer">
+                <!-- API Testing Section -->
+                <div class="api-testing">
+                    <div class="section-header">
+                        <h4 class="section-title">
+                            <i class="fas fa-wrench"></i>
+                            API Testing
+                        </h4>
+                    </div>
+
+                    <p>Test the API endpoints directly from this page:</p>
+
+                    <div class="test-buttons">
+                        <button class="test-btn" onclick="testMainAPI()">Test Main API</button>
+                        <button class="test-btn" onclick="testHealth()">Test Health</button>
+                        <button class="test-btn" onclick="testStatus()">Test Status</button>
+                    </div>
+
+                    <div id="test-result" class="test-result" style="display: none;"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h5>EHB-5 Dashboard</h5>
+                    <h3>EHB-5 Dashboard</h3>
                     <p>Advanced AI-powered data processing and management system</p>
+                    <p>© 2025 EHB-5 Dashboard. All rights reserved.</p>
                 </div>
+
                 <div class="footer-section">
-                    <h5>Quick Links</h5>
-                    <ul>
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
                         <li><a href="#dashboard">Dashboard</a></li>
                         <li><a href="#agents">Agents</a></li>
                         <li><a href="#tools">Tools</a></li>
                         <li><a href="#settings">Settings</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-section">
-                    <h5>System Info</h5>
-                    <ul>
-                        <li>Version: 2.0.0</li>
-                        <li>Last Updated: <span id="footerLastUpdated">Loading...</span></li>
-                        <li>Status: <span id="footerStatus">Online</span></li>
-                    </ul>
+                    <h3>System Info</h3>
+                    <p>Version: 2.0.0</p>
+                    <p>Last Updated: <span id="lastUpdated">Loading...</span></p>
+                    <p>Status: <span id="systemStatus">Online</span></p>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; 2025 EHB-5 Dashboard. All rights reserved.</p>
-                <div class="footer-actions">
-                    <a href="#" onclick="showPrivacyPolicy()">Privacy Policy</a>
-                    <a href="#" onclick="showTerms()">Terms of Service</a>
-                    <a href="#" onclick="showSupport()">Support</a>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Enhanced Notification System -->
-    <div id="notification" class="notification hidden">
-        <i class="fas fa-info-circle"></i>
-        <span id="notificationText"></span>
-        <button onclick="hideNotification()" class="notification-close" title="Close notification">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-
-    <!-- Modal System -->
-    <div id="modal" class="modal hidden">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="modalTitle">Modal Title</h3>
-                <button class="modal-close" onclick="closeModal()" aria-label="Close modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- Modal content will be loaded here -->
-            </div>
-            <div class="modal-footer" id="modalFooter">
-                <!-- Modal actions will be loaded here -->
+                <a href="#privacy">Privacy Policy</a> |
+                <a href="#terms">Terms of Service</a> |
+                <a href="#support">Support</a>
             </div>
         </div>
-    </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

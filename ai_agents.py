@@ -1,3 +1,5 @@
+from natural_language_processor import nlp_processor, analyze_text, get_sentiment
+
 #!/usr/bin/env python3
 """
 EHB-5 AI Agents Module

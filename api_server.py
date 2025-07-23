@@ -283,6 +283,71 @@ if __name__ == '__main__':
     print("📊 API URL: http://localhost:5000")
     print("📚 API Documentation: http://localhost:5000/api/health")
 
+
+# Global error handlers
+@app.errorhandler(400)
+def bad_request(error):
+    return jsonify({
+        'error': 'Bad Request',
+        'message': 'Invalid request data',
+        'status_code': 400
+    }), 400
+
+@app.errorhandler(401)
+def unauthorized(error):
+    return jsonify({
+        'error': 'Unauthorized',
+        'message': 'Authentication required',
+        'status_code': 401
+    }), 401
+
+@app.errorhandler(403)
+def forbidden(error):
+    return jsonify({
+        'error': 'Forbidden',
+        'message': 'Access denied',
+        'status_code': 403
+    }), 403
+
+@app.errorhandler(404)
+def not_found(error):
+    return jsonify({
+        'error': 'Not Found',
+        'message': 'Resource not found',
+        'status_code': 404
+    }), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({
+        'error': 'Internal Server Error',
+        'message': 'An unexpected error occurred',
+        'status_code': 500
+    }), 500
+
+@app.errorhandler(Exception)
+def handle_exception(error):
+    return jsonify({
+        'error': 'Server Error',
+        'message': str(error),
+        'status_code': 500
+    }), 500
+
+# Custom error handling decorator
+def handle_errors(f):
+    def wrapper(*args, **kwargs):
+        try:
+            return f(*args, **kwargs)
+        except Exception as e:
+            return jsonify({
+                'error': 'Operation Failed',
+                'message': str(e),
+                'status_code': 500
+            }), 500
+    wrapper.__name__ = f.__name__
+    return wrapper
+
+
     # Log system startup
     db.log_system_event('INFO', 'API Server started')
 
