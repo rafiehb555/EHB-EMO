@@ -1,119 +1,59 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 
 // Database configuration
-const config = {
-    host: process.env.DB_HOST || 'localhost',
-    port: process.env.DB_PORT || 5432,
-    database: process.env.DB_NAME || 'ehb_jps_db',
-    username: process.env.DB_USER || 'postgres',
-    password: process.env.DB_PASSWORD || 'your_password',
-    dialect: 'postgres',
-    logging: process.env.NODE_ENV === 'development' ? console.log : false,
-    pool: {
-        max: 10,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    },
-    dialectOptions: {
-        ssl: process.env.NODE_ENV === 'production' ? {
-            require: true,
-            rejectUnauthorized: false
-        } : false
-    }
-};
-
-// Create Sequelize instance
-const sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    {
-        host: config.host,
-        port: config.port,
-        dialect: config.dialect,
-        logging: config.logging,
-        pool: config.pool,
-        dialectOptions: config.dialectOptions,
-        define: {
-            timestamps: true,
-            underscored: true,
-            freezeTableName: true
-        }
-    }
-);
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: './database.sqlite',
+  logging: process.env.NODE_ENV === 'development' ? console.log : false,
+  define: {
+    timestamps: true,
+    underscored: false,
+    freezeTableName: true
+  }
+});
 
 // Test database connection
 const testConnection = async () => {
-    try {
-        await sequelize.authenticate();
-        console.log('✅ Database connection established successfully.');
-
-        // Sync models with database
-        if (process.env.NODE_ENV === 'development') {
-            await sequelize.sync({ alter: true });
-            console.log('✅ Database models synchronized.');
-        }
-
-        return true;
-    } catch (error) {
-        console.error('❌ Unable to connect to the database:', error);
-        return false;
-    }
+  try {
+    await sequelize.authenticate();
+    console.log('✅ Database connection established successfully.');
+  } catch (error) {
+    console.error('❌ Unable to connect to the database:', error);
+  }
 };
 
-// Initialize database
+// Initialize database with models
 const initializeDatabase = async () => {
-    try {
-        // Test connection
-        const isConnected = await testConnection();
+  try {
+    // Import models
+    const User = require('../models/User');
+    const Company = require('../models/Company');
+    const Job = require('../models/Job');
+    const Application = require('../models/Application');
 
-        if (!isConnected) {
-            console.error('❌ Database connection failed. Please check your configuration.');
-            process.exit(1);
-        }
+    // Define associations
+    User.hasOne(Company, { foreignKey: 'userId', as: 'company' });
+    Company.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
-        // Import models
-        require('../models/User');
-        require('../models/Job');
-        require('../models/Company');
-        require('../models/Application');
+    Company.hasMany(Job, { foreignKey: 'companyId', as: 'jobs' });
+    Job.belongsTo(Company, { foreignKey: 'companyId', as: 'company' });
 
-        // Set up associations
-        const User = require('../models/User');
-        const Job = require('../models/Job');
-        const Company = require('../models/Company');
-        const Application = require('../models/Application');
+    User.hasMany(Application, { foreignKey: 'userId', as: 'userApplications' });
+    Application.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
-        // User associations
-        User.hasMany(Application, { foreignKey: 'user_id', as: 'applications' });
-        User.hasOne(Company, { foreignKey: 'user_id', as: 'company' });
+    Job.hasMany(Application, { foreignKey: 'jobId', as: 'jobApplications' });
+    Application.belongsTo(Job, { foreignKey: 'jobId', as: 'job' });
 
-        // Company associations
-        Company.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
-        Company.hasMany(Job, { foreignKey: 'company_id', as: 'jobs' });
-
-        // Job associations
-        Job.belongsTo(Company, { foreignKey: 'company_id', as: 'company' });
-        Job.hasMany(Application, { foreignKey: 'job_id', as: 'applications' });
-
-        // Application associations
-        Application.belongsTo(User, { foreignKey: 'user_id', as: 'user' });
-        Application.belongsTo(Job, { foreignKey: 'job_id', as: 'job' });
-
-        console.log('✅ Database models and associations set up successfully.');
-
-        return sequelize;
-    } catch (error) {
-        console.error('❌ Database initialization failed:', error);
-        throw error;
-    }
+    console.log('✅ Database models and associations initialized.');
+  } catch (error) {
+    console.error('❌ Error initializing database:', error);
+  }
 };
 
-// Export functions and sequelize instance
 module.exports = {
-    sequelize,
-    testConnection,
-    initializeDatabase
+  sequelize,
+  testConnection,
+  initializeDatabase
 };

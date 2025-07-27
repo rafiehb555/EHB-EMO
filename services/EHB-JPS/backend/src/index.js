@@ -6,88 +6,134 @@ const rateLimit = require('express-rate-limit');
 const compression = require('compression');
 require('dotenv').config();
 
+// Import routes
+const authRoutes = require('./routes/auth');
+const jobRoutes = require('./routes/jobs');
+
+// Import database connection
+const { sequelize, testConnection, initializeDatabase } = require('./database/connection');
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Initialize database
-const { initializeDatabase } = require('./database/connection');
+// Security middleware
+app.use(helmet());
 
-// Middleware
-app.use(helmet()); // Security headers
-app.use(compression()); // Compress responses
+// CORS configuration
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-    credentials: true
+  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  credentials: true
 }));
 
 // Rate limiting
 const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000, // 15 minutes
+  max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100, // limit each IP to 100 requests per windowMs
+  message: {
+    success: false,
     message: 'Too many requests from this IP, please try again later.'
+  }
 });
 app.use('/api/', limiter);
 
-// Logging
-app.use(morgan('combined'));
+// Compression middleware
+app.use(compression());
+
+// Logging middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Static files
-app.use('/uploads', express.static('uploads'));
-
 // Health check endpoint
 app.get('/health', (req, res) => {
-    res.json({
-        status: 'OK',
-        timestamp: new Date().toISOString(),
-        uptime: process.uptime(),
-        environment: process.env.NODE_ENV || 'development'
-    });
+  res.json({
+    success: true,
+    message: 'EHB-JPS API is running',
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV || 'development'
+  });
 });
 
-// API Routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/users', require('./routes/users'));
-app.use('/api/jobs', require('./routes/jobs'));
-app.use('/api/companies', require('./routes/companies'));
-app.use('/api/applications', require('./routes/applications'));
-app.use('/api/admin', require('./routes/admin'));
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({
-        error: 'Something went wrong!',
-        message: process.env.NODE_ENV === 'development' ? err.message : 'Internal server error'
-    });
-});
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/jobs', jobRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
-    res.status(404).json({
-        error: 'Route not found',
-        message: `Cannot ${req.method} ${req.originalUrl}`
+  res.status(404).json({
+    success: false,
+    message: 'API endpoint not found'
+  });
+});
+
+// Error handling middleware
+app.use((error, req, res, next) => {
+  console.error('Error:', error);
+
+  if (error.name === 'ValidationError') {
+    return res.status(400).json({
+      success: false,
+      message: 'Validation error',
+      errors: error.errors
     });
+  }
+
+  if (error.name === 'SequelizeValidationError') {
+    return res.status(400).json({
+      success: false,
+      message: 'Database validation error',
+      errors: error.errors.map(err => ({
+        field: err.path,
+        message: err.message
+      }))
+    });
+  }
+
+  res.status(500).json({
+    success: false,
+    message: 'Internal server error'
+  });
 });
 
 // Start server
-app.listen(PORT, async () => {
-    try {
-        // Initialize database
-        await initializeDatabase();
+async function startServer() {
+  try {
+    // Test database connection
+    await testConnection();
 
-        console.log(`🚀 EHB-JPS Backend Server running on port ${PORT}`);
-        console.log(`📊 Health check: http://localhost:${PORT}/health`);
-        console.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
-        console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-        console.log(`🗄️ Database: Connected and synchronized`);
-    } catch (error) {
-        console.error('❌ Failed to start server:', error);
-        process.exit(1);
-    }
+    // Initialize database with models and associations
+    await initializeDatabase();
+
+    // Start server
+    app.listen(PORT, () => {
+      console.log(`🚀 EHB-JPS Backend Server running on port ${PORT}`);
+      console.log(`📊 Health check: http://localhost:${PORT}/health`);
+      console.log(`🔗 API Base URL: http://localhost:${PORT}/api`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    });
+
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
+  }
+}
+
+// Handle graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('🛑 SIGTERM received, shutting down gracefully...');
+  await sequelize.close();
+  process.exit(0);
 });
 
-module.exports = app;
+process.on('SIGINT', async () => {
+  console.log('🛑 SIGINT received, shutting down gracefully...');
+  await sequelize.close();
+  process.exit(0);
+});
+
+// Start the server
+startServer();
