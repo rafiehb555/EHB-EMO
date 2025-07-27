@@ -1,0 +1,62 @@
+{
+  "agents": {
+    "healthcare_agent": {
+      "id": "healthcare_agent",
+      "name": "EHB Healthcare Agent",
+      "type": "specialized",
+      "capabilities": [
+        "patient_management",
+        "medical_records",
+        "appointment_scheduling",
+        "health_analytics",
+        "medical_advice"
+      ],
+      "model": "gpt-4",
+      "memory_enabled": true,
+      "learning_enabled": true,
+      "communication_enabled": true
+    },
+    "data_agent": {
+      "id": "data_agent",
+      "name": "EHB Data Agent",
+      "type": "data_processing",
+      "capabilities": [
+        "data_analysis",
+        "data_cleaning",
+        "data_visualization",
+        "report_generation",
+        "predictive_analytics"
+      ],
+      "model": "gpt-4",
+      "memory_enabled": true,
+      "learning_enabled": true,
+      "communication_enabled": true
+    },
+    "development_agent": {
+      "id": "development_agent",
+      "name": "EHB Development Agent",
+      "type": "development",
+      "capabilities": [
+        "code_generation",
+        "bug_fixing",
+        "testing",
+        "deployment",
+        "documentation"
+      ],
+      "model": "gpt-4",
+      "memory_enabled": true,
+      "learning_enabled": true,
+      "communication_enabled": true
+    }
+  },
+  "communication": {
+    "protocol": "async",
+    "timeout": 30,
+    "retry_attempts": 3
+  },
+  "memory": {
+    "short_term_limit": 100,
+    "long_term_persistence": true,
+    "learning_patterns": true
+  }
+}

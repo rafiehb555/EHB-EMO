@@ -1,0 +1,196 @@
+{
+  "timestamp": "2025-07-22T01:40:33.977058",
+  "installed_tools": {
+    "python_packages": {
+      "ai_ml": [
+        "torch",
+        "tensorflow",
+        "scikit-learn",
+        "pandas",
+        "numpy",
+        "scipy",
+        "xgboost",
+        "catboost",
+        "transformers",
+        "openai",
+        "anthropic"
+      ],
+      "nlp_voice": [
+        "SpeechRecognition",
+        "pyttsx3",
+        "librosa",
+        "nltk",
+        "spacy",
+        "textblob",
+        "rasa",
+        "whisper"
+      ],
+      "web_frameworks": [
+        "fastapi",
+        "uvicorn",
+        "streamlit",
+        "gradio",
+        "dash",
+        "plotly",
+        "bokeh",
+        "flask"
+      ],
+      "databases": [
+        "sqlalchemy",
+        "psycopg2-binary",
+        "redis",
+        "celery",
+        "pydantic",
+        "httpx",
+        "requests",
+        "aiohttp"
+      ],
+      "visualization": [
+        "matplotlib",
+        "seaborn",
+        "opencv-python",
+        "pillow"
+      ],
+      "cloud_aws": [
+        "boto3",
+        "awscli"
+      ],
+      "security": [
+        "cryptography",
+        "bcrypt",
+        "passlib",
+        "python-jose"
+      ]
+    },
+    "npm_packages": {
+      "ui_frameworks": [
+        "@mui/material",
+        "@emotion/react",
+        "@emotion/styled",
+        "@mui/icons-material",
+        "@mui/lab"
+      ],
+      "drag_drop": [
+        "react-beautiful-dnd",
+        "@dnd-kit/core",
+        "@dnd-kit/sortable"
+      ],
+      "forms": [
+        "react-hook-form",
+        "@hookform/resolvers",
+        "yup"
+      ],
+      "routing": [
+        "react-router-dom"
+      ],
+      "state_management": [
+        "redux",
+        "@reduxjs/toolkit"
+      ]
+    },
+    "system_tools": {
+      "version_control": [
+        "git"
+      ],
+      "containers": [
+        "docker"
+      ],
+      "databases": [
+        "postgresql",
+        "redis"
+      ],
+      "languages": [
+        "python",
+        "node",
+        "java"
+      ]
+    }
+  },
+  "missing_tools": {
+    "python_packages": {
+      "ai_ml": [
+        "lightgbm"
+      ],
+      "cloud_google": [
+        "google-cloud-storage",
+        "google-cloud-compute",
+        "google-cloud-aiplatform"
+      ],
+      "cloud_azure": [
+        "azure-storage-blob",
+        "azure-identity",
+        "azure-mgmt-compute"
+      ],
+      "devops": [
+        "kubernetes",
+        "helm",
+        "terraform",
+        "ansible",
+        "jenkins",
+        "gitlab-ci",
+        "github-actions"
+      ],
+      "monitoring": [
+        "prometheus",
+        "grafana",
+        "elasticsearch",
+        "kibana",
+        "logstash",
+        "sentry"
+      ]
+    },
+    "npm_packages": {
+      "testing": [
+        "jest",
+        "@testing-library/react",
+        "cypress"
+      ],
+      "build_tools": [
+        "webpack",
+        "vite",
+        "parcel",
+        "esbuild"
+      ],
+      "state_management": [
+        "zustand",
+        "recoil"
+      ]
+    },
+    "system_tools": {
+      "cloud_cli": [
+        "aws",
+        "gcloud",
+        "az"
+      ],
+      "monitoring": [
+        "prometheus",
+        "grafana",
+        "elasticsearch"
+      ],
+      "build_tools": [
+        "maven",
+        "gradle",
+        "ant"
+      ],
+      "languages": [
+        "go",
+        "rust"
+      ]
+    }
+  },
+  "running_services": {
+    "databases": [
+      "postgresql",
+      "redis"
+    ],
+    "containers": [
+      "docker"
+    ],
+    "monitoring": []
+  },
+  "summary": {
+    "total_installed": 66,
+    "total_missing": 40,
+    "progress_percentage": 62.3
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "projectName": "EHB Blockchain Integration",
+  "version": "2.0.0",
+  "goal": "Integrate advanced blockchain infrastructure into EHB Technologies across all services to power token-based transactions, staking, territory rights, validator rewards, smart contract automation, and data transparency",
+
+  "blockchainArchitecture": {
+    "primaryChain": "Polkadot",
+    "secondaryChain": "Binance Smart Chain (BEP-20)",
+    "futureChain": "Mosaic Blockchain + Highway Relay + G6",
+    "multiChainDesign": true,
+    "interoperability": true
+  },
+
+  "tokenSpecifications": {
+    "tokenName": "EHBGC (EHB Governance Coin)",
+    "standards": ["ERC-20", "BEP-20"],
+    "networks": ["BSC", "Moonbeam (Polkadot EVM)"],
+    "features": [
+      "Total supply control",
+      "Burning mechanism",
+      "Minting logic",
+      "Transfer approval",
+      "Locking mechanism"
+    ]
+  },
+
+  "developmentPhases": {
+    "totalPhases": 10,
+    "phases": {
+      "phase1": {
+        "name": "Blockchain Network Selection + Multi-Chain Architecture",
+        "objective": "Finalise EHB's temporary and permanent blockchain tech stack",
+        "planning": [
+          "Use Polkadot as primary chain for validator staking & parachain interoperability",
+          "Use Binance Smart Chain (BEP-20) for low-fee affiliate and passive income rewards",
+          "Future: Mosaic Blockchain + Highway Relay + G6 full migration",
+          "Multi-chain design from day one to support seamless transition"
+        ],
+        "status": "✅ Planning Complete"
+      },
+
+      "phase2": {
+        "name": "Token Creation – EHBGC (Governance Coin)",
+        "objective": "Launch core ERC-20 + BEP-20 token standard for ecosystem control",
+        "features": [
+          "EHBGC total supply, burning, and minting logic",
+          "Deployed to BSC + Test version on Moonbeam (Polkadot EVM)",
+          "Transfer, approval, and locking mechanism",
+          "Metadata: logo, decimals, symbol, tokenomics"
+        ],
+        "status": "🔄 Ready for Development"
+      },
+
+      "phase3": {
+        "name": "Trusty Wallet System + Token Locking Logic",
+        "objective": "Implement locking logic for franchises, SQL levels, and users",
+        "features": [
+          "Lock/Unlock functions (1, 2, 3 year durations)",
+          "Wallet holds franchise commitment, SQL eligibility tokens",
+          "AI checks wallet balance for eligibility",
+          "Smart contract penalty if the balance drops below the threshold",
+          "Loyalty bonus: 0.5%, 1%, 1.1% monthly"
+        ],
+        "status": "⏳ Pending"
+      },
+
+      "phase4": {
+        "name": "Validator Setup – Staking + Rewards",
+        "objective": "Launch validator nodes to power the Mosaic Blockchain layer",
+        "tasks": [
+          "Stake EHBGC to run the validator",
+          "Set up ehb-validator Sol with staking + unbonding logic",
+          "AI validator monitor (uptime, misbehaviour alerts)",
+          "Income: Staking + transaction fees + validator reward % from franchises"
+        ],
+        "status": "⏳ Pending"
+      },
+
+      "phase5": {
+        "name": "Franchise Smart Contracts – Income Splits + Territory NFTs",
+        "objective": "Automate revenue distribution using smart contracts",
+        "contracts": [
+          "FranchiseSplit.sol – handles % distribution to Sub, Master, Corporate, Company",
+          "TerritoryNFT.sol – franchise rights per city/region"
+        ],
+        "status": "⏳ Pending"
+      },
+
+      "phase6": {
+        "name": "SQL Licensing + KYC Verification Contracts",
+        "objective": "Securely store SQL verification and user licensing data on-chain",
+        "smartContracts": [
+          "SQLLevel.sol – Map user/service SQL to their wallet",
+          "KYCProof.sol – Hash of verified KYC documents + AI confirmation",
+          "Expiry, downgrade, and upgrade are recorded immutably"
+        ],
+        "status": "⏳ Pending"
+      },
+
+      "phase7": {
+        "name": "Complaint System + Auto-Fine Contracts",
+        "objective": "Introduce a blockchain-based penalty and dispute resolution system",
+        "logic": [
+          "Complaint triggers smart contract logic",
+          "Sub → Master → Corporate → Company escalation",
+          "Fine% based on franchise tier and response time",
+          "Auto-disbursement to the affected user + penalty record saved"
+        ],
+        "status": "⏳ Pending"
+      },
+
+      "phase8": {
+        "name": "Referral Income Smart Contracts + Hierarchical MLM Payouts",
+        "objective": "Make the referral system fully transparent, blockchain-secured",
+        "features": [
+          "Multi-level referral payout tree (up to 10 levels)",
+          "Time-based capping + EHBGC-based rank upgrades",
+          "Coin lock required to access high-level income",
+          "Wallet UI reflects all referral data via a smart contract"
+        ],
+        "status": "⏳ Pending"
+      },
+
+      "phase9": {
+        "name": "Blockchain Explorer + EHB Chain Analytics",
+        "objective": "Enable public verification of franchise, income, and wallet activity",
+        "tools": [
+          "Custom Explorer: /explorer route in frontend",
+          "Real-time income, token lock, validator reward tracking",
+          "SQL proof of visibility",
+          "AI insight overlay: territory health, user rank, fraud detection"
+        ],
+        "status": "⏳ Pending"
+      },
+
+      "phase10": {
+        "name": "Full Migration to EHB Blockchain (Parachain)",
+        "objective": "Transition to EHB-native parachain for maximum sovereignty",
+        "setup": [
+          "Launch EHB Blockchain using Substrate (via Mosaic)",
+          "Highway Relay + G6 for identity and cross-chain sync",
+          "Validators manage block finality + staking",
+          "All legacy tokens are bridged via Highway Relay"
+        ],
+        "status": "⏳ Pending"
+      }
+    }
+  },
+
+  "techStack": {
+    "frontend": {
+      "framework": "Next.js",
+      "styling": "Tailwind CSS",
+      "wallet": "WalletConnect",
+      "components": "React Dashboard"
+    },
+    "backend": {
+      "framework": "Node.js",
+      "api": "Express.js",
+      "database": "MongoDB",
+      "orm": "Prisma",
+      "blockchain": "Web3.js / Ethers.js"
+    },
+    "smartContracts": {
+      "language": "Solidity (BSC + Moonbeam)",
+      "future": "Ink! (Substrate)",
+      "framework": "Hardhat / Truffle",
+      "libraries": "OpenZeppelin"
+    },
+    "blockchain": {
+      "primary": "Polkadot + BSC",
+      "future": "Mosaic Blockchain",
+      "deployment": "Replit (Test) → AWS / Vercel + Moonbeam"
+    },
+    "adminPanel": {
+      "framework": "React Dashboard",
+      "features": "Contract Trigger Panel"
+    }
+  },
+
+  "aiIntegration": {
+    "kycValidation": "AI validates KYC logic",
+    "stakingForecast": "AI forecasts staking rewards, validator uptime",
+    "sqlAssignment": "AI assigns SQL levels by behaviour",
+    "fraudDetection": "AI warns if coin lock, penalty, or income inconsistencies occur",
+    "disputeManagement": "AI-based dispute management before auto-penalty"
+  },
+
+  "repositoryStructure": {
+    "repoName": "ehb-blockchain-integration",
+    "folders": {
+      "contracts": {
+        "description": "All smart contracts (Solidity, Ink! for Substrate later)",
+        "files": [
+          "EHBGC.sol – EHB Governance Coin (BEP-20 + ERC-20)",
+          "TokenLock.sol – Token locking with loyalty bonus",
+          "FranchiseSplit.sol – Revenue split among franchises",
+          "TerritoryNFT.sol – Franchise rights",
+          "ValidatorStaking.sol – Staking logic + rewards",
+          "KYCProof.sol – KYC & SQL level on-chain",
+          "ReferralPayout.sol – MLM-based income system",
+          "ComplaintFine.sol – Auto fine/penalty handler"
+        ]
+      },
+      "backend": {
+        "description": "Node.js API with blockchain interactions via web3.js / ethers.js",
+        "controllers": [
+          "wallet.controller.ts – Connect wallet, lock tokens, check eligibility",
+          "franchise.controller.ts – Track active franchises, wallet binding",
+          "sql.controller.ts – Validate and record SQL level",
+          "staking.controller.ts – Validator setup, reward logic",
+          "penalty.controller.ts – Auto-fine triggers",
+          "referral.controller.ts – Income distribution tracking"
+        ]
+      },
+      "frontend": {
+        "description": "React/Next.js frontend for blockchain dashboard",
+        "components": [
+          "Wallet Connect UI (Trusty Wallet)",
+          "Franchise Dashboard (with NFT + Token info)",
+          "SQL Status Viewer (from chain)",
+          "Validator Status + Staking Panel",
+          "Loyalty Bonus Calculator",
+          "Explorer Page for Franchise & Wallet History"
+        ]
+      },
+      "adminPanel": {
+        "description": "Role-based interface for company ops",
+        "features": [
+          "Mint/burn EHBGC",
+          "Assign validator rights",
+          "View penalty and reward logs",
+          "Manage franchise rights (NFTs)",
+          "Upgrade/downgrade SQL via admin override",
+          "Block malicious wallets"
+        ]
+      },
+      "deploy": {
+        "description": "Deployment logic",
+        "configs": [
+          "Hardhat / Truffle configs",
+          ".env for private keys (test only)",
+          "Vercel / Replit / AWS deployment configs",
+          "Contract verification + auto-deploy script"
+        ]
+      }
+    }
+  },
+
+  "developmentStatus": {
+    "currentPhase": 1,
+    "nextAction": "Start Smart Contract Development",
+    "priority": "EHBGC.sol Token Contract",
+    "estimatedTime": "8 weeks total",
+    "cost": "$15,000 - $30,000"
+  }
+}

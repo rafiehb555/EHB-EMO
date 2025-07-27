@@ -1,0 +1,20 @@
+{
+  "medical_records": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "doctor_id": 1,
+      "date": "2024-01-15",
+      "diagnosis": "Type 2 Diabetes",
+      "treatment": "Metformin 500mg twice daily",
+      "prescription": "Metformin, Glimepiride",
+      "notes": "Patient shows improvement in blood sugar levels",
+      "vital_signs": {
+        "blood_pressure": "140/90",
+        "heart_rate": "72",
+        "temperature": "98.6",
+        "weight": "75kg"
+      }
+    }
+  ]
+}

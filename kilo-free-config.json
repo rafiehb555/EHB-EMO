@@ -1,0 +1,266 @@
+{
+  "name": "Kilo Code Free Alternative Configuration",
+  "version": "1.0.0",
+  "description": "Free implementation of Kilo Code features in Cursor",
+
+  "orchestrator_mode": {
+    "description": "Break complex projects into subtasks",
+    "tools": [
+      {
+        "name": "GitHub Copilot Chat",
+        "purpose": "Project planning and task breakdown",
+        "commands": [
+          "@workspace /explain",
+          "@workspace /fix",
+          "@workspace /new",
+          "@workspace /tests"
+        ]
+      },
+      {
+        "name": "Continue Dev",
+        "purpose": "Open source alternative to Copilot",
+        "installation": "Free extension with local models"
+      },
+      {
+        "name": "Codeium",
+        "purpose": "Free AI coding assistant",
+        "features": ["autocomplete", "chat", "explain", "refactor"]
+      }
+    ],
+    "workflow_automation": {
+      "task_breakdown": "Use Copilot Chat to break down complex tasks",
+      "progress_tracking": "Git timeline and VS Code tasks",
+      "delegation": "Custom VS Code tasks and scripts"
+    }
+  },
+
+  "architect_mode": {
+    "description": "Design solutions before coding",
+    "tools": [
+      {
+        "name": "PlantUML",
+        "purpose": "Architecture diagrams",
+        "extension": "plantuml"
+      },
+      {
+        "name": "Draw.io",
+        "purpose": "System design",
+        "extension": "hediet.vscode-drawio"
+      },
+      {
+        "name": "REST Client",
+        "purpose": "API design",
+        "extension": "humao.rest-client"
+      }
+    ],
+    "best_practices": {
+      "documentation": "Auto-generate with Copilot",
+      "code_review": "Use GitHub Copilot suggestions",
+      "patterns": "ESLint + Prettier configurations"
+    }
+  },
+
+  "code_mode": {
+    "description": "Transform plans into production code",
+    "ai_assistants": [
+      {
+        "name": "GitHub Copilot",
+        "features": ["completion", "chat", "inline_suggestions"],
+        "cost": "Free with GitHub Student Pack or paid"
+      },
+      {
+        "name": "Codeium",
+        "features": ["unlimited_completions", "chat", "refactoring"],
+        "cost": "Free"
+      },
+      {
+        "name": "Continue",
+        "features": ["local_models", "custom_models", "context_aware"],
+        "cost": "Free + your own API keys"
+      },
+      {
+        "name": "Tabnine",
+        "features": ["basic_completions"],
+        "cost": "Free tier available"
+      }
+    ],
+    "code_generation": {
+      "templates": "Use Yeoman generators",
+      "snippets": "Custom VS Code snippets",
+      "boilerplate": "Automated with scripts"
+    }
+  },
+
+  "debug_mode": {
+    "description": "Find and fix issues automatically",
+    "tools": [
+      {
+        "name": "Error Lens",
+        "purpose": "Inline error highlighting",
+        "extension": "usernamehw.errorlens"
+      },
+      {
+        "name": "Thunder Client",
+        "purpose": "API testing",
+        "extension": "rangav.vscode-thunder-client"
+      },
+      {
+        "name": "Python Debugger",
+        "purpose": "Python debugging",
+        "built_in": true
+      },
+      {
+        "name": "Browser Debugger",
+        "purpose": "Frontend debugging",
+        "built_in": true
+      }
+    ],
+    "automated_testing": {
+      "python": "pytest with auto-discovery",
+      "javascript": "Jest with watch mode",
+      "integration": "Playwright for E2E"
+    }
+  },
+
+  "memory_bank_alternative": {
+    "description": "Remember preferences and context",
+    "implementation": [
+      {
+        "method": "VS Code Settings Sync",
+        "purpose": "Sync settings across devices",
+        "cost": "Free with Microsoft account"
+      },
+      {
+        "method": "Git hooks",
+        "purpose": "Remember project preferences",
+        "cost": "Free"
+      },
+      {
+        "method": "Workspace settings",
+        "purpose": "Project-specific configurations",
+        "cost": "Free"
+      }
+    ]
+  },
+
+  "context_awareness_free": {
+    "description": "Understand project context automatically",
+    "tools": [
+      {
+        "name": "GitHub Copilot",
+        "capability": "Reads entire codebase context"
+      },
+      {
+        "name": "IntelliCode",
+        "capability": "Context-aware suggestions",
+        "cost": "Free"
+      },
+      {
+        "name": "Pylance",
+        "capability": "Python context understanding",
+        "cost": "Free"
+      },
+      {
+        "name": "TypeScript",
+        "capability": "JavaScript/TypeScript context",
+        "cost": "Free"
+      }
+    ]
+  },
+
+  "mcp_marketplace_alternatives": {
+    "description": "Free alternatives to Kilo's MCP marketplace",
+    "extensions": [
+      {
+        "name": "REST Client",
+        "purpose": "API testing like Figma integration",
+        "id": "humao.rest-client"
+      },
+      {
+        "name": "Markdown All in One",
+        "purpose": "Documentation like Context7",
+        "id": "yzhang.markdown-all-in-one"
+      },
+      {
+        "name": "GitLens",
+        "purpose": "Git integration enhancement",
+        "id": "eamodio.gitlens"
+      },
+      {
+        "name": "Docker",
+        "purpose": "Container management",
+        "id": "ms-azuretools.vscode-docker"
+      },
+      {
+        "name": "Kubernetes",
+        "purpose": "K8s management",
+        "id": "ms-kubernetes-tools.vscode-kubernetes-tools"
+      }
+    ]
+  },
+
+  "local_ai_models": {
+    "description": "Run AI models locally for free",
+    "setup": {
+      "ollama": {
+        "installation": "Download from ollama.ai",
+        "models": ["codellama", "deepseek-coder", "starcoder"],
+        "integration": "Use with Continue extension",
+        "cost": "Free"
+      },
+      "huggingface": {
+        "models": ["microsoft/DialoGPT", "microsoft/CodeBERT"],
+        "integration": "API integration",
+        "cost": "Free tier available"
+      }
+    }
+  },
+
+  "workflow_automation": {
+    "description": "Automate development workflows",
+    "tools": [
+      {
+        "name": "VS Code Tasks",
+        "purpose": "Custom build and test tasks",
+        "cost": "Free"
+      },
+      {
+        "name": "GitHub Actions",
+        "purpose": "CI/CD automation",
+        "cost": "Free for public repos"
+      },
+      {
+        "name": "Pre-commit hooks",
+        "purpose": "Code quality automation",
+        "cost": "Free"
+      }
+    ]
+  },
+
+  "installation_steps": [
+    "1. Install required VS Code extensions",
+    "2. Set up local AI models (Ollama)",
+    "3. Configure GitHub Copilot or alternatives",
+    "4. Set up custom tasks and workflows",
+    "5. Configure debugging and testing",
+    "6. Set up documentation automation"
+  ],
+
+  "cost_breakdown": {
+    "completely_free": [
+      "Codeium",
+      "Continue with local models",
+      "VS Code extensions",
+      "Local Ollama models",
+      "IntelliCode",
+      "Error Lens",
+      "GitLens"
+    ],
+    "freemium": [
+      "GitHub Copilot (free with student pack)",
+      "Tabnine basic",
+      "HuggingFace free tier"
+    ],
+    "estimated_monthly_cost": "$0 - $10 (depending on choices)"
+  }
+}

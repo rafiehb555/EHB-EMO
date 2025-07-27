@@ -1,0 +1,52 @@
+{
+    "serviceName": "EHB-BLOCKCHAIN",
+    "description": "Complete blockchain infrastructure for EHB platform including smart contracts, backend APIs, and frontend interfaces",
+    "version": "2.0.0",
+    "components": [
+        {
+            "name": "Smart Contracts",
+            "directory": "contracts/",
+            "description": "Solidity smart contracts with interfaces, libraries, and upgrade mechanisms"
+        },
+        {
+            "name": "Backend API",
+            "directory": "backend/",
+            "description": "Node.js backend services for blockchain integration"
+        },
+        {
+            "name": "Frontend Interface",
+            "directory": "frontend/",
+            "description": "React-based frontend for blockchain interactions"
+        },
+        {
+            "name": "Documentation",
+            "directory": "docs/",
+            "description": "API documentation, architecture guides, and deployment instructions"
+        },
+        {
+            "name": "Testing Suite",
+            "directory": "tests/",
+            "description": "Comprehensive test coverage for contracts, backend, and frontend"
+        },
+        {
+            "name": "Deployment Scripts",
+            "directory": "scripts/",
+            "description": "Automation scripts for deployment and blockchain operations"
+        }
+    ],
+    "dependencies": [
+        "web3",
+        "ethereum",
+        "solidity",
+        "node.js",
+        "react"
+    ],
+    "ports": [3001, 8545],
+    "environment": "production",
+    "autoStart": true,
+    "blockchain": {
+        "network": "ethereum",
+        "type": "layer2",
+        "consensus": "proof-of-stake"
+    }
+}

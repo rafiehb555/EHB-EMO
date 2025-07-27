@@ -1,0 +1,44 @@
+{
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "ehb_healthcare",
+    "user": "ehb_user",
+    "password": "secure_password_123",
+    "pool_size": 10,
+    "max_overflow": 20
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "db": 0,
+    "password": null
+  },
+  "api": {
+    "host": "0.0.0.0",
+    "port": 8000,
+    "debug": true,
+    "cors_origins": [
+      "http://localhost:3000",
+      "http://127.0.0.1:3000"
+    ]
+  },
+  "security": {
+    "jwt_secret": "ehb_healthcare_secret_key_2025",
+    "jwt_expiry": 3600,
+    "password_salt_rounds": 12,
+    "session_timeout": 1800
+  },
+  "email": {
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "username": "noreply@ehb.com",
+    "password": "app_password_here"
+  },
+  "sms": {
+    "provider": "twilio",
+    "account_sid": "your_account_sid",
+    "auth_token": "your_auth_token",
+    "from_number": "+1234567890"
+  }
+}

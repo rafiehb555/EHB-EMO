@@ -1,0 +1,35 @@
+{
+  "aiAssistant": {
+    "enabled": true,
+    "providers": [
+      "github-copilot",
+      "cursor-ai",
+      "kilo-code"
+    ],
+    "features": {
+      "autoComplete": true,
+      "codeGeneration": true,
+      "codeReview": true,
+      "bugFixing": true,
+      "documentation": true
+    },
+    "settings": {
+      "autoSave": true,
+      "formatOnSave": true,
+      "lintOnSave": true,
+      "suggestOnTriggerCharacters": true,
+      "acceptSuggestionOnEnter": "on"
+    }
+  },
+  "ehbIntegration": {
+    "enabled": true,
+    "agents": [
+      "github-integration-agent",
+      "main-ehb-agent",
+      "health-agent",
+      "fixer-agent"
+    ],
+    "autoStart": true,
+    "monitoring": true
+  }
+}

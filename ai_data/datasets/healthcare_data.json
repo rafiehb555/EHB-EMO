@@ -1,0 +1,60 @@
+{
+  "patients": [
+    {
+      "id": "P001",
+      "name": "Ahmed Khan",
+      "age": 45,
+      "gender": "male",
+      "medical_history": ["diabetes", "hypertension"],
+      "current_medications": ["metformin", "lisinopril"],
+      "last_visit": "2025-07-15",
+      "next_appointment": "2025-07-25"
+    },
+    {
+      "id": "P002", 
+      "name": "Fatima Ali",
+      "age": 32,
+      "gender": "female",
+      "medical_history": ["asthma"],
+      "current_medications": ["albuterol"],
+      "last_visit": "2025-07-10",
+      "next_appointment": "2025-07-20"
+    }
+  ],
+  "doctors": [
+    {
+      "id": "D001",
+      "name": "Dr. Sarah Ahmed",
+      "specialization": "Cardiology",
+      "experience_years": 15,
+      "patients_count": 150,
+      "rating": 4.8
+    },
+    {
+      "id": "D002",
+      "name": "Dr. Ali Hassan", 
+      "specialization": "Endocrinology",
+      "experience_years": 12,
+      "patients_count": 120,
+      "rating": 4.6
+    }
+  ],
+  "appointments": [
+    {
+      "id": "A001",
+      "patient_id": "P001",
+      "doctor_id": "D001",
+      "date": "2025-07-25T10:00:00",
+      "type": "consultation",
+      "status": "scheduled"
+    },
+    {
+      "id": "A002",
+      "patient_id": "P002", 
+      "doctor_id": "D002",
+      "date": "2025-07-20T14:00:00",
+      "type": "follow_up",
+      "status": "scheduled"
+    }
+  ]
+}

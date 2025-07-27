@@ -1,0 +1,34 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Installing dependencies...
+      - npm install
+      - npm run build
+  build:
+    commands:
+      - echo Build started on `date`
+      - npm run build
+      - echo Build completed on `date`
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - aws s3 sync .next s3://$S3_BUCKET/.next --delete
+      - aws s3 sync public s3://$S3_BUCKET/public --delete
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+artifacts:
+  files:
+    - .next/**/*
+    - public/**/*
+    - package.json
+    - next.config.js
+    - vercel.json
+  discard-paths: no
+  base-directory: .
+
+cache:
+  paths:
+    - 'node_modules/**/*'
+    - '.next/cache/**/*' 

@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-07-21T01:55:34.074502",
+  "servers_started": [
+    "main_server",
+    "frontend"
+  ],
+  "servers_failed": [
+    "http_server",
+    "simple_server"
+  ],
+  "health_checks": {
+    "main_server": "error",
+    "frontend": "error"
+  },
+  "summary": {}
+}

@@ -1,0 +1,35 @@
+{
+  "large_hospital": {
+    "title": "Large Hospital Implementation",
+    "client": "Metropolitan Medical Center",
+    "results": [
+      "50% reduction in diagnosis time",
+      "30% increase in patient satisfaction",
+      "25% cost savings",
+      "99.9% system uptime"
+    ],
+    "duration": "2 minutes"
+  },
+  "telemedicine_clinic": {
+    "title": "Telemedicine Clinic",
+    "client": "Virtual Care Solutions",
+    "results": [
+      "80% increase in consultations",
+      "60% reduction in no-shows",
+      "40% cost reduction",
+      "Improved patient outcomes"
+    ],
+    "duration": "2 minutes"
+  },
+  "research_institute": {
+    "title": "Medical Research Institute",
+    "client": "Advanced Medical Research",
+    "results": [
+      "Faster drug discovery",
+      "Improved clinical trials",
+      "Better data analysis",
+      "Enhanced collaboration"
+    ],
+    "duration": "2 minutes"
+  }
+}

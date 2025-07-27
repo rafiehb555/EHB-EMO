@@ -1,0 +1,18 @@
+{
+  "total_duration": "45 minutes",
+  "components": [
+    "Presentation slides",
+    "Live demonstrations",
+    "Case studies",
+    "Pricing discussion",
+    "Q&A session"
+  ],
+  "materials_ready": [
+    "demo/presentation_slides.json",
+    "demo/live_demos.json",
+    "demo/case_studies.json",
+    "demo/pricing_packages.json",
+    "demo/support_materials.json",
+    "demo/demo_script.json"
+  ]
+}

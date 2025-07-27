@@ -1,0 +1,26 @@
+{
+  "documentation": [
+    "User guides",
+    "API documentation",
+    "Deployment guides",
+    "Training videos"
+  ],
+  "support_channels": [
+    "24/7 phone support",
+    "Email support",
+    "Live chat",
+    "Video consultations"
+  ],
+  "training_programs": [
+    "Admin training",
+    "User training",
+    "Developer training",
+    "Custom workshops"
+  ],
+  "implementation_support": [
+    "Project management",
+    "Custom development",
+    "Data migration",
+    "Go-live support"
+  ]
+}

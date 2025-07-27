@@ -1,0 +1,35 @@
+{
+  "ai_diagnosis_demo": {
+    "duration": "5 minutes",
+    "scenario": "Patient with chest pain and shortness of breath",
+    "steps": [
+      "Input patient symptoms",
+      "AI analyzes symptoms",
+      "Generate differential diagnosis",
+      "Provide treatment recommendations",
+      "Show confidence scores"
+    ]
+  },
+  "telemedicine_demo": {
+    "duration": "4 minutes",
+    "scenario": "Virtual consultation",
+    "steps": [
+      "Doctor selection",
+      "Video call initiation",
+      "Screen sharing",
+      "Prescription writing",
+      "Follow-up scheduling"
+    ]
+  },
+  "blockchain_demo": {
+    "duration": "3 minutes",
+    "scenario": "Token transactions",
+    "steps": [
+      "Wallet connection",
+      "Balance display",
+      "Token transfer",
+      "Transaction confirmation",
+      "History tracking"
+    ]
+  }
+}

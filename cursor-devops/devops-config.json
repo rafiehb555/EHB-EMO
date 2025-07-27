@@ -1,0 +1,48 @@
+{
+  "kubernetes": {
+    "enabled": true,
+    "tools": [
+      "kubectl",
+      "helm",
+      "kustomize"
+    ],
+    "config": {
+      "auto-deploy": true,
+      "resource-monitoring": true
+    }
+  },
+  "docker": {
+    "enabled": true,
+    "tools": [
+      "docker",
+      "docker-compose"
+    ],
+    "config": {
+      "auto-build": true,
+      "container-management": true
+    }
+  },
+  "terraform": {
+    "enabled": true,
+    "tools": [
+      "terraform",
+      "terraform-validate"
+    ],
+    "config": {
+      "auto-plan": true,
+      "state-management": true
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "tools": [
+      "prometheus",
+      "grafana",
+      "elasticsearch"
+    ],
+    "config": {
+      "auto-monitoring": true,
+      "alerting": true
+    }
+  }
+}

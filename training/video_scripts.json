@@ -1,0 +1,250 @@
+{
+  "getting_started": [
+    {
+      "title": "Welcome to EHB Healthcare AI",
+      "duration": "5:00",
+      "script": "Script for Welcome to EHB Healthcare AI",
+      "key_points": [
+        "System overview",
+        "Key features",
+        "Navigation basics"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "First Login and Setup",
+      "duration": "8:00",
+      "script": "Script for First Login and Setup",
+      "key_points": [
+        "Account creation",
+        "Profile setup",
+        "Security configuration"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Dashboard Overview",
+      "duration": "10:00",
+      "script": "Script for Dashboard Overview",
+      "key_points": [
+        "Main dashboard",
+        "Key metrics",
+        "Quick actions"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    }
+  ],
+  "feature_tutorials": [
+    {
+      "title": "AI Diagnosis Tutorial",
+      "duration": "15:00",
+      "script": "Script for AI Diagnosis Tutorial",
+      "key_points": [
+        "Symptom input",
+        "AI analysis",
+        "Result interpretation"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Telemedicine Setup",
+      "duration": "12:00",
+      "script": "Script for Telemedicine Setup",
+      "key_points": [
+        "Video call setup",
+        "Screen sharing",
+        "Recording features"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Patient Management",
+      "duration": "18:00",
+      "script": "Script for Patient Management",
+      "key_points": [
+        "Patient registration",
+        "Medical records",
+        "Appointment scheduling"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Blockchain Wallet",
+      "duration": "20:00",
+      "script": "Script for Blockchain Wallet",
+      "key_points": [
+        "Wallet creation",
+        "Token management",
+        "Transaction history"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Analytics Dashboard",
+      "duration": "14:00",
+      "script": "Script for Analytics Dashboard",
+      "key_points": [
+        "Data visualization",
+        "Report generation",
+        "Custom metrics"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    }
+  ],
+  "advanced_topics": [
+    {
+      "title": "Advanced AI Features",
+      "duration": "25:00",
+      "script": "Script for Advanced AI Features",
+      "key_points": [
+        "Custom model training",
+        "Multimodal AI",
+        "Voice AI integration"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "System Administration",
+      "duration": "30:00",
+      "script": "Script for System Administration",
+      "key_points": [
+        "User management",
+        "Security configuration",
+        "Performance monitoring"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "API Integration",
+      "duration": "22:00",
+      "script": "Script for API Integration",
+      "key_points": [
+        "REST API usage",
+        "Authentication",
+        "Webhook setup"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Deployment Guide",
+      "duration": "35:00",
+      "script": "Script for Deployment Guide",
+      "key_points": [
+        "Docker deployment",
+        "Kubernetes setup",
+        "Production configuration"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    }
+  ],
+  "troubleshooting": [
+    {
+      "title": "Common Issues and Solutions",
+      "duration": "15:00",
+      "script": "Script for Common Issues and Solutions",
+      "key_points": [
+        "Login problems",
+        "Performance issues",
+        "Error messages"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Security Best Practices",
+      "duration": "12:00",
+      "script": "Script for Security Best Practices",
+      "key_points": [
+        "Password security",
+        "Data protection",
+        "Access control"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    },
+    {
+      "title": "Performance Optimization",
+      "duration": "18:00",
+      "script": "Script for Performance Optimization",
+      "key_points": [
+        "System optimization",
+        "Database tuning",
+        "Caching strategies"
+      ],
+      "visual_elements": [
+        "Screen recordings",
+        "Animations",
+        "Graphics",
+        "Text overlays"
+      ]
+    }
+  ]
+}

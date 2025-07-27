@@ -1,0 +1,30 @@
+{
+  "appointments": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "doctor_id": 1,
+      "date": "2024-01-20",
+      "time": "10:00",
+      "type": "Consultation",
+      "status": "Scheduled",
+      "notes": "Regular checkup",
+      "duration_minutes": 30,
+      "room": "Cardiology-101",
+      "priority": "Normal"
+    },
+    {
+      "id": 2,
+      "patient_id": 2,
+      "doctor_id": 2,
+      "date": "2024-01-21",
+      "time": "14:00",
+      "type": "Follow-up",
+      "status": "Confirmed",
+      "notes": "Neurological assessment",
+      "duration_minutes": 45,
+      "room": "Neurology-201",
+      "priority": "High"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "timestamp": "2025-07-22T22:28:10.153185",
+  "fixed_installations": [
+    "transformers",
+    "pinecone-client",
+    "pymilvus",
+    "grafana-api",
+    "python-logstash",
+    "auto-gpt",
+    "lightgbm"
+  ],
+  "still_failed": [],
+  "working_packages": [
+    "transformers",
+    "pinecone-client",
+    "pymilvus",
+    "grafana-api"
+  ],
+  "failed_packages": [
+    "python-logstash",
+    "auto-gpt",
+    "lightgbm"
+  ],
+  "summary": {
+    "total_fixed": 7,
+    "total_still_failed": 0,
+    "total_working": 4,
+    "total_failed": 3,
+    "fix_success_rate": 100.0
+  }
+}

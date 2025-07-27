@@ -1,0 +1,29 @@
+{
+  "enabled": true,
+  "languages": [
+    "en",
+    "ur",
+    "ar",
+    "hi",
+    "es",
+    "fr",
+    "de"
+  ],
+  "confidence_threshold": 0.8,
+  "timeout": 30,
+  "continuous_listening": true,
+  "features": {
+    "speech_recognition": true,
+    "speech_synthesis": true,
+    "voice_cloning": true,
+    "emotion_detection": true,
+    "accent_recognition": true,
+    "real_time_translation": true
+  },
+  "healthcare_specific": {
+    "medical_terminology": true,
+    "patient_voice_processing": true,
+    "doctor_voice_recognition": true,
+    "medical_transcription": true
+  }
+}

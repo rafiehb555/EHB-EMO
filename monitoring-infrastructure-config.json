@@ -1,0 +1,8 @@
+{
+  "tool": "CloudWatch",
+  "metrics": [
+    "cpu_usage",
+    "memory_usage",
+    "disk_usage"
+  ]
+}

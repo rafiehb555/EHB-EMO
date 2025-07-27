@@ -1,0 +1,47 @@
+[
+  {
+    "id": "A001",
+    "patient_id": "P001",
+    "doctor_id": "D001",
+    "date": "2024-02-01",
+    "time": "10:00",
+    "type": "consultation",
+    "status": "scheduled"
+  },
+  {
+    "id": "A002",
+    "patient_id": "P002",
+    "doctor_id": "D002",
+    "date": "2024-02-01",
+    "time": "11:30",
+    "type": "follow-up",
+    "status": "scheduled"
+  },
+  {
+    "id": "A003",
+    "patient_id": "P003",
+    "doctor_id": "D001",
+    "date": "2024-02-02",
+    "time": "09:00",
+    "type": "emergency",
+    "status": "scheduled"
+  },
+  {
+    "id": "A004",
+    "patient_id": "P004",
+    "doctor_id": "D003",
+    "date": "2024-02-02",
+    "time": "14:00",
+    "type": "consultation",
+    "status": "scheduled"
+  },
+  {
+    "id": "A005",
+    "patient_id": "P005",
+    "doctor_id": "D004",
+    "date": "2024-02-03",
+    "time": "15:30",
+    "type": "follow-up",
+    "status": "scheduled"
+  }
+] 

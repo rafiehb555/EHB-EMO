@@ -1,0 +1,46 @@
+{
+  "timestamp": "2025-07-21T01:57:39.767114",
+  "tests_passed": [
+    "Syntax check: main.py",
+    "Syntax check: config.py",
+    "Syntax check: utils.py",
+    "Syntax check: models.py",
+    "Syntax check: api.py",
+    "Syntax check: database.py",
+    "Syntax check: simple_server.py",
+    "Syntax check: http_server.py",
+    "Data creation",
+    "generate_secure_id",
+    "validate_email"
+  ],
+  "tests_failed": [
+    "API endpoint: http://localhost:8000/",
+    "API endpoint: http://localhost:8000/health",
+    "API endpoint: http://localhost:8000/api/patients",
+    "API endpoint: http://localhost:8000/api/doctors",
+    "Database test: Not an executable object: 'SELECT 1'"
+  ],
+  "imports_working": [
+    "fastapi",
+    "uvicorn",
+    "sqlalchemy",
+    "requests",
+    "pytest",
+    "black",
+    "flake8",
+    "mypy",
+    "psutil",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "seaborn"
+  ],
+  "imports_failed": [
+    "scikit-learn"
+  ],
+  "files_created": [
+    "data/test_data.json"
+  ],
+  "errors_fixed": [],
+  "summary": {}
+}

@@ -1,0 +1,32 @@
+{
+  "large_hospital": {
+    "client": "Metropolitan Medical Center",
+    "implementation": "6 months",
+    "results": {
+      "diagnosis_time": "50% reduction",
+      "patient_satisfaction": "30% increase",
+      "cost_savings": "25%",
+      "uptime": "99.9%"
+    }
+  },
+  "telemedicine_clinic": {
+    "client": "Virtual Care Solutions",
+    "implementation": "3 months",
+    "results": {
+      "consultations": "80% increase",
+      "no_shows": "60% reduction",
+      "cost_reduction": "40%",
+      "patient_outcomes": "Improved"
+    }
+  },
+  "research_institute": {
+    "client": "Advanced Medical Research",
+    "implementation": "4 months",
+    "results": {
+      "drug_discovery": "Faster",
+      "clinical_trials": "Improved",
+      "data_analysis": "Enhanced",
+      "collaboration": "Better"
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "timestamp": "2025-07-21T01:33:31.718869",
+  "total_scripts": 16,
+  "successful_scripts": 2,
+  "failed_scripts": 14,
+  "script_results": {
+    "auto_cursor_script.py": {
+      "status": "success",
+      "returncode": 0,
+      "stdout": "EHB Auto Development Setup Starting...\nSetup already completed\nEHB Agent: Analyzing project and determining next action...\nExecuting action: deploy_to_staging\nDeploying to staging...\nReport generated: reports/deploy_to_staging_report.json\n",
+      "stderr": ""
+    },
+    "startup_auto.py": {
+      "status": "success",
+      "returncode": 0,
+      "stdout": "EHB Auto Development Setup Starting...\nSetup already completed\nEHB Agent: Analyzing project and determining next action...\nExecuting action: deploy_to_staging\nDeploying to staging...\nReport generated: reports/deploy_to_staging_report.json\nROCKET EHB Auto Startup - Initializing...\nSUCCESS Auto script found - running...\nSUCCESS Auto startup completed successfully\n",
+      "stderr": ""
+    },
+    "auto_setup_simple.py": {
+      "status": "timeout",
+      "error": "Script execution timed out"
+    },
+    "auto_dev_setup_simple.py": {
+      "status": "timeout",
+      "error": "Script execution timed out"
+    },
+    "auto_dev_setup.py": {
+      "status": "timeout",
+      "error": "Script execution timed out"
+    },
+    "auto_dev_setup_fixed.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "2025-07-21 01:36:32,025 - INFO - Starting EHB Auto Development Setup...\n2025-07-21 01:36:32,025 - INFO - Installing core development tools...\nTraceback (most recent call last):\n  File \"F:\\ehb 5\\auto_dev_setup_fixed.py\", line 1004, in <module>\n    main()\n  File \"F:\\ehb 5\\auto_dev_setup_fixed.py\", line 1000, in main\n    setup.run_complete_setup()\n  File \"F:\\ehb 5\\auto_dev_setup_fixed.py\", line 943, in run_complete_setup\n    self.install_node_js()\n  File \"F:\\ehb 5\\auto_dev_setup_fixed.py\", line 79,"
+    },
+    "start_server.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "==================================================\nEHB AI EHB AI Dev Agent - Auto Start\n==================================================\nSEARCH Searching for server.py file...\nSUCCESS Found server.py in: F:\\ehb 5\\ehb-ai-dev-agent\n",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\start_server.py\", line 95, in <module>\n    success = start_server()\n  File \"F:\\ehb 5\\start_server.py\", line 62, in start_server\n    print(f\"\\U0001f4c1 Changed to directory: {os.getcwd()}\")\n  File \"C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f4c1' in position "
+    },
+    "cursor_auto_connect.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "============================================================\n",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\cursor_auto_connect.py\", line 128, in <module>\n    main() \n  File \"F:\\ehb 5\\cursor_auto_connect.py\", line 110, in main\n    print(\"\\U0001f3af Cursor Auto-Connect for EHB Healthcare\")\n  File \"C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f3af' in position 0: char"
+    },
+    "optimize_performance.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\optimize_performance.py\", line 624, in main\n    report = optimizer.run_performance_optimization()\n  File \"F:\\ehb 5\\optimize_performance.py\", line 65, in run_performance_optimization\n    print(\"\\u26a1 EHB Healthcare System - Performance Optimization\")\n  File \"C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\nUnicodeEncodeError: 'c"
+    },
+    "memory_optimizer.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\memory_optimizer.py\", line 389, in main\n    report = optimizer.run_memory_optimization()\n  File \"F:\\ehb 5\\memory_optimizer.py\", line 31, in run_memory_optimization\n    print(\"\\U0001f9e0 EHB Memory Optimization\")\n  File \"C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\nUnicodeEncodeError: 'charmap' codec can't encode character '\\"
+    },
+    "fast_agent_optimizer.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\fast_agent_optimizer.py\", line 396, in main\n    report = optimizer.run_fast_optimization()\n  File \"F:\\ehb 5\\fast_agent_optimizer.py\", line 30, in run_fast_optimization\n    print(\"\\u26a1 EHB Fast Agent Optimizer\")\n  File \"C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\nUnicodeEncodeError: 'charmap' codec can't encode character '"
+    },
+    "auto_restart_agent.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\auto_restart_agent.py\", line 275, in main\n    agent.run()\n  File \"F:\\ehb 5\\auto_restart_agent.py\", line 249, in run\n    print(\"\\U0001f916 EHB Auto Restart Agent\")\n  File \"C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f916' in position 0: character maps to <unde"
+    },
+    "performance_monitor.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\performance_monitor.py\", line 329, in main\n    monitor.start_monitoring()\n  File \"F:\\ehb 5\\performance_monitor.py\", line 49, in start_monitoring\n    print(\"\\U0001f4ca EHB Performance Monitor Started\")\n  File \"C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\encodings\\cp1252.py\", line 19, in encode\n    return codecs.charmap_encode(input,self.errors,encoding_table)[0]\nUnicodeEncodeError: 'charmap' codec can't encode character '\\U0001f4ca' "
+    },
+    "agents/cursor_auto_integration.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "  File \"F:\\ehb 5\\agents\\cursor_auto_integration.py\", line 6\n    from datetime import datetime\nIndentationError: unexpected indent\n"
+    },
+    "agents/cursor_config_optimizer.py": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"F:\\ehb 5\\agents\\cursor_config_optimizer.py\", line 30, in <module>\n    class CursorConfigOptimizer:\n  File \"F:\\ehb 5\\agents\\cursor_config_optimizer.py\", line 538, in CursorConfigOptimizer\n    def _load_solutions_database(self) -> Dict:\nNameError: name 'Dict' is not defined. Did you mean: 'dict'?\n"
+    },
+    "agents/watchdog/agentMonitor.js": {
+      "status": "failed",
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "file:///F:/ehb%205/agents/watchdog/agentMonitor.js:8\nconst fs = require('fs');\n           ^\n\nReferenceError: require is not defined in ES module scope, you can use import instead\nThis file is being treated as an ES module because it has a '.js' file extension and 'F:\\ehb 5\\agents\\package.json' contains \"type\": \"module\". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.\n    at file:///F:/ehb%205/agents/watchdog/agentMonitor.js:8:12\n    at ModuleJob.run (node:internal/m"
+    }
+  },
+  "summary": {}
+}

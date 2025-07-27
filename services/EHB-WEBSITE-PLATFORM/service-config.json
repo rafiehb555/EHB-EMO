@@ -1,0 +1,37 @@
+{
+    "serviceName": "EHB-WEBSITE-PLATFORM",
+    "description": "Website and platform cloning service for EHB including automated cloning tools and platform management",
+    "version": "1.0.0",
+    "components": [
+        {
+            "name": "Website Cloning System",
+            "file": "website-cloning-system.js",
+            "description": "Automated website cloning and replication system"
+        },
+        {
+            "name": "Cloning Tools Documentation",
+            "file": "website-cloning-tools.md",
+            "description": "Documentation for website cloning tools and utilities"
+        },
+        {
+            "name": "Success Reports",
+            "file": "WEBSITE_CLONING_SUCCESS.md",
+            "description": "Reports and logs of successful website cloning operations"
+        }
+    ],
+    "dependencies": [
+        "puppeteer",
+        "cheerio",
+        "node.js",
+        "express"
+    ],
+    "ports": [3002],
+    "environment": "production",
+    "autoStart": false,
+    "features": [
+        "Website cloning",
+        "Platform replication",
+        "Content extraction",
+        "Asset management"
+    ]
+}

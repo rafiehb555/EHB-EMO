@@ -1,0 +1,47 @@
+[
+  {
+    "id": "P001",
+    "name": "Ahmed Khan",
+    "date_of_birth": "1985-03-15",
+    "contact": "+92-300-1234567",
+    "status": "active",
+    "condition": "Hypertension",
+    "last_visit": "2024-01-15"
+  },
+  {
+    "id": "P002",
+    "name": "Fatima Ali",
+    "date_of_birth": "1990-07-22",
+    "contact": "+92-301-2345678",
+    "status": "active",
+    "condition": "Diabetes Type 2",
+    "last_visit": "2024-01-20"
+  },
+  {
+    "id": "P003",
+    "name": "Muhammad Hassan",
+    "date_of_birth": "1978-11-08",
+    "contact": "+92-302-3456789",
+    "status": "critical",
+    "condition": "Heart Disease",
+    "last_visit": "2024-01-25"
+  },
+  {
+    "id": "P004",
+    "name": "Ayesha Malik",
+    "date_of_birth": "1995-04-12",
+    "contact": "+92-303-4567890",
+    "status": "active",
+    "condition": "Asthma",
+    "last_visit": "2024-01-18"
+  },
+  {
+    "id": "P005",
+    "name": "Omar Farooq",
+    "date_of_birth": "1982-09-30",
+    "contact": "+92-304-5678901",
+    "status": "active",
+    "condition": "Back Pain",
+    "last_visit": "2024-01-22"
+  }
+] 

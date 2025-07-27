@@ -1,0 +1,17 @@
+{
+  "pharmacies": [
+    {
+      "id": 1,
+      "name": "MedPlus Pharmacy",
+      "address": "Shop 15, Mall Road, Islamabad",
+      "phone": "+92-51-1234567",
+      "email": "info@medplus.com",
+      "operating_hours": "24/7",
+      "services": [
+        "Prescription",
+        "OTC",
+        "Vaccination"
+      ]
+    }
+  ]
+}

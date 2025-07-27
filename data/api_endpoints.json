@@ -1,0 +1,43 @@
+{
+  "endpoints": {
+    "auth": {
+      "login": "/api/auth/login",
+      "register": "/api/auth/register",
+      "logout": "/api/auth/logout",
+      "refresh": "/api/auth/refresh"
+    },
+    "patients": {
+      "list": "/api/patients",
+      "create": "/api/patients",
+      "get": "/api/patients/{id}",
+      "update": "/api/patients/{id}",
+      "delete": "/api/patients/{id}"
+    },
+    "doctors": {
+      "list": "/api/doctors",
+      "create": "/api/doctors",
+      "get": "/api/doctors/{id}",
+      "update": "/api/doctors/{id}",
+      "delete": "/api/doctors/{id}"
+    },
+    "appointments": {
+      "list": "/api/appointments",
+      "create": "/api/appointments",
+      "get": "/api/appointments/{id}",
+      "update": "/api/appointments/{id}",
+      "delete": "/api/appointments/{id}"
+    },
+    "medical_records": {
+      "list": "/api/medical-records",
+      "create": "/api/medical-records",
+      "get": "/api/medical-records/{id}",
+      "update": "/api/medical-records/{id}",
+      "delete": "/api/medical-records/{id}"
+    },
+    "analytics": {
+      "dashboard": "/api/analytics/dashboard",
+      "metrics": "/api/analytics/metrics",
+      "reports": "/api/analytics/reports"
+    }
+  }
+}

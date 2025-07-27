@@ -1,0 +1,38 @@
+{
+  "system_metrics": {
+    "total_patients": 50,
+    "total_doctors": 20,
+    "total_appointments": 100,
+    "total_medical_records": 200,
+    "total_pharmacies": 10,
+    "total_insurance_policies": 100,
+    "system_uptime": "99.9%",
+    "average_response_time": "150ms",
+    "active_users": 75,
+    "daily_appointments": 36
+  },
+  "healthcare_metrics": {
+    "patient_satisfaction": 4.9,
+    "treatment_success_rate": 88.7,
+    "average_wait_time": "12 minutes",
+    "emergency_response_time": "5 minutes",
+    "readmission_rate": 8.0,
+    "medication_adherence": 71.1
+  },
+  "financial_metrics": {
+    "total_revenue": 7637233,
+    "average_consultation_fee": 1296,
+    "insurance_claims_processed": 2812,
+    "payment_collection_rate": 96.1,
+    "operational_costs": 7250004,
+    "profit_margin": 24.0
+  },
+  "compliance_metrics": {
+    "hipaa_compliance": "100%",
+    "data_encryption": "AES-256",
+    "audit_logs": "Complete",
+    "access_controls": "Active",
+    "backup_frequency": "Daily",
+    "security_incidents": 0
+  }
+}

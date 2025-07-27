@@ -1,0 +1,26 @@
+{
+  "total_videos": 15,
+  "total_duration": "3:45:00",
+  "categories": [
+    "getting_started",
+    "feature_tutorials",
+    "advanced_topics",
+    "troubleshooting"
+  ],
+  "target_audience": [
+    "Healthcare professionals",
+    "System administrators",
+    "Developers",
+    "End users"
+  ],
+  "video_formats": [
+    "MP4 (HD)",
+    "WebM",
+    "Mobile optimized"
+  ],
+  "accessibility": {
+    "subtitles": true,
+    "audio_description": true,
+    "transcripts": true
+  }
+}

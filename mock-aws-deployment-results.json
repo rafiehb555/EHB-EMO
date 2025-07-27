@@ -1,0 +1,88 @@
+{
+  "timestamp": "2025-07-15T21:20:55.087Z",
+  "steps": {
+    "connection": {
+      "success": true,
+      "message": "All AWS services connected successfully (Mock)",
+      "services": [
+        "S3",
+        "EC2",
+        "CloudWatch"
+      ],
+      "mock": true
+    },
+    "s3Bucket": {
+      "success": true,
+      "bucketName": "ehb-main-pro",
+      "region": "ap-south-1",
+      "mock": true
+    },
+    "fileUpload": {
+      "success": true,
+      "uploadedFiles": [
+        "package.json",
+        "frontend/package.json",
+        "backend/requirements.txt",
+        "agents/ehb-agent-hub.js",
+        "agents/portable-ehb-system.js",
+        "agents/external-api-integration.js",
+        "agents/production-deployment.js"
+      ],
+      "mock": true
+    },
+    "ec2Instance": {
+      "success": true,
+      "instanceId": "i-1234567890abcdef0",
+      "instanceType": "t3.micro",
+      "region": "ap-south-1",
+      "mock": true
+    },
+    "cloudwatch": {
+      "success": true,
+      "dashboard": "EHB-Healthcare-Dashboard",
+      "alarms": [
+        "EHB-High-CPU-Alarm",
+        "EHB-Network-Alarm"
+      ],
+      "mock": true
+    },
+    "compliance": {
+      "success": true,
+      "role": "EHB-Healthcare-Role",
+      "policies": [
+        "HIPAA-Compliance",
+        "GDPR-Compliance",
+        "Data-Encryption"
+      ],
+      "compliance": {
+        "hipaa": true,
+        "gdpr": true,
+        "encryption": true,
+        "audit": true
+      },
+      "mock": true
+    },
+    "loadBalancer": {
+      "success": true,
+      "loadBalancerArn": "arn:aws:elasticloadbalancing:ap-south-1:123456789012:loadbalancer/app/ehb-lb/1234567890abcdef",
+      "dnsName": "ehb-healthcare-1234567890.ap-south-1.elb.amazonaws.com",
+      "mock": true
+    },
+    "database": {
+      "success": true,
+      "dbInstanceId": "db-1234567890abcdef0",
+      "endpoint": "ehb-healthcare-db.1234567890.ap-south-1.rds.amazonaws.com",
+      "engine": "PostgreSQL",
+      "version": "13.7",
+      "mock": true
+    },
+    "cdn": {
+      "success": true,
+      "distributionId": "E1234567890ABCD",
+      "domainName": "d1234567890abc.cloudfront.net",
+      "mock": true
+    }
+  },
+  "success": true,
+  "mock": true
+}

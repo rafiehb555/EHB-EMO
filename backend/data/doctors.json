@@ -1,0 +1,37 @@
+[
+  {
+    "id": "D001",
+    "name": "Dr. Sarah Ahmed",
+    "specialization": "Cardiology",
+    "contact": "+92-300-1111111",
+    "status": "active"
+  },
+  {
+    "id": "D002",
+    "name": "Dr. Ali Hassan",
+    "specialization": "Endocrinology",
+    "contact": "+92-300-2222222",
+    "status": "active"
+  },
+  {
+    "id": "D003",
+    "name": "Dr. Fatima Khan",
+    "specialization": "Pediatrics",
+    "contact": "+92-300-3333333",
+    "status": "active"
+  },
+  {
+    "id": "D004",
+    "name": "Dr. Omar Malik",
+    "specialization": "Orthopedics",
+    "contact": "+92-300-4444444",
+    "status": "active"
+  },
+  {
+    "id": "D005",
+    "name": "Dr. Ayesha Ali",
+    "specialization": "Neurology",
+    "contact": "+92-300-5555555",
+    "status": "active"
+  }
+] 

@@ -1,0 +1,84 @@
+# EHB Auto Development Rules
+
+## Automatic Execution
+- Run auto_cursor_script.py on startup
+- Execute next best action automatically
+- Generate reports for all actions
+- Install missing tools and dependencies
+- Setup healthcare-specific configurations
+
+## Development Guidelines
+- Follow EHB healthcare standards
+- Implement HIPAA compliance
+- Use healthcare-specific APIs
+- Ensure patient data security
+- Optimize for healthcare professionals
+
+## Auto Actions
+- Install missing development tools
+- Setup SDKs and APIs automatically
+- Configure healthcare standards
+- Run security audits
+- Generate documentation
+- Deploy automatically
+- Monitor performance
+- Track errors and issues
+
+## Next Actions Priority
+1. Analyze current project state
+2. Install missing dependencies
+3. Setup development environment
+4. Configure healthcare APIs
+5. Implement security measures
+6. Create test suite
+7. Optimize performance
+8. Generate documentation
+9. Deploy to staging
+10. Monitor and maintain
+
+## Healthcare Focus
+- Patient data protection
+- Medical data validation
+- Clinical workflow optimization
+- Healthcare compliance
+- Medical device integration
+- Telemedicine features
+- Electronic health records
+- Healthcare analytics
+
+## Technology Stack
+- Frontend: React.js, TypeScript, Material-UI
+- Backend: Node.js, Python, FastAPI
+- Database: PostgreSQL, Redis
+- Cloud: AWS, Azure, Google Cloud
+- Mobile: React Native, Flutter
+- AI/ML: TensorFlow, PyTorch, Scikit-learn
+
+## Performance Standards
+- < 3 seconds page load
+- < 200ms API response
+- 80% test coverage
+- HIPAA compliance
+- WCAG 2.1 AA accessibility
+
+## Security Requirements
+- Data encryption
+- Multi-factor authentication
+- Role-based access control
+- Audit logging
+- Data retention policies
+
+## Quality Assurance
+- Automated testing
+- Security scanning
+- Performance monitoring
+- Code review
+- Documentation generation
+
+## Emergency Procedures
+- Security incidents: Contact security@ehb.com
+- Data breaches: Contact privacy@ehb.com
+- System outages: Contact emergency-tech@ehb.com
+- Patient safety: Contact safety@ehb.com
+
+Remember: Healthcare technology has unique requirements. Always prioritize patient safety, data security, and regulatory compliance.

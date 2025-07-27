@@ -1,0 +1,71 @@
+{
+  "timestamp": "2025-07-16T19:15:57.023281",
+  "system": "EHB Healthcare System",
+  "phase": "production_readiness",
+  "status": "verifying",
+  "components": {
+    "backend": "healthy",
+    "frontend": "failed",
+    "api__api_patients": "available",
+    "api__api_appointments": "available",
+    "api__api_medical-records": "available",
+    "api__api_admin": "available"
+  },
+  "security_checks": {
+    "Data Encryption": true,
+    "Access Controls": true,
+    "Audit Logging": true,
+    "Input Validation": true,
+    "HTTPS Configuration": true,
+    "Firewall Protection": true,
+    "Vulnerability Scanning": true,
+    "Security Monitoring": true
+  },
+  "compliance_checks": {
+    "HIPAA Compliance": true,
+    "Data Retention Policies": true,
+    "Patient Data Protection": true,
+    "Medical Records Security": true,
+    "Audit Trail": true,
+    "Breach Detection": true,
+    "Incident Response Plan": true,
+    "Privacy Protection": true
+  },
+  "performance_checks": {
+    "api_response_time": 2.046008586883545,
+    "api_performance": "needs_optimization",
+    "frontend_performance": "failed",
+    "database_query_time": 0.05,
+    "database_performance": "pass"
+  },
+  "documentation_checks": {
+    "EHB_COMPLETE_DEPLOYMENT_REPORT.md": "available",
+    "EHB_MONITORING_COMPLETE_REPORT.md": "available",
+    "security_audit.py": "available",
+    "test_healthcare_system.py": "available",
+    "monitor_and_maintain.py": "available",
+    "final_deployment.py": "available",
+    "README.md": "available",
+    "package.json": "available",
+    "api_server.py": "available",
+    "frontend/package.json": "available"
+  },
+  "production_score": 80.66666666666667,
+  "recommendations": [
+    "Ensure all system components are healthy",
+    "Optimize system performance to meet targets",
+    "Implement continuous monitoring",
+    "Set up automated backups",
+    "Establish incident response procedures",
+    "Conduct regular security audits",
+    "Maintain HIPAA compliance",
+    "Monitor system performance",
+    "Update documentation regularly"
+  ],
+  "component_score": 83.33333333333334,
+  "security_score": 100.0,
+  "compliance_score": 100.0,
+  "performance_score": 20.0,
+  "documentation_score": 100.0,
+  "production_status": "NEEDS_MINOR_FIXES"
+}

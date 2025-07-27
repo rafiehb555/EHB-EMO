@@ -1,0 +1,40 @@
+{
+  "starter": {
+    "name": "Starter Package",
+    "price": "$999/month",
+    "features": [
+      "Basic AI diagnosis",
+      "Patient management",
+      "Telemedicine (5 hours/month)",
+      "Email support",
+      "Standard security"
+    ],
+    "suitable_for": "Small clinics"
+  },
+  "professional": {
+    "name": "Professional Package",
+    "price": "$2,999/month",
+    "features": [
+      "Advanced AI diagnosis",
+      "Full telemedicine platform",
+      "Blockchain integration",
+      "Advanced analytics",
+      "Priority support",
+      "Custom integrations"
+    ],
+    "suitable_for": "Medium hospitals"
+  },
+  "enterprise": {
+    "name": "Enterprise Package",
+    "price": "Custom pricing",
+    "features": [
+      "Custom AI models",
+      "Multi-region deployment",
+      "Advanced security",
+      "Dedicated support",
+      "Custom development",
+      "Training programs"
+    ],
+    "suitable_for": "Large healthcare systems"
+  }
+}

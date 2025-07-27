@@ -1,0 +1,288 @@
+{
+  "projectName": "EHB Blockchain - Advanced Level Planning",
+  "version": "3.0.0",
+  "overview": "The EHB Blockchain is the core on-chain infrastructure for the entire EHB Technologies ecosystem. It governs services, franchises, transactions, penalties, token locks, and decentralised data sovereignty per country.",
+
+  "coreGoals": [
+    "Decentralize verification & franchise logic",
+    "Enable token locking, SQL enforcement & referral automation",
+    "Track all wallet incomes and smart contract events",
+    "Secure sensitive actions like KYC, service approvals, and penalties",
+    "Comply with national sovereignty (data + income tracking)"
+  ],
+
+  "blockchainArchitecture": {
+    "primaryEcosystem": "Polkadot",
+    "futureIntegration": ["Mosaic Galaxy", "G6 Identity", "Highway Relayer"],
+    "multiChainDesign": true,
+    "interoperability": true,
+    "dataSovereignty": true
+  },
+
+  "blockchainComponents": {
+    "EHBGC_Coin": {
+      "description": "Core token used across services for locking, payments, and bonuses",
+      "standard": ["ERC-20", "BEP-20"],
+      "networks": ["Moonbeam", "BSC", "Future: Mosaic"]
+    },
+    "TrustyWallet_SmartContract": {
+      "description": "Manages SQL lock, coin balance, and franchise license",
+      "features": ["Token locking", "SQL enforcement", "Role management"]
+    },
+    "Franchise_SmartContracts": {
+      "description": "Handles income split, penalties, and escalation flow",
+      "features": ["Revenue distribution", "Penalty system", "Escalation logic"]
+    },
+    "SQL_EnforcementContract": {
+      "description": "Enforces service quality rules & verification proofs",
+      "features": ["Quality enforcement", "Verification proofs", "Auto-downgrade"]
+    },
+    "ReferralContract": {
+      "description": "Tracks downline structure, bonus splits, expiry",
+      "features": ["Multi-level structure", "Bonus distribution", "Expiry tracking"]
+    },
+    "ComplaintLedger": {
+      "description": "Immutable record of unresolved disputes",
+      "features": ["Immutable logs", "Dispute tracking", "Audit trail"]
+    },
+    "ValidatorNodeSystem": {
+      "description": "Staking, reward tracking, and parachain bridge (Polkadot)",
+      "features": ["Staking mechanism", "Reward tracking", "Parachain bridge"]
+    }
+  },
+
+  "techStack": {
+    "blockchain": {
+      "framework": "Substrate for custom Polkadot-based chain",
+      "evm": "Moonbeam for EVM compatibility",
+      "development": "Hardhat or Foundry for contract testing",
+      "indexing": "GraphQL Indexer for dashboards",
+      "storage": "IPFS + OrbitDB for decentralised document storage",
+      "identity": "G6 Identity Layer for verified identity NFTs (future phase)"
+    },
+    "deployment": {
+      "development": "Replit",
+      "versionControl": "GitHub",
+      "testing": "Moonbase Alpha",
+      "wallet": "Polkadot.js Apps",
+      "indexing": "TheGraph",
+      "explorer": "Etherscan / Subscan",
+      "storage": "IPFS",
+      "containerization": "Docker"
+    }
+  },
+
+  "developmentPhases": {
+    "totalPhases": 10,
+    "phases": {
+      "phase1": {
+        "name": "Repo + Contract Structure Setup",
+        "repo": "ehb-blockchain-core/",
+        "setup": [
+          "Setup contracts/, scripts/, tests/, schemas/, migrations/",
+          "Base token & deployment logic"
+        ],
+        "status": "✅ Planning Complete"
+      },
+      "phase2": {
+        "name": "EHBGC Token Contract + Initial Supply",
+        "features": [
+          "Mint + burn logic",
+          "Ownership, pausing, locking",
+          "ERC-20 compatible (Moonbeam)"
+        ],
+        "status": "🔄 Ready for Development"
+      },
+      "phase3": {
+        "name": "Trusty Wallet Contract",
+        "features": [
+          "Role-based coin lock for SQL levels",
+          "Franchise role binding",
+          "Bonus eligibility rules"
+        ],
+        "status": "⏳ Pending"
+      },
+      "phase4": {
+        "name": "Franchise Income Split Contracts",
+        "features": [
+          "Auto split for Sub / Master / Corporate Franchise",
+          "Complaint penalty + referral share",
+          "Royalty fee to the company wallet"
+        ],
+        "status": "⏳ Pending"
+      },
+      "phase5": {
+        "name": "SQL Enforcement Smart Contract",
+        "features": [
+          "Lock check for High/VIP users",
+          "Verification expiry auto-downgrade",
+          "Links with PSS + EDR modules"
+        ],
+        "status": "⏳ Pending"
+      },
+      "phase6": {
+        "name": "Referral Tree Contract",
+        "features": [
+          "Multi-level structure",
+          "SQL-based bonus filters",
+          "Real-time earnings through token routing"
+        ],
+        "status": "⏳ Pending"
+      },
+      "phase7": {
+        "name": "Validator Staking Contract",
+        "features": [
+          "Minimum EHBGC stake",
+          "Delegation option",
+          "ROI reward bridge with Mosaic/Polkadot"
+        ],
+        "status": "⏳ Pending"
+      },
+      "phase8": {
+        "name": "Global Complaint Ledger (On-Chain)",
+        "features": [
+          "Immutable complaint logs",
+          "Reference to wallet, order, SQL, and fine",
+          "Used for audits & escalations"
+        ],
+        "status": "⏳ Pending"
+      },
+      "phase9": {
+        "name": "G6 NFT Identity Integration (future)",
+        "features": [
+          "Issue verified NFT identity badge",
+          "AI + KYC data link with NFT metadata",
+          "Auto-bind to SQL levels"
+        ],
+        "status": "⏳ Pending"
+      },
+      "phase10": {
+        "name": "Final Integration with EHB Systems",
+        "features": [
+          "Cross-Dapp connection",
+          "Smart contract endpoints",
+          "Testing on Moonbase Alpha → migrate to Mosaic"
+        ],
+        "status": "⏳ Pending"
+      }
+    }
+  },
+
+  "aiIntegration": {
+    "contractAnalyzer": "Detect vulnerabilities",
+    "bonusOptimizer": "Recommend SQL + ROI strategies",
+    "validatorScanner": "Track suspicious node behaviour",
+    "complianceBot": "Audit franchise wallet & penalties"
+  },
+
+  "uiUxModules": {
+    "frontend": "ehb-blockchain-ui",
+    "components": [
+      "TokenTracker.tsx",
+      "WalletLockView.tsx",
+      "FranchiseIncomePanel.tsx",
+      "ReferralTree.tsx",
+      "StakingConsole.tsx",
+      "ComplaintLedgerViewer.tsx",
+      "ValidatorStatusBoard.tsx"
+    ]
+  },
+
+  "repositoryStructure": {
+    "mainRepo": "ehb-blockchain-core",
+    "folders": {
+      "contracts": {
+        "description": "All smart contracts (Solidity, Ink! for Substrate later)",
+        "files": [
+          "EHBGC.sol – EHB Governance Coin (BEP-20 + ERC-20)",
+          "TrustyWallet.sol – Token locking with loyalty bonus",
+          "FranchiseSplit.sol – Revenue split among franchises",
+          "TerritoryNFT.sol – Franchise rights",
+          "ValidatorStaking.sol – Staking logic + rewards",
+          "KYCProof.sol – KYC & SQL level on-chain",
+          "ReferralPayout.sol – MLM-based income system",
+          "ComplaintFine.sol – Auto fine/penalty handler"
+        ]
+      },
+      "scripts": {
+        "description": "Deployment and utility scripts",
+        "files": [
+          "deploy.js",
+          "mint.js",
+          "simulate.js"
+        ]
+      },
+      "test": {
+        "description": "Smart contract tests",
+        "files": [
+          "token.test.js",
+          "wallet.test.js"
+        ]
+      },
+      "abi": {
+        "description": "Auto generated contract ABIs",
+        "files": "*.json"
+      },
+      "migrations": {
+        "description": "Database migrations"
+      }
+    }
+  },
+
+  "deploymentPlan": {
+    "development": {
+      "tool": "Replit",
+      "purpose": "Smart contract editing, frontend preview"
+    },
+    "versionControl": {
+      "tool": "GitHub",
+      "purpose": "Version control"
+    },
+    "testing": {
+      "tool": "Moonbase Alpha",
+      "purpose": "Smart contract testing"
+    },
+    "wallet": {
+      "tool": "Polkadot.js Apps",
+      "purpose": "Wallet + parachain testing"
+    },
+    "indexing": {
+      "tool": "TheGraph",
+      "purpose": "Index smart contract events"
+    },
+    "explorer": {
+      "tool": "Etherscan / Subscan",
+      "purpose": "Token tracking + validator view"
+    },
+    "storage": {
+      "tool": "IPFS",
+      "purpose": "Identity document uploads"
+    },
+    "containerization": {
+      "tool": "Docker",
+      "purpose": "Full node, RPC, and indexer setup"
+    }
+  },
+
+  "tokenSpecifications": {
+    "name": "EHB Global Coin",
+    "symbol": "EHBGC",
+    "decimals": 18,
+    "supply": "1,000,000,000 EHBGC (Mintable)",
+    "chain": "Moonbeam (EVM-Compatible)",
+    "features": [
+      "Mintable by owner",
+      "Burnable by holders",
+      "Lockable for SQL levels",
+      "Transferable with approval"
+    ]
+  },
+
+  "developmentStatus": {
+    "currentPhase": 1,
+    "nextAction": "Start Smart Contract Development",
+    "priority": "EHBGC.sol Token Contract",
+    "estimatedTime": "10 weeks total",
+    "cost": "$20,000 - $40,000"
+  }
+}

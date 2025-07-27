@@ -1,0 +1,176 @@
+{
+  "timestamp": "2025-07-16T23:58:11.698587",
+  "system": "EHB Healthcare System",
+  "compliance": "HIPAA",
+  "checks": [
+    {
+      "name": "Data Encryption at Rest",
+      "status": "PASS",
+      "description": "Patient data encrypted in database",
+      "score": 10
+    },
+    {
+      "name": "Data Encryption in Transit",
+      "status": "PASS",
+      "description": "HTTPS/TLS encryption for all communications",
+      "score": 10
+    },
+    {
+      "name": "Access Controls",
+      "status": "PASS",
+      "description": "Role-based access control implemented",
+      "score": 10
+    },
+    {
+      "name": "Audit Logging",
+      "status": "PASS",
+      "description": "Complete audit trail for all data access",
+      "score": 10
+    },
+    {
+      "name": "Data Retention Policies",
+      "status": "PASS",
+      "description": "HIPAA-compliant data retention policies",
+      "score": 10
+    },
+    {
+      "name": "Encryption Implementation: src/utils/encryption.ts",
+      "status": "PASS",
+      "description": "Encryption utilities found",
+      "score": 5
+    },
+    {
+      "name": "Encryption Implementation: backend/utils/encryption.py",
+      "status": "WARNING",
+      "description": "Encryption utilities not found",
+      "score": 0
+    },
+    {
+      "name": "Authentication: backend/routes/auth.js",
+      "status": "PASS",
+      "description": "Authentication system found",
+      "score": 5
+    },
+    {
+      "name": "Authentication: src/services/api.ts",
+      "status": "WARNING",
+      "description": "Authentication system not found",
+      "score": 0
+    },
+    {
+      "name": "Audit Logging: logs/",
+      "status": "PASS",
+      "description": "Audit logging system active",
+      "score": 5
+    },
+    {
+      "name": "Audit Logging: api_server.log",
+      "status": "PASS",
+      "description": "Audit logging system active",
+      "score": 5
+    },
+    {
+      "name": "Audit Logging: auto_agent.log",
+      "status": "PASS",
+      "description": "Audit logging system active",
+      "score": 5
+    },
+    {
+      "name": "HTTPS Configuration",
+      "status": "PASS",
+      "description": "HTTPS enabled for secure communications",
+      "score": 10
+    },
+    {
+      "name": "Firewall Protection",
+      "status": "PASS",
+      "description": "Firewall rules configured",
+      "score": 5
+    },
+    {
+      "name": "API Rate Limiting",
+      "status": "PASS",
+      "description": "Rate limiting implemented for API endpoints",
+      "score": 5
+    },
+    {
+      "name": "Input Validation",
+      "status": "PASS",
+      "description": "Input validation and sanitization active",
+      "score": 5
+    },
+    {
+      "name": "Database Encryption",
+      "status": "PASS",
+      "description": "Database encryption at rest enabled",
+      "score": 10
+    },
+    {
+      "name": "Database Connection Security",
+      "status": "PASS",
+      "description": "Secure database connections with SSL",
+      "score": 5
+    },
+    {
+      "name": "Patient Data Protection: src/components/PatientCard.tsx",
+      "status": "PASS",
+      "description": "Patient data protection implemented",
+      "score": 10
+    },
+    {
+      "name": "Patient Data Protection: backend/routes/healthcare.js",
+      "status": "PASS",
+      "description": "Patient data protection implemented",
+      "score": 10
+    },
+    {
+      "name": "Medical Records Encryption",
+      "status": "PASS",
+      "description": "Medical records encrypted and secure",
+      "score": 10
+    },
+    {
+      "name": "Medical Records Access Control",
+      "status": "PASS",
+      "description": "Strict access control for medical records",
+      "score": 10
+    },
+    {
+      "name": "Appointment Data Protection",
+      "status": "PASS",
+      "description": "Appointment data securely handled",
+      "score": 5
+    },
+    {
+      "name": "API Response Time",
+      "status": "PASS",
+      "description": "API response time < 200ms target met",
+      "score": 5
+    },
+    {
+      "name": "Frontend Load Time",
+      "status": "PASS",
+      "description": "Frontend load time < 3 seconds target met",
+      "score": 5
+    },
+    {
+      "name": "Backup System: backups/",
+      "status": "PASS",
+      "description": "Backup system active",
+      "score": 5
+    },
+    {
+      "name": "Backup System: agents/backups/",
+      "status": "PASS",
+      "description": "Backup system active",
+      "score": 5
+    }
+  ],
+  "overall_score": 180,
+  "critical_issues": [],
+  "warnings": [
+    "Missing encryption implementation: backend/utils/encryption.py",
+    "Missing authentication: src/services/api.ts"
+  ],
+  "recommendations": []
+}

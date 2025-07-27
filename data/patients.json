@@ -1,0 +1,48 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "name": "Ahmed Khan",
+      "age": 45,
+      "gender": "Male",
+      "phone": "+92-300-1234567",
+      "email": "ahmed.khan@email.com",
+      "address": "House 123, Street 5, Islamabad",
+      "blood_type": "O+",
+      "emergency_contact": "+92-300-7654321",
+      "medical_history": [
+        "Diabetes",
+        "Hypertension"
+      ],
+      "allergies": [
+        "Penicillin"
+      ],
+      "insurance_provider": "State Life",
+      "insurance_number": "SL-2024-001",
+      "last_visit": "2024-01-15",
+      "next_appointment": "2024-01-25"
+    },
+    {
+      "id": 2,
+      "name": "Fatima Ali",
+      "age": 32,
+      "gender": "Female",
+      "phone": "+92-300-2345678",
+      "email": "fatima.ali@email.com",
+      "address": "Apartment 45, Block 7, Karachi",
+      "blood_type": "A+",
+      "emergency_contact": "+92-300-8765432",
+      "medical_history": [
+        "Asthma"
+      ],
+      "allergies": [
+        "Dust",
+        "Pollen"
+      ],
+      "insurance_provider": "EFU Health",
+      "insurance_number": "EFU-2024-002",
+      "last_visit": "2024-01-10",
+      "next_appointment": "2024-01-22"
+    }
+  ]
+}

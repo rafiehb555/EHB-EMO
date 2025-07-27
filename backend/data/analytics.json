@@ -1,0 +1,24 @@
+{
+  "patient_stats": {
+    "total_patients": 1250,
+    "active_patients": 1180,
+    "critical_patients": 45,
+    "new_patients_this_month": 85
+  },
+  "appointment_stats": {
+    "total_appointments": 2850,
+    "scheduled_appointments": 2450,
+    "completed_appointments": 2350,
+    "cancelled_appointments": 50
+  },
+  "revenue_stats": {
+    "total_revenue": 2500000,
+    "monthly_revenue": 185000,
+    "average_appointment_cost": 850
+  },
+  "doctor_stats": {
+    "total_doctors": 25,
+    "active_doctors": 23,
+    "average_patients_per_doctor": 50
+  }
+} 

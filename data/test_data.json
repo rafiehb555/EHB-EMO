@@ -1,0 +1,14 @@
+{
+  "patients": [
+    {
+      "name": "Test Patient",
+      "email": "test@example.com"
+    }
+  ],
+  "doctors": [
+    {
+      "name": "Test Doctor",
+      "specialization": "Test"
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "timestamp": "2025-07-21T23:09:15.890036",
+  "hipaa_compliance": {
+    "data_encryption": {
+      "status": "PASS",
+      "details": {
+        "encryption_files": true,
+        "https_enabled": true
+      }
+    },
+    "access_controls": {
+      "status": "FAIL",
+      "details": {
+        "authentication": true,
+        "role_based_access": false
+      }
+    },
+    "audit_logging": {
+      "status": "FAIL",
+      "details": {
+        "audit_logging": false
+      }
+    },
+    "data_retention": {
+      "status": "FAIL",
+      "details": {
+        "retention_policies": false
+      }
+    },
+    "secure_communication": {
+      "status": "PASS",
+      "details": {
+        "https_enabled": true,
+        "secure_headers": true
+      }
+    },
+    "backup_security": {
+      "status": "FAIL",
+      "details": {
+        "backup_security": false
+      }
+    },
+    "incident_response": {
+      "status": "FAIL",
+      "details": {
+        "incident_response": false
+      }
+    },
+    "training_program": {
+      "status": "FAIL",
+      "details": {
+        "training_program": false
+      }
+    },
+    "overall_score": 25.0,
+    "status": "NON_COMPLIANT"
+  },
+  "security_vulnerabilities": [],
+  "performance_metrics": {},
+  "recommendations": [
+    "Implement Access Controls for HIPAA compliance",
+    "Implement Audit Logging for HIPAA compliance",
+    "Implement Data Retention for HIPAA compliance",
+    "Implement Backup Security for HIPAA compliance",
+    "Implement Incident Response for HIPAA compliance",
+    "Implement Training Program for HIPAA compliance",
+    "Implement performance optimization files"
+  ]
+}

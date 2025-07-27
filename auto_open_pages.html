@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EHB Auto Page Opener</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        min-height: 100vh;
+      }
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .button-group {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+      }
+      .btn-primary {
+        background: linear-gradient(45deg, #4caf50, #45a049);
+        color: white;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+      }
+      .btn-secondary {
+        background: linear-gradient(45deg, #2196f3, #1976d2);
+        color: white;
+      }
+      .btn-secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+      }
+      .btn-warning {
+        background: linear-gradient(45deg, #ff9800, #f57c00);
+        color: white;
+      }
+      .btn-warning:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+      }
+      .pages-list {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+      .page-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin: 5px 0;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 5px;
+        transition: background 0.3s ease;
+      }
+      .page-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .page-name {
+        font-weight: 600;
+      }
+      .page-url {
+        color: #ddd;
+        font-size: 14px;
+      }
+      .status {
+        text-align: center;
+        margin: 20px 0;
+        padding: 15px;
+        border-radius: 8px;
+        font-weight: 600;
+      }
+      .status.success {
+        background: rgba(76, 175, 80, 0.2);
+        color: #4caf50;
+      }
+      .status.error {
+        background: rgba(244, 67, 54, 0.2);
+        color: #f44336;
+      }
+      .status.info {
+        background: rgba(33, 150, 243, 0.2);
+        color: #2196f3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 EHB Auto Page Opener</h1>
+
+      <div class="button-group">
+        <button class="btn btn-primary" onclick="openAllPages()">
+          🌐 Open All Pages
+        </button>
+        <button class="btn btn-secondary" onclick="openQuickPages()">
+          ⚡ Open Quick Pages
+        </button>
+        <button class="btn btn-warning" onclick="checkServer()">
+          🔍 Check Server
+        </button>
+      </div>
+
+      <div id="status" class="status info">
+        Click a button above to start opening pages
+      </div>
+
+      <div class="pages-list">
+        <h3>📋 Available Pages (Port 3002)</h3>
+        <div class="page-item">
+          <div>
+            <div class="page-name">🏠 Home Page</div>
+            <div class="page-url">http://localhost:3002/</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">🧪 Test Page</div>
+            <div class="page-url">http://localhost:3002/test</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">📊 Main Dashboard</div>
+            <div class="page-url">http://localhost:3002/dashboard</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">💳 Wallet Dashboard</div>
+            <div class="page-url">http://localhost:3002/dashboard/wallet</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">👤 Profile Dashboard</div>
+            <div class="page-url">http://localhost:3002/dashboard/profile</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">🛒 Store Dashboard</div>
+            <div class="page-url">http://localhost:3002/dashboard/store</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">😊 Emo Dashboard</div>
+            <div class="page-url">http://localhost:3002/dashboard/emo</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">📋 Medical Records</div>
+            <div class="page-url">http://localhost:3002/medical-records</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">📅 Appointments</div>
+            <div class="page-url">http://localhost:3002/appointments</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">👥 Patients</div>
+            <div class="page-url">http://localhost:3002/patients</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">📈 Analytics</div>
+            <div class="page-url">http://localhost:3002/analytics</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">🏥 Telemedicine</div>
+            <div class="page-url">http://localhost:3002/telemedicine</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">🤖 AI Diagnosis</div>
+            <div class="page-url">http://localhost:3002/ai-diagnosis</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">🏥 Healthcare Dashboard</div>
+            <div class="page-url">
+              http://localhost:3002/healthcare-dashboard
+            </div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">⚙️ Admin Panel</div>
+            <div class="page-url">http://localhost:3002/admin</div>
+          </div>
+        </div>
+        <div class="page-item">
+          <div>
+            <div class="page-name">👨‍💼 Agent Dashboard</div>
+            <div class="page-url">http://localhost:3002/agent-dashboard</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const baseUrl = 'http://localhost:3002';
+
+      const allPages = [
+        { name: 'Home Page', url: '/' },
+        { name: 'Test Page', url: '/test' },
+        { name: 'Main Dashboard', url: '/dashboard' },
+        { name: 'Wallet Dashboard', url: '/dashboard/wallet' },
+        { name: 'Profile Dashboard', url: '/dashboard/profile' },
+        { name: 'Store Dashboard', url: '/dashboard/store' },
+        { name: 'Emo Dashboard', url: '/dashboard/emo' },
+        { name: 'Medical Records', url: '/medical-records' },
+        { name: 'Appointments', url: '/appointments' },
+        { name: 'Patients', url: '/patients' },
+        { name: 'Analytics', url: '/analytics' },
+        { name: 'Telemedicine', url: '/telemedicine' },
+        { name: 'AI Diagnosis', url: '/ai-diagnosis' },
+        { name: 'Healthcare Dashboard', url: '/healthcare-dashboard' },
+        { name: 'Admin Panel', url: '/admin' },
+        { name: 'Agent Dashboard', url: '/agent-dashboard' },
+      ];
+
+      const quickPages = [
+        { name: 'Home Page', url: '/' },
+        { name: 'Main Dashboard', url: '/dashboard' },
+        { name: 'Healthcare Dashboard', url: '/healthcare-dashboard' },
+        { name: 'Medical Records', url: '/medical-records' },
+        { name: 'Admin Panel', url: '/admin' },
+      ];
+
+      function updateStatus(message, type = 'info') {
+        const statusDiv = document.getElementById('status');
+        statusDiv.textContent = message;
+        statusDiv.className = `status ${type}`;
+      }
+
+      function openPages(pages, delay = 500) {
+        updateStatus('🚀 Opening pages...', 'info');
+
+        pages.forEach((page, index) => {
+          setTimeout(() => {
+            const fullUrl = baseUrl + page.url;
+            console.log(`Opening: ${page.name} - ${fullUrl}`);
+            window.open(fullUrl, '_blank');
+
+            if (index === pages.length - 1) {
+              updateStatus(
+                `✅ Opened ${pages.length} pages successfully!`,
+                'success'
+              );
+            }
+          }, index * delay);
+        });
+      }
+
+      function openAllPages() {
+        updateStatus('🌐 Opening all 16 pages...', 'info');
+        openPages(allPages, 300);
+      }
+
+      function openQuickPages() {
+        updateStatus('⚡ Opening 5 main pages...', 'info');
+        openPages(quickPages, 200);
+      }
+
+      async function checkServer() {
+        updateStatus('🔍 Checking server status...', 'info');
+
+        try {
+          const response = await fetch(baseUrl, {
+            method: 'HEAD',
+            mode: 'no-cors',
+          });
+          updateStatus('✅ Server is running on port 3002!', 'success');
+        } catch (error) {
+          updateStatus(
+            '❌ Server is not running on port 3002. Please start your server first.',
+            'error'
+          );
+        }
+      }
+
+      // Auto-check server status on page load
+      window.addEventListener('load', () => {
+        setTimeout(checkServer, 1000);
+      });
+    </script>
+  </body>
+</html>

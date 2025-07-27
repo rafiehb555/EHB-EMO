@@ -1,0 +1,294 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Patient Model
+model Patient {
+  id          String   @id @default(cuid())
+  patientId   String   @unique
+  firstName   String
+  lastName    String
+  dateOfBirth DateTime
+  gender      String
+  bloodType   String?
+  phone       String?
+  email       String?
+  address     String?
+  emergencyContact String?
+  insuranceNumber String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  medicalRecords MedicalRecord[]
+  appointments   Appointment[]
+  prescriptions  Prescription[]
+  labResults     LabResult[]
+  consents       Consent[]
+  allergies      Allergy[]
+  medications    PatientMedication[]
+
+  @@map("patients")
+}
+
+// Doctor Model
+model Doctor {
+  id              String   @id @default(cuid())
+  doctorId        String   @unique
+  firstName       String
+  lastName        String
+  specialization  String
+  licenseNumber   String   @unique
+  phone           String?
+  email           String?
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  medicalRecords MedicalRecord[]
+  appointments   Appointment[]
+  prescriptions  Prescription[]
+  consents       Consent[]
+
+  @@map("doctors")
+}
+
+// Medical Record Model
+model MedicalRecord {
+  id          String   @id @default(cuid())
+  recordId    String   @unique
+  patientId   String
+  doctorId    String
+  diagnosis   String
+  symptoms    String?
+  treatment   String?
+  notes       String?
+  isEncrypted Boolean  @default(true)
+  ipfsHash    String?
+  recordDate  DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [patientId])
+  doctor  Doctor  @relation(fields: [doctorId], references: [doctorId])
+
+  @@map("medical_records")
+}
+
+// Appointment Model
+model Appointment {
+  id          String   @id @default(cuid())
+  appointmentId String  @unique
+  patientId   String
+  doctorId    String
+  appointmentDate DateTime
+  duration    Int      @default(30) // minutes
+  status      AppointmentStatus @default(SCHEDULED)
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [patientId])
+  doctor  Doctor  @relation(fields: [doctorId], references: [doctorId])
+
+  @@map("appointments")
+}
+
+// Prescription Model
+model Prescription {
+  id            String   @id @default(cuid())
+  prescriptionId String   @unique
+  patientId     String
+  doctorId      String
+  medication    String
+  dosage        String
+  frequency     String
+  duration      String?
+  instructions  String?
+  isActive      Boolean  @default(true)
+  prescribedAt  DateTime @default(now())
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [patientId])
+  doctor  Doctor  @relation(fields: [doctorId], references: [doctorId])
+
+  @@map("prescriptions")
+}
+
+// Lab Result Model
+model LabResult {
+  id          String   @id @default(cuid())
+  resultId    String   @unique
+  patientId   String
+  testName    String
+  testValue   String
+  normalRange String?
+  unit        String?
+  isAbnormal  Boolean  @default(false)
+  notes       String?
+  testDate    DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [patientId])
+
+  @@map("lab_results")
+}
+
+// Consent Model
+model Consent {
+  id            String   @id @default(cuid())
+  patientId     String
+  doctorId      String
+  consentType   String
+  consentDate   DateTime @default(now())
+  expiryDate    DateTime
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [patientId])
+  doctor  Doctor  @relation(fields: [doctorId], references: [doctorId])
+
+  @@unique([patientId, doctorId])
+  @@map("consents")
+}
+
+// Allergy Model
+model Allergy {
+  id          String   @id @default(cuid())
+  patientId   String
+  allergen    String
+  severity    AllergySeverity
+  symptoms    String?
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [patientId])
+
+  @@map("allergies")
+}
+
+// Patient Medication Model
+model PatientMedication {
+  id          String   @id @default(cuid())
+  patientId   String
+  medication  String
+  dosage      String
+  frequency   String
+  startDate   DateTime @default(now())
+  endDate     DateTime?
+  isActive    Boolean  @default(true)
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  patient Patient @relation(fields: [patientId], references: [patientId])
+
+  @@map("patient_medications")
+}
+
+// Hospital Model
+model Hospital {
+  id          String   @id @default(cuid())
+  hospitalId  String   @unique
+  name        String
+  address     String
+  phone       String?
+  email       String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("hospitals")
+}
+
+// Department Model
+model Department {
+  id           String   @id @default(cuid())
+  departmentId String   @unique
+  name         String
+  description  String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("departments")
+}
+
+// Insurance Model
+model Insurance {
+  id              String   @id @default(cuid())
+  insuranceId     String   @unique
+  providerName    String
+  policyNumber    String
+  coverageType    String
+  expiryDate      DateTime
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("insurances")
+}
+
+// Audit Log Model
+model AuditLog {
+  id          String   @id @default(cuid())
+  userId      String
+  action      String
+  tableName   String
+  recordId    String
+  oldValues   Json?
+  newValues   Json?
+  ipAddress   String?
+  userAgent   String?
+  timestamp   DateTime @default(now())
+
+  @@map("audit_logs")
+}
+
+// Enums
+enum AppointmentStatus {
+  SCHEDULED
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+  NO_SHOW
+}
+
+enum AllergySeverity {
+  MILD
+  MODERATE
+  SEVERE
+  LIFE_THREATENING
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+  PREFER_NOT_TO_SAY
+}

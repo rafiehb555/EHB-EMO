@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "providers": [
+    "vercel",
+    "netlify",
+    "aws",
+    "google-cloud"
+  ],
+  "auto_ssl": true,
+  "auto_domain": true,
+  "cdn_enabled": true,
+  "features": {
+    "one_click_deploy": true,
+    "auto_scaling": true,
+    "load_balancing": true,
+    "monitoring": true,
+    "backup": true
+  },
+  "healthcare_compliance": {
+    "hipaa_compliant": true,
+    "data_encryption": true,
+    "audit_logging": true,
+    "access_control": true
+  }
+}

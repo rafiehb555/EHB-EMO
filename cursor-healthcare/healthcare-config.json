@@ -1,0 +1,40 @@
+{
+  "fhir": {
+    "enabled": true,
+    "validators": [
+      "fhir-validator",
+      "fhir-tools"
+    ],
+    "config": {
+      "auto-validation": true,
+      "compliance-check": true
+    }
+  },
+  "hl7": {
+    "enabled": true,
+    "tools": [
+      "hl7-tools",
+      "hl7-validator"
+    ],
+    "config": {
+      "auto-parse": true,
+      "validation": true
+    }
+  },
+  "dicom": {
+    "enabled": true,
+    "tools": [
+      "dicom-viewer",
+      "dicom-tools"
+    ],
+    "config": {
+      "auto-load": true,
+      "metadata-extraction": true
+    }
+  },
+  "compliance": {
+    "hipaa": true,
+    "security-audit": true,
+    "privacy-protection": true
+  }
+}

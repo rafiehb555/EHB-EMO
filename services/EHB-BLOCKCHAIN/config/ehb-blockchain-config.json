@@ -1,0 +1,42 @@
+{
+  "projectName": "EHB Blockchain Core",
+  "version": "1.0.0",
+  "description": "EHB Blockchain Integration with Polkadot Ecosystem",
+  "workspace": {
+    "root": "F:/ehb 5/ehb-5",
+    "blockchainCore": "F:/ehb 5/ehb-5/ehb-blockchain-core",
+    "services": "F:/ehb 5/ehb-5/services"
+  },
+  "architecture": {
+    "frontend": {
+      "framework": "React",
+      "styling": "Tailwind CSS",
+      "stateManagement": "Context API",
+      "blockchain": "Web3.js + Ethers.js"
+    },
+    "backend": {
+      "framework": "Node.js + Express",
+      "database": "PostgreSQL",
+      "cache": "Redis",
+      "blockchain": "Web3.js"
+    },
+    "blockchain": {
+      "networks": ["Polkadot", "Binance Smart Chain"],
+      "development": "Hardhat",
+      "contracts": ["EHBGC", "TrustyWallet", "FranchiseSplit"],
+      "libraries": ["OpenZeppelin", "Web3.js"]
+    }
+  },
+  "developmentPhases": {
+    "phase1": "Repository Setup",
+    "phase2": "Smart Contracts Development",
+    "phase3": "Frontend Development",
+    "phase4": "Backend API Development",
+    "phase5": "Testing & Deployment"
+  },
+  "syncStatus": {
+    "lastSync": "2025-07-25T02:52:00Z",
+    "status": "active",
+    "autoSync": true
+  }
+}

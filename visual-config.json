@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "components": {
+    "forms": true,
+    "tables": true,
+    "charts": true,
+    "navigation": true,
+    "cards": true,
+    "modals": true,
+    "buttons": true,
+    "inputs": true
+  },
+  "themes": [
+    "light",
+    "dark",
+    "healthcare"
+  ],
+  "responsive": true,
+  "drag_and_drop": true,
+  "real_time_preview": true,
+  "healthcare_specific": {
+    "patient_forms": true,
+    "medical_charts": true,
+    "appointment_calendar": true,
+    "prescription_forms": true
+  }
+}

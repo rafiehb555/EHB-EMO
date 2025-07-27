@@ -1,0 +1,19 @@
+{
+  "total_duration": "45 minutes",
+  "materials_created": [
+    "Executive summary",
+    "Technical demo scripts",
+    "Case studies",
+    "Pricing packages",
+    "Implementation timeline",
+    "Support materials"
+  ],
+  "files_generated": [
+    "presentation/executive_summary.json",
+    "presentation/demo_scripts.json",
+    "presentation/case_studies.json",
+    "presentation/pricing.json",
+    "presentation/timeline.json",
+    "presentation/support.json"
+  ]
+}

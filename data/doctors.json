@@ -1,0 +1,49 @@
+{
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Dr. Sarah Ahmed",
+      "specialization": "Cardiology",
+      "experience_years": 15,
+      "phone": "+92-300-4567890",
+      "email": "dr.sarah.ahmed@ehb.com",
+      "qualifications": [
+        "MBBS",
+        "FCPS",
+        "FRCP"
+      ],
+      "availability": "Mon-Fri 9AM-5PM",
+      "rating": 4.8,
+      "patients_count": 150,
+      "consultation_fee": 5000,
+      "languages": [
+        "English",
+        "Urdu"
+      ],
+      "department": "Cardiology"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Muhammad Hassan",
+      "specialization": "Neurology",
+      "experience_years": 12,
+      "phone": "+92-300-5678901",
+      "email": "dr.muhammad.hassan@ehb.com",
+      "qualifications": [
+        "MBBS",
+        "FCPS",
+        "MRCP"
+      ],
+      "availability": "Mon-Sat 10AM-6PM",
+      "rating": 4.9,
+      "patients_count": 200,
+      "consultation_fee": 6000,
+      "languages": [
+        "English",
+        "Urdu",
+        "Arabic"
+      ],
+      "department": "Neurology"
+    }
+  ]
+}

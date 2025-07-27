@@ -1,0 +1,38 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "@mongodb-uri",
+    "JWT_SECRET": "@jwt-secret",
+    "NEXT_PUBLIC_API_URL": "@api-url",
+    "OPENAI_API_KEY": "@openai-key",
+    "SUPABASE_URL": "@supabase-url",
+    "SUPABASE_ANON_KEY": "@supabase-anon-key",
+    "SENDGRID_API_KEY": "@sendgrid-key",
+    "TWILIO_ACCOUNT_SID": "@twilio-sid",
+    "TWILIO_AUTH_TOKEN": "@twilio-token",
+    "POLKADOT_RPC_URL": "@polkadot-rpc",
+    "MOONBEAM_RPC_URL": "@moonbeam-rpc",
+    "BSC_RPC_URL": "@bsc-rpc"
+  },
+  "functions": {
+    "pages/api/**/*.js": {
+      "maxDuration": 30
+    }
+  }
+} 

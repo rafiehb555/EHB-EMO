@@ -1,0 +1,30 @@
+{
+  "name": "cloned-example_com",
+  "version": "1.0.0",
+  "description": "Cloned website from https://example.com",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 3000",
+    "dev": "npx live-server .",
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "npx postcss assets/css/*.css -d dist/css",
+    "build:js": "npx webpack assets/js/*.js -o dist/js"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.21",
+    "webpack": "^5.75.0"
+  },
+  "keywords": [
+    "cloned",
+    "website",
+    "example domain"
+  ],
+  "author": "Website Cloning System",
+  "clonedFrom": "https://example.com",
+  "clonedAt": "2025-07-25T09:27:02.643Z",
+  "technologies": []
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Portable EHB System",
+  "version": "1.0.0",
+  "features": {
+    "healthcare": true,
+    "frontend": true,
+    "backend": true,
+    "testing": true,
+    "security": true,
+    "deployment": true
+  },
+  "agents": {
+    "autoInstall": true,
+    "autoConfigure": true,
+    "autoTest": true
+  },
+  "detectedFeatures": [
+    "react",
+    "python",
+    "postgresql",
+    "redis"
+  ],
+  "projectRoot": "F:\\ehb 5",
+  "lastUpdated": "2025-07-15T20:19:19.389Z"
+}

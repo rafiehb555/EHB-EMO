@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-07-15T20:32:32.333Z",
+  "deploymentTargets": [
+    "aws",
+    "azure",
+    "google-cloud",
+    "digitalocean"
+  ],
+  "complianceStandards": [
+    "hipaa",
+    "gdpr",
+    "soc2"
+  ],
+  "monitoringTools": [],
+  "status": "active"
+}

@@ -1,0 +1,2015 @@
+{
+  "patient_management_system_20250717_130343": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_130458": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131224": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131610": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131624": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131637": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131652": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131712": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131845": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131848": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131851": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131855": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_131858": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132042": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132049": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132054": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132057": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132101": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132105": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132108": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132211": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132214": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132216": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132218": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132221": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132224": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132320": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132323": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132326": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132329": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132332": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132336": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132339": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132442": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132446": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132449": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132452": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132455": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132457": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132500": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132614": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132619": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132624": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132627": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132629": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132633": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132635": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132751": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132756": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132800": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132804": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132808": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132815": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_132820": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_134542": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_134545": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_134548": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_134551": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_134554": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_134558": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "patient_management_system_20250717_134600": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "analysisDate": "2025-07-25T09:27:02.625Z",
+  "originalUrl": "https://example.com",
+  "clonedAt": "7/25/2025, 2:27:02 PM",
+  "website": {
+    "title": "Example Domain",
+    "description": "",
+    "language": "en",
+    "technologies": []
+  },
+  "assets": {
+    "totalStylesheets": 0,
+    "totalScripts": 0,
+    "totalImages": 0,
+    "totalLinks": 1,
+    "totalForms": 0
+  },
+  "performance": {
+    "Timestamp": 131275.515334,
+    "Documents": 3,
+    "Frames": 1,
+    "JSEventListeners": 0,
+    "Nodes": 43,
+    "LayoutCount": 3,
+    "RecalcStyleCount": 3,
+    "LayoutDuration": 0.007745,
+    "RecalcStyleDuration": 0.000308,
+    "ScriptDuration": 0,
+    "TaskDuration": 0.026597,
+    "JSHeapUsedSize": 1183800,
+    "JSHeapTotalSize": 1572864
+  },
+  "seo": {
+    "hasTitle": true,
+    "hasDescription": false,
+    "hasKeywords": false,
+    "hasFavicon": false,
+    "hasViewport": true,
+    "hasOpenGraph": false,
+    "hasTwitterCard": false,
+    "hasStructuredData": false
+  },
+  "accessibility": {
+    "hasAltTexts": true,
+    "hasHeadings": true,
+    "hasSkipLinks": false,
+    "hasAriaLabels": false,
+    "hasLandmarks": false
+  },
+  "downloadedAssets": {
+    "css": [],
+    "js": [],
+    "images": [],
+    "fonts": [],
+    "others": []
+  },
+  "recommendations": [
+    "Add a meta description",
+    "Add a favicon",
+    "Consider using modern web frameworks"
+  ]
+}

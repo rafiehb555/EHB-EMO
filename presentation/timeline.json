@@ -1,0 +1,38 @@
+{
+  "phase_1": {
+    "duration": "2 weeks",
+    "activities": [
+      "Project kickoff",
+      "Requirements gathering",
+      "System architecture design",
+      "Security assessment"
+    ]
+  },
+  "phase_2": {
+    "duration": "4 weeks",
+    "activities": [
+      "Development and customization",
+      "Integration setup",
+      "Testing and quality assurance",
+      "User training preparation"
+    ]
+  },
+  "phase_3": {
+    "duration": "2 weeks",
+    "activities": [
+      "User training",
+      "Data migration",
+      "Go-live preparation",
+      "Final testing"
+    ]
+  },
+  "phase_4": {
+    "duration": "1 week",
+    "activities": [
+      "Production deployment",
+      "Go-live support",
+      "Performance monitoring",
+      "Post-launch optimization"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "project_id": "patient_management_system_20250717_131712",
+  "validation_date": "2025-07-17T13:17:12.860222",
+  "compliance_check": {
+    "is_valid": true,
+    "issues": [],
+    "recommendations": [],
+    "compliance": {
+      "hipaa": true,
+      "accessibility": false,
+      "performance": true,
+      "security": false
+    }
+  },
+  "performance_check": true,
+  "security_check": {
+    "is_compliant": false,
+    "missing_requirements": [
+      "audit_logging"
+    ],
+    "compliance_score": 75.0
+  },
+  "recommendations": {
+    "technology": "React.js + Node.js + PostgreSQL",
+    "features": [
+      "Patient registration",
+      "Medical history tracking",
+      "Appointment scheduling"
+    ],
+    "compliance": [
+      "HIPAA compliance",
+      "Data encryption",
+      "Audit logging"
+    ],
+    "testing": [
+      "Medical data validation",
+      "Security testing",
+      "Accessibility testing"
+    ],
+    "team_structure": [
+      "Frontend Developer",
+      "Backend Developer",
+      "QA Engineer",
+      "Healthcare Specialist"
+    ],
+    "timeline": "3-6 months",
+    "budget_range": "$50,000 - $150,000"
+  }
+}

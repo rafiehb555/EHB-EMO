@@ -1,0 +1,19 @@
+@echo off
+echo 🚀 Starting EHB Complete System...
+cd /d "F:\ehb 5"
+
+echo Starting backend...
+start "EHB Backend" python api_server.py
+
+echo Starting frontend...
+start "EHB Frontend" npm run dev
+
+echo Waiting for servers to start...
+timeout /t 10 /nobreak
+
+echo Opening browser...
+start http://localhost:3000
+
+echo 🎉 EHB AI Dev Agent is LIVE!
+echo Press any key to stop...
+pause

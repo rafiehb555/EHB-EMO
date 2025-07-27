@@ -1,0 +1,46 @@
+{
+  "ai_diagnosis_demo": {
+    "title": "AI-Powered Medical Diagnosis",
+    "scenario": "Patient with fever and cough",
+    "steps": [
+      "Input symptoms",
+      "AI analysis",
+      "Diagnosis results",
+      "Treatment recommendations"
+    ],
+    "duration": "3 minutes"
+  },
+  "telemedicine_demo": {
+    "title": "Telemedicine Platform",
+    "scenario": "Virtual consultation",
+    "steps": [
+      "Doctor selection",
+      "Video call setup",
+      "Screen sharing",
+      "Prescription writing"
+    ],
+    "duration": "4 minutes"
+  },
+  "blockchain_demo": {
+    "title": "Blockchain Integration",
+    "scenario": "Token transactions",
+    "steps": [
+      "Wallet connection",
+      "Balance check",
+      "Token transfer",
+      "Transaction history"
+    ],
+    "duration": "3 minutes"
+  },
+  "analytics_demo": {
+    "title": "Advanced Analytics",
+    "scenario": "Healthcare insights",
+    "steps": [
+      "Dashboard overview",
+      "Patient analytics",
+      "Performance metrics",
+      "Predictive insights"
+    ],
+    "duration": "4 minutes"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-07-21T01:42:35.990067",
+  "errors_fixed": [
+    "Removed non-existent npm package: create-quarto-app",
+    "Removed non-existent npm package: create-rmarkdown-app",
+    "Removed non-existent npm package: create-postcss-app"
+  ],
+  "tests_passed": [
+    "npm package installed: typescript",
+    "npm package installed: create-react-app",
+    "npm package installed: create-next-app",
+    "npm package installed: create-vue-app",
+    "npm package installed: create-nuxt-app",
+    "npm package installed: create-expo-app",
+    "Script test passed: auto_cursor_script.py",
+    "Script test passed: startup_auto.py"
+  ],
+  "tests_failed": [
+    "Service unhealthy: http_server",
+    "Service failed: simple_server",
+    "Service failed: frontend"
+  ],
+  "services_status": {
+    "http_server": "unhealthy",
+    "simple_server": "failed",
+    "frontend": "failed"
+  },
+  "summary": {}
+}

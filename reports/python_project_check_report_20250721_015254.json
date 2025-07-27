@@ -1,0 +1,62 @@
+{
+  "timestamp": "2025-07-21T01:48:59.999277",
+  "missing_dependencies": [
+    "psycopg2-binary",
+    "pre-commit",
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+    "jupyter",
+    "ipython"
+  ],
+  "python_errors": [
+    "Syntax error in auto_problem_fixer.py: unexpected indent (<unknown>, line 6)",
+    "File error in nonascii.py: 'utf-8' codec can't decode byte 0xb1 in position 81: invalid start byte",
+    "File error in nonascii2.py: 'utf-8' codec can't decode byte 0xb1 in position 81: invalid start byte",
+    "File error in test_func_inspect_special_encoding.py: 'utf-8' codec can't decode byte 0xa4 in position 64: invalid start byte",
+    "Syntax error in cursor_auto_integration.py: unexpected indent (<unknown>, line 6)",
+    "Syntax error in smart_project_analyzer.py: unexpected indent (<unknown>, line 6)"
+  ],
+  "missing_files": [
+    "config.py",
+    "utils.py",
+    "models.py",
+    "api.py",
+    "database.py",
+    "test_main.py"
+  ],
+  "missing_data": [],
+  "tools_to_install": [],
+  "fixed_issues": [
+    "Installed missing package: psycopg2-binary",
+    "Installed missing package: pre-commit",
+    "Installed missing package: numpy",
+    "Installed missing package: pandas",
+    "Installed missing package: matplotlib",
+    "Installed missing package: seaborn",
+    "Installed missing package: scikit-learn",
+    "Installed missing package: jupyter",
+    "Installed missing package: ipython",
+    "Created missing file: config.py",
+    "Created missing file: utils.py",
+    "Created missing file: models.py",
+    "Created missing file: api.py",
+    "Created missing file: database.py",
+    "Created missing file: test_main.py",
+    "Created sample data: patients.json",
+    "Created sample data: doctors.json",
+    "Created sample data: appointments.json",
+    "Installed tool: pip",
+    "Installed tool: setuptools",
+    "Installed tool: wheel",
+    "Installed tool: virtualenv",
+    "Installed tool: pipenv",
+    "Installed tool: poetry"
+  ],
+  "test_results": [
+    "Some tests failed"
+  ],
+  "summary": {}
+}

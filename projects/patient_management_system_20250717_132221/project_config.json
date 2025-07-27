@@ -1,0 +1,38 @@
+{
+  "project_id": "patient_management_system_20250717_132221",
+  "project_info": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "created_date": "2025-07-17T13:22:21.451267",
+  "last_updated": "2025-07-17T13:22:21.451267"
+}

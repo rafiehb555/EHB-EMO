@@ -1,0 +1,41 @@
+{
+  "copilot": {
+    "enabled": true,
+    "features": [
+      "code-completion",
+      "code-generation",
+      "code-review"
+    ],
+    "config": {
+      "auto-suggest": true,
+      "inline-suggestions": true,
+      "chat-enabled": true
+    }
+  },
+  "code-analysis": {
+    "enabled": true,
+    "tools": [
+      "pylint",
+      "flake8",
+      "mypy",
+      "black",
+      "isort"
+    ],
+    "config": {
+      "auto-fix": true,
+      "format-on-save": true
+    }
+  },
+  "testing": {
+    "enabled": true,
+    "frameworks": [
+      "pytest",
+      "jest",
+      "cypress"
+    ],
+    "config": {
+      "auto-run": true,
+      "coverage": true
+    }
+  }
+}

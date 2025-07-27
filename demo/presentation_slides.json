@@ -1,0 +1,88 @@
+{
+  "title_slide": {
+    "title": "EHB World's Best AI Agent",
+    "subtitle": "Revolutionary Healthcare AI Platform",
+    "duration": "2 minutes"
+  },
+  "problem_statement": {
+    "title": "Healthcare Challenges",
+    "points": [
+      "Manual processes slow down care",
+      "Limited AI integration",
+      "Poor patient experience",
+      "High operational costs"
+    ],
+    "duration": "3 minutes"
+  },
+  "solution_overview": {
+    "title": "Our Solution",
+    "points": [
+      "Advanced AI-powered diagnosis",
+      "Seamless telemedicine platform",
+      "Blockchain integration",
+      "Global scalability"
+    ],
+    "duration": "4 minutes"
+  },
+  "key_features": {
+    "title": "Key Features",
+    "features": [
+      "\ud83e\udd16 AI Diagnosis Engine",
+      "\ud83c\udfe5 Telemedicine Platform",
+      "\ud83d\udd17 Blockchain Integration",
+      "\ud83d\udcca Advanced Analytics",
+      "\ud83c\udf0d Global Scaling",
+      "\ud83d\udd12 Enterprise Security"
+    ],
+    "duration": "5 minutes"
+  },
+  "technical_architecture": {
+    "title": "Technical Architecture",
+    "components": [
+      "Microservices Architecture",
+      "Multi-region Deployment",
+      "Auto-scaling Infrastructure",
+      "Real-time Monitoring"
+    ],
+    "duration": "4 minutes"
+  },
+  "business_benefits": {
+    "title": "Business Benefits",
+    "benefits": [
+      "40% faster diagnosis",
+      "60% cost reduction",
+      "99.9% uptime",
+      "Global compliance"
+    ],
+    "duration": "3 minutes"
+  },
+  "demo_highlights": {
+    "title": "Live Demo Highlights",
+    "demos": [
+      "AI Diagnosis Demo",
+      "Telemedicine Demo",
+      "Blockchain Wallet Demo",
+      "Analytics Dashboard Demo"
+    ],
+    "duration": "10 minutes"
+  },
+  "pricing": {
+    "title": "Pricing & Packages",
+    "packages": [
+      "Starter: $999/month",
+      "Professional: $2,999/month",
+      "Enterprise: Custom pricing"
+    ],
+    "duration": "3 minutes"
+  },
+  "next_steps": {
+    "title": "Next Steps",
+    "steps": [
+      "Schedule technical demo",
+      "Pilot program setup",
+      "Customization planning",
+      "Implementation timeline"
+    ],
+    "duration": "2 minutes"
+  }
+}

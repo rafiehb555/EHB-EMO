@@ -1,0 +1,38 @@
+{
+  "name": "emo-scripts",
+  "version": "1.0.0",
+  "description": "Deployment and automation scripts for EMO healthcare platform",
+  "main": "index.js",
+  "scripts": {
+    "deploy:dev": "node scripts/deploy-dev.js",
+    "deploy:staging": "node scripts/deploy-staging.js",
+    "deploy:prod": "node scripts/deploy-prod.js",
+    "setup:dev": "node scripts/setup-dev.js",
+    "setup:ci": "node scripts/setup-ci.js",
+    "backup:db": "node scripts/backup-database.js",
+    "restore:db": "node scripts/restore-database.js",
+    "health:check": "node scripts/health-check.js",
+    "security:scan": "node scripts/security-scan.js",
+    "performance:test": "node scripts/performance-test.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.1500.0",
+    "azure-sdk": "^1.0.0",
+    "google-cloud": "^6.0.0",
+    "docker": "^1.0.0",
+    "kubernetes": "^1.0.0",
+    "express": "^4.18.0",
+    "axios": "^1.6.0",
+    "dotenv": "^16.0.0",
+    "commander": "^11.0.0",
+    "ora": "^7.0.0",
+    "chalk": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "keywords": ["deployment", "automation", "healthcare", "emo", "devops"],
+  "author": "EHB Team",
+  "license": "MIT"
+} 

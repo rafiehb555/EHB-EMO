@@ -1,0 +1,20 @@
+{
+  "healthcare_apis": {
+    "fhir_base_url": "https://hapi.fhir.org/baseR4",
+    "hipaa_compliance_url": "https://www.hhs.gov/hipaa/index.html",
+    "medical_terminology_url": "https://www.nlm.nih.gov/research/umls/",
+    "clinical_decision_support_url": "https://www.hl7.org/implement/standards/"
+  },
+  "security": {
+    "encryption_required": true,
+    "audit_logging": true,
+    "access_controls": true,
+    "data_retention": "7_years"
+  },
+  "compliance": {
+    "hipaa": true,
+    "hl7": true,
+    "fhir": true,
+    "dicom": true
+  }
+}

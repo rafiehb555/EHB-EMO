@@ -1,0 +1,23 @@
+{
+  "default": true,
+  "MD013": false,
+  "MD033": false,
+  "MD041": false,
+  "MD002": false,
+  "MD012": false,
+  "MD022": {
+    "level": 1
+  },
+  "MD032": {
+    "level": 1
+  },
+  "MD031": {
+    "level": 1
+  },
+  "MD034": {
+    "level": 1
+  },
+  "MD026": {
+    "level": 1
+  }
+}

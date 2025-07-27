@@ -1,0 +1,28 @@
+{
+  "encryption": {
+    "algorithm": "AES-256",
+    "key_rotation_days": 90,
+    "data_at_rest": true,
+    "data_in_transit": true
+  },
+  "authentication": {
+    "multi_factor": true,
+    "session_timeout_minutes": 30,
+    "password_policy": "healthcare_strong"
+  },
+  "authorization": {
+    "role_based_access": true,
+    "least_privilege": true,
+    "audit_trail": true
+  },
+  "monitoring": {
+    "audit_logging": true,
+    "security_monitoring": true,
+    "incident_detection": true
+  },
+  "compliance": {
+    "hipaa": true,
+    "data_retention_years": 7,
+    "breach_notification": true
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "project_id": "patient_management_system_20250717_131855",
+  "project_info": {
+    "name": "Patient Management System",
+    "type": "patient-management",
+    "description": "Comprehensive patient management system for healthcare facilities",
+    "technology_stack": [
+      "React.js",
+      "Node.js",
+      "PostgreSQL"
+    ],
+    "team_members": [
+      "John Doe",
+      "Jane Smith",
+      "Dr. Johnson"
+    ],
+    "start_date": "2024-01-15",
+    "end_date": null,
+    "status": "active",
+    "priority": "high",
+    "budget": 100000.0,
+    "compliance_requirements": [
+      "HIPAA"
+    ],
+    "security_requirements": [
+      "encryption",
+      "authentication",
+      "authorization"
+    ],
+    "performance_targets": {
+      "frontend_load_time": 3000,
+      "api_response_time": 200,
+      "bundle_size": 500000
+    }
+  },
+  "metrics_summary": {
+    "total_metrics_entries": 0,
+    "average_code_coverage": 0.0,
+    "average_performance_score": 0.0,
+    "average_security_score": 0.0,
+    "average_accessibility_score": 0.0,
+    "average_compliance_score": 0.0
+  },
+  "recommendations": {
+    "technology": "React.js + Node.js + PostgreSQL",
+    "features": [
+      "Patient registration",
+      "Medical history tracking",
+      "Appointment scheduling"
+    ],
+    "compliance": [
+      "HIPAA compliance",
+      "Data encryption",
+      "Audit logging"
+    ],
+    "testing": [
+      "Medical data validation",
+      "Security testing",
+      "Accessibility testing"
+    ],
+    "team_structure": [
+      "Frontend Developer",
+      "Backend Developer",
+      "QA Engineer",
+      "Healthcare Specialist"
+    ],
+    "timeline": "3-6 months",
+    "budget_range": "$50,000 - $150,000"
+  },
+  "validation": {
+    "is_valid": true,
+    "issues": [],
+    "recommendations": [],
+    "compliance": {
+      "hipaa": true,
+      "accessibility": false,
+      "performance": true,
+      "security": false
+    }
+  },
+  "generated_date": "2025-07-17T13:18:55.257938"
+}

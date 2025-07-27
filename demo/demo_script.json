@@ -1,0 +1,30 @@
+{
+  "introduction": {
+    "duration": "2 minutes",
+    "content": "Welcome and overview of EHB Healthcare AI platform"
+  },
+  "problem_solution": {
+    "duration": "5 minutes",
+    "content": "Healthcare challenges and our innovative solution"
+  },
+  "live_demos": {
+    "duration": "15 minutes",
+    "content": "Interactive demonstrations of key features"
+  },
+  "case_studies": {
+    "duration": "6 minutes",
+    "content": "Real-world success stories and results"
+  },
+  "pricing": {
+    "duration": "3 minutes",
+    "content": "Flexible pricing options for different needs"
+  },
+  "q_and_a": {
+    "duration": "10 minutes",
+    "content": "Address client questions and concerns"
+  },
+  "next_steps": {
+    "duration": "2 minutes",
+    "content": "Clear action items and follow-up plan"
+  }
+}

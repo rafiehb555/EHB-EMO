@@ -1,0 +1,68 @@
+{
+  "timestamp": "2025-07-16 17:24:06.092811",
+  "system_check": {
+    "docker": {
+      "installed": true,
+      "version": "Docker version 28.3.0, build 38b7060",
+      "daemon_running": true,
+      "containers": 1
+    },
+    "mongodb": {
+      "installed": false,
+      "error": "[WinError 2] The system cannot find the file specified"
+    },
+    "aws": {
+      "installed": true,
+      "version": "aws-cli/2.27.49 Python/3.13.4 Windows/11 exe/AMD64",
+      "configured": false
+    },
+    "openai": {
+      "available": true,
+      "api_key_set": true,
+      "connection": "successful",
+      "model": "gpt-3.5-turbo"
+    },
+    "python_packages": {
+      "installed": [
+        "flask",
+        "pytest",
+        "bandit",
+        "safety",
+        "black",
+        "flake8",
+        "mypy",
+        "pylint",
+        "docker",
+        "pymongo",
+        "boto3",
+        "openai",
+        "requests",
+        "json",
+        "subprocess",
+        "pathlib"
+      ],
+      "missing": [],
+      "total_installed": 16,
+      "total_missing": 0
+    },
+    "system_info": {
+      "platform": "Windows",
+      "platform_version": "10.0.26100",
+      "machine": "AMD64",
+      "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
+      "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+      "python_path": "C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+      "working_directory": "F:\\ehb 5"
+    }
+  },
+  "summary": {
+    "docker_status": "\u2705",
+    "mongodb_status": "\u274c",
+    "aws_status": "\u2705",
+    "openai_status": "\u2705",
+    "packages_status": "\u2705",
+    "total_checks": 5,
+    "passed_checks": 4,
+    "overall_status": "ready"
+  }
+}

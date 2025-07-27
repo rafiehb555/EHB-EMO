@@ -1,0 +1,15 @@
+{
+  "insurance_providers": [
+    {
+      "id": 1,
+      "name": "State Life Insurance",
+      "coverage_types": [
+        "Health",
+        "Life",
+        "Accident"
+      ],
+      "contact": "+92-51-2345678",
+      "website": "www.statelifepakistan.com"
+    }
+  ]
+}
