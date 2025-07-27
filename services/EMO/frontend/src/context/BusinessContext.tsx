@@ -1,40 +1,87 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import axios from 'axios';
+import { useAuth } from './AuthContext';
 
 interface Business {
   id: string;
-  name: string;
-  type: string;
+  businessName: string;
+  businessType: string;
   industry: string;
-  revenue: number;
-  employeeCount: number;
-  location: string;
-  yearsInBusiness: number;
-  verificationStatus: 'pending' | 'approved' | 'rejected' | 'processing';
-  sqlLevel: 'Free' | 'Basic' | 'Normal' | 'High' | 'VIP';
-  documents: BusinessDocument[];
-  createdAt: string;
-  updatedAt: string;
-}
-
-interface BusinessDocument {
-  id: string;
-  type: string;
-  filename: string;
-  status: 'pending' | 'approved' | 'rejected';
-  uploadedAt: string;
-  verifiedAt?: string;
+  email: string;
+  phone: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    postalCode: string;
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
+  };
+  description?: string;
+  yearEstablished?: number;
+  employeeCount?: number;
+  annualRevenue?: number;
+  verificationStatus: 'pending' | 'in_progress' | 'verified' | 'rejected' | 'expired';
+  verificationScore: number;
+  verifiedAt?: Date;
+  documents: Array<{
+    type: string;
+    filename: string;
+    originalName: string;
+    status: 'pending' | 'approved' | 'rejected';
+    uploadedAt: Date;
+  }>;
+  services: Array<{
+    name: string;
+    description?: string;
+    price?: number;
+    category?: string;
+    isActive: boolean;
+  }>;
+  metrics: {
+    totalOrders: number;
+    totalRevenue: number;
+    averageRating: number;
+    totalReviews: number;
+    completionRate: number;
+  };
+  status: 'active' | 'inactive' | 'suspended' | 'pending';
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 interface BusinessContextType {
   business: Business | null;
-  documents: BusinessDocument[];
-  verificationStatus: string;
-  sqlLevel: string;
   isLoading: boolean;
-  updateBusiness: (data: Partial<Business>) => Promise<void>;
-  uploadDocument: (file: File, type: string) => Promise<void>;
-  getBusinessProfile: () => Promise<void>;
-  submitVerification: () => Promise<void>;
+  error: string | null;
+  createBusiness: (businessData: CreateBusinessData) => Promise<void>;
+  updateBusiness: (businessId: string, businessData: Partial<Business>) => Promise<void>;
+  uploadDocument: (businessId: string, file: File, documentType: string) => Promise<void>;
+  getBusiness: (businessId: string) => Promise<void>;
+  refreshBusiness: () => Promise<void>;
+  clearError: () => void;
+}
+
+interface CreateBusinessData {
+  businessName: string;
+  businessType: string;
+  industry: string;
+  email: string;
+  phone: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    country: string;
+    postalCode: string;
+  };
+  description?: string;
+  yearEstablished?: number;
+  employeeCount?: number;
+  annualRevenue?: number;
 }
 
 const BusinessContext = createContext<BusinessContextType | undefined>(undefined);
@@ -53,151 +100,126 @@ interface BusinessProviderProps {
 
 export const BusinessProvider: React.FC<BusinessProviderProps> = ({ children }) => {
   const [business, setBusiness] = useState<Business | null>(null);
-  const [documents, setDocuments] = useState<BusinessDocument[]>([]);
-  const [verificationStatus, setVerificationStatus] = useState<string>('pending');
-  const [sqlLevel, setSqlLevel] = useState<string>('Free');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const { user, isAuthenticated } = useAuth();
 
-  const getBusinessProfile = async () => {
+  // Load business data when user is authenticated
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      loadUserBusiness();
+    }
+  }, [isAuthenticated, user]);
+
+  const loadUserBusiness = async () => {
     try {
       setIsLoading(true);
-      const token = localStorage.getItem('emo_token');
-      
-      if (!token) {
-        throw new Error('No authentication token');
-      }
+      setError(null);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/business/profile`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setBusiness(data.business);
-        setDocuments(data.documents || []);
-        setVerificationStatus(data.verificationStatus || 'pending');
-        setSqlLevel(data.sqlLevel || 'Free');
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/businesses/my-business`);
+      setBusiness(response.data.business);
+    } catch (error: any) {
+      if (error.response?.status !== 404) {
+        setError(error.response?.data?.message || 'Failed to load business data');
       }
-    } catch (error) {
-      console.error('Error fetching business profile:', error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const updateBusiness = async (data: Partial<Business>) => {
+  const createBusiness = async (businessData: CreateBusinessData) => {
     try {
       setIsLoading(true);
-      const token = localStorage.getItem('emo_token');
-      
-      if (!token) {
-        throw new Error('No authentication token');
-      }
+      setError(null);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/business/update`, {
-        method: 'PUT',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        const updatedData = await response.json();
-        setBusiness(prev => ({ ...prev, ...updatedData.business }));
-      }
-    } catch (error) {
-      console.error('Error updating business:', error);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/businesses`, businessData);
+      setBusiness(response.data.business);
+    } catch (error: any) {
+      setError(error.response?.data?.message || 'Failed to create business');
       throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const uploadDocument = async (file: File, type: string) => {
+  const updateBusiness = async (businessId: string, businessData: Partial<Business>) => {
     try {
       setIsLoading(true);
-      const token = localStorage.getItem('emo_token');
-      
-      if (!token) {
-        throw new Error('No authentication token');
-      }
+      setError(null);
+
+      const response = await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/api/businesses/${businessId}`, businessData);
+      setBusiness(response.data.business);
+    } catch (error: any) {
+      setError(error.response?.data?.message || 'Failed to update business');
+      throw error;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const uploadDocument = async (businessId: string, file: File, documentType: string) => {
+    try {
+      setIsLoading(true);
+      setError(null);
 
       const formData = new FormData();
       formData.append('document', file);
-      formData.append('type', type);
+      formData.append('type', documentType);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/business/upload-document`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-        body: formData,
-      });
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/businesses/${businessId}/documents`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
-      if (response.ok) {
-        const data = await response.json();
-        setDocuments(prev => [...prev, data.document]);
-      }
-    } catch (error) {
-      console.error('Error uploading document:', error);
+      setBusiness(response.data.business);
+    } catch (error: any) {
+      setError(error.response?.data?.message || 'Failed to upload document');
       throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  const submitVerification = async () => {
+  const getBusiness = async (businessId: string) => {
     try {
       setIsLoading(true);
-      const token = localStorage.getItem('emo_token');
-      
-      if (!token) {
-        throw new Error('No authentication token');
-      }
+      setError(null);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/business/submit-verification`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setVerificationStatus(data.status);
-        if (business) {
-          setBusiness(prev => ({ ...prev!, verificationStatus: data.status }));
-        }
-      }
-    } catch (error) {
-      console.error('Error submitting verification:', error);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/businesses/${businessId}`);
+      setBusiness(response.data.business);
+    } catch (error: any) {
+      setError(error.response?.data?.message || 'Failed to get business');
       throw error;
     } finally {
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    // Load business profile on mount
-    getBusinessProfile();
-  }, []);
+  const refreshBusiness = async () => {
+    if (business) {
+      await getBusiness(business.id);
+    }
+  };
+
+  const clearError = () => {
+    setError(null);
+  };
 
   const value: BusinessContextType = {
     business,
-    documents,
-    verificationStatus,
-    sqlLevel,
     isLoading,
+    error,
+    createBusiness,
     updateBusiness,
     uploadDocument,
-    getBusinessProfile,
-    submitVerification,
+    getBusiness,
+    refreshBusiness,
+    clearError,
   };
 
   return (
@@ -205,4 +227,4 @@ export const BusinessProvider: React.FC<BusinessProviderProps> = ({ children }) 
       {children}
     </BusinessContext.Provider>
   );
-}; 
+};

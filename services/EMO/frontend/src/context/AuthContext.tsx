@@ -1,24 +1,38 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 interface User {
   id: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  name: string;
-  role: 'franchise' | 'seller' | 'service_provider' | 'school' | 'agent' | 'admin';
-  businessId?: string;
-  sqlLevel: 'Free' | 'Basic' | 'Normal' | 'High' | 'VIP';
+  role: string;
+  sqlLevel: string;
   isVerified: boolean;
+  businessType?: string;
+  franchiseId?: string;
 }
 
 interface AuthContextType {
   user: User | null;
-  token: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-  register: (userData: any) => Promise<void>;
-  isLoading: boolean;
   isAuthenticated: boolean;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<void>;
+  register: (userData: RegisterData) => Promise<void>;
+  logout: () => void;
+  updateUser: (userData: Partial<User>) => void;
+  refreshUser: () => Promise<void>;
+}
+
+interface RegisterData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  password: string;
+  businessType?: string;
+  businessName?: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -37,113 +51,122 @@ interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
+  // Check if user is authenticated on mount
   useEffect(() => {
-    // Check for existing token on app load
-    const storedToken = localStorage.getItem('emo_token');
-    if (storedToken) {
-      try {
-        const decoded = jwtDecode(storedToken) as any;
-        const currentTime = Date.now() / 1000;
-        
-        if (decoded.exp > currentTime) {
-          setToken(storedToken);
-          setUser({
-            id: decoded.id,
-            email: decoded.email,
-            name: decoded.name,
-            role: decoded.role,
-            businessId: decoded.businessId,
-            sqlLevel: decoded.sqlLevel || 'Free',
-            isVerified: decoded.isVerified || false,
-          });
-        } else {
-          localStorage.removeItem('emo_token');
-        }
-      } catch (error) {
-        console.error('Invalid token:', error);
-        localStorage.removeItem('emo_token');
-      }
-    }
-    setIsLoading(false);
+    checkAuthStatus();
   }, []);
+
+  const checkAuthStatus = async () => {
+    try {
+      const token = localStorage.getItem('emo_token');
+      if (token) {
+        // Set default auth header
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+        // Verify token and get user data
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`);
+        setUser(response.data.user);
+      }
+    } catch (error) {
+      console.error('Auth check failed:', error);
+      localStorage.removeItem('emo_token');
+      delete axios.defaults.headers.common['Authorization'];
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const login = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-      
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/login`, {
+        email,
+        password,
       });
 
-      if (!response.ok) {
-        throw new Error('Login failed');
+      const { token, user } = response.data;
+
+      // Store token
+      localStorage.setItem('emo_token', token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      // Set user
+      setUser(user);
+
+      // Redirect based on role
+      if (user.role === 'admin' || user.role === 'super_admin') {
+        router.push('/admin');
+      } else {
+        router.push('/dashboard');
       }
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Login failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-      const data = await response.json();
-      const { token: newToken, user: userData } = data;
+  const register = async (userData: RegisterData) => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, userData);
 
-      localStorage.setItem('emo_token', newToken);
-      setToken(newToken);
-      setUser(userData);
-    } catch (error) {
-      console.error('Login error:', error);
-      throw error;
+      const { token, user } = response.data;
+
+      // Store token
+      localStorage.setItem('emo_token', token);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+      // Set user
+      setUser(user);
+
+      // Redirect to dashboard
+      router.push('/dashboard');
+    } catch (error: any) {
+      throw new Error(error.response?.data?.message || 'Registration failed');
     } finally {
       setIsLoading(false);
     }
   };
 
   const logout = () => {
+    // Clear token and user
     localStorage.removeItem('emo_token');
-    setToken(null);
+    delete axios.defaults.headers.common['Authorization'];
     setUser(null);
+
+    // Redirect to home
+    router.push('/');
   };
 
-  const register = async (userData: any) => {
+  const updateUser = (userData: Partial<User>) => {
+    if (user) {
+      setUser({ ...user, ...userData });
+    }
+  };
+
+  const refreshUser = async () => {
     try {
-      setIsLoading(true);
-      
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Registration failed');
-      }
-
-      const data = await response.json();
-      const { token: newToken, user: newUser } = data;
-
-      localStorage.setItem('emo_token', newToken);
-      setToken(newToken);
-      setUser(newUser);
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/me`);
+      setUser(response.data.user);
     } catch (error) {
-      console.error('Registration error:', error);
-      throw error;
-    } finally {
-      setIsLoading(false);
+      console.error('Failed to refresh user:', error);
+      logout();
     }
   };
 
   const value: AuthContextType = {
     user,
-    token,
-    login,
-    logout,
-    register,
+    isAuthenticated: !!user,
     isLoading,
-    isAuthenticated: !!user && !!token,
+    login,
+    register,
+    logout,
+    updateUser,
+    refreshUser,
   };
 
   return (
@@ -151,4 +174,4 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-}; 
+};

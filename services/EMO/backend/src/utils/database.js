@@ -3,8 +3,8 @@ const logger = require('./logger');
 
 const connectDB = async () => {
   try {
-    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/emo-business';
-    
+    const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/emo_db';
+
     const options = {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -16,9 +16,9 @@ const connectDB = async () => {
     };
 
     await mongoose.connect(mongoURI, options);
-    
+
     logger.info('MongoDB connected successfully');
-    
+
     // Handle connection events
     mongoose.connection.on('error', (err) => {
       logger.error('MongoDB connection error:', err);
@@ -41,8 +41,8 @@ const connectDB = async () => {
 
   } catch (error) {
     logger.error('Database connection failed:', error);
-    process.exit(1);
+    throw error;
   }
 };
 
-module.exports = connectDB; 
+module.exports = connectDB;

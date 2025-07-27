@@ -1,221 +1,287 @@
-import React from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useAuth } from '@/context/AuthContext';
+import { motion } from 'framer-motion';
+import {
+  Building2,
+  Shield,
+  Users,
+  TrendingUp,
+  CheckCircle,
+  ArrowRight,
+  Star,
+  Award,
+  Globe,
+  Zap
+} from 'lucide-react';
 
 export default function Home() {
-  const { isAuthenticated, user } = useAuth();
+  const [activeTab, setActiveTab] = useState('business');
+
+  const features = [
+    {
+      icon: <Building2 className="w-8 h-8" />,
+      title: 'Business Verification',
+      description: 'Complete business verification process with document upload and AI-powered validation.'
+    },
+    {
+      icon: <Shield className="w-8 h-8" />,
+      title: 'SQL Level Management',
+      description: 'Track and upgrade your SQL levels from Free to VIP with automated verification.'
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: 'Franchise Management',
+      description: 'Manage your franchise network with comprehensive dashboard and team controls.'
+    },
+    {
+      icon: <TrendingUp className="w-8 h-8" />,
+      title: 'Performance Analytics',
+      description: 'Monitor your business performance with detailed analytics and insights.'
+    }
+  ];
+
+  const sqlLevels = [
+    {
+      level: 'Free',
+      features: ['Basic profile', 'Limited services', 'Standard support'],
+      price: '$0',
+      popular: false
+    },
+    {
+      level: 'Basic',
+      features: ['Enhanced profile', 'More services', 'Priority support', 'Analytics'],
+      price: '$29/month',
+      popular: false
+    },
+    {
+      level: 'Normal',
+      features: ['Full verification', 'All services', 'Premium support', 'Advanced analytics'],
+      price: '$79/month',
+      popular: true
+    },
+    {
+      level: 'High',
+      features: ['Priority verification', 'Custom features', 'Dedicated support', 'AI insights'],
+      price: '$199/month',
+      popular: false
+    },
+    {
+      level: 'VIP',
+      features: ['Instant verification', 'Exclusive features', '24/7 support', 'Custom solutions'],
+      price: '$499/month',
+      popular: false
+    }
+  ];
 
   return (
     <>
       <Head>
-        <title>EMO - Easy Management Office | EHB Technologies</title>
-        <meta name="description" content="EMO (Easy Management Office) - Business Management System for EHB Technologies" />
+        <title>EMO - Easy Management Office | Business Verification & Management</title>
+        <meta name="description" content="EMO (Easy Management Office) - Complete business verification and management platform. Upgrade your SQL levels, manage franchises, and grow your business." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-primary-50 to-primary-100">
-        {/* Navigation */}
-        <nav className="bg-white shadow-sm border-b border-gray-200">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+        {/* Header */}
+        <header className="bg-white shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-16">
+            <div className="flex justify-between items-center py-6">
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <h1 className="text-2xl font-bold text-gradient">EMO</h1>
-                </div>
-                <div className="hidden md:block ml-10">
-                  <div className="flex items-baseline space-x-4">
-                    <Link href="/features" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">
-                      Features
-                    </Link>
-                    <Link href="/pricing" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">
-                      Pricing
-                    </Link>
-                    <Link href="/about" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">
-                      About
-                    </Link>
-                    <Link href="/contact" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">
-                      Contact
-                    </Link>
-                  </div>
-                </div>
+                <Building2 className="w-8 h-8 text-blue-600" />
+                <span className="ml-2 text-2xl font-bold text-gray-900">EMO</span>
               </div>
+              <nav className="hidden md:flex space-x-8">
+                <a href="#features" className="text-gray-600 hover:text-blue-600">Features</a>
+                <a href="#pricing" className="text-gray-600 hover:text-blue-600">Pricing</a>
+                <a href="#about" className="text-gray-600 hover:text-blue-600">About</a>
+              </nav>
               <div className="flex items-center space-x-4">
-                {isAuthenticated ? (
-                  <Link href="/dashboard" className="btn-primary">
-                    Dashboard
-                  </Link>
-                ) : (
-                  <>
-                    <Link href="/login" className="text-gray-700 hover:text-primary-600 px-3 py-2 rounded-md text-sm font-medium">
-                      Login
-                    </Link>
-                    <Link href="/register" className="btn-primary">
-                      Get Started
-                    </Link>
-                  </>
-                )}
+                <Link href="/login" className="text-gray-600 hover:text-blue-600">
+                  Sign In
+                </Link>
+                <Link href="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                  Get Started
+                </Link>
               </div>
             </div>
           </div>
-        </nav>
+        </header>
 
         {/* Hero Section */}
-        <div className="relative overflow-hidden">
-          <div className="max-w-7xl mx-auto">
-            <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-              <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-                <div className="sm:text-center lg:text-left">
-                  <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                    <span className="block">Easy Management</span>
-                    <span className="block text-gradient">Office</span>
-                  </h1>
-                  <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                    Comprehensive business management system for franchises, sellers, service providers, and schools. 
-                    Streamline operations, manage verifications, and grow your business with EMO.
-                  </p>
-                  <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                    <div className="rounded-md shadow">
-                      <Link href="/register" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 md:py-4 md:text-lg md:px-10">
-                        Start Free Trial
-                      </Link>
-                    </div>
-                    <div className="mt-3 sm:mt-0 sm:ml-3">
-                      <Link href="/demo" className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 md:py-4 md:text-lg md:px-10">
-                        Watch Demo
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </main>
-            </div>
+        <section className="py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                Easy Management
+                <span className="text-blue-600"> Office</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Complete business verification and management platform. Upgrade your SQL levels,
+                manage franchises, and grow your business with our comprehensive tools.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/register" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 flex items-center justify-center">
+                  Start Free Trial
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+                <Link href="/demo" className="border border-blue-600 text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 flex items-center justify-center">
+                  Watch Demo
+                </Link>
+              </div>
+            </motion.div>
           </div>
-        </div>
+        </section>
 
         {/* Features Section */}
-        <div className="py-12 bg-white">
+        <section id="features" className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="lg:text-center">
-              <h2 className="text-base text-primary-600 font-semibold tracking-wide uppercase">Features</h2>
-              <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
                 Everything you need to manage your business
-              </p>
-              <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-                From business verification to franchise management, EMO provides all the tools you need to succeed.
+              </h2>
+              <p className="text-xl text-gray-600">
+                From verification to analytics, EMO provides all the tools you need
               </p>
             </div>
-
-            <div className="mt-10">
-              <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-                <div className="relative">
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Business Verification</p>
-                  <p className="mt-2 ml-16 text-base text-gray-500">
-                    AI-powered document verification and business authenticity checks with blockchain security.
-                  </p>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Franchise Management</p>
-                  <p className="mt-2 ml-16 text-base text-gray-500">
-                    Complete franchise dashboard with team management, income tracking, and performance analytics.
-                  </p>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">SQL Level Monitoring</p>
-                  <p className="mt-2 ml-16 text-base text-gray-500">
-                    Track and upgrade your SQL levels from Free to VIP with automated recommendations.
-                  </p>
-                </div>
-
-                <div className="relative">
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Complaint Management</p>
-                  <p className="mt-2 ml-16 text-base text-gray-500">
-                    Automated complaint routing with escalation timers and penalty calculation system.
-                  </p>
-                </div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-gray-50 p-6 rounded-lg hover:shadow-lg transition-shadow"
+                >
+                  <div className="text-blue-600 mb-4">{feature.icon}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* SQL Levels Section */}
+        <section id="pricing" className="py-20 bg-gray-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-900 mb-4">
+                Choose Your SQL Level
+              </h2>
+              <p className="text-xl text-gray-600">
+                Upgrade your verification level and unlock more features
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+              {sqlLevels.map((plan, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`bg-white p-6 rounded-lg shadow-lg ${
+                    plan.popular ? 'ring-2 ring-blue-600' : ''
+                  }`}
+                >
+                  {plan.popular && (
+                    <div className="bg-blue-600 text-white text-sm font-semibold px-3 py-1 rounded-full text-center mb-4">
+                      Most Popular
+                    </div>
+                  )}
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.level}</h3>
+                  <div className="text-3xl font-bold text-blue-600 mb-4">{plan.price}</div>
+                  <ul className="space-y-2 mb-6">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center text-gray-600">
+                        <CheckCircle className="w-4 h-4 text-green-500 mr-2" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={`/register?plan=${plan.level.toLowerCase()}`}
+                    className={`w-full block text-center py-2 px-4 rounded-lg ${
+                      plan.popular
+                        ? 'bg-blue-600 text-white hover:bg-blue-700'
+                        : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                    }`}
+                  >
+                    Get Started
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
-        <div className="bg-primary-700">
-          <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-              <span className="block">Ready to get started?</span>
-              <span className="block">Start your free trial today.</span>
+        <section className="py-20 bg-blue-600">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Ready to get started?
             </h2>
-            <p className="mt-4 text-lg leading-6 text-primary-200">
-              Join thousands of businesses already using EMO to streamline their operations.
+            <p className="text-xl text-blue-100 mb-8">
+              Join thousands of businesses using EMO to manage their operations
             </p>
-            <Link href="/register" className="mt-8 w-full inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-primary-50 sm:w-auto">
-              Sign up for free
+            <Link href="/register" className="bg-white text-blue-600 px-8 py-3 rounded-lg hover:bg-gray-100 inline-flex items-center">
+              Start Your Free Trial
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Link>
           </div>
-        </div>
+        </section>
 
         {/* Footer */}
-        <footer className="bg-gray-800">
-          <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-            <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-              <div className="space-y-8 xl:col-span-1">
-                <h3 className="text-2xl font-bold text-gradient">EMO</h3>
-                <p className="text-gray-300 text-base">
-                  Easy Management Office - Comprehensive business management system for EHB Technologies.
+        <footer className="bg-gray-900 text-white py-12">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div>
+                <div className="flex items-center mb-4">
+                  <Building2 className="w-8 h-8 text-blue-400" />
+                  <span className="ml-2 text-xl font-bold">EMO</span>
+                </div>
+                <p className="text-gray-400">
+                  Easy Management Office - Complete business verification and management platform.
                 </p>
               </div>
-              <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
-                <div className="md:grid md:grid-cols-2 md:gap-8">
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Solutions</h3>
-                    <ul className="mt-4 space-y-4">
-                      <li><Link href="/franchise" className="text-base text-gray-300 hover:text-white">Franchise Management</Link></li>
-                      <li><Link href="/verification" className="text-base text-gray-300 hover:text-white">Business Verification</Link></li>
-                      <li><Link href="/complaints" className="text-base text-gray-300 hover:text-white">Complaint System</Link></li>
-                      <li><Link href="/sql" className="text-base text-gray-300 hover:text-white">SQL Levels</Link></li>
-                    </ul>
-                  </div>
-                  <div className="mt-12 md:mt-0">
-                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
-                    <ul className="mt-4 space-y-4">
-                      <li><Link href="/help" className="text-base text-gray-300 hover:text-white">Help Center</Link></li>
-                      <li><Link href="/contact" className="text-base text-gray-300 hover:text-white">Contact Us</Link></li>
-                      <li><Link href="/status" className="text-base text-gray-300 hover:text-white">System Status</Link></li>
-                    </ul>
-                  </div>
-                </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Product</h3>
+                <ul className="space-y-2 text-gray-400">
+                  <li><a href="#" className="hover:text-white">Features</a></li>
+                  <li><a href="#" className="hover:text-white">Pricing</a></li>
+                  <li><a href="#" className="hover:text-white">API</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Company</h3>
+                <ul className="space-y-2 text-gray-400">
+                  <li><a href="#" className="hover:text-white">About</a></li>
+                  <li><a href="#" className="hover:text-white">Blog</a></li>
+                  <li><a href="#" className="hover:text-white">Careers</a></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Support</h3>
+                <ul className="space-y-2 text-gray-400">
+                  <li><a href="#" className="hover:text-white">Help Center</a></li>
+                  <li><a href="#" className="hover:text-white">Contact</a></li>
+                  <li><a href="#" className="hover:text-white">Status</a></li>
+                </ul>
               </div>
             </div>
-            <div className="mt-12 border-t border-gray-700 pt-8">
-              <p className="text-base text-gray-400 xl:text-center">
-                &copy; 2024 EHB Technologies. All rights reserved.
-              </p>
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+              <p>&copy; 2024 EMO. All rights reserved.</p>
             </div>
           </div>
         </footer>
       </div>
     </>
   );
-} 
+}

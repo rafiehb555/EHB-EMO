@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
   error.message = err.message;
 
   // Log error
-  logger.error({
+  logger.error('Error:', {
     message: err.message,
     stack: err.stack,
     url: req.url,
@@ -49,6 +49,11 @@ const errorHandler = (err, req, res, next) => {
     error = { message, statusCode: 400 };
   }
 
+  if (err.code === 'LIMIT_FILE_COUNT') {
+    const message = 'Too many files';
+    error = { message, statusCode: 400 };
+  }
+
   if (err.code === 'LIMIT_UNEXPECTED_FILE') {
     const message = 'Unexpected file field';
     error = { message, statusCode: 400 };
@@ -56,7 +61,7 @@ const errorHandler = (err, req, res, next) => {
 
   // Rate limit errors
   if (err.status === 429) {
-    const message = 'Too many requests, please try again later';
+    const message = 'Too many requests';
     error = { message, statusCode: 429 };
   }
 
@@ -68,8 +73,7 @@ const errorHandler = (err, req, res, next) => {
     success: false,
     error: message,
     ...(process.env.NODE_ENV === 'development' && { stack: err.stack }),
-    timestamp: new Date().toISOString(),
   });
 };
 
-module.exports = errorHandler; 
+module.exports = errorHandler;

@@ -1,159 +1,177 @@
-// EMO Business Management System - Environment Configuration
+require('dotenv').config();
 
-const config = {
-  // Application Settings
-  app: {
-    name: 'EMO Business Management System',
-    version: '1.0.0',
-    port: process.env.PORT || 3000,
-    environment: process.env.NODE_ENV || 'development',
-    frontendUrl: process.env.FRONTEND_URL || 'http://localhost:6000',
-    adminUrl: process.env.ADMIN_URL || 'http://localhost:6001',
-    aiUrl: process.env.AI_URL || 'http://localhost:5001',
-    blockchainUrl: process.env.BLOCKCHAIN_URL || 'http://localhost:5002',
-  },
-
-  // Database Configuration
-  database: {
-    uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/emo-business',
-    options: {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      maxPoolSize: 10,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-    },
-  },
-
-  // JWT Authentication
-  jwt: {
-    secret: process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production',
-    expiresIn: process.env.JWT_EXPIRES_IN || '24h',
-    refreshSecret: process.env.JWT_REFRESH_SECRET || 'your-refresh-token-secret',
-    refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
-  },
-
-  // Email Configuration
-  email: {
-    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-    port: process.env.EMAIL_PORT || 587,
-    user: process.env.EMAIL_USER || 'your-email@gmail.com',
-    pass: process.env.EMAIL_PASS || 'your-app-password',
-    from: process.env.EMAIL_FROM || 'noreply@emo-business.com',
-  },
-
-  // SMS Configuration (Twilio)
-  sms: {
-    accountSid: process.env.TWILIO_ACCOUNT_SID || 'your-twilio-account-sid',
-    authToken: process.env.TWILIO_AUTH_TOKEN || 'your-twilio-auth-token',
-    phoneNumber: process.env.TWILIO_PHONE_NUMBER || '+1234567890',
-  },
-
-  // File Storage (AWS S3)
-  storage: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || 'your-aws-access-key',
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'your-aws-secret-key',
-    region: process.env.AWS_REGION || 'us-east-1',
-    bucket: process.env.AWS_S3_BUCKET || 'emo-business-documents',
-    bucketUrl: process.env.AWS_S3_BUCKET_URL || 'https://emo-business-documents.s3.amazonaws.com',
-  },
-
-  // AI Services (OpenAI)
-  ai: {
-    apiKey: process.env.OPENAI_API_KEY || 'your-openai-api-key',
-    model: process.env.OPENAI_MODEL || 'gpt-4',
-    maxTokens: process.env.OPENAI_MAX_TOKENS || 2000,
-  },
-
-  // Blockchain Configuration
-  blockchain: {
-    polkadot: {
-      rpcUrl: process.env.POLKADOT_RPC_URL || 'wss://rpc.polkadot.io',
-      privateKey: process.env.POLKADOT_PRIVATE_KEY || 'your-polkadot-private-key',
-    },
-    moonbeam: {
-      rpcUrl: process.env.MOONBEAM_RPC_URL || 'wss://wss.api.moonbeam.network',
-      privateKey: process.env.MOONBEAM_PRIVATE_KEY || 'your-moonbeam-private-key',
-    },
-    bsc: {
-      rpcUrl: process.env.BSC_RPC_URL || 'https://bsc-dataseed.binance.org',
-    },
-  },
-
-  // Redis Configuration
-  redis: {
-    url: process.env.REDIS_URL || 'redis://localhost:6379',
-    password: process.env.REDIS_PASSWORD || 'your-redis-password',
-  },
-
-  // Logging
-  logging: {
-    level: process.env.LOG_LEVEL || 'info',
-    filePath: process.env.LOG_FILE_PATH || './logs',
-  },
-
-  // Security
-  security: {
-    bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS) || 12,
-    rateLimitWindowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 900000,
-    rateLimitMaxRequests: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
-    slowDownDelayMs: parseInt(process.env.SLOW_DOWN_DELAY_MS) || 500,
-  },
-
-  // Business Rules
-  business: {
-    verificationTimeoutHours: parseInt(process.env.VERIFICATION_TIMEOUT_HOURS) || 24,
-    complaintEscalationHours: parseInt(process.env.COMPLAINT_ESCALATION_HOURS) || 6,
-    sqlUpgradeCooldownDays: parseInt(process.env.SQL_UPGRADE_COOLDOWN_DAYS) || 30,
-    maxFileSizeMb: parseInt(process.env.MAX_FILE_SIZE_MB) || 10,
-    allowedFileTypes: (process.env.ALLOWED_FILE_TYPES || 'pdf,jpg,jpeg,png,doc,docx').split(','),
-  },
-
-  // Payment Configuration
-  payment: {
-    stripe: {
-      secretKey: process.env.STRIPE_SECRET_KEY || 'your-stripe-secret-key',
-      publishableKey: process.env.STRIPE_PUBLISHABLE_KEY || 'your-stripe-publishable-key',
-      webhookSecret: process.env.STRIPE_WEBHOOK_SECRET || 'your-stripe-webhook-secret',
-    },
-  },
-
-  // Monitoring
-  monitoring: {
-    sentryDsn: process.env.SENTRY_DSN || 'your-sentry-dsn',
-    newRelicLicenseKey: process.env.NEW_RELIC_LICENSE_KEY || 'your-new-relic-key',
-  },
-
-  // Development
+const environments = {
   development: {
-    debug: process.env.DEBUG === 'true' || false,
-    enableSwagger: process.env.ENABLE_SWAGGER === 'true' || false,
-    enableLogging: process.env.ENABLE_LOGGING === 'true' || true,
+    NODE_ENV: 'development',
+    PORT: process.env.PORT || 4003,
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/emo_dev',
+    JWT_SECRET: process.env.JWT_SECRET || 'emo-dev-secret-key-change-in-production',
+    JWT_EXPIRE: process.env.JWT_EXPIRE || '7d',
+    FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',
+    ADMIN_URL: process.env.ADMIN_URL || 'http://localhost:6001',
+    LOG_LEVEL: process.env.LOG_LEVEL || 'debug',
+
+    // Email configuration
+    SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
+    SMTP_PORT: process.env.SMTP_PORT || 587,
+    SMTP_USER: process.env.SMTP_USER || '',
+    SMTP_PASS: process.env.SMTP_PASS || '',
+    FROM_EMAIL: process.env.FROM_EMAIL || 'noreply@emo.com',
+
+    // SMS configuration
+    TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID || '',
+    TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN || '',
+    TWILIO_PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER || '',
+
+    // File upload configuration
+    UPLOAD_PATH: process.env.UPLOAD_PATH || './uploads',
+    MAX_FILE_SIZE: process.env.MAX_FILE_SIZE || 10 * 1024 * 1024, // 10MB
+    ALLOWED_FILE_TYPES: process.env.ALLOWED_FILE_TYPES || 'jpg,jpeg,png,pdf,doc,docx',
+
+    // AI configuration
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
+    OPENAI_MODEL: process.env.OPENAI_MODEL || 'gpt-3.5-turbo',
+
+    // Blockchain configuration
+    POLKADOT_ENDPOINT: process.env.POLKADOT_ENDPOINT || 'wss://rpc.polkadot.io',
+    MOONBEAM_ENDPOINT: process.env.MOONBEAM_ENDPOINT || 'https://rpc.api.moonbeam.network',
+    BSC_ENDPOINT: process.env.BSC_ENDPOINT || 'https://bsc-dataseed.binance.org',
+
+    // Rate limiting
+    RATE_LIMIT_WINDOW: process.env.RATE_LIMIT_WINDOW || 15 * 60 * 1000, // 15 minutes
+    RATE_LIMIT_MAX: process.env.RATE_LIMIT_MAX || 100,
+
+    // Security
+    CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
+    SESSION_SECRET: process.env.SESSION_SECRET || 'emo-session-secret',
+
+    // Database
+    DB_NAME: process.env.DB_NAME || 'emo_dev',
+    DB_HOST: process.env.DB_HOST || 'localhost',
+    DB_PORT: process.env.DB_PORT || 27017,
+    DB_USER: process.env.DB_USER || '',
+    DB_PASS: process.env.DB_PASS || '',
   },
-};
 
-// Validate required configuration
-const validateConfig = () => {
-  const required = [
-    'jwt.secret',
-    'database.uri',
-    'email.user',
-    'email.pass',
-  ];
+  staging: {
+    NODE_ENV: 'staging',
+    PORT: process.env.PORT || 4003,
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/emo_staging',
+    JWT_SECRET: process.env.JWT_SECRET || 'emo-staging-secret-key',
+    JWT_EXPIRE: process.env.JWT_EXPIRE || '7d',
+    FRONTEND_URL: process.env.FRONTEND_URL || 'https://staging.emo.com',
+    ADMIN_URL: process.env.ADMIN_URL || 'https://admin-staging.emo.com',
+    LOG_LEVEL: process.env.LOG_LEVEL || 'info',
 
-  const missing = required.filter(key => {
-    const value = key.split('.').reduce((obj, k) => obj?.[k], config);
-    return !value || value.includes('your-');
-  });
+    // Email configuration
+    SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
+    SMTP_PORT: process.env.SMTP_PORT || 587,
+    SMTP_USER: process.env.SMTP_USER || '',
+    SMTP_PASS: process.env.SMTP_PASS || '',
+    FROM_EMAIL: process.env.FROM_EMAIL || 'noreply@emo.com',
 
-  if (missing.length > 0) {
-    console.warn('⚠️  Missing or default configuration values:', missing);
-    console.warn('Please update your environment variables for production use.');
+    // SMS configuration
+    TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID || '',
+    TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN || '',
+    TWILIO_PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER || '',
+
+    // File upload configuration
+    UPLOAD_PATH: process.env.UPLOAD_PATH || './uploads',
+    MAX_FILE_SIZE: process.env.MAX_FILE_SIZE || 10 * 1024 * 1024, // 10MB
+    ALLOWED_FILE_TYPES: process.env.ALLOWED_FILE_TYPES || 'jpg,jpeg,png,pdf,doc,docx',
+
+    // AI configuration
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
+    OPENAI_MODEL: process.env.OPENAI_MODEL || 'gpt-3.5-turbo',
+
+    // Blockchain configuration
+    POLKADOT_ENDPOINT: process.env.POLKADOT_ENDPOINT || 'wss://rpc.polkadot.io',
+    MOONBEAM_ENDPOINT: process.env.MOONBEAM_ENDPOINT || 'https://rpc.api.moonbeam.network',
+    BSC_ENDPOINT: process.env.BSC_ENDPOINT || 'https://bsc-dataseed.binance.org',
+
+    // Rate limiting
+    RATE_LIMIT_WINDOW: process.env.RATE_LIMIT_WINDOW || 15 * 60 * 1000, // 15 minutes
+    RATE_LIMIT_MAX: process.env.RATE_LIMIT_MAX || 100,
+
+    // Security
+    CORS_ORIGIN: process.env.CORS_ORIGIN || 'https://staging.emo.com',
+    SESSION_SECRET: process.env.SESSION_SECRET || 'emo-session-secret',
+
+    // Database
+    DB_NAME: process.env.DB_NAME || 'emo_staging',
+    DB_HOST: process.env.DB_HOST || 'localhost',
+    DB_PORT: process.env.DB_PORT || 27017,
+    DB_USER: process.env.DB_USER || '',
+    DB_PASS: process.env.DB_PASS || '',
+  },
+
+  production: {
+    NODE_ENV: 'production',
+    PORT: process.env.PORT || 4003,
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/emo_prod',
+    JWT_SECRET: process.env.JWT_SECRET || 'emo-production-secret-key-change-this',
+    JWT_EXPIRE: process.env.JWT_EXPIRE || '7d',
+    FRONTEND_URL: process.env.FRONTEND_URL || 'https://emo.com',
+    ADMIN_URL: process.env.ADMIN_URL || 'https://admin.emo.com',
+    LOG_LEVEL: process.env.LOG_LEVEL || 'warn',
+
+    // Email configuration
+    SMTP_HOST: process.env.SMTP_HOST || 'smtp.gmail.com',
+    SMTP_PORT: process.env.SMTP_PORT || 587,
+    SMTP_USER: process.env.SMTP_USER || '',
+    SMTP_PASS: process.env.SMTP_PASS || '',
+    FROM_EMAIL: process.env.FROM_EMAIL || 'noreply@emo.com',
+
+    // SMS configuration
+    TWILIO_ACCOUNT_SID: process.env.TWILIO_ACCOUNT_SID || '',
+    TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN || '',
+    TWILIO_PHONE_NUMBER: process.env.TWILIO_PHONE_NUMBER || '',
+
+    // File upload configuration
+    UPLOAD_PATH: process.env.UPLOAD_PATH || './uploads',
+    MAX_FILE_SIZE: process.env.MAX_FILE_SIZE || 10 * 1024 * 1024, // 10MB
+    ALLOWED_FILE_TYPES: process.env.ALLOWED_FILE_TYPES || 'jpg,jpeg,png,pdf,doc,docx',
+
+    // AI configuration
+    OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
+    OPENAI_MODEL: process.env.OPENAI_MODEL || 'gpt-4',
+
+    // Blockchain configuration
+    POLKADOT_ENDPOINT: process.env.POLKADOT_ENDPOINT || 'wss://rpc.polkadot.io',
+    MOONBEAM_ENDPOINT: process.env.MOONBEAM_ENDPOINT || 'https://rpc.api.moonbeam.network',
+    BSC_ENDPOINT: process.env.BSC_ENDPOINT || 'https://bsc-dataseed.binance.org',
+
+    // Rate limiting
+    RATE_LIMIT_WINDOW: process.env.RATE_LIMIT_WINDOW || 15 * 60 * 1000, // 15 minutes
+    RATE_LIMIT_MAX: process.env.RATE_LIMIT_MAX || 100,
+
+    // Security
+    CORS_ORIGIN: process.env.CORS_ORIGIN || 'https://emo.com',
+    SESSION_SECRET: process.env.SESSION_SECRET || 'emo-session-secret',
+
+    // Database
+    DB_NAME: process.env.DB_NAME || 'emo_prod',
+    DB_HOST: process.env.DB_HOST || 'localhost',
+    DB_PORT: process.env.DB_PORT || 27017,
+    DB_USER: process.env.DB_USER || '',
+    DB_PASS: process.env.DB_PASS || '',
   }
 };
 
-// Export configuration
-module.exports = {
-  ...config,
-  validateConfig,
-}; 
+const currentEnv = process.env.NODE_ENV || 'development';
+const config = environments[currentEnv];
+
+// Validate required environment variables
+const requiredEnvVars = [
+  'JWT_SECRET',
+  'MONGODB_URI'
+];
+
+const missingVars = requiredEnvVars.filter(varName => !config[varName]);
+
+if (missingVars.length > 0) {
+  console.error('Missing required environment variables:', missingVars);
+  process.exit(1);
+}
+
+module.exports = config;

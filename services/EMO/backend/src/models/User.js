@@ -1,13 +1,20 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
-  name: {
+  // Basic Information
+  firstName: {
     type: String,
-    required: [true, 'Name is required'],
+    required: [true, 'First name is required'],
     trim: true,
-    minlength: [2, 'Name must be at least 2 characters'],
-    maxlength: [50, 'Name cannot exceed 50 characters']
+    maxlength: [50, 'First name cannot exceed 50 characters']
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Last name is required'],
+    trim: true,
+    maxlength: [50, 'Last name cannot exceed 50 characters']
   },
   email: {
     type: String,
@@ -17,94 +24,95 @@ const userSchema = new mongoose.Schema({
     trim: true,
     match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please enter a valid email']
   },
+  phone: {
+    type: String,
+    required: [true, 'Phone number is required'],
+    trim: true,
+    match: [/^[\+]?[1-9][\d]{0,15}$/, 'Please enter a valid phone number']
+  },
   password: {
     type: String,
     required: [true, 'Password is required'],
-    minlength: [6, 'Password must be at least 6 characters'],
-    select: false // Don't include password in queries by default
+    minlength: [8, 'Password must be at least 8 characters long'],
+    select: false
   },
+
+  // Role and Status
   role: {
     type: String,
-    required: [true, 'Role is required'],
-    enum: {
-      values: ['franchise', 'seller', 'service_provider', 'school', 'agent', 'admin'],
-      message: 'Role must be one of: franchise, seller, service_provider, school, agent, admin'
-    },
-    default: 'franchise'
+    enum: ['user', 'business', 'franchise', 'admin', 'super_admin'],
+    default: 'user'
   },
+  status: {
+    type: String,
+    enum: ['active', 'inactive', 'suspended', 'pending'],
+    default: 'pending'
+  },
+
+  // SQL Level System
   sqlLevel: {
     type: String,
-    enum: {
-      values: ['Free', 'Basic', 'Normal', 'High', 'VIP'],
-      message: 'SQL level must be one of: Free, Basic, Normal, High, VIP'
-    },
-    default: 'Free'
+    enum: ['free', 'basic', 'normal', 'high', 'vip'],
+    default: 'free'
   },
+  sqlExpiry: {
+    type: Date,
+    default: null
+  },
+  sqlUpgradeHistory: [{
+    level: {
+      type: String,
+      enum: ['free', 'basic', 'normal', 'high', 'vip']
+    },
+    upgradedAt: {
+      type: Date,
+      default: Date.now
+    },
+    upgradedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    reason: String
+  }],
+
+  // Business Information
+  businessName: {
+    type: String,
+    trim: true,
+    maxlength: [100, 'Business name cannot exceed 100 characters']
+  },
+  businessType: {
+    type: String,
+    enum: ['seller', 'service_provider', 'school', 'franchise', 'agent'],
+    default: null
+  },
+  businessAddress: {
+    street: String,
+    city: String,
+    state: String,
+    country: String,
+    postalCode: String,
+    coordinates: {
+      lat: Number,
+      lng: Number
+    }
+  },
+
+  // Verification
   isVerified: {
     type: Boolean,
     default: false
   },
-  businessData: {
-    businessName: {
-      type: String,
-      trim: true,
-      maxlength: [100, 'Business name cannot exceed 100 characters']
-    },
-    businessType: {
-      type: String,
-      enum: ['retail', 'service', 'manufacturing', 'technology', 'healthcare', 'education', 'other']
-    },
-    industry: {
-      type: String,
-      trim: true
-    },
-    revenue: {
-      type: Number,
-      min: [0, 'Revenue cannot be negative']
-    },
-    employeeCount: {
-      type: Number,
-      min: [1, 'Employee count must be at least 1']
-    },
-    location: {
-      address: String,
-      city: String,
-      state: String,
-      country: String,
-      postalCode: String
-    },
-    yearsInBusiness: {
-      type: Number,
-      min: [0, 'Years in business cannot be negative']
-    },
-    phone: {
-      type: String,
-      trim: true
-    },
-    website: {
-      type: String,
-      trim: true
-    },
-    description: {
-      type: String,
-      maxlength: [500, 'Description cannot exceed 500 characters']
-    }
-  },
-  verificationStatus: {
-    type: String,
-    enum: ['pending', 'approved', 'rejected', 'processing'],
-    default: 'pending'
-  },
-  documents: [{
+  verificationDocuments: [{
     type: {
       type: String,
-      enum: ['business_license', 'tax_certificate', 'bank_statement', 'utility_bill', 'other']
+      enum: ['id_card', 'business_license', 'tax_certificate', 'bank_statement', 'other']
     },
     filename: String,
     originalName: String,
-    fileSize: Number,
     mimeType: String,
-    uploadDate: {
+    size: Number,
+    uploadedAt: {
       type: Date,
       default: Date.now
     },
@@ -113,115 +121,96 @@ const userSchema = new mongoose.Schema({
       enum: ['pending', 'approved', 'rejected'],
       default: 'pending'
     },
-    verifiedAt: Date,
     verifiedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
+    verifiedAt: Date,
     rejectionReason: String
   }],
-  franchiseData: {
-    franchiseType: {
-      type: String,
-      enum: ['sub', 'master', 'corporate']
-    },
-    parentFranchise: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    },
-    subFranchises: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }],
-    territory: {
-      type: String,
-      trim: true
-    },
-    commissionRate: {
-      type: Number,
-      min: [0, 'Commission rate cannot be negative'],
-      max: [100, 'Commission rate cannot exceed 100%'],
-      default: 0
-    }
+
+  // Profile
+  avatar: {
+    type: String,
+    default: null
   },
-  walletData: {
-    balance: {
-      type: Number,
-      default: 0,
-      min: [0, 'Balance cannot be negative']
-    },
-    currency: {
-      type: String,
-      default: 'USD'
-    },
-    transactions: [{
-      type: {
-        type: String,
-        enum: ['credit', 'debit']
-      },
-      amount: Number,
-      description: String,
-      timestamp: {
-        type: Date,
-        default: Date.now
-      },
-      status: {
-        type: String,
-        enum: ['pending', 'completed', 'failed'],
-        default: 'pending'
-      }
-    }]
+  bio: {
+    type: String,
+    maxlength: [500, 'Bio cannot exceed 500 characters']
   },
-  settings: {
-    notifications: {
-      email: {
-        type: Boolean,
-        default: true
-      },
-      sms: {
-        type: Boolean,
-        default: false
-      },
-      push: {
-        type: Boolean,
-        default: true
-      }
-    },
-    privacy: {
-      profileVisibility: {
-        type: String,
-        enum: ['public', 'private', 'franchise_only'],
-        default: 'franchise_only'
-      }
-    },
-    preferences: {
-      language: {
-        type: String,
-        default: 'en'
-      },
-      timezone: {
-        type: String,
-        default: 'UTC'
-      }
-    }
+
+  // Security
+  twoFactorEnabled: {
+    type: Boolean,
+    default: false
   },
-  lastLogin: {
-    type: Date
+  twoFactorSecret: {
+    type: String,
+    select: false
   },
   loginAttempts: {
     type: Number,
     default: 0
   },
   lockUntil: {
-    type: Date
+    type: Date,
+    default: null
   },
-  isActive: {
-    type: Boolean,
-    default: true
+
+  // Timestamps
+  lastLogin: {
+    type: Date,
+    default: null
   },
-  isDeleted: {
+  emailVerified: {
     type: Boolean,
     default: false
+  },
+  emailVerificationToken: String,
+  emailVerificationExpires: Date,
+  passwordResetToken: String,
+  passwordResetExpires: Date,
+
+  // JPS Integration
+  jpsProfileId: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+
+  // Franchise Information
+  franchiseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Franchise'
+  },
+  franchiseRole: {
+    type: String,
+    enum: ['owner', 'manager', 'staff'],
+    default: null
+  },
+
+  // Wallet Integration
+  walletAddress: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+
+  // Preferences
+  preferences: {
+    notifications: {
+      email: { type: Boolean, default: true },
+      sms: { type: Boolean, default: true },
+      push: { type: Boolean, default: true }
+    },
+    language: {
+      type: String,
+      default: 'en'
+    },
+    timezone: {
+      type: String,
+      default: 'UTC'
+    }
   }
 }, {
   timestamps: true,
@@ -229,33 +218,35 @@ const userSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
+// Indexes
+userSchema.index({ email: 1 });
+userSchema.index({ phone: 1 });
+userSchema.index({ sqlLevel: 1 });
+userSchema.index({ status: 1 });
+userSchema.index({ role: 1 });
+userSchema.index({ businessType: 1 });
+userSchema.index({ 'businessAddress.coordinates': '2dsphere' });
+
 // Virtual for full name
 userSchema.virtual('fullName').get(function() {
-  return this.name;
+  return `${this.firstName} ${this.lastName}`;
 });
 
-// Virtual for business address
-userSchema.virtual('businessAddress').get(function() {
-  if (!this.businessData.location) return '';
-  const location = this.businessData.location;
-  return `${location.address || ''}, ${location.city || ''}, ${location.state || ''} ${location.postalCode || ''}`.trim();
+// Virtual for isLocked
+userSchema.virtual('isLocked').get(function() {
+  return !!(this.lockUntil && this.lockUntil > Date.now());
 });
 
-// Index for better query performance
-userSchema.index({ email: 1 });
-userSchema.index({ role: 1 });
-userSchema.index({ sqlLevel: 1 });
-userSchema.index({ verificationStatus: 1 });
-userSchema.index({ 'businessData.businessType': 1 });
-userSchema.index({ createdAt: -1 });
+// Virtual for sqlLevelExpired
+userSchema.virtual('sqlLevelExpired').get(function() {
+  return this.sqlExpiry && this.sqlExpiry < new Date();
+});
 
 // Pre-save middleware to hash password
 userSchema.pre('save', async function(next) {
-  // Only hash the password if it has been modified (or is new)
   if (!this.isModified('password')) return next();
 
   try {
-    // Hash password with cost of 12
     const salt = await bcrypt.genSalt(12);
     this.password = await bcrypt.hash(this.password, salt);
     next();
@@ -264,54 +255,62 @@ userSchema.pre('save', async function(next) {
   }
 });
 
-// Instance method to check password
+// Method to compare password
 userSchema.methods.comparePassword = async function(candidatePassword) {
   return await bcrypt.compare(candidatePassword, this.password);
 };
 
-// Instance method to check if account is locked
-userSchema.methods.isLocked = function() {
-  return !!(this.lockUntil && this.lockUntil > Date.now());
+// Method to generate JWT token
+userSchema.methods.generateAuthToken = function() {
+  return jwt.sign(
+    {
+      id: this._id,
+      email: this.email,
+      role: this.role,
+      sqlLevel: this.sqlLevel
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_EXPIRE || '7d' }
+  );
 };
 
-// Instance method to increment login attempts
+// Method to generate email verification token
+userSchema.methods.generateEmailVerificationToken = function() {
+  const token = require('crypto').randomBytes(32).toString('hex');
+  this.emailVerificationToken = token;
+  this.emailVerificationExpires = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+  return token;
+};
+
+// Method to generate password reset token
+userSchema.methods.generatePasswordResetToken = function() {
+  const token = require('crypto').randomBytes(32).toString('hex');
+  this.passwordResetToken = token;
+  this.passwordResetExpires = Date.now() + 10 * 60 * 1000; // 10 minutes
+  return token;
+};
+
+// Method to increment login attempts
 userSchema.methods.incLoginAttempts = function() {
-  // If we have a previous lock that has expired, restart at 1
   if (this.lockUntil && this.lockUntil < Date.now()) {
     return this.updateOne({
       $unset: { lockUntil: 1 },
       $set: { loginAttempts: 1 }
     });
   }
-  
+
   const updates = { $inc: { loginAttempts: 1 } };
-  
-  // Lock account after 5 failed attempts
-  if (this.loginAttempts + 1 >= 5 && !this.isLocked()) {
+  if (this.loginAttempts + 1 >= 5 && !this.isLocked) {
     updates.$set = { lockUntil: Date.now() + 2 * 60 * 60 * 1000 }; // 2 hours
   }
-  
   return this.updateOne(updates);
 };
 
-// Static method to find by email
-userSchema.statics.findByEmail = function(email) {
-  return this.findOne({ email: email.toLowerCase() });
+// Method to reset login attempts
+userSchema.methods.resetLoginAttempts = function() {
+  return this.updateOne({
+    $unset: { loginAttempts: 1, lockUntil: 1 }
+  });
 };
 
-// Static method to get users by role
-userSchema.statics.findByRole = function(role) {
-  return this.find({ role, isActive: true, isDeleted: false });
-};
-
-// Static method to get verified users
-userSchema.statics.findVerified = function() {
-  return this.find({ isVerified: true, isActive: true, isDeleted: false });
-};
-
-// Static method to get users by SQL level
-userSchema.statics.findBySQLLevel = function(level) {
-  return this.find({ sqlLevel: level, isActive: true, isDeleted: false });
-};
-
-module.exports = mongoose.model('User', userSchema); 
+module.exports = mongoose.model('User', userSchema);

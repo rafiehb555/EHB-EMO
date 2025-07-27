@@ -1,250 +1,373 @@
-# EMO (Easy Management Office) - Business Management System
+# EMO (Easy Management Office) - Business Verification & Management Platform
 
-## 🎯 **Project Overview**
+[![EMO Logo](https://img.shields.io/badge/EMO-Easy%20Management%20Office-blue)](https://emo.com)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green)](https://nodejs.org)
+[![Next.js](https://img.shields.io/badge/Next.js-14+-black)](https://nextjs.org)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-blue)](https://mongodb.com)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-**EMO** (Easy Management Office) is a comprehensive business management system designed for EHB Technologies. It serves as the main control hub for business verification, franchise management, complaint handling, and user profile management.
+## 🎯 Overview
 
-### **Core Purpose:**
-- Business and franchise verification
-- User profile management with role-based access
-- Complaint management system
-- Franchise dashboard integration
-- SQL level monitoring and upgrades
-- Wallet integration with EHBGC
+EMO (Easy Management Office) is a comprehensive business verification and management platform designed for EHB Technologies. It provides complete solutions for business verification, SQL level management, franchise operations, and complaint handling.
 
-## 🏗️ **System Architecture**
+## ✨ Features
 
-### **Technology Stack:**
-- **Frontend:** Next.js + React + Tailwind CSS
-- **Backend:** Node.js + Express
-- **Database:** MongoDB Atlas
-- **Authentication:** JWT + 2FA
-- **Blockchain:** Polkadot, Moonbeam, BSC
-- **AI Integration:** OpenAI API
-- **Deployment:** Vercel (Frontend) + Render (Backend)
+### 🔐 **Authentication & User Management**
+- Secure JWT-based authentication
+- Role-based access control (User, Business, Franchise, Admin, Super Admin)
+- Two-factor authentication support
+- Password reset functionality
+- Account lockout protection
 
-### **Port Configuration:**
-- **EMO Main:** Port 4003
-- **Frontend:** Port 6000
-- **Backend API:** Port 3000
-- **Admin Panel:** Port 6001
+### 🏢 **Business Verification System**
+- Complete business registration and verification
+- Document upload and AI-powered validation
+- SQL level management (Free → Basic → Normal → High → VIP)
+- Real-time verification status tracking
+- Blockchain-based verification records
 
-## 📦 **System Modules**
+### 🏪 **Franchise Management**
+- Multi-level franchise system (Sub → Master → Corporate)
+- Franchise area management with GPS coordinates
+- Team management and staff controls
+- Income tracking and commission handling
+- Performance analytics and reporting
 
-### **Phase 1: Profile Manager** ✅
-- User business profile creation
-- Role-based access (Franchise, School, Seller, Service Provider, Agent)
-- Dynamic dashboard customization
-- JPS user profile sync
-
-### **Phase 2: Verification Center** ✅
-- Business and service verification
-- Document upload and AI verification
-- SQL Level Selector (Free/Basic/Normal/High/VIP)
-- Blockchain integration for verification logs
-
-### **Phase 3: Franchise Dashboard** ✅
-- Sub, Master, and Corporate franchise dashboards
-- Role-specific panels (Seller, Service Provider, School)
-- Team management and income tracking
-
-### **Phase 4: Complaint Management** ✅
-- Auto-complaint routing system
+### 📋 **Complaint Management**
+- Automated complaint routing system
 - 6-hour escalation timer
 - Penalty calculation (2-5% of order value)
-- PSS and EDR integration
+- Complaint resolution tracking
+- Integration with PSS and EDR systems
 
-### **Phase 5: Wallet Integration** ✅
-- EHBGC wallet connection
-- Order volume tracking
-- Income summary and analytics
-- AI-powered suggestions
+### 💰 **Wallet Integration**
+- EHBGC token integration via Moonbeam
+- Automated payment processing
+- Transaction history and reporting
+- Balance tracking and notifications
 
-### **Phase 6: SQL Level Monitor** ✅
-- SQL status tracking (Free → Basic → Normal → High → VIP)
-- Level upgrade management
-- Expiry monitoring
+### 🤖 **AI-Powered Features**
+- Document authenticity detection
+- SQL level recommendations
+- Business category classification
+- Smart service suggestions
+- Revenue forecasting
 
-## 🚀 **Quick Start**
+### 📊 **Analytics & Reporting**
+- Real-time dashboard metrics
+- Performance analytics
+- SQL level monitoring
+- Franchise performance tracking
+- Custom report generation
 
-### **Prerequisites:**
+## 🏗️ Architecture
+
+### **Frontend Stack**
+- **Framework:** Next.js 14 with React 18
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **State Management:** Zustand
+- **HTTP Client:** Axios
+- **UI Components:** Lucide React Icons
+- **Animations:** Framer Motion
+
+### **Backend Stack**
+- **Runtime:** Node.js 18+
+- **Framework:** Express.js
+- **Database:** MongoDB Atlas
+- **Authentication:** JWT
+- **Validation:** Express Validator
+- **File Upload:** Multer
+- **Logging:** Winston
+- **Email:** Nodemailer
+- **SMS:** Twilio
+
+### **Blockchain Integration**
+- **Polkadot:** Metadata audit trails
+- **Moonbeam:** Payment processing
+- **BSC:** NFT badges and verification
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+
+- MongoDB (local or Atlas)
+- Git
+
+### Installation
+
+1. **Clone the repository**
 ```bash
-Node.js 18+ or 20+
-MongoDB Atlas account
-Vercel account (for frontend)
-Render account (for backend)
+git clone https://github.com/ehb-technologies/emo.git
+cd emo
 ```
 
-### **Installation:**
+2. **Install dependencies**
 ```bash
-# Clone repository
-git clone https://github.com/ehb/emo-business.git
-cd emo-business
-
-# Install dependencies
+# Install backend dependencies
+cd backend
 npm install
 
-# Environment setup
-cp .env.example .env
-# Edit .env with your configuration
+# Install frontend dependencies
+cd ../frontend
+npm install
 
-# Start development
+# Install admin panel dependencies
+cd ../admin-panel
+npm install
+```
+
+3. **Environment Setup**
+```bash
+# Create environment files
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+cp admin-panel/.env.example admin-panel/.env
+```
+
+4. **Configure Environment Variables**
+
+**Backend (.env)**
+```env
+NODE_ENV=development
+PORT=4003
+MONGODB_URI=mongodb://localhost:27017/emo_dev
+JWT_SECRET=your-super-secret-jwt-key
+JWT_EXPIRE=7d
+FRONTEND_URL=http://localhost:3000
+ADMIN_URL=http://localhost:6001
+```
+
+**Frontend (.env)**
+```env
+NEXT_PUBLIC_API_URL=http://localhost:4003
+NEXT_PUBLIC_APP_NAME=EMO - Easy Management Office
+```
+
+5. **Start Development Servers**
+```bash
+# Start backend (Terminal 1)
+cd backend
+npm run dev
+
+# Start frontend (Terminal 2)
+cd frontend
+npm run dev
+
+# Start admin panel (Terminal 3)
+cd admin-panel
 npm run dev
 ```
 
-### **Environment Variables:**
-```bash
-# Database
-MONGODB_URI=your-mongodb-atlas-uri
+6. **Access the Application**
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:4003
+- **Admin Panel:** http://localhost:6001
 
-# Authentication
-JWT_SECRET=your-jwt-secret
-JWT_EXPIRES_IN=24h
+## 📁 Project Structure
 
-# Blockchain
-POLKADOT_RPC_URL=your-polkadot-rpc
-MOONBEAM_RPC_URL=your-moonbeam-rpc
-
-# AI Services
-OPENAI_API_KEY=your-openai-key
-
-# File Storage
-SUPABASE_URL=your-supabase-url
-SUPABASE_KEY=your-supabase-key
+```
+EMO/
+├── 📁 frontend/                 # Next.js Frontend Application
+│   ├── 📁 src/
+│   │   ├── 📁 components/       # React components
+│   │   ├── 📁 pages/           # Next.js pages
+│   │   ├── 📁 context/         # React contexts
+│   │   ├── 📁 hooks/           # Custom hooks
+│   │   ├── 📁 utils/           # Utility functions
+│   │   └── 📁 styles/          # CSS styles
+│   └── 📄 package.json
+├── 📁 backend/                  # Node.js/Express Backend
+│   ├── 📁 src/
+│   │   ├── 📁 routes/          # API routes
+│   │   ├── 📁 controllers/     # Business logic
+│   │   ├── 📁 models/          # Database models
+│   │   ├── 📁 middleware/      # Express middleware
+│   │   └── 📁 utils/           # Utility functions
+│   └── 📄 package.json
+├── 📁 admin-panel/              # Admin Dashboard
+├── 📁 database/                 # Database schemas
+├── 📁 blockchain/               # Blockchain integration
+├── 📁 ai-integration/           # AI/ML services
+└── 📄 README.md
 ```
 
-## 📊 **User Roles & Access**
+## 🔧 Development
 
-### **Business Roles:**
-1. **Franchise Owner** - Complete business management
-2. **Seller** - Product listing and order management
-3. **Service Provider** - Service booking and time management
-4. **School/Teacher** - Class and student management
-5. **Agent** - Sales and commission tracking
+### **Available Scripts**
 
-### **Admin Roles:**
-1. **Super Admin** - Full system access
-2. **Verification Admin** - Document verification
-3. **Complaint Admin** - Complaint management
-4. **Franchise Admin** - Franchise oversight
+**Backend**
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run test         # Run tests
+npm run lint         # Lint code
+```
 
-## 🔧 **API Endpoints**
+**Frontend**
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run start        # Start production server
+npm run lint         # Lint code
+npm run type-check   # TypeScript check
+```
 
-### **Authentication:**
+### **Database Setup**
+```bash
+# Create database
+mongo
+use emo_dev
+
+# Run migrations (if any)
+npm run migrate
+```
+
+### **Testing**
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run specific test file
+npm test -- --grep "User"
+```
+
+## 🛡️ Security Features
+
+- **JWT Authentication** with secure token management
+- **Rate Limiting** to prevent abuse
+- **Input Validation** with express-validator
+- **Password Hashing** with bcrypt
+- **CORS Protection** for cross-origin requests
+- **Helmet.js** for security headers
+- **Account Lockout** after failed login attempts
+- **File Upload Security** with type and size validation
+
+## 📊 API Documentation
+
+### **Authentication Endpoints**
+- `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - User login
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/verify-2fa` - 2FA verification
+- `GET /api/auth/me` - Get current user
+- `PUT /api/auth/profile` - Update user profile
+- `POST /api/auth/change-password` - Change password
+- `POST /api/auth/forgot-password` - Request password reset
+- `POST /api/auth/reset-password` - Reset password
 
-### **Profile Management:**
-- `GET /api/user/profile` - Get user profile
-- `PUT /api/user/profile` - Update profile
-- `POST /api/emo/role-selection` - Role selection
+### **Business Endpoints**
+- `GET /api/businesses` - Get all businesses
+- `POST /api/businesses` - Create business
+- `GET /api/businesses/:id` - Get business by ID
+- `PUT /api/businesses/:id` - Update business
+- `DELETE /api/businesses/:id` - Delete business
+- `POST /api/businesses/:id/documents` - Upload document
 
-### **Business Verification:**
-- `POST /api/verification/submit` - Submit verification
-- `GET /api/verification/status` - Check status
-- `POST /api/verification/approve` - Admin approval
+### **User Endpoints**
+- `GET /api/users` - Get all users (Admin)
+- `GET /api/users/:id` - Get user by ID
+- `PUT /api/users/:id` - Update user
+- `DELETE /api/users/:id` - Delete user
 
-### **Complaint Management:**
-- `POST /api/complaints/create` - Create complaint
-- `GET /api/complaints/list` - List complaints
-- `PUT /api/complaints/resolve` - Resolve complaint
+## 🚀 Deployment
 
-### **Franchise Management:**
-- `GET /api/franchise/dashboard` - Franchise dashboard
-- `POST /api/franchise/team/add` - Add team member
-- `GET /api/franchise/income` - Income reports
+### **Production Deployment**
 
-## 🏥 **Business Features**
-
-### **Verification System:**
-- Document upload and validation
-- AI-powered authenticity detection
-- Blockchain verification logging
-- Multi-level approval process
-
-### **Complaint Handling:**
-- Automatic routing to appropriate franchise
-- Escalation timer (6 hours)
-- Penalty calculation system
-- Resolution tracking
-
-### **SQL Level Management:**
-- Level upgrade tracking
-- Expiry monitoring
-- Benefits management
-- Payment integration
-
-### **Analytics Dashboard:**
-- Order volume tracking
-- Income analysis
-- Complaint ratio monitoring
-- Regional traffic analysis
-
-## 🔒 **Security Features**
-
-### **Data Protection:**
-- JWT token authentication
-- Role-based access control (RBAC)
-- Data encryption at rest and in transit
-- Audit logging for all actions
-
-### **Business Security:**
-- Document verification system
-- Fraud detection algorithms
-- Secure payment processing
-- Compliance monitoring
-
-## 📈 **Monitoring & Analytics**
-
-### **Performance Metrics:**
-- User engagement tracking
-- Business verification success rate
-- Complaint resolution time
-- Revenue generation analysis
-
-### **System Health:**
-- Real-time service monitoring
-- Error tracking and alerting
-- Performance optimization
-- Backup and recovery
-
-## 🚀 **Deployment**
-
-### **Development:**
+1. **Environment Setup**
 ```bash
-npm run dev
+# Set production environment
+NODE_ENV=production
 ```
 
-### **Production:**
+2. **Build Applications**
 ```bash
+# Build frontend
+cd frontend
 npm run build
-npm start
+
+# Build backend
+cd ../backend
+npm run build
 ```
 
-### **Docker Deployment:**
+3. **Deploy to Platform**
+
+**Vercel (Frontend)**
 ```bash
-docker-compose up -d
+vercel --prod
 ```
 
-## 📞 **Support**
+**Render (Backend)**
+```bash
+# Connect to Render dashboard
+# Deploy from GitHub repository
+```
 
-### **Technical Support:**
-- **Email:** tech-support@ehb.com
-- **Documentation:** https://docs.emo-business.com
-- **Status Page:** https://status.emo-business.com
+**AWS (Alternative)**
+```bash
+# Use AWS CodeBuild and CodeDeploy
+# Or deploy manually to EC2
+```
 
-### **Business Support:**
-- **Verification Issues:** verification@ehb.com
-- **Complaint Escalation:** complaints@ehb.com
-- **Franchise Support:** franchise@ehb.com
+### **Environment Variables for Production**
 
-## 📄 **License**
+```env
+NODE_ENV=production
+PORT=4003
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/emo_prod
+JWT_SECRET=your-super-secure-production-jwt-secret
+JWT_EXPIRE=7d
+FRONTEND_URL=https://emo.com
+ADMIN_URL=https://admin.emo.com
+SMTP_HOST=smtp.gmail.com
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+TWILIO_ACCOUNT_SID=your-twilio-sid
+TWILIO_AUTH_TOKEN=your-twilio-token
+OPENAI_API_KEY=your-openai-api-key
+```
 
-This project is proprietary software owned by EHB Technologies.
+## 🤝 Contributing
+
+1. **Fork the repository**
+2. **Create a feature branch**
+```bash
+git checkout -b feature/amazing-feature
+```
+3. **Commit your changes**
+```bash
+git commit -m 'Add amazing feature'
+```
+4. **Push to the branch**
+```bash
+git push origin feature/amazing-feature
+```
+5. **Open a Pull Request**
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Documentation:** [docs.emo.com](https://docs.emo.com)
+- **Issues:** [GitHub Issues](https://github.com/ehb-technologies/emo/issues)
+- **Email:** support@emo.com
+- **Discord:** [EMO Community](https://discord.gg/emo)
+
+## 🙏 Acknowledgments
+
+- **EHB Technologies** - For the vision and support
+- **Next.js Team** - For the amazing React framework
+- **Express.js Team** - For the robust backend framework
+- **MongoDB Team** - For the flexible database solution
+- **Tailwind CSS** - For the utility-first CSS framework
 
 ---
 
-**Version:** 1.0.0  
-**Last Updated:** January 2024  
-**Maintainer:** EHB Technologies Team 
+**Made with ❤️ by EHB Technologies**
+
+*EMO - Easy Management Office - Transforming Business Management*

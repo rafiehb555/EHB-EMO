@@ -1,10 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const morgan = require('morgan');
 const compression = require('compression');
+const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
-const slowDown = require('express-slow-down');
 require('dotenv').config();
 
 const connectDB = require('./utils/database');
@@ -17,12 +16,11 @@ const userRoutes = require('./routes/users');
 const businessRoutes = require('./routes/businesses');
 const franchiseRoutes = require('./routes/franchises');
 const complaintRoutes = require('./routes/complaints');
-const verificationRoutes = require('./routes/verification');
-const adminRoutes = require('./routes/admin');
 const walletRoutes = require('./routes/wallet');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4003;
 
 // Security middleware
 app.use(helmet({
@@ -38,10 +36,10 @@ app.use(helmet({
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:6000',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Rate limiting
@@ -52,15 +50,7 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
-
-const speedLimiter = slowDown({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  delayAfter: 50, // allow 50 requests per 15 minutes without delay
-  delayMs: 500, // add 500ms delay per request after delayAfter
-});
-
 app.use('/api/', limiter);
-app.use('/api/', speedLimiter);
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
@@ -76,9 +66,8 @@ app.use(morgan('combined', { stream: { write: message => logger.info(message.tri
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
+    message: 'EMO Backend API is running',
     timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    environment: process.env.NODE_ENV || 'development',
     version: process.env.npm_package_version || '1.0.0',
   });
 });
@@ -89,15 +78,14 @@ app.use('/api/users', userRoutes);
 app.use('/api/businesses', businessRoutes);
 app.use('/api/franchises', franchiseRoutes);
 app.use('/api/complaints', complaintRoutes);
-app.use('/api/verification', verificationRoutes);
-app.use('/api/admin', adminRoutes);
 app.use('/api/wallet', walletRoutes);
+app.use('/api/admin', adminRoutes);
 
 // 404 handler
 app.use('*', (req, res) => {
   res.status(404).json({
     success: false,
-    message: 'API endpoint not found',
+    message: 'Route not found',
     path: req.originalUrl,
   });
 });
@@ -105,22 +93,36 @@ app.use('*', (req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
-// Database connection
-connectDB()
-  .then(() => {
+// Start server
+const startServer = async () => {
+  try {
+    // Connect to database
+    await connectDB();
     logger.info('Database connected successfully');
-    
+
     // Start server
     app.listen(PORT, () => {
-      logger.info(`EMO Backend Server running on port ${PORT}`);
+      logger.info(`EMO Backend API server running on port ${PORT}`);
       logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
       logger.info(`Health check: http://localhost:${PORT}/health`);
     });
-  })
-  .catch((error) => {
-    logger.error('Database connection failed:', error);
+  } catch (error) {
+    logger.error('Failed to start server:', error);
     process.exit(1);
-  });
+  }
+};
+
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err, promise) => {
+  logger.error('Unhandled Rejection at:', promise, 'reason:', err);
+  process.exit(1);
+});
+
+// Handle uncaught exceptions
+process.on('uncaughtException', (err) => {
+  logger.error('Uncaught Exception:', err);
+  process.exit(1);
+});
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
@@ -133,16 +135,6 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-// Unhandled promise rejections
-process.on('unhandledRejection', (reason, promise) => {
-  logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  process.exit(1);
-});
+startServer();
 
-// Uncaught exceptions
-process.on('uncaughtException', (error) => {
-  logger.error('Uncaught Exception:', error);
-  process.exit(1);
-});
-
-module.exports = app; 
+module.exports = app;

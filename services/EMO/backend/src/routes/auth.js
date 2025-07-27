@@ -3,82 +3,66 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
+const auth = require('../middleware/auth');
 const logger = require('../utils/logger');
 
 const router = express.Router();
 
-// Register new user
+// @route   POST /api/auth/register
+// @desc    Register a new user
+// @access  Public
 router.post('/register', [
-  body('name').trim().isLength({ min: 2 }).withMessage('Name must be at least 2 characters'),
-  body('email').isEmail().normalizeEmail().withMessage('Valid email is required'),
-  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
-  body('role').isIn(['franchise', 'seller', 'service_provider', 'school', 'agent']).withMessage('Valid role is required'),
+  body('firstName').notEmpty().withMessage('First name is required'),
+  body('lastName').notEmpty().withMessage('Last name is required'),
+  body('email').isEmail().withMessage('Please enter a valid email'),
+  body('phone').notEmpty().withMessage('Phone number is required'),
+  body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long'),
+  body('businessType').optional().isIn(['seller', 'service_provider', 'school', 'franchise', 'agent']).withMessage('Invalid business type'),
 ], async (req, res) => {
   try {
-    // Check validation errors
+    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
         success: false,
-        error: 'Validation failed',
-        details: errors.array()
+        message: 'Validation failed',
+        errors: errors.array()
       });
     }
 
-    const { name, email, password, role, businessData } = req.body;
+    const { firstName, lastName, email, phone, password, businessType, businessName } = req.body;
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: email.toLowerCase() });
     if (existingUser) {
       return res.status(400).json({
         success: false,
-        error: 'User with this email already exists'
+        message: 'User with this email already exists'
       });
     }
 
-    // Hash password
-    const salt = await bcrypt.genSalt(12);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create user
+    // Create new user
     const user = new User({
-      name,
-      email,
-      password: hashedPassword,
-      role,
-      businessData: businessData || {},
-      sqlLevel: 'Free',
-      isVerified: false,
-      createdAt: new Date()
+      firstName,
+      lastName,
+      email: email.toLowerCase(),
+      phone,
+      password,
+      businessType,
+      role: businessType || 'user',
+      status: 'pending'
     });
 
     await user.save();
 
     // Generate JWT token
-    const token = jwt.sign(
-      {
-        id: user._id,
-        email: user.email,
-        role: user.role,
-        sqlLevel: user.sqlLevel
-      },
-      process.env.JWT_SECRET || 'your-super-secret-jwt-key',
-      { expiresIn: '24h' }
-    );
+    const token = user.generateAuthToken();
 
     // Remove password from response
-    const userResponse = {
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      sqlLevel: user.sqlLevel,
-      isVerified: user.isVerified,
-      businessData: user.businessData,
-      createdAt: user.createdAt
-    };
+    const userResponse = user.toObject();
+    delete userResponse.password;
 
-    logger.info(`New user registered: ${email} with role: ${role}`);
+    logger.info(`New user registered: ${email}`);
 
     res.status(201).json({
       success: true,
@@ -91,70 +75,73 @@ router.post('/register', [
     logger.error('Registration error:', error);
     res.status(500).json({
       success: false,
-      error: 'Registration failed'
+      message: 'Server error during registration'
     });
   }
 });
 
-// Login user
+// @route   POST /api/auth/login
+// @desc    Authenticate user & get token
+// @access  Public
 router.post('/login', [
-  body('email').isEmail().normalizeEmail().withMessage('Valid email is required'),
+  body('email').isEmail().withMessage('Please enter a valid email'),
   body('password').notEmpty().withMessage('Password is required'),
 ], async (req, res) => {
   try {
-    // Check validation errors
+    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
         success: false,
-        error: 'Validation failed',
-        details: errors.array()
+        message: 'Validation failed',
+        errors: errors.array()
       });
     }
 
     const { email, password } = req.body;
 
-    // Find user
-    const user = await User.findOne({ email }).select('+password');
+    // Check if user exists
+    const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
     if (!user) {
       return res.status(401).json({
         success: false,
-        error: 'Invalid credentials'
+        message: 'Invalid credentials'
+      });
+    }
+
+    // Check if account is locked
+    if (user.isLocked) {
+      return res.status(423).json({
+        success: false,
+        message: 'Account is locked due to too many failed login attempts. Please try again later.'
       });
     }
 
     // Check password
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      // Increment login attempts
+      await user.incLoginAttempts();
+
       return res.status(401).json({
         success: false,
-        error: 'Invalid credentials'
+        message: 'Invalid credentials'
       });
     }
 
+    // Reset login attempts on successful login
+    await user.resetLoginAttempts();
+
+    // Update last login
+    user.lastLogin = new Date();
+    await user.save();
+
     // Generate JWT token
-    const token = jwt.sign(
-      {
-        id: user._id,
-        email: user.email,
-        role: user.role,
-        sqlLevel: user.sqlLevel
-      },
-      process.env.JWT_SECRET || 'your-super-secret-jwt-key',
-      { expiresIn: '24h' }
-    );
+    const token = user.generateAuthToken();
 
     // Remove password from response
-    const userResponse = {
-      id: user._id,
-      name: user.name,
-      email: user.email,
-      role: user.role,
-      sqlLevel: user.sqlLevel,
-      isVerified: user.isVerified,
-      businessData: user.businessData,
-      createdAt: user.createdAt
-    };
+    const userResponse = user.toObject();
+    delete userResponse.password;
 
     logger.info(`User logged in: ${email}`);
 
@@ -169,30 +156,21 @@ router.post('/login', [
     logger.error('Login error:', error);
     res.status(500).json({
       success: false,
-      error: 'Login failed'
+      message: 'Server error during login'
     });
   }
 });
 
-// Get current user profile
-router.get('/profile', async (req, res) => {
+// @route   GET /api/auth/me
+// @desc    Get current user
+// @access  Private
+router.get('/me', auth, async (req, res) => {
   try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
-    
-    if (!token) {
-      return res.status(401).json({
-        success: false,
-        error: 'Access token required'
-      });
-    }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-super-secret-jwt-key');
-    const user = await User.findById(decoded.id).select('-password');
-
+    const user = await User.findById(req.user.id);
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: 'User not found'
+        message: 'User not found'
       });
     }
 
@@ -202,129 +180,111 @@ router.get('/profile', async (req, res) => {
     });
 
   } catch (error) {
-    if (error.name === 'JsonWebTokenError') {
-      return res.status(401).json({
-        success: false,
-        error: 'Invalid token'
-      });
-    }
-
-    logger.error('Profile fetch error:', error);
+    logger.error('Get user error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to fetch profile'
+      message: 'Server error'
     });
   }
 });
 
-// Update user profile
-router.put('/profile', async (req, res) => {
-  try {
-    const token = req.headers.authorization?.replace('Bearer ', '');
-    
-    if (!token) {
-      return res.status(401).json({
-        success: false,
-        error: 'Access token required'
-      });
-    }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-super-secret-jwt-key');
-    const user = await User.findById(decoded.id);
-
-    if (!user) {
-      return res.status(404).json({
-        success: false,
-        error: 'User not found'
-      });
-    }
-
-    const { name, businessData } = req.body;
-
-    // Update allowed fields
-    if (name) user.name = name;
-    if (businessData) user.businessData = { ...user.businessData, ...businessData };
-
-    await user.save();
-
-    logger.info(`Profile updated for user: ${user.email}`);
-
-    res.json({
-      success: true,
-      message: 'Profile updated successfully',
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
-        role: user.role,
-        sqlLevel: user.sqlLevel,
-        isVerified: user.isVerified,
-        businessData: user.businessData,
-        createdAt: user.createdAt
-      }
-    });
-
-  } catch (error) {
-    logger.error('Profile update error:', error);
-    res.status(500).json({
-      success: false,
-      error: 'Failed to update profile'
-    });
-  }
-});
-
-// Change password
-router.put('/change-password', [
-  body('currentPassword').notEmpty().withMessage('Current password is required'),
-  body('newPassword').isLength({ min: 6 }).withMessage('New password must be at least 6 characters'),
+// @route   PUT /api/auth/profile
+// @desc    Update user profile
+// @access  Private
+router.put('/profile', [
+  auth,
+  body('firstName').optional().notEmpty().withMessage('First name cannot be empty'),
+  body('lastName').optional().notEmpty().withMessage('Last name cannot be empty'),
+  body('phone').optional().notEmpty().withMessage('Phone number cannot be empty'),
+  body('bio').optional().isLength({ max: 500 }).withMessage('Bio cannot exceed 500 characters'),
 ], async (req, res) => {
   try {
-    // Check validation errors
+    // Check for validation errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({
         success: false,
-        error: 'Validation failed',
-        details: errors.array()
+        message: 'Validation failed',
+        errors: errors.array()
       });
     }
 
-    const token = req.headers.authorization?.replace('Bearer ', '');
-    
-    if (!token) {
-      return res.status(401).json({
-        success: false,
-        error: 'Access token required'
-      });
-    }
+    const { firstName, lastName, phone, bio, preferences } = req.body;
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'your-super-secret-jwt-key');
-    const user = await User.findById(decoded.id).select('+password');
-
+    const user = await User.findById(req.user.id);
     if (!user) {
       return res.status(404).json({
         success: false,
-        error: 'User not found'
+        message: 'User not found'
+      });
+    }
+
+    // Update fields
+    if (firstName) user.firstName = firstName;
+    if (lastName) user.lastName = lastName;
+    if (phone) user.phone = phone;
+    if (bio !== undefined) user.bio = bio;
+    if (preferences) user.preferences = { ...user.preferences, ...preferences };
+
+    await user.save();
+
+    logger.info(`User profile updated: ${user.email}`);
+
+    res.json({
+      success: true,
+      message: 'Profile updated successfully',
+      user
+    });
+
+  } catch (error) {
+    logger.error('Update profile error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+});
+
+// @route   POST /api/auth/change-password
+// @desc    Change user password
+// @access  Private
+router.post('/change-password', [
+  auth,
+  body('currentPassword').notEmpty().withMessage('Current password is required'),
+  body('newPassword').isLength({ min: 8 }).withMessage('New password must be at least 8 characters long'),
+], async (req, res) => {
+  try {
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array()
       });
     }
 
     const { currentPassword, newPassword } = req.body;
 
-    // Verify current password
-    const isCurrentPasswordValid = await bcrypt.compare(currentPassword, user.password);
-    if (!isCurrentPasswordValid) {
-      return res.status(400).json({
+    const user = await User.findById(req.user.id).select('+password');
+    if (!user) {
+      return res.status(404).json({
         success: false,
-        error: 'Current password is incorrect'
+        message: 'User not found'
       });
     }
 
-    // Hash new password
-    const salt = await bcrypt.genSalt(12);
-    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+    // Check current password
+    const isMatch = await user.comparePassword(currentPassword);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'Current password is incorrect'
+      });
+    }
 
     // Update password
-    user.password = hashedNewPassword;
+    user.password = newPassword;
     await user.save();
 
     logger.info(`Password changed for user: ${user.email}`);
@@ -335,20 +295,140 @@ router.put('/change-password', [
     });
 
   } catch (error) {
-    logger.error('Password change error:', error);
+    logger.error('Change password error:', error);
     res.status(500).json({
       success: false,
-      error: 'Failed to change password'
+      message: 'Server error'
     });
   }
 });
 
-// Logout (client-side token removal)
-router.post('/logout', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Logout successful'
-  });
+// @route   POST /api/auth/forgot-password
+// @desc    Send password reset email
+// @access  Public
+router.post('/forgot-password', [
+  body('email').isEmail().withMessage('Please enter a valid email'),
+], async (req, res) => {
+  try {
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array()
+      });
+    }
+
+    const { email } = req.body;
+
+    const user = await User.findOne({ email: email.toLowerCase() });
+    if (!user) {
+      // Don't reveal if user exists or not
+      return res.json({
+        success: true,
+        message: 'If an account with that email exists, a password reset link has been sent'
+      });
+    }
+
+    // Generate reset token
+    const resetToken = user.generatePasswordResetToken();
+    await user.save();
+
+    // TODO: Send email with reset link
+    // For now, just log the token
+    logger.info(`Password reset token generated for ${email}: ${resetToken}`);
+
+    res.json({
+      success: true,
+      message: 'If an account with that email exists, a password reset link has been sent'
+    });
+
+  } catch (error) {
+    logger.error('Forgot password error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
 });
 
-module.exports = router; 
+// @route   POST /api/auth/reset-password
+// @desc    Reset password with token
+// @access  Public
+router.post('/reset-password', [
+  body('token').notEmpty().withMessage('Reset token is required'),
+  body('newPassword').isLength({ min: 8 }).withMessage('New password must be at least 8 characters long'),
+], async (req, res) => {
+  try {
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Validation failed',
+        errors: errors.array()
+      });
+    }
+
+    const { token, newPassword } = req.body;
+
+    const user = await User.findOne({
+      passwordResetToken: token,
+      passwordResetExpires: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or expired reset token'
+      });
+    }
+
+    // Update password
+    user.password = newPassword;
+    user.passwordResetToken = undefined;
+    user.passwordResetExpires = undefined;
+    await user.save();
+
+    logger.info(`Password reset for user: ${user.email}`);
+
+    res.json({
+      success: true,
+      message: 'Password reset successfully'
+    });
+
+  } catch (error) {
+    logger.error('Reset password error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+});
+
+// @route   POST /api/auth/logout
+// @desc    Logout user (client-side token removal)
+// @access  Private
+router.post('/logout', auth, async (req, res) => {
+  try {
+    // In a real application, you might want to blacklist the token
+    // For now, just return success (client will remove token)
+
+    logger.info(`User logged out: ${req.user.email}`);
+
+    res.json({
+      success: true,
+      message: 'Logged out successfully'
+    });
+
+  } catch (error) {
+    logger.error('Logout error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+});
+
+module.exports = router;

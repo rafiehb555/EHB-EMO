@@ -5,11 +5,12 @@ import { AuthProvider } from '@/context/AuthContext';
 import { BusinessProvider } from '@/context/BusinessContext';
 import '@/styles/globals.css';
 
+// Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
       retry: 1,
+      refetchOnWindowFocus: false,
     },
   },
 });
@@ -31,14 +32,14 @@ export default function App({ Component, pageProps }: AppProps) {
               success: {
                 duration: 3000,
                 iconTheme: {
-                  primary: '#22c55e',
+                  primary: '#10B981',
                   secondary: '#fff',
                 },
               },
               error: {
                 duration: 5000,
                 iconTheme: {
-                  primary: '#ef4444',
+                  primary: '#EF4444',
                   secondary: '#fff',
                 },
               },
@@ -48,4 +49,4 @@ export default function App({ Component, pageProps }: AppProps) {
       </AuthProvider>
     </QueryClientProvider>
   );
-} 
+}
