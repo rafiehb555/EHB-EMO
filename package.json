@@ -1,0 +1,66 @@
+{
+  "name": "emo-project",
+  "version": "1.0.0",
+  "description": "EMO - Easy Management Office - Complete business verification and management platform",
+  "main": "index.js",
+  "scripts": {
+    "setup": "node scripts/setup-dev.js",
+    "dev": "node scripts/start-dev.js",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:admin": "cd admin-panel && npm run dev",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ../admin-panel && npm install",
+    "build": "npm run build:backend && npm run build:frontend && npm run build:admin",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:admin": "cd admin-panel && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm test",
+    "test:frontend": "cd frontend && npm test",
+    "lint": "npm run lint:backend && npm run lint:frontend",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "health": "node scripts/health-check.js",
+    "clean": "npm run clean:node_modules && npm run clean:build",
+    "clean:node_modules": "rimraf node_modules backend/node_modules frontend/node_modules admin-panel/node_modules",
+    "clean:build": "rimraf backend/dist frontend/.next admin-panel/.next",
+    "reset": "npm run clean && npm run install:all",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "emo",
+    "business",
+    "management",
+    "verification",
+    "franchise",
+    "healthcare",
+    "nodejs",
+    "react",
+    "typescript"
+  ],
+  "author": "EHB Technologies",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "rimraf": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ehb-technologies/emo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ehb-technologies/emo/issues"
+  },
+  "homepage": "https://emo.ehb.com",
+  "dependencies": {
+    "axios": "^1.11.0"
+  }
+}

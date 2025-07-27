@@ -1,0 +1,32 @@
+{
+  "name": "emo-tests",
+  "version": "1.0.0",
+  "description": "Test suite for EMO healthcare platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:unit": "jest --testPathPattern=unit",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:e2e": "jest --testPathPattern=e2e",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
+  },
+  "dependencies": {
+    "jest": "^29.0.0",
+    "supertest": "^6.3.0",
+    "mocha": "^10.0.0",
+    "chai": "^4.3.0",
+    "sinon": "^15.0.0",
+    "cypress": "^13.0.0",
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/supertest": "^2.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0"
+  },
+  "keywords": ["testing", "healthcare", "emo", "jest", "cypress"],
+  "author": "EHB Team",
+  "license": "MIT"
+} 
